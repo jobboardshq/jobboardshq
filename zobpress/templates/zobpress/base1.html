@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<link rel="stylesheet" media="screen" href="/site_media/css/style.css" />
+<title>Djangolancers - A django job site.</title>
+</head>
+
+<body>
+<div id="container">
+  <h1>
+  {% block headertext %}
+  Djangolancers
+  {% endblock %}
+  </h1>
+  
+  {% block topbar %}
+  <div class="topbar">
+    <ul class="topbarel">
+      <li>
+	<a href="/">Main</a>
+      </li>      
+      <li>
+	<a href="/developers/">See devlopers</a>
+      </li>
+      <li>
+	<a href="/jobs/">See jobs</a>
+      </li>
+      <li>
+	<a href="/adddev/">Add devlopers</a>
+      </li>
+      <li>
+	<a href="/addjob/">Add jobs</a>
+      </li>
+    </ul>
+  </div>
+  <br />
+  {% endblock %}
+  {% block text %}
+  {% endblock %}
+
+</div>
+
+<div id="footer">
+  {% block footer %}
+    Design by <a href="http://pixl.utopiaplanitia.org">Pixl Design</a>
+  {% endblock %}  
+</div>
+</body>
+</html>

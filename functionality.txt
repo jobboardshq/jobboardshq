@@ -1,0 +1,11 @@
+Zobpress
+------------
+
+Zobpress is a web application which allows users to build niche job boards for their website.
+
+Pages.
+
+1. Add a Job listing.
+You can a Job listing tailored to an users needs on this page. Users can apply to a job from thsi page.
+
+2. 

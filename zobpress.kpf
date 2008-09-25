@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Komodo Project File - DO NOT EDIT -->
+<project id="0d7c305c-54cf-4472-9666-16736d2845a0" kpf_version="4" name="zobpress.kpf">
+<preference-set idref="0d7c305c-54cf-4472-9666-16736d2845a0">
+  <boolean id="import_live">1</boolean>
+</preference-set>
+</project>
