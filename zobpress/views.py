@@ -3,8 +3,12 @@ from django.views.generic.list_detail import object_list, object_detail
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
+from StringIO import StringIO
+
 from zobpress import models
+from zobpress.models import type_mapping, JobFormModel, JobFieldModel
 from zobpress.forms import get_job_form, get_employee_form, PasswordForm
+from django.utils import simplejson
 
 def index(request):
     return add_person(request)
@@ -125,4 +129,15 @@ def edit_person_done(request, id):
 def create_job_form(request):
     "Create a job form for a board."
     payload = {}
+    if request.method == 'POST' and request.is_ajax():
+        import pdb
+        pdb.set_trace()
+        data = simplejson.load(StringIO(request.POST['data']))
+        job_form, created = JobFormModel.objects.get_or_create(board = request.board)
+        job_form.jobfieldmodel_set.all().delete()
+        order = 1
+        for field in data:
+            field_obj = JobFieldModel(job_form = job_form, name = field[0], type=field[1], order = order)
+            order += 1
+            field_obj.save()
     return render_to_response('zobpress/create_form.html', payload, RequestContext(request))
