@@ -8,11 +8,29 @@
 {% endblock %}
 </title>
 
+{% block css %}
 <link rel="stylesheet" href="/site_media/css/blueprint/screen.css" type="text/css" media="screen, projection">
 <link rel="stylesheet" href="/site_media/css/blueprint/print.css" type="text/css" media="print"> 
 <!--[if IE]>
   <link rel="stylesheet" href="/site_media/css/blueprint/ie.css" type="text/css" media="screen, projection">
 <![endif]-->
+
+{% endblock %}
+
+{% block extracss %}
+{% endblock %}
+
+{% block script %}
+
+<script type="text/javascript" src="/site_media/js/jquery.js">
+</script>
+<script type="text/javascript" src="/site_media/js/ui.core.js">
+</script>
+{% endblock %}
+
+{% block extrascript %}
+
+{% endblock %}
 
 </head>
 
@@ -20,6 +38,7 @@
 
 <div class="container">
   <div class="span-24 header">
+    {{ board }}
   </div>
   
   <div class="span-24 toptab">

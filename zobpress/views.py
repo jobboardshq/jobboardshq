@@ -1,6 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect, Http404, HttpResponseForbidden
 from django.views.generic.list_detail import object_list, object_detail
 from django.shortcuts import render_to_response
+from django.template import RequestContext
 
 from zobpress import models
 from zobpress.forms import get_job_form, get_employee_form, PasswordForm
@@ -21,7 +22,7 @@ def handle_form(request, Form, template_name):
 
 def add_person(request):
     EmployeeForm = get_employee_form(request.board)
-    return handle_form(request, EmployeeForm, 'zobpress/adddev.html')
+    return handle_form(request, EmployeeForm, 'zobpress/addperson.html')
 
 def add_job(request):
     JobForm = get_job_form(request.board)
@@ -29,7 +30,7 @@ def add_job(request):
 
 def person(request, id):
     qs = models.Employee.objects.all()
-    return object_detail(request, template_name = 'zobpress/developer.html', queryset = qs, object_id = id, template_object_name = 'developer')
+    return object_detail(request, template_name = 'zobpress/person.html', queryset = qs, object_id = id, template_object_name = 'developer')
     
 def job(request, id):
     qs = models.Job.objects.all()
@@ -44,7 +45,7 @@ def persons(request):
     if not order_by in ('name', 'created_on'):
         order_by = '-created_on'        
     qs = models.Developer.objects.all().order_by(order_by)
-    return object_list(request, template_name = 'zobpress/developers.html', queryset = qs, template_object_name = 'developers', paginate_by=10)
+    return object_list(request, template_name = 'zobpress/persons.html', queryset = qs, template_object_name = 'developers', paginate_by=10)
 
 def jobs(request):
     try:
@@ -72,7 +73,7 @@ def edit_job(request, id):
     if request.method == 'GET':
         form = PasswordForm()
     payload = {'form':form}
-    return render_to_response('zobpress/editdev.html', payload)
+    return render_to_response('zobpress/editjob.html', payload)
 
 def edit_person(request, id):
     dev = models.Developer.objects.get(id = id)
@@ -89,7 +90,7 @@ def edit_person(request, id):
     if request.method == 'GET':
         form = PasswordForm()
     payload = {'form':form}
-    return render_to_response('zobpress/editdev.html', payload)
+    return render_to_response('zobpress/editperson.html', payload)
 
 def edit_job_done(request, id):
     job = models.Job.objects.get(id = id)
@@ -120,3 +121,8 @@ def edit_person_done(request, id):
         form = DeveloperForm(instance = dev)
     payload = {'form': form}
     return render_to_response('zobpress/adddev.html', payload)
+
+def create_job_form(request):
+    "Create a job form for a board."
+    payload = {}
+    return render_to_response('zobpress/create_form.html', payload, RequestContext(request))

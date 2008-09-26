@@ -14,5 +14,6 @@ urlpatterns = patterns('zobpress.views',
     url(r'^person/(?P<id>\d+)/$', 'person', name='zobpress_person'),
     url(r'^editperson/(?P<id>\d+)/$', 'edit_person', name='zobpress_edit_person'),
     url(r'^editdev/(?P<id>\d+)/done/$', 'edit_person_done', name='zobpress_edit_person_done'),
-    url(r'^about/$', direct_to_template, {'template':'jobs/about.html'}, name='zobpress_'),
+    url(r'^about/$', direct_to_template, {'template':'jobs/about.html'}, name='zobpress_about'),
+    url(r'^create/jobform/$', 'create_job_form', name='zobpress_create_job_form'),
 )
