@@ -2,9 +2,14 @@ from django.db import models
 from django.db.models import permalink
 from django import forms
 
-type_mapping = {'CharField':forms.CharField(max_length = 100), 'TextField': forms.CharField(widget = forms.Textarea), 'BooleanField':forms.BooleanField(),
+type_mapping = {'CharField':forms.CharField(max_length = 100), 'TextField': forms.CharField(widget = forms.Textarea), 'BooleanField':forms.BooleanField(required = False),
                 'URLField': forms.URLField(), 'EmailField': forms.EmailField()
                 }
+rev_type_mapping_list  = [(v.__class__, k) for k,v in type_mapping.iteritems()]
+rev_type_mapping = {}
+for el in rev_type_mapping_list:
+    rev_type_mapping[el[0]] = el[1]
+
 
 class Board(models.Model):
     subdomain = models.CharField(max_length = 100)
@@ -50,8 +55,18 @@ class Employee(models.Model):
     
 class EmployeeData(models.Model):
     employee = models.ForeignKey(Employee)
+    data_type = models.CharField(max_length = 100)
     name = models.CharField(max_length = 100)
     value = models.TextField()
+    
+    def value_as_str(self):
+        "Value as pretty string"
+        if self.data_type == 'BooleanField':
+            if self.value:
+                return 'Yes'
+            else:
+                return 'No'
+        return self.value
     
 class JobFormModel(models.Model):
     "Model for Job form for a specific Job board."
@@ -88,5 +103,15 @@ class Job(models.Model):
     
 class JobData(models.Model):
     job = models.ForeignKey(Job)
+    data_type = models.CharField(max_length = 100)
     name = models.CharField(max_length = 100)
     value = models.TextField()
+    
+    def value_as_str(self):
+        "Value as pretty string"
+        if self.data_type == 'BooleanField':
+            if self.value:
+                return 'Yes'
+            else:
+                return 'No'
+        return self.value

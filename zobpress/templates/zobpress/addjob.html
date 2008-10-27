@@ -12,18 +12,27 @@
 <br />
 
        <form action="." method="post">
-        <div class="form">            
+        <div class="form">
+        <table>
         {% for field in form %}
+        <tr>
+        <th>
+        {{ field.label_tag }}
+        </th>
+        <td>
         {% if field.errors %} <span class="error">
         {% for error in field.errors %}
         {{ error }}
         {% endfor %}
-        </span> {% endif %}            
-        {{ field.label_tag }}
+        </span> {% endif %} 
         {{field}}
         {% if field.help_text %}<span class="help">{{ field.help_text }}</span>{% endif %}
+        </td>
+        </tr>
         <div class="clear"></div>
+        
         {% endfor %}
+        </table>
         <input type="submit" value="submit" name="submit" class="button" />
         </div>        
        </form>

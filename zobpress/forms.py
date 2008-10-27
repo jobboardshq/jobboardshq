@@ -1,7 +1,7 @@
 from django import forms
 
 from zobpress import models
-from zobpress.models import Board, EmployeeFormModel, EmployeeFieldModel, type_mapping
+from zobpress.models import Board, EmployeeFormModel, EmployeeFieldModel, type_mapping, rev_type_mapping
 from zobpress.models import Employee, EmployeeData
 from zobpress.models import JobFormModel, JobFieldModel
 from zobpress.models import Job, JobData
@@ -20,7 +20,9 @@ def get_employee_form(board):
                 for field in self.cleaned_data.iterkeys():
                     if field in ['name']:
                         continue
+                    data_type = rev_type_mapping[self.fields[field].__class__]
                     emp_data = EmployeeData(employee = employee, name = field, value = self.cleaned_data[field])
+                    emp_data.data_type = data_type
                     emp_data.save()
                 return employee
     setattr(EmployeeForm, 'name', forms.CharField(max_length = 100))
@@ -42,7 +44,9 @@ def get_job_form(board):
                 for field in self.cleaned_data.iterkeys():
                     if field in ['name']:
                         continue
+                    data_type = rev_type_mapping[self.fields[field].__class__]
                     job_data = JobData(job = job, name = field, value = self.cleaned_data[field])
+                    job_data.data_type = data_type
                     job_data.save()
                 return job
     setattr(JobForm, 'name', forms.CharField(max_length = 100))

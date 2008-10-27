@@ -34,7 +34,7 @@ def add_job(request):
 
 def person(request, id):
     qs = models.Employee.objects.all()
-    return object_detail(request, template_name = 'zobpress/person.html', queryset = qs, object_id = id, template_object_name = 'developer')
+    return object_detail(request, template_name = 'zobpress/person.html', queryset = qs, object_id = id, template_object_name = 'person')
     
 def job(request, id):
     qs = models.Job.objects.all()
@@ -48,7 +48,7 @@ def persons(request):
     if order_by == 'created_on': order_by = '-created_on'
     if not order_by in ('name', 'created_on'):
         order_by = '-created_on'        
-    qs = models.Developer.objects.all().order_by(order_by)
+    qs = models.Employee.objects.all().order_by(order_by)
     return object_list(request, template_name = 'zobpress/persons.html', queryset = qs, template_object_name = 'developers', paginate_by=10)
 
 def jobs(request):

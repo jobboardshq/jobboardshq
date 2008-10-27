@@ -7,7 +7,7 @@ DATABASE_PORT = ''             # Set to empty string for default. Not used with 
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = '/home/shabda/job_board/site_media/'
+MEDIA_ROOT = '/home/shabda/jobboard/site_media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -19,7 +19,7 @@ MEDIA_URL = '/site_media/'
 # Examples: "http://foo.com/media/", "/media/".
 ADMIN_MEDIA_PREFIX = '/media/'
 
-ROOT_URLCONF = 'job_board.urls'
+ROOT_URLCONF = 'jobboard.urls'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'e6v12%-+5u#zr1fz=)2jnn@+9&_7ay8%%&7@sjnf_bxb%z26m-'
