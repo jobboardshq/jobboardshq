@@ -17,7 +17,7 @@ $(document).ready(function(){
     $('.draggable').draggable({helper: 'clone'});
     make_droppable();
     $('#submit_button').click(function(){
-        $.post('.', {'data':JSON.stringify(form_elements)});
+        $.post('.', {'data':JSON.stringify(form_elements)}, function(data){window.location = data;});
         return false;
     });
     });
