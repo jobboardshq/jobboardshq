@@ -69,3 +69,5 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     
 )
+
+SESSION_COOKIE_DOMAIN = '.shabda.tld'

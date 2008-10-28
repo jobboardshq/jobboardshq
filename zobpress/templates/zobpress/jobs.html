@@ -8,16 +8,7 @@
 
 {% block content %}
   {% for job in jobs_list %}
-        <div class="post">
-            
-            <div class="posttop">
-                <h4>{{job.name}}</h4>
-            </div>  
-            <div class="postitem">
-            {{job.description|linebreaks|urlize|truncatewords:30}}
-            <a href={{job.get_absolute_url}}>Read more ...</a>
-            </div>
-            </div>
+        {% include 'zobpress/job_snippet_frag.html' %}
   {% endfor %}
 {% endblock %}
 

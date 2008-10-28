@@ -1,13 +1,14 @@
 from django.http import HttpResponse, HttpResponseRedirect, Http404, HttpResponseForbidden
 from django.views.generic.list_detail import object_list, object_detail
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
 
 from StringIO import StringIO
 
 from zobpress import models
-from zobpress.models import type_mapping, JobFormModel, JobFieldModel
+from zobpress.models import type_mapping, JobFormModel, JobFieldModel, Job
+from zobpress.models import EmployeeFormModel, EmployeeFieldModel, Category, Employee
 from zobpress.forms import get_job_form, get_employee_form, PasswordForm
 from django.utils import simplejson
 
@@ -23,7 +24,7 @@ def handle_form(request, Form, template_name):
     if request.method == 'GET':
         form = Form()
     payload = {'form':form}
-    return render_to_response(template_name, payload)
+    return render_to_response(template_name, payload, RequestContext(request))
 
 def add_person(request):
     EmployeeForm = get_employee_form(request.board)
@@ -130,6 +131,8 @@ def edit_person_done(request, id):
 def create_job_form(request):
     "Create a job form for a board."
     if request.method == 'POST' and request.is_ajax():
+        import pdb
+        pdb.set_trace()
         data = simplejson.load(StringIO(request.POST['data']))
         job_form, created = JobFormModel.objects.get_or_create(board = request.board)
         job_form.jobfieldmodel_set.all().delete()
@@ -138,7 +141,33 @@ def create_job_form(request):
             field_obj = JobFieldModel(job_form = job_form, name = field[0], type=field[1], order = order)
             order += 1
             field_obj.save()
-            success_url = reverse('zobpress_add_job')
-            return HttpResponse(success_url)
+        success_url = reverse('zobpress_add_job')
+        return HttpResponse(success_url)
     payload = {}
-    return render_to_response('zobpress/create_form.html', payload, RequestContext(request))
+    return render_to_response('zobpress/create_job_form.html', payload, RequestContext(request))
+
+def create_person_form(request):
+    "Create a person form for a board."
+    if request.method == 'POST' and request.is_ajax():
+        data = simplejson.load(StringIO(request.POST['data']))
+        employee_form, created = EmployeeFormModel.objects.get_or_create(board = request.board)
+        employee_form.employeefieldmodel_set.all().delete()
+        order = 1
+        for field in data:
+            field_obj = EmployeeFieldModel(employee_form = employee_form, name = field[0], type=field[1], order = order)
+            order += 1
+            field_obj.save()
+        success_url = reverse('zobpress_add_person')
+        return HttpResponse(success_url)
+    payload = {}
+    return render_to_response('zobpress/create_person_form.html', payload, RequestContext(request))
+
+def category_jobs(request, category_slug):
+    category = get_object_or_404(Category, slug = category_slug)
+    jobs = Job.objects.filter(category = category)
+    return object_list(request, queryset = jobs, template_name = 'zobpress/category_job_list.html', template_object_name = 'job')
+
+def category_employee(request, category_slug):
+    category = get_object_or_404(Category, slug = category_slug)
+    employees = Employee.objects.filter(category = category)
+    return object_list(request, queryset = employees, template_name = 'zobpress/category_employee_list.html', template_object_name = 'employee')

@@ -2,10 +2,15 @@ from django.db import models
 from django.db.models import permalink
 from django import forms
 
-type_mapping = {'CharField':forms.CharField(max_length = 100), 'TextField': forms.CharField(widget = forms.Textarea), 'BooleanField':forms.BooleanField(required = False),
+"""type_mapping = {'CharField':forms.CharField(max_length = 100), 'TextField': forms.CharField(widget = forms.Textarea), 'BooleanField':forms.BooleanField(required = False),
                 'URLField': forms.URLField(), 'EmailField': forms.EmailField()
+                }"""
+type_mapping = {
+                'CharField':(forms.CharField, dict(max_length = 100)), 'TextField': (forms.CharField, dict(widget = forms.Textarea)), 'BooleanField':(forms.BooleanField, dict(required = False)),
+                'URLField': (forms.URLField, dict()), 'EmailField': (forms.EmailField, dict()),
+                'CategoryField': (forms.ModelChoiceField, dict())
                 }
-rev_type_mapping_list  = [(v.__class__, k) for k,v in type_mapping.iteritems()]
+rev_type_mapping_list  = [(v[0], k) for k,v in type_mapping.iteritems()]
 rev_type_mapping = {}
 for el in rev_type_mapping_list:
     rev_type_mapping[el[0]] = el[1]
@@ -15,6 +20,19 @@ class Board(models.Model):
     subdomain = models.CharField(max_length = 100)
     name = models.CharField(max_length = 100)
     description = models.TextField()
+    
+    def __unicode__(self):
+        return self.name
+    
+class Category(models.Model):
+    "Categories for a specific board"
+    board = models.ForeignKey(Board)
+    name = models.CharField(max_length = 100)
+    slug = models.SlugField(max_length = 100)
+    
+    @models.permalink
+    def get_absolute_url(self):
+        return('zobpress.views.category', [self.slug])
     
     def __unicode__(self):
         return self.name
@@ -45,6 +63,7 @@ class EmployeeFieldModel(models.Model):
 class Employee(models.Model):
     board = models.ForeignKey(Board)
     name = models.CharField(max_length = 100)
+    category = models.ForeignKey(Category, null = True, blank = True)
     
     created_on = models.DateTimeField(auto_now_add = 1)
     updated_on = models.DateTimeField(auto_now = 1)
@@ -93,6 +112,7 @@ class JobFieldModel(models.Model):
 class Job(models.Model):
     board = models.ForeignKey(Board)
     name = models.CharField(max_length = 100)
+    category = models.ForeignKey(Category, null = True, blank = True)
     
     created_on = models.DateTimeField(auto_now_add = 1)
     updated_on = models.DateTimeField(auto_now = 1)

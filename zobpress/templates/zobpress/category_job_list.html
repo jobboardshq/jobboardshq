@@ -1,0 +1,9 @@
+{% extends 'zobpress/base.html' %}
+
+{% block content %}
+
+{% for job in job_list %}
+    {% include 'zobpress/job_snippet_frag.html' %}
+{% endfor %}
+
+{% endblock %}
