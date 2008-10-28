@@ -1,128 +1,5 @@
-{% extends 'zobpress/base.html' %}
+{% extends 'zobpress/create_abstract_form.html' %}
 
-{% block extrascript %}
-<script type="text/javascript" src="/site_media/js/ui.draggable.js">
-</script>
-<script type="text/javascript" src="/site_media/js/ui.droppable.js">
-</script>
-<script type="text/javascript" src="/site_media/js/ui.resizable.js">
-</script>
-<script type="text/javascript" src="/site_media/js/jquery.jeditable.js">
-</script>
-<script>
-
-form_elements = Array();
-
-$(document).ready(function(){
-    $('.draggable').draggable({helper: 'clone'});
-    make_droppable();
-    $('#submit_button').click(function(){
-        $.post('.', {'data':JSON.stringify(form_elements)}, function(data){window.location = data;});
-        return false;
-    });
-    });
-
-function make_droppable(){
-    $('.dropbox').droppable(
-        {accept:'.draggable',
-        drop: function(ev, ui){
-            key = form_elements.length;
-            console.log(key);
-            name = ui.draggable.children().filter('span').text();
-            ui.draggable.children().filter('span').attr('key', key);
-            if (ui.draggable.hasClass('charfield')){
-                form_elements[key] = Array(name, 'CharField');
-            }
-            else if(ui.draggable.hasClass('textfield')){
-                form_elements[key] = Array(name, 'TextField');
-            }
-            else if(ui.draggable.hasClass('checkbox')){
-                form_elements[key] = Array(name, 'BooleanField');
-            }
-            else if(ui.draggable.hasClass('categories')){
-                form_elements[key] = Array(name, 'CategoryField');
-            }
-            $(this).append(ui.draggable.clone());
-            make_editable();
-            }
-        }
-    )
-}
-function make_editable(){
-    $('.dropbox span').editable(function(value, settings){
-        key = $(this).attr('key');
-        form_elements[key][0] = value;
-        return value;
-        });
-}
-
-function generate_key(){
-    size = 10;
-    keyboard = "abcdefghijklmnopqrstuvwxyz";
-    key = ""
-    for (i = 0; i < size; i++){
-        key += keyboard[Math.floor(Math.random()*26)];
-    }
-    return key;
-}
-</script>
-{% endblock %}
-
-{% block extracss %}
-
-<style>
-.dropbox{
-    width: 450px;
-    height: 500px;
-    background-color: yellow;
-}
-</style>
-
-{% endblock %}
-
-{% block content %}
-
-    <div class="span-12">
-    <div id="input_controls">
-
-        <div class="draggable charfield">
-        <span class="editable_text">
-        Text
-        </span>
-        <input type="text" />
-        
-        </div>
-        
-        <div class="draggable textfield">
-        <span class="editable_text">
-        Large Text
-        </span>
-        <textarea ></textarea>
-        
-        </div>
-        
-        <div class="draggable checkbox">
-        <span class="editable_text">
-        Checkbox
-        </span>
-        <input type="checkbox" />
-        
-        </div>
-        
-        <div class="draggable categories">
-        <span class="editable_text">
-        Checkbox
-        </span>
-        <select>
-        {% for category in categories %}
-        <option name="{{ category.id }}">{{category.name}}</option>
-        {% endfor %}
-        </select> 
-        </div>
-    
-    </div>
-    </div>
-    <div class="span-6 last">
         {% block input_area_help %}
         <p>This page allows you to customise the "Add Job Form" for your board.</p>
         
@@ -131,25 +8,9 @@ function generate_key(){
             input controls as you need.
         </p>
         {% endblock %}
-    </div>
-
-    <div class="span-12">
-    <div class="dropbox">
-        Drop here
-    </div>
-    </div>
-    <div class="span-6 last">
+        
+        
         {% block dropbox_help %}
         Drop the input boxes into this area to create your form. Click submit when you are done
         to save your changes. The text for the controls can be edited by clicking on them.
         {% endblock %}
-    </div>
-
-    <div class="span-18">
-    <form id="submit_form">
-        <input type="submit" name="create" value="create" id="submit_button" />
-    </form>
-    </div>
-
-
-{% endblock %}

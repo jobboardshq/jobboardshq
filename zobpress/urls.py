@@ -20,4 +20,7 @@ urlpatterns = patterns('zobpress.views',
     #Categories
     url(r'^categories/(?P<category_slug>\w+)/$', 'category_jobs', name='zobpress_category'),
     
+    (r'^feeds/(?P<url>.*)/$', 'django.contrib.syndication.views.feed', {'feed_dict': feeds}),
+
+    
 )

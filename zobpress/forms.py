@@ -30,7 +30,7 @@ def get_employee_form(board):
                 return employee
     setattr(EmployeeForm, 'name', forms.CharField(max_length = 100))
     for field in employee_fields:
-        setattr(EmployeeForm, field.name, get_field_type(field.name, board))
+        setattr(EmployeeForm, field.name, get_field_type(field.type, board))
     return type('EmployeeForm', (forms.Form, ), dict(EmployeeForm.__dict__))
     
 def get_job_form(board):
