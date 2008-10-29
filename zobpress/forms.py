@@ -1,13 +1,16 @@
 from django import forms
+from django.conf import settings
 
 import random
 from copy import copy
+from os.path import join
+import os
 
 from zobpress import models
 from zobpress.models import Board, EmployeeFormModel, EmployeeFieldModel, type_mapping, rev_type_mapping
-from zobpress.models import Employee, EmployeeData
+from zobpress.models import Employee, EmployeeData, EmployeeFile
 from zobpress.models import JobFormModel, JobFieldModel
-from zobpress.models import Job, JobData, Category
+from zobpress.models import Job, JobData, Category, JobFile
 
 def get_employee_form(board):
     """Return the form for a specific Board."""
@@ -28,6 +31,8 @@ def get_employee_form(board):
                     emp_data.data_type = data_type
                     emp_data.save()
                 return employee
+        
+        
     setattr(EmployeeForm, 'name', forms.CharField(max_length = 100))
     for field in employee_fields:
         setattr(EmployeeForm, field.name, get_field_type(field.type, board))
@@ -46,24 +51,39 @@ def get_job_form(board):
                 job.save()
                 for field in self.cleaned_data.iterkeys():
                     if field in ['name']:
-                        continue               
-                    if self.fields[field].__class__ == forms.ModelChoiceField:
-                        if self.cleaned_data[field].__class__ == Category:
-                            job.category = self.cleaned_data[field]
-                            job.save()
+                        continue
                     data_type = rev_type_mapping[self.fields[field].__class__]
                     job_data = JobData(job = job, name = field, value = self.cleaned_data[field])
                     job_data.data_type = data_type
                     job_data.save()
-                    
+                    if self.fields[field].__class__ == forms.ModelChoiceField:
+                        if self.cleaned_data[field].__class__ == Category:
+                            job.category = self.cleaned_data[field]
+                            job.save()
+                    if self.fields[field].__class__ == forms.FileField:
+                        uploaded_file = self.cleaned_data[field]
+                        upload_folder = join(settings.MEDIA_ROOT, board.subdomain, job.name)
+                        try:
+                            os.makedirs(upload_folder)
+                        except OSError:
+                            pass
+                        path_to_upload = join(upload_folder, uploaded_file.name)
+                        public_path = join(board.subdomain, job.name, uploaded_file.name)
+                        out_file = open(path_to_upload, 'wb+')
+                        for chunk in uploaded_file.chunks():
+                            out_file.write(chunk)
+                        out_file.close()
+                        job_file = JobFile(job = job, uploaded_file = uploaded_file.name, public_path = public_path, content_type = uploaded_file.content_type)
+                        job_file.job_data = job_data
+                        job_file.save()
                 return job
     setattr(JobForm, 'name', forms.CharField(max_length = 100))
     for field in job_fields:
-        setattr(JobForm, field.name, get_field_type(field.type, board))
+        setattr(JobForm, field.name.strip(), get_field_type(field.type, board))
     return type('JobForm', (forms.Form, ), dict(JobForm.__dict__))
      
 class PasswordForm(forms.Form):
-    password = forms.CharField(widget = forms.PasswordInput(attrs = {'size':50}), help_text = 'Enter the passwords assocoiated with this posting.')
+    password = forms.CharField(widget = forms.PasswordInput(attrs = {'size':50}), help_text = 'Enter the passwords assocoiated with this posting. Not required, but allows you to edit the posting later.')
     
 def get_field_type(data_type, board):
     field_class, kwargs = type_mapping.get(data_type, (forms.CharField, {}))

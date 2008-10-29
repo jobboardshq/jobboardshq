@@ -3,6 +3,8 @@ from django.views.generic.list_detail import object_list, object_detail
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
+from django.utils import feedgenerator
+
 
 from StringIO import StringIO
 
@@ -17,13 +19,14 @@ def index(request):
 
 def handle_form(request, Form, template_name):
     if request.method == 'POST':
-        form = Form(data = request.POST)
+        form = Form(data = request.POST, files = request.FILES)
         if form.is_valid():
             object = form.save()
             return HttpResponseRedirect(object.get_absolute_url())
     if request.method == 'GET':
         form = Form()
-    payload = {'form':form}
+        password_form = PasswordForm()
+    payload = {'form':form, 'password_form':password_form}
     return render_to_response(template_name, payload, RequestContext(request))
 
 def add_person(request):
@@ -131,8 +134,6 @@ def edit_person_done(request, id):
 def create_job_form(request):
     "Create a job form for a board."
     if request.method == 'POST' and request.is_ajax():
-        import pdb
-        pdb.set_trace()
         data = simplejson.load(StringIO(request.POST['data']))
         job_form, created = JobFormModel.objects.get_or_create(board = request.board)
         job_form.jobfieldmodel_set.all().delete()
@@ -167,7 +168,31 @@ def category_jobs(request, category_slug):
     jobs = Job.objects.filter(category = category)
     return object_list(request, queryset = jobs, template_name = 'zobpress/category_job_list.html', template_object_name = 'job')
 
-def category_employee(request, category_slug):
+def category_persons(request, category_slug):
     category = get_object_or_404(Category, slug = category_slug)
     employees = Employee.objects.filter(category = category)
     return object_list(request, queryset = employees, template_name = 'zobpress/category_employee_list.html', template_object_name = 'employee')
+
+
+def feeds_jobs(request):
+    board = request.board
+    title = "Latest Jobs %s" % board.name
+    link = reverse('zobpress_feeds_jobs')
+    description = "Latest Jobs added to our site %s" % board.name
+    feed = feedgenerator.Atom1Feed(title = title, link = link, description = description)
+    jobs = Job.objects.filter(board = board)
+    for job in jobs:
+        feed.add_item(title = job.name, link = job.get_absolute_url(), description=job.as_snippet())
+    return HttpResponse(feed.writeString('UTF-8'))
+
+
+def feeds_people(request):
+    board = request.board
+    title = "Recently added people %s" % board.name
+    link = reverse('zobpress_feeds_people')
+    description = "People recently added to our site %s" % board.name
+    feed = feedgenerator.Atom1Feed(title = title, link = link, description = description)
+    employees = Employee.objects.filter(board = board)
+    for employee in employees:
+        feed.add_item(title = employee.name, link = employee.get_absolute_url(), description=employee.as_snippet())
+    return HttpResponse(feed.writeString('UTF-8'))

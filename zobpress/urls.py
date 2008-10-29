@@ -18,9 +18,12 @@ urlpatterns = patterns('zobpress.views',
     url(r'^create/personform/$', 'create_person_form', name='zobpress_create_person_form'),
     
     #Categories
-    url(r'^categories/(?P<category_slug>\w+)/$', 'category_jobs', name='zobpress_category'),
+    url(r'^categories/jobs/(?P<category_slug>\w+)/$', 'category_jobs', name='zobpress_category_jobs'),
+    url(r'^categories/persons/(?P<category_slug>\w+)/$', 'category_persons', name='zobpress_category_persons'),
     
-    (r'^feeds/(?P<url>.*)/$', 'django.contrib.syndication.views.feed', {'feed_dict': feeds}),
+    #Feeds
+    url(r'^feeds/jobs/$', 'feeds_jobs', name='zobpress_feeds_jobs'),
+    url(r'^feeds/people/$', 'feeds_people', name='zobpress_feeds_people'),
 
     
 )

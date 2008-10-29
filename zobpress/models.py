@@ -1,14 +1,12 @@
 from django.db import models
 from django.db.models import permalink
 from django import forms
+from django.conf import settings
 
-"""type_mapping = {'CharField':forms.CharField(max_length = 100), 'TextField': forms.CharField(widget = forms.Textarea), 'BooleanField':forms.BooleanField(required = False),
-                'URLField': forms.URLField(), 'EmailField': forms.EmailField()
-                }"""
 type_mapping = {
                 'CharField':(forms.CharField, dict(max_length = 100)), 'TextField': (forms.CharField, dict(widget = forms.Textarea)), 'BooleanField':(forms.BooleanField, dict(required = False)),
                 'URLField': (forms.URLField, dict()), 'EmailField': (forms.EmailField, dict()),
-                'CategoryField': (forms.ModelChoiceField, dict())
+                'CategoryField': (forms.ModelChoiceField, dict()), 'FileField':(forms.FileField, dict()), 
                 }
 rev_type_mapping_list  = [(v[0], k) for k,v in type_mapping.iteritems()]
 rev_type_mapping = {}
@@ -32,7 +30,15 @@ class Category(models.Model):
     
     @models.permalink
     def get_absolute_url(self):
-        return('zobpress.views.category', [self.slug])
+        return('zobpress.views.category_jobs', [self.slug])
+    
+    @models.permalink
+    def get_jobs_url(self):
+        return('zobpress.views.category_jobs', [self.slug])
+    
+    @models.permalink
+    def get_people_url(self):
+        return('zobpress.views.category_people', [self.slug])
     
     def __unicode__(self):
         return self.name
@@ -65,12 +71,24 @@ class Employee(models.Model):
     name = models.CharField(max_length = 100)
     category = models.ForeignKey(Category, null = True, blank = True)
     
+    is_editable = models.BooleanField(default = False)
+    
     created_on = models.DateTimeField(auto_now_add = 1)
     updated_on = models.DateTimeField(auto_now = 1)
     
     @permalink
     def get_absolute_url(self):
         return ('zobpress.views.person', [str(self.id)])
+    
+    def as_snippet(self):
+        "Get the current job as a snippet."
+        snippet = ""
+        data = self.employeedata_set.all()[:2]
+        for datum in data:
+            snippet += "%s: %s" % (datum.name, datum.value)
+            snippet += '\n'
+        return snippet
+
     
 class EmployeeData(models.Model):
     employee = models.ForeignKey(Employee)
@@ -113,13 +131,27 @@ class Job(models.Model):
     board = models.ForeignKey(Board)
     name = models.CharField(max_length = 100)
     category = models.ForeignKey(Category, null = True, blank = True)
+    is_editable = models.BooleanField(default = False)
     
     created_on = models.DateTimeField(auto_now_add = 1)
     updated_on = models.DateTimeField(auto_now = 1)
     
+    def as_snippet(self):
+        "Get the current job as a snippet."
+        snippet = ""
+        data = self.jobdata_set.all()[:2]
+        for datum in data:
+            snippet += "%s: %s" % (datum.name, datum.value)
+            snippet += '\n'
+        return snippet
+            
+    
     @permalink
     def get_absolute_url(self):
         return ('zobpress.views.job', [str(self.id)])
+    
+    class Meta:
+        ordering = ('-created_on', )
     
 class JobData(models.Model):
     job = models.ForeignKey(Job)
@@ -135,3 +167,30 @@ class JobData(models.Model):
             else:
                 return 'No'
         return self.value
+
+    def get_absolute_url(self):
+        if self.data_type == 'FileField':
+            return self.jobfile_set.all()[0].get_absolute_url()
+        return self.value
+    
+class JobFile(models.Model):
+    "Files attached to a specific Job"
+    job = models.ForeignKey(Job)
+    job_data = models.ForeignKey(JobData)
+    uploaded_file = models.FileField(upload_to = 'jobfiles/')
+    public_path = models.CharField(max_length = 100)
+    content_type = models.CharField(max_length = 100)
+    
+    def get_absolute_url(self):
+        return settings.MEDIA_URL + self.public_path
+    
+class EmployeeFile(models.Model):
+    "Files attached to a specific Job"
+    employee = models.ForeignKey(Employee)
+    employee_data = models.ForeignKey(EmployeeData)
+    uploaded_file = models.FileField(upload_to = 'employeefiles/')
+    public_path = models.CharField(max_length = 100)
+    content_type = models.CharField(max_length = 100)
+    
+    def get_absolute_url(self):
+        return settings.MEDIA_URL + self.public_path

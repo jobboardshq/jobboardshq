@@ -11,7 +11,7 @@
 
 <br />
 
-       <form action="." method="post">
+       <form action="." method="post" enctype="multipart/form-data">
         <div class="form">
         <table>
         {% for field in form %}
@@ -32,6 +32,11 @@
         <div class="clear"></div>
         
         {% endfor %}
+        
+        <div class="password">
+            {{ password_form }}
+        </div>
+            
         </table>
         <input type="submit" value="submit" name="submit" class="button" />
         </div>        

@@ -8,6 +8,10 @@
 {% endblock %}
 </title>
 
+{% block feed %}
+<link rel="alternate" type="application/rss+xml" title="{{ board.name }}" href="{{ board.get_absolute_url }}" />
+{% endblock %}
+
 {% block css %}
 <link rel="stylesheet" href="/site_media/css/blueprint/screen.css" type="text/css" media="screen, projection">
 <link rel="stylesheet" href="/site_media/css/blueprint/print.css" type="text/css" media="print"> 
@@ -86,6 +90,16 @@
       </li>
     </ul>
     {% endif %}
+    
+    <h3>
+      Feeds
+    </h3>
+    <ul>
+      <li>
+        <a href="{% url zobpress_feeds_jobs %}">Jobs Feed</a>
+        <a href="{% url zobpress_feeds_people %}">People Feed</a>
+      </li>
+    </ul>
   </div>
   
   <div class="span-24 footer">

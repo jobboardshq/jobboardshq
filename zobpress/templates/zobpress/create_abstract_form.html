@@ -42,6 +42,9 @@ function make_droppable(){
             else if(ui.draggable.hasClass('categories')){
                 form_elements[key] = Array(name, 'CategoryField');
             }
+            else if(ui.draggable.hasClass('filefield')){
+                form_elements[key] = Array(name, 'FileField');
+            }
             $(this).append(ui.draggable.clone());
             make_editable();
             }
@@ -106,6 +109,14 @@ function generate_key(){
         Checkbox
         </span>
         <input type="checkbox" />
+        
+        </div>
+        
+        <div class="draggable filefield">
+        <span class="editable_text">
+        File
+        </span>
+        <input type="file" />
         
         </div>
         
