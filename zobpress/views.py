@@ -18,14 +18,22 @@ def index(request):
     return add_person(request)
 
 def handle_form(request, Form, template_name):
+    password_form = PasswordForm()
     if request.method == 'POST':
+        import pdb
+        pdb.set_trace()
         form = Form(data = request.POST, files = request.FILES)
         if form.is_valid():
             object = form.save()
+            password_form = PasswordForm(data = request.POST)
+            if password_form.is_valid():
+                object.is_editable = True
+                object.password = password_form.save()
+                object.save()
+                
             return HttpResponseRedirect(object.get_absolute_url())
     if request.method == 'GET':
         form = Form()
-        password_form = PasswordForm()
     payload = {'form':form, 'password_form':password_form}
     return render_to_response(template_name, payload, RequestContext(request))
 
@@ -103,16 +111,17 @@ def edit_person(request, id):
 
 def edit_job_done(request, id):
     job = models.Job.objects.get(id = id)
+    JobForm = get_job_form(request.board, job = job)
     if not job.is_editable:
         raise Http404    
     if request.method == 'POST':
-        form = JobForm(request.POST, instance = job)
+        form = JobForm(request.POST, files = request.FILES)
         if form.is_valid():
             job = form.save()
             return HttpResponseRedirect(job.get_absolute_url())
     elif request.method == 'GET':
         job = models.Job.objects.get(id = id)
-        form = JobForm(instance = job)
+        form = JobForm()
     payload = {'form': form}
     return render_to_response('zobpress/editjob.html', payload)
     

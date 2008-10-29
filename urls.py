@@ -7,6 +7,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Example:
     (r'^', include('zobpress.urls')),
+    (r'^sitewide/', include('sitewide.urls')),
     (r'^manage/', include('management.urls')),
 
     ('^admin/(.*)', admin.site.root),

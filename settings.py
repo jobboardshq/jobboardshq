@@ -62,6 +62,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 INSTALLED_APPS = (
     'zobpress',
+    'sitewide',
+    'emailsubs',
     'django.contrib.auth',
     'django.contrib.admin',
     'django.contrib.contenttypes',

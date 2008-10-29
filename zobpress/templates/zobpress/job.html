@@ -32,4 +32,10 @@
     {% endfor %}
 </div>
 
+{% if job.is_editable %}
+<div class="edit">
+    <a href="{% url zobpress_edit_job job.id %}">Edit this Job</a>
+</div>
+{% endif %}
+
 {% endblock %}

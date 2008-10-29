@@ -72,6 +72,7 @@ class Employee(models.Model):
     category = models.ForeignKey(Category, null = True, blank = True)
     
     is_editable = models.BooleanField(default = False)
+    password = models.CharField(max_length = 100, null = True, blank = True)
     
     created_on = models.DateTimeField(auto_now_add = 1)
     updated_on = models.DateTimeField(auto_now = 1)
@@ -105,6 +106,14 @@ class EmployeeData(models.Model):
                 return 'No'
         return self.value
     
+    def get_absolute_url(self):
+        try:
+            if self.data_type == 'FileField':
+                return self.employeefile_set.all()[0].get_absolute_url()
+        except IndexError:
+            pass
+        return self.value
+    
 class JobFormModel(models.Model):
     "Model for Job form for a specific Job board."
     board = models.ForeignKey(Board, unique = True)
@@ -132,6 +141,7 @@ class Job(models.Model):
     name = models.CharField(max_length = 100)
     category = models.ForeignKey(Category, null = True, blank = True)
     is_editable = models.BooleanField(default = False)
+    password = models.CharField(max_length = 100, null = True, blank = True)
     
     created_on = models.DateTimeField(auto_now_add = 1)
     updated_on = models.DateTimeField(auto_now = 1)
@@ -177,7 +187,7 @@ class JobFile(models.Model):
     "Files attached to a specific Job"
     job = models.ForeignKey(Job)
     job_data = models.ForeignKey(JobData)
-    uploaded_file = models.FileField(upload_to = 'jobfiles/')
+    uploaded_file = models.CharField(max_length = 100)
     public_path = models.CharField(max_length = 100)
     content_type = models.CharField(max_length = 100)
     
@@ -188,7 +198,7 @@ class EmployeeFile(models.Model):
     "Files attached to a specific Job"
     employee = models.ForeignKey(Employee)
     employee_data = models.ForeignKey(EmployeeData)
-    uploaded_file = models.FileField(upload_to = 'employeefiles/')
+    uploaded_file = models.CharField(max_length = 100)
     public_path = models.CharField(max_length = 100)
     content_type = models.CharField(max_length = 100)
     

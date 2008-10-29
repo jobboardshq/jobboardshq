@@ -1,5 +1,7 @@
 {% extends 'zobpress/base.html' %}
 
+{% load zobpress_filters %}
+
 {% block toptab %}
 <h3>
     Details for {{person.name}}
@@ -18,7 +20,7 @@
     {{ data.name }}
     </th>
     <td>
-    {{ data.value_as_str }}
+    {{ data|prettify }}
     </td>
 </tr>
 {% endfor %}
