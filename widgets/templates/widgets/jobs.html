@@ -1,0 +1,16 @@
+{% extends 'widgets/base.html' %}
+
+{% block content %}
+
+<ul>
+{% for job in jobs %}
+<li>
+    <a href="{{ job.get_absolute_url}} " >{{ job.name }}</a>
+    <p class="post">
+        {{ job.as_snippet }}
+    </p>
+</li>
+{% endfor %}
+</ul>
+
+{% endblock %}

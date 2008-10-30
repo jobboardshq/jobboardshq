@@ -2,6 +2,10 @@ from django.db import models
 from django.db.models import permalink
 from django import forms
 from django.conf import settings
+from django.contrib.auth.models import User
+
+import random
+
 
 type_mapping = {
                 'CharField':(forms.CharField, dict(max_length = 100)), 'TextField': (forms.CharField, dict(widget = forms.Textarea)), 'BooleanField':(forms.BooleanField, dict(required = False)),
@@ -12,12 +16,45 @@ rev_type_mapping_list  = [(v[0], k) for k,v in type_mapping.iteritems()]
 rev_type_mapping = {}
 for el in rev_type_mapping_list:
     rev_type_mapping[el[0]] = el[1]
-
+    
+class BoardManager(models.Manager):
+    "Manager for a board."
+    def register_new_board(self, subdomain, name, description, email, password = None):
+        "Create a new board, creating other objects as needed."
+        if not password:
+            password = ''.join([random.choice('0123456789') for el in range(8)])
+        user = User.objects.create_user(username = subdomain, password = password, email = email)
+        user.is_active = False
+        user.save()
+        board = Board(subdomain = subdomain, name = name, description = description, owner = user)
+        board.save()
+        from emailsubs.models import EmailSent
+        email_sent = EmailSent(board =  board)
+        email_sent.save()
+        
+        return board
 
 class Board(models.Model):
     subdomain = models.CharField(max_length = 100)
     name = models.CharField(max_length = 100)
     description = models.TextField()
+    
+    #Settings for Board
+    "For listings value  of 0 means it never expires. For cost 0 means listing is free."
+    job_listing_expires = models.PositiveIntegerField(default = 0)#Number of days a job should show up before being removed.
+    people_listing_expires = models.PositiveIntegerField(default = 0)#Number of days a people should show up before being removed.
+    cost_per_job_listing = models.PositiveIntegerField(default = 0)#Amount in USD which a user needs to pay to activate their listing.
+    cost_per_people_listing = models.PositiveIntegerField(default = 0)#Amount in USD which a user needs to pay to activate their listing.
+    
+    
+    
+    
+    owner = models.ForeignKey(User)
+    
+    objects = BoardManager()
+    
+    def get_absolute_url(self):
+        return 'http://%s.shabda.tld:8000' % self.subdomain
     
     def __unicode__(self):
         return self.name
@@ -71,6 +108,8 @@ class Employee(models.Model):
     name = models.CharField(max_length = 100)
     category = models.ForeignKey(Category, null = True, blank = True)
     
+    is_active = models.BooleanField(default = False)#listings start as inactive. After Payment become active.
+    is_expired = models.BooleanField(default = False)#Has this listing expired yet?
     is_editable = models.BooleanField(default = False)
     password = models.CharField(max_length = 100, null = True, blank = True)
     
@@ -81,6 +120,18 @@ class Employee(models.Model):
     def get_absolute_url(self):
         return ('zobpress.views.person', [str(self.id)])
     
+    def as_clob(self):
+        "As a large text."
+        import pdb
+        pdb.set_trace()
+        snippet = ""
+        data = self.employeedata_set.all()
+        for datum in data:
+            snippet += "%s: %s" % (datum.name, datum.value)
+            snippet += '\n'
+        return snippet
+
+    
     def as_snippet(self):
         "Get the current job as a snippet."
         snippet = ""
@@ -89,6 +140,9 @@ class Employee(models.Model):
             snippet += "%s: %s" % (datum.name, datum.value)
             snippet += '\n'
         return snippet
+    
+    class Meta:
+        ordering = ('-created_on', )
 
     
 class EmployeeData(models.Model):
@@ -140,6 +194,9 @@ class Job(models.Model):
     board = models.ForeignKey(Board)
     name = models.CharField(max_length = 100)
     category = models.ForeignKey(Category, null = True, blank = True)
+    
+    is_active = models.BooleanField(default = False)#listings start as inactive. After Payment become active.
+    is_expired = models.BooleanField(default = False)#Has this listing expired yet?
     is_editable = models.BooleanField(default = False)
     password = models.CharField(max_length = 100, null = True, blank = True)
     
@@ -154,7 +211,15 @@ class Job(models.Model):
             snippet += "%s: %s" % (datum.name, datum.value)
             snippet += '\n'
         return snippet
-            
+    
+    def as_clob(self):
+        "As a large text."
+        snippet = ""
+        data = self.jobdata_set.all()
+        for datum in data:
+            snippet += "%s: %s" % (datum.name, datum.value)
+            snippet += '\n'
+        return snippet
     
     @permalink
     def get_absolute_url(self):

@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     (r'^sitewide/', include('sitewide.urls')),
     (r'^optin/', include('emailsubs.urls')),
     (r'^manage/', include('management.urls')),
+    (r'^widgets/', include('widgets.urls')),
 
     ('^admin/(.*)', admin.site.root),
 )

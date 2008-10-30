@@ -64,6 +64,8 @@ INSTALLED_APPS = (
     'zobpress',
     'sitewide',
     'emailsubs',
+    'widgets',
+    'management',
     'django.contrib.auth',
     'django.contrib.admin',
     'django.contrib.contenttypes',

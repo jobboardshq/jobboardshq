@@ -47,9 +47,9 @@ def get_employee_form(board):
                         for chunk in uploaded_file.chunks():
                             out_file.write(chunk)
                         out_file.close()
-                        employee_file = EmployeeFile(job = job, uploaded_file = uploaded_file.name, public_path = public_path, content_type = uploaded_file.content_type)
-                        job_file.job_data = job_data
-                        job_file.save()
+                        employee_file = EmployeeFile(employee = employee, uploaded_file = uploaded_file.name, public_path = public_path, content_type = uploaded_file.content_type)
+                        employee_file.employee_data = emp_data
+                        employee_file.save()
                 return employee
     setattr(EmployeeForm, 'name', forms.CharField(max_length = 100))
     for field in employee_fields:

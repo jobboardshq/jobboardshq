@@ -5,7 +5,6 @@ from django.template import RequestContext
 from django.core.urlresolvers import reverse
 from django.utils import feedgenerator
 
-
 from StringIO import StringIO
 
 from zobpress import models
@@ -20,8 +19,6 @@ def index(request):
 def handle_form(request, Form, template_name):
     password_form = PasswordForm()
     if request.method == 'POST':
-        import pdb
-        pdb.set_trace()
         form = Form(data = request.POST, files = request.FILES)
         if form.is_valid():
             object = form.save()

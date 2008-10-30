@@ -1,0 +1,12 @@
+{% extends 'management/base.html' %}
+
+{% block content %}
+
+<form action="." method="post">
+    <table>
+        {{ manage_settings_form }}
+    </table>
+    <input type="submit" name="Settings" value="Update Settings" />
+</form>
+
+{% endblock %}

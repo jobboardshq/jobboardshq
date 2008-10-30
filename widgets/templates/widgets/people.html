@@ -1,0 +1,16 @@
+{% extends 'widgets/base.html' %}
+
+{% block content %}
+
+<ul>
+{% for employee in employees %}
+<li>
+    <a href="{{ employee.get_absolute_url}} " >{{ employee.name }}</a>
+    <p class="post">
+        {{ employee.as_snippet }}
+    </p>
+</li>
+{% endfor %}
+</ul>
+
+{% endblock %}
