@@ -1,0 +1,12 @@
+{% extends 'emailsubs/base.html' %}
+
+{% block content %}
+
+<form action="." method="post">
+    <table>
+        {{ email_form }}
+    </table>
+    <input type="submit" name="Register" value="Register" />
+</form>
+
+{% endblock %}

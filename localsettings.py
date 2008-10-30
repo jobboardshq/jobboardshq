@@ -23,3 +23,5 @@ ROOT_URLCONF = 'jobboard.urls'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'e6v12%-+5u#zr1fz=)2jnn@+9&_7ay8%%&7@sjnf_bxb%z26m-'
+
+EMAIL_SENDER = 'admin@zobpress.com'

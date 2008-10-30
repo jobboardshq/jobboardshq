@@ -1,0 +1,15 @@
+{% extends 'emailsubs/base.html' %}
+
+{% block content %}
+
+{% if valid %}
+
+You have been unsubscribed from the  {{ board.name }}.
+
+{% else %}
+
+You enetered an invalid key and have not been unsubscribed. Please contact us if you have any problems.
+
+{% endif %}
+
+{% endblock %}

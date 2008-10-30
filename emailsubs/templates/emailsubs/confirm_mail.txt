@@ -1,0 +1,10 @@
+Hello,
+
+You have registered your email {{ email_sub.email }} to receive communications from us. We will send a confirmation email to you.
+
+Please click the link provided there to confirm your email id. Please note that you will not receieve any emails from us until you communication
+from us, until you confirm.
+
+{{ site_root }}{% url emailsubs_confirm email_sub.id %}?key={{ email_sub.key }}
+
+- Team Zobpress

@@ -1,0 +1,15 @@
+{% extends 'emailsubs/base.html' %}
+
+{% block content %}
+
+{% if confirm %}
+
+Thanks for registering at {{ board.name }}
+
+{% else %}
+
+The link you visited was wron. Please contact us if you are unable to register.
+
+{% endif %}
+
+{% endblock %}
