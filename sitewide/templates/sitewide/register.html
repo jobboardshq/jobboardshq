@@ -1,0 +1,12 @@
+{% extends 'sitewide/base.html' %}
+
+{% block content %}
+
+<form action="." method="post">
+    <table>
+        {{ new_board_form }}
+    </table>
+    <input type="submit" name="Register" value="Register" />
+</form>
+
+{% endblock %}

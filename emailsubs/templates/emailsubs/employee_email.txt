@@ -1,0 +1,7 @@
+Here are the new People's listings created for {{ board.name }}
+
+{% for employee in employees %}
+
+{{ employee.as_clob }}
+
+{% endfor %}
