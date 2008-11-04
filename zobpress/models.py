@@ -5,7 +5,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 
 import random
-
+from datetime import date, timedelta
 
 type_mapping = {
                 'CharField':(forms.CharField, dict(max_length = 100)), 'TextField': (forms.CharField, dict(widget = forms.Textarea)), 'BooleanField':(forms.BooleanField, dict(required = False)),
@@ -46,9 +46,6 @@ class Board(models.Model):
     cost_per_job_listing = models.PositiveIntegerField(default = 0)#Amount in USD which a user needs to pay to activate their listing.
     cost_per_people_listing = models.PositiveIntegerField(default = 0)#Amount in USD which a user needs to pay to activate their listing.
     
-    
-    
-    
     owner = models.ForeignKey(User)
     
     objects = BoardManager()
@@ -58,6 +55,35 @@ class Board(models.Model):
     
     def __unicode__(self):
         return self.name
+    
+class BoardPaymentsManager(models.Manager):
+    def add_job_payment(board, amount, amount_for = None):
+        if amount_for == None:
+            amount_for = date.today()
+        board_payment = BoardPayments.objects.get_or_create(board = board,  amount_for = amount_for)
+        board_payment.job_payments = board_payment.job_payments + amount
+        board_payment.save()
+        
+    def add_employee_payments(board, amount, amount_for = None):
+        if amount_for == None:
+            amount_for = date.today()
+        board_payment = BoardPayments.objects.get_or_create(board = board,  amount_for = amount_for)
+        board_payment.employee_payments = board_payment.employee_payments + amount
+        board_payment.save()
+        
+    
+class BoardPayments(models.Model):
+    board = models.ForeignKey(Board)
+    amount_for = models.DateField()
+    job_payments = models.PositiveIntegerField(default = 0, )
+    employee_payments = models.PositiveIntegerField(default = 0)
+    payment_type = models.CharField(default = 'PayPal', max_length = 10)# As we get multiple gateways, we will have multiple types.
+    
+    created_on = models.DateTimeField(auto_now_add = 1)
+    updated_on = models.DateTimeField(auto_now_add = 1)
+    
+    objects = BoardPaymentsManager()
+    
     
 class Category(models.Model):
     "Categories for a specific board"
@@ -102,6 +128,18 @@ class EmployeeFieldModel(models.Model):
         unique_together = (('employee_form', 'order'), ('employee_form', 'name'))
         ordering = ('-order', )
         
+class EmployeePublicManager(models.Manager):
+    def get_query_set(self):
+        return super(EmployeePublicManager, self).get_query_set().filter(is_active = True)
+        
+    def get_public_employees(self, board):
+        "If people_listing_expires is a non zero value, filter on number of days this will be active. Else all paid for are active."
+        active_for = board.people_listing_expires
+        if active_for:
+            return self.filter(created_on__gt = date.today() - timedelta(days = active_for))
+        else:
+            return self.all()
+        
     
 class Employee(models.Model):
     board = models.ForeignKey(Board)
@@ -117,6 +155,9 @@ class Employee(models.Model):
     
     created_on = models.DateTimeField(auto_now_add = 1)
     updated_on = models.DateTimeField(auto_now = 1)
+    
+    objects = models.Manager()
+    public_objects = EmployeePublicManager()
     
     @permalink
     def get_absolute_url(self):
@@ -189,6 +230,18 @@ class JobFieldModel(models.Model):
     class Meta:
         unique_together = (('job_form', 'order'), ('job_form', 'name'))
         ordering = ('-order', )
+
+class JobPublicManager(models.Manager):
+    def get_query_set(self):
+        return super(JobPublicManager, self).get_query_set().filter(is_active = True)
+        
+    def get_public_jobs(self, board):
+        "If people_listing_expires is a non zero value, filter on number of days this will be active. Else all paid for are active."
+        active_for = board.job_listing_expires
+        if active_for:
+            return self.filter(created_on__gt = date.today() - timedelta(days = active_for))
+        else:
+            return self.all()
     
 class Job(models.Model):
     board = models.ForeignKey(Board)
@@ -201,6 +254,9 @@ class Job(models.Model):
     password = models.CharField(max_length = 100, null = True, blank = True)
     paypal_token_sec = models.CharField(max_length = 100,  null = True, blank = True)#Token returned from set_express_checkout
     paypal_token_gec = models.CharField(max_length = 100,  null = True, blank = True)#Token returned from get_express_checkout
+    
+    objects = models.Manager()
+    public_objects = JobPublicManager()
     
     created_on = models.DateTimeField(auto_now_add = 1)
     updated_on = models.DateTimeField(auto_now = 1)

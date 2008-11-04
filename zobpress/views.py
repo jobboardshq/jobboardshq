@@ -13,8 +13,14 @@ from zobpress.models import type_mapping, JobFormModel, JobFieldModel, Job
 from zobpress.models import EmployeeFormModel, EmployeeFieldModel, Category, Employee
 from zobpress.forms import get_job_form, get_employee_form, PasswordForm
 from libs import paypal
+from sitewide import views as sitewide_views
 
 def index(request):
+    import pdb
+    pdb.set_trace()
+    if not request.board:
+        #We are at sidewide index.
+        return sitewide_views.index(request)
     return add_person(request)
 
 def handle_form(request, Form, template_name, do_redirect = True):
@@ -52,7 +58,7 @@ def add_job(request):
     return handle_form(request, JobForm, 'zobpress/addjob.html')
 
 def person(request, id):
-    qs = models.Employee.objects.filter(is_active = True)
+    qs = models.Employee.public_objects.get_public_employees(board = request.board)
     return object_detail(request, template_name = 'zobpress/person.html', queryset = qs, object_id = id, template_object_name = 'person')
     
 def job(request, id):
@@ -67,7 +73,7 @@ def persons(request):
     if order_by == 'created_on': order_by = '-created_on'
     if not order_by in ('name', 'created_on'):
         order_by = '-created_on'        
-    qs = models.Employee.objects.all().order_by(order_by)
+    qs = models.Employee.objects.filter(is_active = True).order_by(order_by)
     return object_list(request, template_name = 'zobpress/persons.html', queryset = qs, template_object_name = 'developers', paginate_by=10)
 
 def jobs(request):
@@ -78,7 +84,7 @@ def jobs(request):
     if order_by == 'created_on': order_by = '-created_on'
     if not order_by in ('name', 'created_on'):
         order_by = '-created_on'
-    qs = models.Job.objects.all().order_by(order_by)
+    qs = models.Job.objects.filter(is_active = True).order_by(order_by)
     return object_list(request, template_name = 'zobpress/jobs.html', queryset = qs, template_object_name = 'jobs', paginate_by=10)
 
 def edit_job(request, id):
@@ -257,9 +263,6 @@ def person_paypal_approved(request, id):
         payload['ack'] = False
     return render_to_response('zobpress/person_paypal_approved.html', payload, RequestContext(request))
     
-    
-
-
 def job_paypal(request, id):
     board = request.board
     job = get_object_or_404(Job, id = id)
