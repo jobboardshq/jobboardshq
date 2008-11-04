@@ -24,6 +24,11 @@ urlpatterns = patterns('zobpress.views',
     #Feeds
     url(r'^feeds/jobs/$', 'feeds_jobs', name='zobpress_feeds_jobs'),
     url(r'^feeds/people/$', 'feeds_people', name='zobpress_feeds_people'),
-
+    
+    #Paypal
+    url(r'^person/(?P<id>\d+)/paypal/$', 'person_paypal', name='zobpress_persons_paypal'),
+    url(r'^person/(?P<id>\d+)/paypal/aproved/$', 'person_paypal_approved', name='zobpress_persons_paypal_appr'),
+    url(r'^job/(?P<id>\d+)/paypal/$', 'job_paypal', name='zobpress_jobs_paypal'),
+    url(r'^job/(?P<id>\d+)/paypal/approved/$', 'job_paypal_approved', name='zobpress_jobs_paypal_appr'),
     
 )

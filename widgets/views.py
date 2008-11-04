@@ -15,7 +15,6 @@ def jobs_iframe(request):
     jobs = Job.objects.all()[:10]
     payload = {'jobs':jobs}
     return render_to_response('widgets/jobs.html', payload, RequestContext(request))
-
     
 def people_js(request):
     payload = {}
@@ -25,7 +24,6 @@ def people_iframe(request):
     employees = Employee.objects.all()[:10]
     payload = {'employees':employees}
     return render_to_response('widgets/people.html', payload, RequestContext(request))
-
 
 def test_widgets(request):
     payload = {}

@@ -17,6 +17,7 @@ def register_board(request):
         new_board_form = NewBoardForms(data = request.POST)
         if new_board_form.is_valid():
             new_board_form.save()
+            
     payload = {'new_board_form':new_board_form}
     return render_to_response('sitewide/register.html', payload, RequestContext(request))
     

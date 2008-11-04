@@ -112,6 +112,8 @@ class Employee(models.Model):
     is_expired = models.BooleanField(default = False)#Has this listing expired yet?
     is_editable = models.BooleanField(default = False)
     password = models.CharField(max_length = 100, null = True, blank = True)
+    paypal_token_sec = models.CharField(max_length = 100,  null = True, blank = True)#Token returned from set_express_checkout
+    paypal_token_gec = models.CharField(max_length = 100,  null = True, blank = True)#Token returned from get_express_checkout
     
     created_on = models.DateTimeField(auto_now_add = 1)
     updated_on = models.DateTimeField(auto_now = 1)
@@ -122,8 +124,6 @@ class Employee(models.Model):
     
     def as_clob(self):
         "As a large text."
-        import pdb
-        pdb.set_trace()
         snippet = ""
         data = self.employeedata_set.all()
         for datum in data:
@@ -199,6 +199,8 @@ class Job(models.Model):
     is_expired = models.BooleanField(default = False)#Has this listing expired yet?
     is_editable = models.BooleanField(default = False)
     password = models.CharField(max_length = 100, null = True, blank = True)
+    paypal_token_sec = models.CharField(max_length = 100,  null = True, blank = True)#Token returned from set_express_checkout
+    paypal_token_gec = models.CharField(max_length = 100,  null = True, blank = True)#Token returned from get_express_checkout
     
     created_on = models.DateTimeField(auto_now_add = 1)
     updated_on = models.DateTimeField(auto_now = 1)

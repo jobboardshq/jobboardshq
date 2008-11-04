@@ -4,6 +4,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
 from django.utils import feedgenerator
+from django.utils import simplejson
 
 from StringIO import StringIO
 
@@ -11,12 +12,12 @@ from zobpress import models
 from zobpress.models import type_mapping, JobFormModel, JobFieldModel, Job
 from zobpress.models import EmployeeFormModel, EmployeeFieldModel, Category, Employee
 from zobpress.forms import get_job_form, get_employee_form, PasswordForm
-from django.utils import simplejson
+from libs import paypal
 
 def index(request):
     return add_person(request)
 
-def handle_form(request, Form, template_name):
+def handle_form(request, Form, template_name, do_redirect = True):
     password_form = PasswordForm()
     if request.method == 'POST':
         form = Form(data = request.POST, files = request.FILES)
@@ -27,8 +28,10 @@ def handle_form(request, Form, template_name):
                 object.is_editable = True
                 object.password = password_form.save()
                 object.save()
-                
-            return HttpResponseRedirect(object.get_absolute_url())
+            if do_redirect:
+                return HttpResponseRedirect(object.get_absolute_url())
+            else:
+                return object
     if request.method == 'GET':
         form = Form()
     payload = {'form':form, 'password_form':password_form}
@@ -36,10 +39,16 @@ def handle_form(request, Form, template_name):
 
 def add_person(request):
     EmployeeForm = get_employee_form(request.board)
-    return handle_form(request, EmployeeForm, 'zobpress/addperson.html')
+    if request.method == 'POST':
+        employee = handle_form(request, EmployeeForm, 'zobpress/addperson.html', do_redirect = False)    
+        return HttpResponseRedirect(reverse('zobpress_person_paypal', args=[employee.id]))
+    return handle_form(request, EmployeeForm, 'zobpress/addperson.html', do_redirect = False)
 
 def add_job(request):
     JobForm = get_job_form(request.board)
+    if request.method == 'POST':
+        job = handle_form(request, JobForm, 'zobpress/addjob.html', do_redirect = False)    
+        return HttpResponseRedirect(reverse('zobpress_jobs_paypal', args=[job.id]))
     return handle_form(request, JobForm, 'zobpress/addjob.html')
 
 def person(request, id):
@@ -202,3 +211,72 @@ def feeds_people(request):
     for employee in employees:
         feed.add_item(title = employee.name, link = employee.get_absolute_url(), description=employee.as_snippet())
     return HttpResponse(feed.writeString('UTF-8'))
+
+
+def person_paypal(request, id):
+    board = request.board
+    person = get_object_or_404(Employee, id = id)
+    cost = board.cost_per_people_listing
+    if person.is_active:
+        raise Http404#Already paid for, get outa here.
+    if cost == 0:#No cost. Set active and redirect.
+        person.is_active = True
+        person.save()
+        return HttpResponseRedirect(person.get_absolute_url())
+    pp = paypal.PayPal()
+    token = pp.SetExpressCheckout(cost, '%s%s'%(board.get_absolute_url(), reverse('zobpress_persons_paypal_appr', args=[person.id])), '%s%s'%(board.get_absolute_url(), reverse('zobpress_persons_paypal', args=[person.id])))
+    person.paypal_token_sec = token
+    person.save()
+    paypal_url = pp.PAYPAL_URL + token
+    payload = {'person':person, 'paypal_url':paypal_url}
+    return render_to_response('zobpress/person_paypal.html', payload, RequestContext(request))
+
+def person_paypal_approved(request, id):
+    board = request.board
+    cost = board.cost_per_people_listing
+    person = get_object_or_404(Employee, id = id)
+    pp = paypal.PayPal()
+    paypal_details = pp.GetExpressCheckoutDetails(person.paypal_token_sec, return_all = True)
+    payload = {}
+    if 'Success' in paypal_details['ACK']:
+        payload['ack'] = True
+        token = paypal_details['TOKEN'][0]
+        first_name = paypal_details['FIRSTNAME'][0]
+        last_name = paypal_details['LASTNAME'][0]
+        amt = paypal_details['AMT'][0]
+        payer_id = request.GET['PayerID']
+        payload_update  = {'first_name':first_name, 'last_name':last_name, 'amt':amt}
+        payload.update(payload_update)
+        payment_details  = pp.DoExpressCheckoutPayment(token = token, payer_id = payer_id, amt = cost)
+        if 'Success' in payment_details['ACK']:
+            person.is_active = True
+            person.save()
+        else:
+            payload['ack'] = False
+    else:
+        payload['ack'] = False
+    return render_to_response('zobpress/person_paypal_approved.html', payload, RequestContext(request))
+    
+    
+
+
+def job_paypal(request, id):
+    board = request.board
+    job = get_object_or_404(Job, id = id)
+    cost = board.cost_per_job_listing
+    if job.is_active:
+        raise Http404#Already paid for, get outa here.
+    if cost == 0:#No cost. Set active and redirect.
+        job.is_active = True
+        job.save()
+        return HttpResponseRedirect(person.get_absolute_url())
+    pp = paypal.PayPal()
+    token = pp.SetExpressCheckout(cost, '%s%s'%(board.get_absolute_url(), reverse('zobpress_jobs_paypal_appr', args=[job.id])), '%s%s'%(board.get_absolute_url(), reverse('zobpress_persons_paypal', args=[job.id])))
+    job.paypal_token_sec = token
+    job.save()
+    paypal_url = pp.PAYPAL_URL + token
+    payload = {'job':job, 'paypal_url':paypal_url}
+    return render_to_response('zobpress/job_paypal.html', payload, RequestContext(request))
+
+def job_paypal_approved(request, id):
+    pass
