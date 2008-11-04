@@ -2,13 +2,14 @@
 
 {% block content %}
 
-You are making a payment for adding the listing {{ person.name }}
+You are making a payment for adding the Job {{ job.name }}
 
 
 <p>
     Pay now with Paypal
     <a href="{{ paypal_url }}"><img src="{{ MEDIA_URL }}images/btn_xpressCheckout.gif" align="left" style="margin-right:7px;"></a>
 </p>
+
 
 
 {% endblock %}

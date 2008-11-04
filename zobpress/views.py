@@ -52,11 +52,11 @@ def add_job(request):
     return handle_form(request, JobForm, 'zobpress/addjob.html')
 
 def person(request, id):
-    qs = models.Employee.objects.all()
+    qs = models.Employee.objects.filter(is_active = True)
     return object_detail(request, template_name = 'zobpress/person.html', queryset = qs, object_id = id, template_object_name = 'person')
     
 def job(request, id):
-    qs = models.Job.objects.all()
+    qs = models.Job.objects.filter(is_active = True)
     return object_detail(request, template_name = 'zobpress/job.html', queryset = qs, object_id = id, template_object_name = 'job')
 
 def persons(request):
@@ -234,10 +234,10 @@ def person_paypal(request, id):
 def person_paypal_approved(request, id):
     board = request.board
     cost = board.cost_per_people_listing
-    person = get_object_or_404(Employee, id = id)
+    person = get_object_or_404(Employee, id = id, is_active = False)
     pp = paypal.PayPal()
     paypal_details = pp.GetExpressCheckoutDetails(person.paypal_token_sec, return_all = True)
-    payload = {}
+    payload = {'person':person}
     if 'Success' in paypal_details['ACK']:
         payload['ack'] = True
         token = paypal_details['TOKEN'][0]
@@ -279,4 +279,27 @@ def job_paypal(request, id):
     return render_to_response('zobpress/job_paypal.html', payload, RequestContext(request))
 
 def job_paypal_approved(request, id):
-    pass
+    board = request.board
+    cost = board.cost_per_people_listing
+    job = get_object_or_404(Job, id = id, is_active = False)
+    pp = paypal.PayPal()
+    paypal_details = pp.GetExpressCheckoutDetails(job.paypal_token_sec, return_all = True)
+    payload = {'job':job}
+    if 'Success' in paypal_details['ACK']:
+        payload['ack'] = True
+        token = paypal_details['TOKEN'][0]
+        first_name = paypal_details['FIRSTNAME'][0]
+        last_name = paypal_details['LASTNAME'][0]
+        amt = paypal_details['AMT'][0]
+        payer_id = request.GET['PayerID']
+        payload_update  = {'first_name':first_name, 'last_name':last_name, 'amt':amt}
+        payload.update(payload_update)
+        payment_details  = pp.DoExpressCheckoutPayment(token = token, payer_id = payer_id, amt = cost)
+        if 'Success' in payment_details['ACK']:
+            job.is_active = True
+            job.save()
+        else:
+            payload['ack'] = False
+    else:
+        payload['ack'] = False
+    return render_to_response('zobpress/person_paypal_approved.html', payload, RequestContext(request))
