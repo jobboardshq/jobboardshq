@@ -31,11 +31,11 @@ class BoardManager(models.Manager):
         from emailsubs.models import EmailSent
         email_sent = EmailSent(board =  board)
         email_sent.save()
-        
         return board
 
 class Board(models.Model):
     subdomain = models.CharField(max_length = 100)
+    domain = models.URLField(null = True, blank = True)
     name = models.CharField(max_length = 100)
     description = models.TextField()
     
@@ -57,17 +57,17 @@ class Board(models.Model):
         return self.name
     
 class BoardPaymentsManager(models.Manager):
-    def add_job_payment(board, amount, amount_for = None):
+    def add_job_payment(self, board, amount, amount_for = None):
         if amount_for == None:
             amount_for = date.today()
-        board_payment = BoardPayments.objects.get_or_create(board = board,  amount_for = amount_for)
+        board_payment, created = BoardPayments.objects.get_or_create(board = board,  amount_for = amount_for)
         board_payment.job_payments = board_payment.job_payments + amount
         board_payment.save()
         
-    def add_employee_payments(board, amount, amount_for = None):
+    def add_employee_payments(self, board, amount, amount_for = None):
         if amount_for == None:
             amount_for = date.today()
-        board_payment = BoardPayments.objects.get_or_create(board = board,  amount_for = amount_for)
+        board_payment, created = BoardPayments.objects.get_or_create(board = board,  amount_for = amount_for)
         board_payment.employee_payments = board_payment.employee_payments + amount
         board_payment.save()
         

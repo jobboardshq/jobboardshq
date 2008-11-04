@@ -40,16 +40,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.doc.XViewMiddleware',
+    'django.middleware.transaction.TransactionMiddleware',
     'zobpress.middleware.GetSubdomainMiddleware'
 )
 
-
-
-TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-)
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.auth",
@@ -66,6 +60,7 @@ INSTALLED_APPS = (
     'emailsubs',
     'widgets',
     'management',
+    'registration',
     'django.contrib.auth',
     'django.contrib.admin',
     'django.contrib.contenttypes',
@@ -75,3 +70,4 @@ INSTALLED_APPS = (
 )
 
 SESSION_COOKIE_DOMAIN = '.shabda.tld'
+AUTH_PROFILES_MODULE = 'profilesUserProfile'

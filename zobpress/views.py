@@ -9,15 +9,13 @@ from django.utils import simplejson
 from StringIO import StringIO
 
 from zobpress import models
-from zobpress.models import type_mapping, JobFormModel, JobFieldModel, Job
+from zobpress.models import type_mapping, JobFormModel, JobFieldModel, Job, BoardPayments
 from zobpress.models import EmployeeFormModel, EmployeeFieldModel, Category, Employee
 from zobpress.forms import get_job_form, get_employee_form, PasswordForm
 from libs import paypal
 from sitewide import views as sitewide_views
 
 def index(request):
-    import pdb
-    pdb.set_trace()
     if not request.board:
         #We are at sidewide index.
         return sitewide_views.index(request)
@@ -47,7 +45,7 @@ def add_person(request):
     EmployeeForm = get_employee_form(request.board)
     if request.method == 'POST':
         employee = handle_form(request, EmployeeForm, 'zobpress/addperson.html', do_redirect = False)    
-        return HttpResponseRedirect(reverse('zobpress_person_paypal', args=[employee.id]))
+        return HttpResponseRedirect(reverse('zobpress_persons_paypal', args=[employee.id]))
     return handle_form(request, EmployeeForm, 'zobpress/addperson.html', do_redirect = False)
 
 def add_job(request):
@@ -257,6 +255,7 @@ def person_paypal_approved(request, id):
         if 'Success' in payment_details['ACK']:
             person.is_active = True
             person.save()
+            BoardPayments.objects.add_employee_payments(board = board, amount = cost)
         else:
             payload['ack'] = False
     else:
@@ -301,6 +300,7 @@ def job_paypal_approved(request, id):
         if 'Success' in payment_details['ACK']:
             job.is_active = True
             job.save()
+            BoardPayments.objects.add_job_payment(board = board, amount = cost)
         else:
             payload['ack'] = False
     else:

@@ -11,6 +11,7 @@ urlpatterns = patterns('',
     (r'^optin/', include('emailsubs.urls')),
     (r'^manage/', include('management.urls')),
     (r'^widgets/', include('widgets.urls')),
+    (r'^accounts/', include('registration.urls')),
 
     ('^admin/(.*)', admin.site.root),
 )

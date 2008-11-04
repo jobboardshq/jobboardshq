@@ -25,3 +25,11 @@ ROOT_URLCONF = 'jobboard.urls'
 SECRET_KEY = 'e6v12%-+5u#zr1fz=)2jnn@+9&_7ay8%%&7@sjnf_bxb%z26m-'
 
 EMAIL_SENDER = 'admin@zobpress.com'
+
+TEMPLATE_DIRS = (
+    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    '/home/shabda/jobboard/templates',
+)
+
