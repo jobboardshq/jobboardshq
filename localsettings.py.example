@@ -33,3 +33,5 @@ TEMPLATE_DIRS = (
     '/home/zobpress/webapps/zobpress/zobpress/templates',
 )
 
+WEBFACTION_DEBUG = False
+
