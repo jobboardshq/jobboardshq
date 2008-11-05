@@ -34,4 +34,5 @@ TEMPLATE_DIRS = (
 )
 
 WEBFACTION_DEBUG = False
+SESSION_COOKIE_DOMAIN = '.shabda.tld'
 

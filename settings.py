@@ -70,6 +70,5 @@ INSTALLED_APPS = (
     
 )
 
-SESSION_COOKIE_DOMAIN = '.shabda.tld'
 AUTH_PROFILE_MODULE = 'profiles.UserProfile'
 ACCOUNT_ACTIVATION_DAYS = 10
