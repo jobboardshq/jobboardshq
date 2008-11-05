@@ -5,6 +5,8 @@ import urlparse
 class GetSubdomainMiddleware:
     
     def process_request(self, request):
+        import logging
+        logging.debug(request.META['HTTP_HOST'])
         bits = urlparse.urlsplit(request.META['HTTP_HOST'])[0].split('.')
         if not( len(bits) == 3):
             pass#Todo Raise an exception etc
