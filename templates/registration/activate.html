@@ -13,7 +13,7 @@
         <a href="{% url auth_login %}">Login</a>
     </li>
     <li>
-        <a href="{% url manage_index %}">Manage</a>
+        <a href="{{ account.get_profile.get_board.get_absolute_url }}{% url manage_index %}">Manage</a>
     </li>
     <li>
         <a href="{{ account.get_profile.get_board.get_absolute_url }}">See your board.</a>

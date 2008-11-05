@@ -3,6 +3,7 @@ from django.db.models import permalink
 from django import forms
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.contrib.sites.models import Site
 
 import random
 from datetime import date, timedelta
@@ -49,7 +50,8 @@ class Board(models.Model):
     objects = BoardManager()
     
     def get_absolute_url(self):
-        return 'http://%s.shabda.tld:8000' % self.subdomain
+        current_site = Site.objects.get_current()
+        return 'http://%s.%s' % (self.subdomain, current_site.domain)
     
     def __unicode__(self):
         return self.name
