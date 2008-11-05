@@ -19,18 +19,16 @@ for el in rev_type_mapping_list:
     
 class BoardManager(models.Manager):
     "Manager for a board."
-    def register_new_board(self, subdomain, name, description, email, password = None):
+    def register_new_board(self, subdomain, name, description, user):
         "Create a new board, creating other objects as needed."
-        if not password:
-            password = ''.join([random.choice('0123456789') for el in range(8)])
-        user = User.objects.create_user(username = subdomain, password = password, email = email)
-        user.is_active = False
-        user.save()
         board = Board(subdomain = subdomain, name = name, description = description, owner = user)
         board.save()
         from emailsubs.models import EmailSent
         email_sent = EmailSent(board =  board)
         email_sent.save()
+        from profiles.models import UserProfile
+        user_profile = UserProfile(user = user)
+        user_profile.save()
         return board
 
 class Board(models.Model):

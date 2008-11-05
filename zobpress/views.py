@@ -12,8 +12,10 @@ from zobpress import models
 from zobpress.models import type_mapping, JobFormModel, JobFieldModel, Job, BoardPayments
 from zobpress.models import EmployeeFormModel, EmployeeFieldModel, Category, Employee
 from zobpress.forms import get_job_form, get_employee_form, PasswordForm
+from zobpress.decorators import ensure_has_board
 from libs import paypal
 from sitewide import views as sitewide_views
+
 
 def index(request):
     if not request.board:
@@ -41,6 +43,7 @@ def handle_form(request, Form, template_name, do_redirect = True):
     payload = {'form':form, 'password_form':password_form}
     return render_to_response(template_name, payload, RequestContext(request))
 
+@ensure_has_board
 def add_person(request):
     EmployeeForm = get_employee_form(request.board)
     if request.method == 'POST':
@@ -48,6 +51,7 @@ def add_person(request):
         return HttpResponseRedirect(reverse('zobpress_persons_paypal', args=[employee.id]))
     return handle_form(request, EmployeeForm, 'zobpress/addperson.html', do_redirect = False)
 
+@ensure_has_board
 def add_job(request):
     JobForm = get_job_form(request.board)
     if request.method == 'POST':
@@ -55,14 +59,17 @@ def add_job(request):
         return HttpResponseRedirect(reverse('zobpress_jobs_paypal', args=[job.id]))
     return handle_form(request, JobForm, 'zobpress/addjob.html')
 
+@ensure_has_board
 def person(request, id):
     qs = models.Employee.public_objects.get_public_employees(board = request.board)
     return object_detail(request, template_name = 'zobpress/person.html', queryset = qs, object_id = id, template_object_name = 'person')
     
+@ensure_has_board
 def job(request, id):
     qs = models.Job.objects.filter(is_active = True)
     return object_detail(request, template_name = 'zobpress/job.html', queryset = qs, object_id = id, template_object_name = 'job')
 
+@ensure_has_board
 def persons(request):
     try:
         order_by = request.GET['order']
@@ -74,6 +81,7 @@ def persons(request):
     qs = models.Employee.objects.filter(is_active = True).order_by(order_by)
     return object_list(request, template_name = 'zobpress/persons.html', queryset = qs, template_object_name = 'developers', paginate_by=10)
 
+@ensure_has_board
 def jobs(request):
     try:
         order_by = request.GET['order']
@@ -85,6 +93,7 @@ def jobs(request):
     qs = models.Job.objects.filter(is_active = True).order_by(order_by)
     return object_list(request, template_name = 'zobpress/jobs.html', queryset = qs, template_object_name = 'jobs', paginate_by=10)
 
+@ensure_has_board
 def edit_job(request, id):
     job = models.Job.objects.get(id = id)
     if not job.is_editable:
@@ -102,6 +111,7 @@ def edit_job(request, id):
     payload = {'form':form}
     return render_to_response('zobpress/editjob.html', payload)
 
+@ensure_has_board
 def edit_person(request, id):
     dev = models.Developer.objects.get(id = id)
     if not dev.is_editable:
@@ -119,6 +129,7 @@ def edit_person(request, id):
     payload = {'form':form}
     return render_to_response('zobpress/editperson.html', payload)
 
+@ensure_has_board
 def edit_job_done(request, id):
     job = models.Job.objects.get(id = id)
     JobForm = get_job_form(request.board, job = job)
@@ -135,6 +146,7 @@ def edit_job_done(request, id):
     payload = {'form': form}
     return render_to_response('zobpress/editjob.html', payload)
     
+@ensure_has_board
 def edit_person_done(request, id):
     dev = models.Developer.objects.get(id = id)
     if not dev.is_editable:
@@ -150,6 +162,7 @@ def edit_person_done(request, id):
     payload = {'form': form}
     return render_to_response('zobpress/adddev.html', payload)
 
+@ensure_has_board
 def create_job_form(request):
     "Create a job form for a board."
     if request.method == 'POST' and request.is_ajax():
@@ -166,6 +179,7 @@ def create_job_form(request):
     payload = {}
     return render_to_response('zobpress/create_job_form.html', payload, RequestContext(request))
 
+@ensure_has_board
 def create_person_form(request):
     "Create a person form for a board."
     if request.method == 'POST' and request.is_ajax():
@@ -182,17 +196,19 @@ def create_person_form(request):
     payload = {}
     return render_to_response('zobpress/create_person_form.html', payload, RequestContext(request))
 
+@ensure_has_board
 def category_jobs(request, category_slug):
     category = get_object_or_404(Category, slug = category_slug)
     jobs = Job.objects.filter(category = category)
     return object_list(request, queryset = jobs, template_name = 'zobpress/category_job_list.html', template_object_name = 'job')
 
+@ensure_has_board
 def category_persons(request, category_slug):
     category = get_object_or_404(Category, slug = category_slug)
     employees = Employee.objects.filter(category = category)
     return object_list(request, queryset = employees, template_name = 'zobpress/category_employee_list.html', template_object_name = 'employee')
 
-
+@ensure_has_board
 def feeds_jobs(request):
     board = request.board
     title = "Latest Jobs %s" % board.name
@@ -204,7 +220,7 @@ def feeds_jobs(request):
         feed.add_item(title = job.name, link = job.get_absolute_url(), description=job.as_snippet())
     return HttpResponse(feed.writeString('UTF-8'))
 
-
+@ensure_has_board
 def feeds_people(request):
     board = request.board
     title = "Recently added people %s" % board.name
@@ -216,7 +232,7 @@ def feeds_people(request):
         feed.add_item(title = employee.name, link = employee.get_absolute_url(), description=employee.as_snippet())
     return HttpResponse(feed.writeString('UTF-8'))
 
-
+@ensure_has_board
 def person_paypal(request, id):
     board = request.board
     person = get_object_or_404(Employee, id = id)
@@ -235,6 +251,7 @@ def person_paypal(request, id):
     payload = {'person':person, 'paypal_url':paypal_url}
     return render_to_response('zobpress/person_paypal.html', payload, RequestContext(request))
 
+@ensure_has_board
 def person_paypal_approved(request, id):
     board = request.board
     cost = board.cost_per_people_listing
@@ -262,6 +279,7 @@ def person_paypal_approved(request, id):
         payload['ack'] = False
     return render_to_response('zobpress/person_paypal_approved.html', payload, RequestContext(request))
     
+@ensure_has_board
 def job_paypal(request, id):
     board = request.board
     job = get_object_or_404(Job, id = id)
@@ -280,6 +298,7 @@ def job_paypal(request, id):
     payload = {'job':job, 'paypal_url':paypal_url}
     return render_to_response('zobpress/job_paypal.html', payload, RequestContext(request))
 
+@ensure_has_board
 def job_paypal_approved(request, id):
     board = request.board
     cost = board.cost_per_people_listing
@@ -306,3 +325,4 @@ def job_paypal_approved(request, id):
     else:
         payload['ack'] = False
     return render_to_response('zobpress/person_paypal_approved.html', payload, RequestContext(request))
+

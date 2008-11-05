@@ -1,6 +1,7 @@
 from django.conf.urls.defaults import *
 from django.views.generic.simple import direct_to_template
 
+
 urlpatterns = patterns('zobpress.views',
     url(r'^$', 'index', name='zobpress_index'),
     url(r'^addperson/$', 'add_person', name='zobpress_add_person'),
@@ -30,5 +31,6 @@ urlpatterns = patterns('zobpress.views',
     url(r'^person/(?P<id>\d+)/paypal/aproved/$', 'person_paypal_approved', name='zobpress_persons_paypal_appr'),
     url(r'^job/(?P<id>\d+)/paypal/$', 'job_paypal', name='zobpress_jobs_paypal'),
     url(r'^job/(?P<id>\d+)/paypal/approved/$', 'job_paypal_approved', name='zobpress_jobs_paypal_appr'),
+    
     
 )

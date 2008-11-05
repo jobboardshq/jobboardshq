@@ -61,6 +61,7 @@ INSTALLED_APPS = (
     'widgets',
     'management',
     'registration',
+    'profiles',
     'django.contrib.auth',
     'django.contrib.admin',
     'django.contrib.contenttypes',
@@ -70,4 +71,5 @@ INSTALLED_APPS = (
 )
 
 SESSION_COOKIE_DOMAIN = '.shabda.tld'
-AUTH_PROFILES_MODULE = 'profilesUserProfile'
+AUTH_PROFILE_MODULE = 'profiles.UserProfile'
+ACCOUNT_ACTIVATION_DAYS = 10

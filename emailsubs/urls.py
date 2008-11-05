@@ -8,5 +8,3 @@ urlpatterns = patterns('emailsubs.views',
     url(r'^confirm/done/$', direct_to_template, {'template_name':'emailsubs/email_confirmed.html'}, name='emailsubs_confirm_done'),
     url(r'^unsubscribe/(?P<id>\d+)/$', 'unsubscribe', name='emailsubs_unsubscribe'),
 )
-
-    

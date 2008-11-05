@@ -1,0 +1,42 @@
+{% extends 'registration/base.html' %}
+
+{% block content %}
+
+{% if account %}
+
+<p>
+    You have successfully activated your account. Next steps for you.
+</p>
+
+<ul>
+    <li>
+        <a href="{% url auth_login %}">Login</a>
+    </li>
+    <li>
+        <a href="{% url manage_index %}">Manage</a>
+    </li>
+    <li>
+        <a href="{{ account.get_profile.get_board.get_absolute_url }}">See your board.</a>
+    </li>
+</ul>
+
+{% else %}
+
+<p>
+  There was an error.  
+</p>
+
+<ul>
+    <li>
+        <a href="{% url auth_login %}">Login</a>
+    </li>
+    <li>
+        <a href="{% url manage_index %}">Manage</a>
+    </li>
+</ul>
+
+
+{% endif %}
+
+{% endblock %}
+
