@@ -1,7 +1,7 @@
 DATABASE_ENGINE = 'mysql'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = 'zobpress'             # Or path to database file if using sqlite3.
-DATABASE_USER = 'root'             # Not used with sqlite3.
-DATABASE_PASSWORD = 'shabda'         # Not used with sqlite3.
+DATABASE_NAME = 'zobpress_zp'             # Or path to database file if using sqlite3.
+DATABASE_USER = 'zobpress_zp'             # Not used with sqlite3.
+DATABASE_PASSWORD = 'f3a589d8'         # Not used with sqlite3.
 DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
 DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
 
@@ -30,6 +30,6 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/home/shabda/jobboard/templates',
+    '/home/zobpress/webapps/zobpress/zobpress/templates',
 )
 
