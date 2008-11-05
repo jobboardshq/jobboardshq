@@ -41,7 +41,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.doc.XViewMiddleware',
     'django.middleware.transaction.TransactionMiddleware',
-    'zobpress.middleware.GetSubdomainMiddleware'
+    'zobpress.middleware.GetSubdomainMiddleware',
+    'djangologging.middleware.LoggingMiddleware',
 )
 
 
@@ -62,6 +63,7 @@ INSTALLED_APPS = (
     'management',
     'registration',
     'profiles',
+    'djangologging',
     'django.contrib.auth',
     'django.contrib.admin',
     'django.contrib.contenttypes',

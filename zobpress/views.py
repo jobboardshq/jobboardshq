@@ -19,6 +19,8 @@ from sitewide import views as sitewide_views
 
 
 def index(request):
+    import logging
+    logging.debug('This is the index page.')
     if not request.board:
         #We are at sidewide index.
         return sitewide_views.index(request)
