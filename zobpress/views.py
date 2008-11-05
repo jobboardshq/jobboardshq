@@ -5,6 +5,7 @@ from django.template import RequestContext
 from django.core.urlresolvers import reverse
 from django.utils import feedgenerator
 from django.utils import simplejson
+from django.contrib.auth.decorators import login_required
 
 from StringIO import StringIO
 
@@ -163,8 +164,11 @@ def edit_person_done(request, id):
     return render_to_response('zobpress/adddev.html', payload)
 
 @ensure_has_board
+@login_required
 def create_job_form(request):
     "Create a job form for a board."
+    if not request.user == request.board.owner:
+        return HttpResponseForbidden('You do not have access to this board')
     if request.method == 'POST' and request.is_ajax():
         data = simplejson.load(StringIO(request.POST['data']))
         job_form, created = JobFormModel.objects.get_or_create(board = request.board)
@@ -180,8 +184,11 @@ def create_job_form(request):
     return render_to_response('zobpress/create_job_form.html', payload, RequestContext(request))
 
 @ensure_has_board
+@login_required
 def create_person_form(request):
     "Create a person form for a board."
+    if not request.user == request.board.owner:
+        return HttpResponseForbidden('You do not have access to this board')
     if request.method == 'POST' and request.is_ajax():
         data = simplejson.load(StringIO(request.POST['data']))
         employee_form, created = EmployeeFormModel.objects.get_or_create(board = request.board)

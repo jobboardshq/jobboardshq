@@ -5,7 +5,9 @@ from django.template import RequestContext
 from django.core.urlresolvers import reverse
 
 from management.forms import ManageSettingsForm
+from zobpress.decorators import ensure_has_board
 
+@ensure_has_board
 def index(request):
     manage_settings_form = ManageSettingsForm(instance = request.board)
     if request.method == 'POST':
