@@ -1,0 +1,38 @@
+{% extends 'zobpress/base.html' %}
+
+{% block content %}
+
+{% if ack %}
+
+<p>
+Thank you for making the payment.
+<p>
+    
+<p>
+
+Your details are,
+<br />
+First Name: {{ first_name }}
+<br />
+Last Name: {{ last_name }}
+<br />
+Amount: {{ amt }}
+<br />
+</p>
+
+<p>
+    <a href="{{ person.get_absolute_url }}">See Person</a>
+</p>
+
+{% else %}
+
+<p>
+There was a problem with your request. You have not been charged any money. Please start the request or
+contact us.
+</p>
+
+{% endif %}
+
+
+
+{% endblock %}

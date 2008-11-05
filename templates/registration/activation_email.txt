@@ -1,0 +1,8 @@
+Hi,
+
+Thanks you for creating an account at {{ site }}.
+
+Please click on the link at http://{{ site }}{% url registration_activate activation_key %} to activate your account.
+
+Thanks,
+Team Zobpress
