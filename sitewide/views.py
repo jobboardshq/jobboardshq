@@ -15,8 +15,6 @@ def index(request):
 
 def register_board(request):
     "This wrapper around the register view"
-    
-    #new_board_form = NewBoardForms()
     return register(request, form_class = NewBoardForms)
     """if request.method == 'POST':
         new_board_form = NewBoardForms(data = request.POST)

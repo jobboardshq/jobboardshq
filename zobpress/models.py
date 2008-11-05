@@ -33,7 +33,7 @@ class BoardManager(models.Manager):
 
 class Board(models.Model):
     subdomain = models.CharField(max_length = 100)
-    domain = models.URLField(null = True, blank = True)
+    domain = models.CharField(null = True, blank = True, max_length = 100)
     name = models.CharField(max_length = 100)
     description = models.TextField()
     

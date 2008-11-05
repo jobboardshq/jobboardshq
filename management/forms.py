@@ -11,12 +11,21 @@ class ManageSettingsForm(forms.ModelForm):
         
     def save(self, *args, **kwargs):
         "Save the board, add the given domain to webfaction."
-        super(ManageSettingsForm, self).save(*args, **kwargs)
+        import pdb
+        pdb.set_trace()
+        board = super(ManageSettingsForm, self).save(*args, **kwargs)
+        site = self.cleaned_data['domain']
+        bits_len = len(site.split('.'))
+        if not bits_len == 3:
+            pass #Raise exception etc
+        subdomain = site.split('.')[0]
+        domain = '.'.join(site.split('.')[1:])
         if not settings.WEBFACTION_DEBUG:
             import xmlrpclib
             server = xmlrpclib.Server('https://api.webfaction.com/')
             session_id, account = server.login('zobpress', '4db69244')
-            server.create_domain(session_id, 'example.com', 'www')
+            server.create_domain(session_id, domain, subdomain)
+        return board
 
     
     
