@@ -11,8 +11,6 @@ class ManageSettingsForm(forms.ModelForm):
         
     def save(self, *args, **kwargs):
         "Save the board, add the given domain to webfaction."
-        import pdb
-        pdb.set_trace()
         board = super(ManageSettingsForm, self).save(*args, **kwargs)
         site = self.cleaned_data['domain']
         bits_len = len(site.split('.'))
