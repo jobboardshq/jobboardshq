@@ -18,7 +18,7 @@ class ManageSettingsForm(forms.ModelForm):
             pass #Raise exception etc
         subdomain = site.split('.')[0]
         domain = '.'.join(site.split('.')[1:])
-        if not settings.WEBFACTION_DEBUG:
+        if settings.WEBFACTION_SERVER:
             import xmlrpclib
             server = xmlrpclib.Server('https://api.webfaction.com/')
             session_id, account = server.login('zobpress', '4db69244')
