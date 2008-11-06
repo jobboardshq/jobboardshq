@@ -2,6 +2,8 @@ from django.conf.urls.defaults import *
 from django.contrib import admin
 from django.conf import settings
 
+from board_admin import board_admin
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -14,6 +16,7 @@ urlpatterns = patterns('',
     (r'^accounts/', include('registration.urls')),
 
     ('^admin/(.*)', admin.site.root),
+    ('^boardadmin/(.*)', board_admin.root),
 )
 
 

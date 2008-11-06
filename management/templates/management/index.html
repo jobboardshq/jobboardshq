@@ -2,11 +2,17 @@
 
 {% block content %}
 
+<div class="span-18 last highlight">
+    <h5>You are currently using a free plan, which means you can use a Zobpress.com subdomain with Zobpress. Upgrade to use your own domain.</h5>
+</div>
+
+<div class="span-18 last">
 <form action="." method="post">
     <table>
         {{ manage_settings_form }}
     </table>
     <input type="submit" name="Settings" value="Update Settings" />
 </form>
+</div>
 
 {% endblock %}

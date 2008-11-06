@@ -30,11 +30,15 @@ class BoardManager(models.Manager):
         from profiles.models import UserProfile
         user_profile = UserProfile(user = user)
         user_profile.save()
+        board_extended_settings = BoardExtendedSettings(board = board)
+        board_extended_settings.save()
+        EmployeeFormModel.objects.create_default_form(board = board)
+        JobFormModel.objects.create_default_form(board = board)
         return board
 
 class Board(models.Model):
-    subdomain = models.CharField(max_length = 100)
-    domain = models.CharField(null = True, blank = True, max_length = 100)
+    subdomain = models.CharField(max_length = 100, unique = True)
+    domain = models.CharField(null = True, blank = True, max_length = 100, unique = True)
     name = models.CharField(max_length = 100)
     description = models.TextField()
     
@@ -55,6 +59,19 @@ class Board(models.Model):
     
     def __unicode__(self):
         return self.name
+    
+class BoardPayPal(models.Model):
+    board = models.OneToOneField(Board, primary_key = True)
+    paypal_token_sec = models.CharField(null = True, blank = True, max_length = 100)
+    paypal_token_gec = models.CharField(null = True, blank = True, max_length = 100)
+    paypal_payer_id = models.CharField(null = True, blank = True, max_length = 100)
+    
+class BoardExtendedSettings(models.Model):
+    "Extended settings for the board"
+    board = models.OneToOneField(Board, primary_key = True)
+    is_default_job_form = models.BooleanField(True)#Is the Job form a Default form.
+    is_default_person_form = models.BooleanField(True)#Is the Person form a Default form.
+    
     
 class BoardPaymentsManager(models.Manager):
     def add_job_payment(self, board, amount, amount_for = None):
@@ -106,9 +123,18 @@ class Category(models.Model):
     def __unicode__(self):
         return self.name
     
+class EmployeeFormModelManager(models.Manager):
+    def create_default_form(self, board):
+        employee_form = EmployeeFormModel(board = board)
+        employee_form.save()
+        employee_description = EmployeeFieldModel(employee_form = employee_form, name = 'Person Description', type = 'TextField', order = 0)
+        employee_description.save()
+
 class EmployeeFormModel(models.Model):
     "Model for employee form for a specific Job board."
     board = models.ForeignKey(Board, unique = True)
+
+    objects = EmployeeFormModelManager()
     
     def __unicode__(self):
         return self.board.name
@@ -209,12 +235,23 @@ class EmployeeData(models.Model):
             pass
         return self.value
     
+class JobFormModelManager(models.Manager):
+    def create_default_form(self, board):
+        job_form = JobFormModel(board = board)
+        job_form.save()
+        job_description = JobFieldModel(job_form = job_form, name = 'Job Description', type = 'TextField', order = 0)
+        job_description.save()
+
+    
 class JobFormModel(models.Model):
     "Model for Job form for a specific Job board."
     board = models.ForeignKey(Board, unique = True)
     
+    objects = JobFormModelManager()
+    
     def __unicode__(self):
         return self.board.name
+    
     
     
 class JobFieldModel(models.Model):

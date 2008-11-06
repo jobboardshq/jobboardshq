@@ -2,12 +2,24 @@ from django import forms
 
 from zobpress.models import Board
 from django.conf import settings
+from django.forms import ValidationError
 
 class ManageSettingsForm(forms.ModelForm):
     
     class Meta:
         model = Board
         exclude = ('board', 'subdomain', 'owner')
+        
+    def __init__(self, board, *args, **kwargs):
+        self.board = board
+        super(ManageSettingsForm, self).__init__(*args, **kwargs)
+        
+    def clean_domain(self):
+        "You must be a paying customer to be able to use Domain"
+        if self.cleaned_data['domain']:
+            if not self.board.owner.get_profile().is_paid:
+                raise ValidationError('You need to upgrade to a paid account to be able to use a custom domain.')
+        return self.cleaned_data['domain']
         
     def save(self, *args, **kwargs):
         "Save the board, add the given domain to webfaction."

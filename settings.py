@@ -72,3 +72,6 @@ INSTALLED_APPS = (
 
 AUTH_PROFILE_MODULE = 'profiles.UserProfile'
 ACCOUNT_ACTIVATION_DAYS = 10
+UPGRADE_COST = 20
+UNALLOWED_SUBDOMAINS = ['www', 'admin', 'zobpress', 'blog']
+

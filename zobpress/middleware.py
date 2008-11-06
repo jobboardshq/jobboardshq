@@ -1,25 +1,32 @@
-from zobpress.models import Board
+from django.contrib.sites.models import Site
+from django.conf import settings
 
 import urlparse
+
+from zobpress.models import Board
 
 class GetSubdomainMiddleware:
     
     def process_request(self, request):
-        import logging
-        logging.debug(request.META['HTTP_HOST'])
-        bits = urlparse.urlsplit(request.META['HTTP_HOST'])[0].split('.')
-        if not( len(bits) == 3):
-            pass#Todo Raise an exception etc
-            bits = urlparse.urlsplit(request.META['HTTP_HOST'])[3].split('.')
-            if not( len(bits) == 3):
-                bits = request.META['HTTP_HOST'].split('.')
-                if not( len(bits) == 3):
-                    pass
-                    #raise Exception("There was a problem getting the subdomain")
+        bits = urlparse.urlparse(request.build_absolute_uri()).hostname.split('.')
         request.subdomain = bits[0]
-        try:
-            board = Board.objects.get(subdomain = request.subdomain)
-            request.board = board
-        except Board.DoesNotExist:
-            request.board = None
-        return None
+        probable_domain =  '.'.join(bits[1:])
+        current_site = Site.objects.get_current()
+        if settings.BASE_DOMAIN == probable_domain:
+            #User is using a subdomain.
+            try:
+                board = Board.objects.get(subdomain = request.subdomain)
+                request.board = board
+            except Board.DoesNotExist:
+                request.board = None
+            return None
+        else:
+            #User is using a Custom Domain
+            try:
+                domain = urlparse.urlsplit(request.build_absolute_uri()).hostname
+                board = Board.objects.get(domain = domain)
+                request.board = board
+            except Board.DoesNotExist:
+                request.board = None
+            return None
+            
