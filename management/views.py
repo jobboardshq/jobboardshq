@@ -88,8 +88,6 @@ def upgrade(request):
 @ensure_has_board
 @login_required
 def upgrade_approved(request):
-    import pdb
-    pdb.set_trace()
     board = request.board
     if not request.user == request.board.owner:
         return HttpResponseForbidden('You do not have access to this board')

@@ -19,7 +19,7 @@ from sitewide import views as sitewide_views
 
 
 def index(request):
-    if not request.subdomain:
+    if not request.board:
         #We are at sidewide index.
         return sitewide_views.index(request)
     return add_person(request)

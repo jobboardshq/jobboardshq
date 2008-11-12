@@ -67,6 +67,7 @@
   </div>
   
   <div class="span-6 sidebar last">
+    {% if board %}
     <ul>
     {% if user.is_authenticated %}
     
@@ -109,6 +110,7 @@
         <a href="{% url zobpress_feeds_people %}">People Feed</a>
       </li>
     </ul>
+    {% endif %}
   </div>
   
   <div class="span-24 footer">
