@@ -257,7 +257,7 @@ def job_paypal(request, id):
     if cost == 0:#No cost. Set active and redirect.
         job.is_active = True
         job.save()
-        return HttpResponseRedirect(person.get_absolute_url())
+        return HttpResponseRedirect(job.get_absolute_url())
     pp = paypal.PayPal()
     token = pp.SetExpressCheckout(cost, '%s%s'%(board.get_absolute_url(), reverse('zobpress_jobs_paypal_appr', args=[job.id])), '%s%s'%(board.get_absolute_url(), reverse('zobpress_persons_paypal', args=[job.id])))
     job.paypal_token_sec = token
