@@ -1,5 +1,5 @@
 # Django settings for job_board project.\
-
+import os
 from localsettings import *
 
 DEBUG = True
@@ -53,6 +53,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "zobpress.context_processor.populate_board",
     )
 
+HAYSTACK_SITECONF = 'uswaretech_zobpress.search_sites'
+HAYSTACK_SEARCH_ENGINE = 'whoosh'
+HAYSTACK_WHOOSH_PATH = (os.path.join(os.path.dirname(__file__), 'search_index/'))
 
 INSTALLED_APPS = (
     'zobpress',
@@ -68,6 +71,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'south',
+    'haystack',
 )
 
 AUTH_PROFILE_MODULE = 'profiles.UserProfile'

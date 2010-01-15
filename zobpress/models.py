@@ -175,7 +175,7 @@ class Job(models.Model):
     updated_on = models.DateTimeField(auto_now = 1)
     
     def __unicode__(self):
-        return self.name
+        return self.name or ''
     
     def as_snippet(self):
         "Get the current job as a snippet."
@@ -185,10 +185,12 @@ class Job(models.Model):
             snippet += "%s: %s" % (datum.name, datum.value)
             snippet += '\n'
         return snippet
-    
+   
+    @property
     def as_clob(self):
         "As a large text."
         snippet = ""
+        snippet += '\n'.join([self.name or '', self.category or '', self.job_type or ''])
         data = self.jobdata_set.all()
         for datum in data:
             snippet += "%s: %s" % (datum.name, datum.value)
