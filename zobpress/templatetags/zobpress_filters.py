@@ -6,7 +6,7 @@ register = template.Library()
 
 @register.filter
 def prettify(data):
-    "Take a Zobdata or EmployeeData object and return a pretty reprsentation of it."
+    "Take a Zobdata and return a pretty reprsentation of it."
     if data.data_type == 'BooleanField':
         if data.value:
             return 'Yes'
@@ -18,3 +18,7 @@ def prettify(data):
         #return urlize(data.value)
         return linebreaks(urlize(data.value))
     return data.value
+
+@register.filter
+def strip(s):
+    return s.strip()

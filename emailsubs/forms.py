@@ -11,7 +11,6 @@ from emailsubs.models import EmailSubscription
 class EmailCaptureForm(forms.Form):
     email = forms.EmailField()
     send_jobs_email = forms.BooleanField(required = False)
-    send_employee_email = forms.BooleanField(required = False)
     
     def __init__(self, board, *args, **kwargs):
         super(EmailCaptureForm, self).__init__(*args, **kwargs)
@@ -25,7 +24,7 @@ class EmailCaptureForm(forms.Form):
         raise ValidationError('This email is already registered for this board.')
         
     def save(self):
-        email_sub = EmailSubscription(board = self.board, email = self.cleaned_data['email'], send_jobs_email= self.cleaned_data['send_jobs_email'], send_employee_email=self.cleaned_data['send_employee_email'])
+        email_sub = EmailSubscription(board = self.board, email = self.cleaned_data['email'], send_jobs_email= self.cleaned_data['send_jobs_email'])
         random_key = ''.join([random.choice('012345678') for el in  range(10)])
         email_sub.key = random_key
         email_sub.save()

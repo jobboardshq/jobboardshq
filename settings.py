@@ -67,7 +67,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
-    
+    'south',
 )
 
 AUTH_PROFILE_MODULE = 'profiles.UserProfile'
@@ -75,3 +75,19 @@ ACCOUNT_ACTIVATION_DAYS = 10
 UPGRADE_COST = 20
 UNALLOWED_SUBDOMAINS = ['www', 'admin', 'zobpress', 'blog']
 
+BASE_DOMAIN = 'foo.tld'
+INTERNAL_IPS = ('127.0.0.1',)
+if DEBUG:
+    try:
+        INSTALLED_APPS = list(INSTALLED_APPS)
+        INSTALLED_APPS.append('debug_toolbar')
+        # INSTALLED_APPS.append('django_extensions')
+        INSTALLED_APPS = tuple(INSTALLED_APPS)
+        
+        MIDDLEWARE_CLASSES = list(MIDDLEWARE_CLASSES)
+        MIDDLEWARE_CLASSES.append('debug_toolbar.middleware.DebugToolbarMiddleware')
+        MIDDLEWARE_CLASSES = tuple(MIDDLEWARE_CLASSES)
+        
+        DEBUG_TOOLBAR_CONFIG = {'INTERCEPT_REDIRECTS': False}   
+    except:
+        raise

@@ -1,38 +1,38 @@
 {% extends 'zobpress/base.html' %}
 
 {% block toptab %}
+
 <h3>
-    Recently posted jobs.
+  Recently posted jobs.
 </h3>
 {% endblock %}
 
 {% block content %}
   {% for job in jobs_list %}
-        {% include 'zobpress/job_snippet_frag.html' %}
+    {% include 'zobpress/job_snippet_frag.html' %}
   {% endfor %}
 {% endblock %}
 
 {% block sidebar %}
 <h2>Sort</h2>
-  <ul>
-    <li>
-      <a href="/jobs/?order=name">Sort by Name</a>    </li>
-    <li>
-      <a href="/jobs/?order=created_on">Sort by Date</a>    </li>
-    <li>
   
+<ul>
+  <li><a href="/jobs/?order=name">Sort by Name</a></li>
+  <li><a href="/jobs/?order=created_on">Sort by Date</a></li>
+<li>
 {% endblock %}
 
-  {% block pagination %}
-  {% if is_paginated %}
+{% block pagination %}
+
+{% if is_paginated %}
   {% if has_previous %}
-  <span class="pre">&laquo;<a href=".?page={{previous}}">Previous Post</a></span>
+    <span class="pre">&laquo;<a href=".?page={{previous}}">Previous Post</a></span>
   {% endif %}
-    {% if has_next %}
-  <span class="next"><a href=".?page={{next}}">Next Post</a>&raquo;</span>
+    
+  {% if has_next %}
+    <span class="next"><a href=".?page={{next}}">Next Post</a>&raquo;</span>
   {% endif %}
-  {% endif %}
- 
-   
- <div class="clear2"></div>
-  {% endblock %}
+{% endif %}
+
+<div class="clear2"></div>
+{% endblock %}

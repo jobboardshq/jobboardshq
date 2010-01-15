@@ -7,7 +7,6 @@ class EmailSubscription(models.Model):
     board = models.ForeignKey(Board)
     email = models.EmailField(unique = True)
     send_jobs_email = models.BooleanField(default = True)
-    send_employee_email = models.BooleanField(default = True)
     is_confirmed = models.BooleanField(default = False)
     key = models.CharField(max_length = 100) #Genrated random key, to validate confirm/unsubscribe
     

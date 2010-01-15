@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django import forms
 
-from zobpress.models import Board, Category, EmployeeFormModel, EmployeeFieldModel
+from zobpress.models import Board, Category
 
 
 board_admin = admin.AdminSite()
@@ -21,13 +21,4 @@ class FilterOnBoard(admin.ModelAdmin):
                 return super(MyModelForm, self).get_queryset().filter(board = request.board)
         return MyModelForm
 
-class EmployeeFieldModelAdmin(admin.ModelAdmin):
-    def queryset(self, request):
-        "This will filter based on request.board"
-        return self.model._default_manager.filter(employee_form__board = request.board)
-
 board_admin.register(Category, FilterOnBoard)
-board_admin.register(EmployeeFormModel, FilterOnBoard)
-board_admin.register(EmployeeFieldModel, EmployeeFieldModelAdmin)
-
-

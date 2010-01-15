@@ -5,7 +5,7 @@ from django.template import RequestContext
 from django.core.urlresolvers import reverse
 from django.utils import feedgenerator
 
-from zobpress.models import Job, Employee
+from zobpress.models import Job
 
 def jobs_js(request):
     payload = {}
@@ -16,15 +16,6 @@ def jobs_iframe(request):
     payload = {'jobs':jobs}
     return render_to_response('widgets/jobs.html', payload, RequestContext(request))
     
-def people_js(request):
-    payload = {}
-    return render_to_response('widgets/people.js', payload, RequestContext(request), mimetype='text/javascript')
-
-def people_iframe(request):
-    employees = Employee.objects.all()[:10]
-    payload = {'employees':employees}
-    return render_to_response('widgets/people.html', payload, RequestContext(request))
-
 def test_widgets(request):
     payload = {}
     return render_to_response('widgets/test.html', payload, RequestContext(request))

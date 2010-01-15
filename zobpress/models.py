@@ -5,6 +5,8 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 
+from django.template.defaultfilters import slugify
+
 import random
 from datetime import date, timedelta
 
@@ -32,7 +34,6 @@ class BoardManager(models.Manager):
         user_profile.save()
         board_extended_settings = BoardExtendedSettings(board = board)
         board_extended_settings.save()
-        EmployeeFormModel.objects.create_default_form(board = board)
         JobFormModel.objects.create_default_form(board = board)
         return board
 
@@ -45,9 +46,7 @@ class Board(models.Model):
     #Settings for Board
     "For listings value  of 0 means it never expires. For cost 0 means listing is free."
     job_listing_expires = models.PositiveIntegerField(default = 0)#Number of days a job should show up before being removed.
-    people_listing_expires = models.PositiveIntegerField(default = 0)#Number of days a people should show up before being removed.
     cost_per_job_listing = models.PositiveIntegerField(default = 0)#Amount in USD which a user needs to pay to activate their listing.
-    cost_per_people_listing = models.PositiveIntegerField(default = 0)#Amount in USD which a user needs to pay to activate their listing.
     
     owner = models.ForeignKey(User)
     
@@ -70,8 +69,6 @@ class BoardExtendedSettings(models.Model):
     "Extended settings for the board"
     board = models.OneToOneField(Board, primary_key = True)
     is_default_job_form = models.BooleanField(True)#Is the Job form a Default form.
-    is_default_person_form = models.BooleanField(True)#Is the Person form a Default form.
-    
     
 class BoardPaymentsManager(models.Manager):
     def add_job_payment(self, board, amount, amount_for = None):
@@ -81,26 +78,16 @@ class BoardPaymentsManager(models.Manager):
         board_payment.job_payments = board_payment.job_payments + amount
         board_payment.save()
         
-    def add_employee_payments(self, board, amount, amount_for = None):
-        if amount_for == None:
-            amount_for = date.today()
-        board_payment, created = BoardPayments.objects.get_or_create(board = board,  amount_for = amount_for)
-        board_payment.employee_payments = board_payment.employee_payments + amount
-        board_payment.save()
-        
-    
 class BoardPayments(models.Model):
     board = models.ForeignKey(Board)
     amount_for = models.DateField()
     job_payments = models.PositiveIntegerField(default = 0, )
-    employee_payments = models.PositiveIntegerField(default = 0)
     payment_type = models.CharField(default = 'PayPal', max_length = 10)# As we get multiple gateways, we will have multiple types.
     
     created_on = models.DateTimeField(auto_now_add = 1)
     updated_on = models.DateTimeField(auto_now_add = 1)
     
     objects = BoardPaymentsManager()
-    
     
 class Category(models.Model):
     "Categories for a specific board"
@@ -116,124 +103,8 @@ class Category(models.Model):
     def get_jobs_url(self):
         return('zobpress.views.category_jobs', [self.slug])
     
-    @models.permalink
-    def get_people_url(self):
-        return('zobpress.views.category_people', [self.slug])
-    
     def __unicode__(self):
         return self.name
-    
-class EmployeeFormModelManager(models.Manager):
-    def create_default_form(self, board):
-        employee_form = EmployeeFormModel(board = board)
-        employee_form.save()
-        employee_description = EmployeeFieldModel(employee_form = employee_form, name = 'Person Description', type = 'TextField', order = 0)
-        employee_description.save()
-
-class EmployeeFormModel(models.Model):
-    "Model for employee form for a specific Job board."
-    board = models.ForeignKey(Board, unique = True)
-
-    objects = EmployeeFormModelManager()
-    
-    def __unicode__(self):
-        return self.board.name
-    
-    
-class EmployeeFieldModel(models.Model):
-    "Model for employee form fields for a specific Job board."
-    employee_form = models.ForeignKey(EmployeeFormModel)
-    name = models.CharField(max_length = 100)
-    type = models.CharField(max_length = 100)
-    order = models.IntegerField()
-    
-    def __unicode__(self):
-        return self.employee_form.board.name
-    
-    class Meta:
-        unique_together = (('employee_form', 'order'), ('employee_form', 'name'))
-        ordering = ('-order', )
-        
-class EmployeePublicManager(models.Manager):
-    def get_query_set(self):
-        return super(EmployeePublicManager, self).get_query_set().filter(is_active = True)
-        
-    def get_public_employees(self, board):
-        "If people_listing_expires is a non zero value, filter on number of days this will be active. Else all paid for are active."
-        active_for = board.people_listing_expires
-        if active_for:
-            return self.filter(created_on__gt = date.today() - timedelta(days = active_for))
-        else:
-            return self.all()
-        
-    
-class Employee(models.Model):
-    board = models.ForeignKey(Board)
-    name = models.CharField(max_length = 100)
-    category = models.ForeignKey(Category, null = True, blank = True)
-    
-    is_active = models.BooleanField(default = False)#listings start as inactive. After Payment become active.
-    is_expired = models.BooleanField(default = False)#Has this listing expired yet?
-    is_editable = models.BooleanField(default = False)
-    password = models.CharField(max_length = 100, null = True, blank = True)
-    paypal_token_sec = models.CharField(max_length = 100,  null = True, blank = True)#Token returned from set_express_checkout
-    paypal_token_gec = models.CharField(max_length = 100,  null = True, blank = True)#Token returned from get_express_checkout
-    
-    created_on = models.DateTimeField(auto_now_add = 1)
-    updated_on = models.DateTimeField(auto_now = 1)
-    
-    objects = models.Manager()
-    public_objects = EmployeePublicManager()
-    
-    @permalink
-    def get_absolute_url(self):
-        return ('zobpress.views.person', [str(self.id)])
-    
-    def as_clob(self):
-        "As a large text."
-        snippet = ""
-        data = self.employeedata_set.all()
-        for datum in data:
-            snippet += "%s: %s" % (datum.name, datum.value)
-            snippet += '\n'
-        return snippet
-
-    
-    def as_snippet(self):
-        "Get the current job as a snippet."
-        snippet = ""
-        data = self.employeedata_set.all()[:2]
-        for datum in data:
-            snippet += "%s: %s" % (datum.name, datum.value)
-            snippet += '\n'
-        return snippet
-    
-    class Meta:
-        ordering = ('-created_on', )
-
-    
-class EmployeeData(models.Model):
-    employee = models.ForeignKey(Employee)
-    data_type = models.CharField(max_length = 100)
-    name = models.CharField(max_length = 100)
-    value = models.TextField()
-    
-    def value_as_str(self):
-        "Value as pretty string"
-        if self.data_type == 'BooleanField':
-            if self.value:
-                return 'Yes'
-            else:
-                return 'No'
-        return self.value
-    
-    def get_absolute_url(self):
-        try:
-            if self.data_type == 'FileField':
-                return self.employeefile_set.all()[0].get_absolute_url()
-        except IndexError:
-            pass
-        return self.value
     
 class JobFormModelManager(models.Manager):
     def create_default_form(self, board):
@@ -242,7 +113,6 @@ class JobFormModelManager(models.Manager):
         job_description = JobFieldModel(job_form = job_form, name = 'Job Description', type = 'TextField', order = 0)
         job_description.save()
 
-    
 class JobFormModel(models.Model):
     "Model for Job form for a specific Job board."
     board = models.ForeignKey(Board, unique = True)
@@ -251,8 +121,6 @@ class JobFormModel(models.Model):
     
     def __unicode__(self):
         return self.board.name
-    
-    
     
 class JobFieldModel(models.Model):
     "Model for Job form fields for a specific Job board."
@@ -279,11 +147,19 @@ class JobPublicManager(models.Manager):
             return self.filter(created_on__gt = date.today() - timedelta(days = active_for))
         else:
             return self.all()
+
+class JobType(models.Model):
+    job_type = models.CharField(max_length=100)
+    
+    def __unicode__(self):
+        return self.job_type
     
 class Job(models.Model):
     board = models.ForeignKey(Board)
-    name = models.CharField(max_length = 100)
+    name = models.CharField(max_length = 100, null=True, blank=True)
     category = models.ForeignKey(Category, null = True, blank = True)
+    job_type = models.ForeignKey(JobType, null=True, blank=True)
+    job_slug = models.SlugField(max_length=100)
     
     is_active = models.BooleanField(default = False)#listings start as inactive. After Payment become active.
     is_expired = models.BooleanField(default = False)#Has this listing expired yet?
@@ -297,6 +173,9 @@ class Job(models.Model):
     
     created_on = models.DateTimeField(auto_now_add = 1)
     updated_on = models.DateTimeField(auto_now = 1)
+    
+    def __unicode__(self):
+        return self.name
     
     def as_snippet(self):
         "Get the current job as a snippet."
@@ -318,11 +197,18 @@ class Job(models.Model):
     
     @permalink
     def get_absolute_url(self):
-        return ('zobpress.views.job', [str(self.id)])
+        return ('zobpress.views.job', [str(self.job_slug)])
     
     class Meta:
         ordering = ('-created_on', )
     
+    def save(self, *args, **kwargs):
+        self.job_slug = slugify(self.name)
+        slug_count = Job.objects.filter(job_slug__icontains = self.job_slug).count()
+        if slug_count:
+            self.job_slug += str(slug_count + 1)
+        super(Job, self).save(*args, **kwargs)
+        
 class JobData(models.Model):
     job = models.ForeignKey(Job)
     data_type = models.CharField(max_length = 100)
@@ -354,13 +240,3 @@ class JobFile(models.Model):
     def get_absolute_url(self):
         return settings.MEDIA_URL + self.public_path
     
-class EmployeeFile(models.Model):
-    "Files attached to a specific Job"
-    employee = models.ForeignKey(Employee)
-    employee_data = models.ForeignKey(EmployeeData)
-    uploaded_file = models.CharField(max_length = 100)
-    public_path = models.CharField(max_length = 100)
-    content_type = models.CharField(max_length = 100)
-    
-    def get_absolute_url(self):
-        return settings.MEDIA_URL + self.public_path

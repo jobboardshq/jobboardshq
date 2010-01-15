@@ -2,41 +2,30 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>
-{% block title %}
-  
-{% endblock %}
-</title>
+
+<title>{% block title %}{% endblock %}</title>
 
 {% block feed %}
-<link rel="alternate" type="application/rss+xml" title="{{ board.name }}" href="{{ board.get_absolute_url }}" />
+  <link rel="alternate" type="application/rss+xml" title="{{ board.name }}" href="{{ board.get_absolute_url }}" />
 {% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="/site_media/css/blueprint/screen.css" type="text/css" media="screen, projection">
-<link rel="stylesheet" href="/site_media/css/blueprint/print.css" type="text/css" media="print"> 
-<!--[if IE]>
-  <link rel="stylesheet" href="/site_media/css/blueprint/ie.css" type="text/css" media="screen, projection">
-<![endif]-->
-
+  <link rel="stylesheet" href="/site_media/css/blueprint/screen.css" type="text/css" media="screen, projection">
+  <link rel="stylesheet" href="/site_media/css/blueprint/print.css" type="text/css" media="print"> 
+  <!--[if IE]>
+    <link rel="stylesheet" href="/site_media/css/blueprint/ie.css" type="text/css" media="screen, projection">
+  <![endif]-->
 {% endblock %}
 
-{% block extracss %}
-{% endblock %}
+{% block extracss %}{% endblock %}
 
 {% block script %}
-
-<script type="text/javascript" src="/site_media/js/jquery.js">
-</script>
-<script type="text/javascript" src="/site_media/js/ui.core.js">
-</script>
-<script type="text/javascript" src="/site_media/js/json2.js">
-</script>
+  <script type="text/javascript" src="/site_media/js/jquery.js"></script>
+  <script type="text/javascript" src="/site_media/js/ui.core.js"></script>
+  <script type="text/javascript" src="/site_media/js/json2.js"></script>
 {% endblock %}
 
-{% block extrascript %}
-
-{% endblock %}
+{% block extrascript %}{% endblock %}
 
 </head>
 
@@ -55,7 +44,7 @@
   <div class="span-24 category">
     {% block categories %}
     {% for category in categories %}
-    <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+      <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
     {% endfor %}
     {% endblock %}
   </div>
@@ -68,53 +57,33 @@
   
   <div class="span-6 sidebar last">
     {% if board %}
-    <ul>
-    {% if user.is_authenticated %}
+      {% if user.is_authenticated %}
+        <ul>
+          <li><a href="{% url auth_logout %}">Logout</a></li>
+        </ul>
+      {% endif %}
     
-      <li>
-        <a href="{% url auth_logout %}">Logout</a>
-      </li>
-    {% endif %}
-    </ul>
-    <ul>
-      <h3>
-        Navigation
-      </h3>
-      <li><a href="{% url zobpress_add_person %}">Add an Employee</a></li>
-      <li><a href="{% url zobpress_add_job %}">Add an Job</a>        </li>
-      <li><a href="{% url zobpress_persons %}">See Employees</a>     </li>
-      <li><a href="{% url zobpress_jobs %}">See Jobs</a>             </li>
-    </ul>
-    {% if user.is_authenticated %}
-    <h3>
-      Manage
-    </h3>
-    <ul>
-      <li>
-        <a href="{% url manage_create_job_form %}">Edit job form</a>
-      </li>
-      <li>
-        <a href="{% url manage_create_person_form %}">Edit person form</a>
-      </li>
-    </ul>
-    {% endif %}
+      <ul>
+        <h3>Navigation</h3>
+        <li><a href="{% url zobpress_add_job %}">Add an Job</a>        </li>
+        <li><a href="{% url zobpress_jobs %}">See Jobs</a>             </li>
+      </ul>
+      
+      {% if user.is_authenticated %}
+        <h3>Manage</h3>
+        <ul>
+          <li><a href="{% url manage_create_job_form %}">Edit job form</a></li>
+        </ul>
+      {% endif %}
     
-    <h3>
-      Feeds
-    </h3>
-    <ul>
-      <li>
-        <a href="{% url zobpress_feeds_jobs %}">Jobs Feed</a>
-      </li>
-      <li>
-        <a href="{% url zobpress_feeds_people %}">People Feed</a>
-      </li>
-    </ul>
+      <h3>Feeds</h3>
+      <ul>
+        <li><a href="{% url zobpress_feeds_jobs %}">Jobs Feed</a></li>
+      </ul>
     {% endif %}
   </div>
   
-  <div class="span-24 footer">
-  </div>
+  <div class="span-24 footer"></div>
 </div>
 
 </body>

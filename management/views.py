@@ -12,7 +12,8 @@ from StringIO import StringIO
 from management.forms import ManageSettingsForm
 from zobpress.decorators import ensure_has_board
 from zobpress.models import type_mapping, JobFormModel, JobFieldModel, Job, BoardPayments
-from zobpress.models import EmployeeFormModel, EmployeeFieldModel, Category, Employee, BoardPayPal
+from zobpress.models import Category, BoardPayPal
+from zobpress.forms import get_job_form
 from libs import paypal
 
 @ensure_has_board
@@ -37,6 +38,8 @@ def create_job_form(request):
         return HttpResponseForbidden('You do not have access to this board')
     if request.method == 'POST' and request.is_ajax():
         data = simplejson.load(StringIO(request.POST['data']))
+        import ipdb
+        ipdb.set_trace()
         job_form, created = JobFormModel.objects.get_or_create(board = request.board)
         job_form.jobfieldmodel_set.all().delete()
         order = 1
@@ -46,28 +49,9 @@ def create_job_form(request):
             field_obj.save()
         success_url = reverse('zobpress_add_job')
         return HttpResponse(success_url)
-    payload = {}
+    board_job_form, form_fields = get_job_form(request.board, return_job_fields_also = True)
+    payload = {'board_job_form': board_job_form(), 'form_fields': form_fields}
     return render_to_response('zobpress/create_job_form.html', payload, RequestContext(request))
-
-@ensure_has_board
-@login_required
-def create_person_form(request):
-    "Create a person form for a board."
-    if not request.user == request.board.owner:
-        return HttpResponseForbidden('You do not have access to this board')
-    if request.method == 'POST' and request.is_ajax():
-        data = simplejson.load(StringIO(request.POST['data']))
-        employee_form, created = EmployeeFormModel.objects.get_or_create(board = request.board)
-        employee_form.employeefieldmodel_set.all().delete()
-        order = 1
-        for field in data:
-            field_obj = EmployeeFieldModel(employee_form = employee_form, name = field[0], type=field[1], order = order)
-            order += 1
-            field_obj.save()
-        success_url = reverse('zobpress_add_person')
-        return HttpResponse(success_url)
-    payload = {}
-    return render_to_response('zobpress/create_person_form.html', payload, RequestContext(request))
 
 @ensure_has_board
 @login_required

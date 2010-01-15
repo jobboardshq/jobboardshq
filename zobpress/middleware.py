@@ -9,17 +9,20 @@ class GetSubdomainMiddleware:
     
     def process_request(self, request):
         bits = urlparse.urlparse(request.build_absolute_uri()).hostname.split('.')
-        request.subdomain = bits[0]
+        if len(bits) > 2:
+            request.subdomain = bits[0]
+        else:
+            request.subdomain = None
         probable_domain =  '.'.join(bits[1:])
-        current_site = Site.objects.get_current()
-        if settings.BASE_DOMAIN == probable_domain:
+        # print bits, request.subdomain, probable_domain, settings.BASE_DOMAIN
+        # current_site = Site.objects.get_current()
+        if settings.BASE_DOMAIN == probable_domain and request.subdomain:
             #User is using a subdomain.
             try:
                 board = Board.objects.get(subdomain = request.subdomain)
                 request.board = board
             except Board.DoesNotExist:
                 request.board = None
-            return None
         else:
             #User is using a Custom Domain
             try:
@@ -28,5 +31,4 @@ class GetSubdomainMiddleware:
                 request.board = board
             except Board.DoesNotExist:
                 request.board = None
-            return None
             
