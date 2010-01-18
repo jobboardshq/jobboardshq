@@ -11,8 +11,8 @@ from StringIO import StringIO
 
 from zobpress import models
 from zobpress.models import type_mapping, JobFormModel, JobFieldModel, Job, BoardPayments
-from zobpress.models import Category, Job
-from zobpress.forms import get_job_form, PasswordForm, JobStaticForm
+from zobpress.models import Category, Job, Page
+from zobpress.forms import get_job_form, PasswordForm, JobStaticForm, PageForm
 from zobpress.decorators import ensure_has_board
 from libs import paypal
 from sitewide import views as sitewide_views
@@ -73,7 +73,7 @@ def jobs(request):
     if not order_by in ('name', 'created_on'):
         order_by = '-created_on'
     qs = models.Job.objects.filter(is_active = True).order_by(order_by)
-    return object_list(request, template_name = 'zobpress/jobs.html', queryset = qs, template_object_name = 'jobs', paginate_by=10)
+    return object_list(request, template_name = 'zobpress/jobs.html', queryset = qs, template_object_name = 'jobs', paginate_by=10, extra_context={'extends_var': 'new_base.html'})
 
 @ensure_has_board
 def edit_job(request, id):
@@ -175,3 +175,22 @@ def job_paypal_approved(request, id):
         payload['ack'] = False
     return render_to_response('zobpress/person_paypal_approved.html', payload, RequestContext(request))
 
+@ensure_has_board
+def job_board_pages(request, page_slug):
+    board = request.board
+    page = get_object_or_404(Page, job_board=board, page_slug=page_slug)
+    return render_to_response('zobpress/static_pages.html', {'page': page}, RequestContext(request))
+
+@ensure_has_board
+def create_page(request):
+    if request.method == 'POST':
+        form = PageForm(request.POST)
+        if form.is_valid():
+            Page.objects.create(job_board = request.board, 
+                        title = form.cleaned_data['title'], 
+                        page_slug = form.cleaned_data['page_slug'], 
+                        content = form.cleaned_data['content'])
+            return HttpResponseRedirect('/pages/%s/' %(form.cleaned_data['page_slug']))
+    else:
+        form = PageForm()
+    return render_to_response('zobpress/create_page.html', {'form': form}, RequestContext(request))

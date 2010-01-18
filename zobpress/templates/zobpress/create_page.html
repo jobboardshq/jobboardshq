@@ -1,0 +1,17 @@
+{% extends 'zobpress/base.html' %}
+
+{% block title %} {{ board.name }} - Create Page {% endblock title %}
+
+{% block content %}
+<h2>Create Page</h2>
+
+<table>
+  <form method='post'>
+  {{ form }}
+  <tr>
+    <td>&nbsp;</td>
+    <td><input type='submit' value='Create Page' /></td>
+  </tr>
+  </form>
+</table>
+{% endblock content %}

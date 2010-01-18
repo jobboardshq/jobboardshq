@@ -1,0 +1,9 @@
+{% extends 'new_base.html' %}
+
+{% block title %} {{ board.name }} - {{ page.title }} {% endblock title %}
+
+{% block content %}
+<h2>{{ page.title }}</h2>
+
+<p>{{ page.content }}</p>
+{% endblock content %}

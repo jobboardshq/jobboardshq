@@ -7,4 +7,4 @@ def populate_board(request):
         categories = Category.objects.filter(board = board)
     else:
         categories = []
-    return {'board':request.board, 'categories':categories}
+    return {'board':request.board, 'categories':categories, 'current_url': request.META['PATH_INFO']}

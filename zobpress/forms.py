@@ -9,7 +9,13 @@ import os
 from zobpress import models
 from zobpress.models import Board, type_mapping, rev_type_mapping
 from zobpress.models import JobFormModel, JobFieldModel
-from zobpress.models import Job, JobData, Category, JobFile
+from zobpress.models import Job, JobData, Category, JobFile, Page
+
+class PageForm(forms.ModelForm):
+    
+    class Meta:
+        model = Page
+        exclude = ('job_board')
 
 class JobStaticForm(forms.ModelForm):
     

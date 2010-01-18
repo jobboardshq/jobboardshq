@@ -20,6 +20,11 @@ urlpatterns = patterns('',
     (r'^search/', include('haystack.urls')),
 )
 
+urlpatterns += patterns('zobpress.views',
+    url(r'^pages/(?P<page_slug>.*)/$', 'job_board_pages', name='zobpress_job_board_page'),
+    # url(r'^edit/(?P<page_slug>.*)/$', 'edit_pages', name='zobpress_edit_page'),
+    url(r'^create_page/$', 'create_page', name='zobpress_create_page'),
+)
 
 if settings.DEBUG:
     urlpatterns += patterns('',

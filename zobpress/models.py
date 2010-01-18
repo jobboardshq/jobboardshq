@@ -242,3 +242,15 @@ class JobFile(models.Model):
     def get_absolute_url(self):
         return settings.MEDIA_URL + self.public_path
     
+class Page(models.Model):
+    title = models.CharField(max_length=100)
+    page_slug = models.SlugField(max_length=100)
+    content = models.TextField()
+    job_board = models.ForeignKey(Board)
+    
+    def __unicode__(self):
+        return self.title
+    
+    def save(self, *args, **kwargs):
+        # TODO: validate the page_slug value
+        super(Page, self).save(*args, **kwargs)

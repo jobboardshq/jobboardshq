@@ -52,6 +52,7 @@
   
   <div class="span-24 category">
     {% block categories %}
+    Categories: 
     {% for category in categories %}
       <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
     {% endfor %}
@@ -88,6 +89,14 @@
       <h3>Feeds</h3>
       <ul>
         <li><a href="{% url zobpress_feeds_jobs %}">Jobs Feed</a></li>
+      </ul>
+      
+      {% load zobpress_filters %}
+      <h3>Job Board Pages</h3>
+      <ul>
+      {% for p in board|get_job_board_pages %}
+        <li><a href="{% url zobpress_job_board_page p.page_slug %}"> {{ p.title }}</a></li>
+      {% endfor %}
       </ul>
     {% endif %}
   </div>

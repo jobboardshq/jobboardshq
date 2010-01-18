@@ -1,6 +1,7 @@
 from django import template
 from django.utils.safestring import mark_safe
 from django.template.defaultfilters import linebreaks, urlize
+from zobpress.models import Page
 
 register = template.Library()
 
@@ -22,3 +23,7 @@ def prettify(data):
 @register.filter
 def strip(s):
     return s.strip()
+
+@register.filter
+def get_job_board_pages(board):
+    return Page.objects.filter(job_board = board)

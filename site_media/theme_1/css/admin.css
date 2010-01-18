@@ -1,0 +1,43 @@
+@charset "utf-8";
+/* CSS Document */
+body{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; color:#191919; text-decoration:none; line-height:18px;}
+p{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; color:#191919; text-decoration:none;}
+p.admin{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; color:#191919; text-decoration:none;}
+
+/* Admin pages styles starts here    */
+#admincontainer { width:938px; margin:0px auto; display:block; margin-top:50px; margin-bottom:50px;}
+#admincontainer #top { width:938px; height:24px; display:block; }
+#admincontainer #middle { width:938px; float:left;background:url(../images/admin_bg_middle.gif) repeat-y;}
+#admincontainer #leftblock { width:233px; display:block; float:left;}
+#admincontainer #rightblock { width:640px; padding:0px 30px 0px 30px; float:left; display:block;}
+#admincontainer ul.vert-one{margin:0;padding:0;list-style-type:none;display:block;font:500 14px "trebuchet MS", Arial, Helvetica, sans-serif;line-height:40px;width:232px;border-top:1px solid #DFD5B5;}
+#admincontainer ul.vert-one li{margin:0;padding:0;border-bottom:1px solid #DFD5B5; }
+#admincontainer ul.vert-one li a{display:block;text-decoration:none;color:#fff;padding:0 0 0 20px;width:212px; background-color:#F1EDE0; color:#881900;}
+#admincontainer ul.vert-one li a:hover{background: url(../images/menu_hover.gif) no-repeat; color:#440D00; }
+#admincontainer ul.vert-one li a.current,ul.vert-one li a.current:hover{background: url(../images/menu_hover.gif) no-repeat; color:#440D00;}
+#admincontainer ul.vert-one li a.current{background:url(../images/menu_current.gif) no-repeat; color:#440D00;}
+.addjobs_buttons{width:420px; float:right;  line-height:18px; text-align:right;}
+.jobrole{font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif; color:#8B1B00; line-height:22px;}
+.viewed{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#666666; padding-left:25px;}
+.fulltime_badge{ text-align:center;  background-color:#788D01; color:#FFFFFF; font:bold 11px Verdana, Arial, Helvetica, sans-serif; width:90px; display:block; float:left; line-height:20px;}
+.freelance_badge{text-align:center; color:#FFFFFF; font:bold 11px Verdana, Arial, Helvetica, sans-serif; width:90px; display:block; float:left; line-height:20px;background-color:#851700;}
+.parttime_badge{text-align:center; color:#FFFFFF; font:bold 11px Verdana, Arial, Helvetica, sans-serif; width:90px; display:block; float:left; line-height:20px;background-color:#B07800;}
+.admin_heading{font:bold 18px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; line-height:40px; text-decoration:none; width:200px; float:left; }
+.admin_subheading1{ clear:both;font:500 14px "trebuchet MS", Arial, Helvetica, sans-serif; color:#191919; line-height:24px; text-decoration:none; border-top:1px dashed #CDC199;border-bottom:1px dashed #CDC199; padding:9px 0px 9px 0px; }
+
+.admin_subheading2{font:300 14px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; line-height:24px; text-decoration:none; }
+.jobblock{background-color:#FBF8ED; padding:10px; border-bottom:1px dashed #CDC199;}
+.staticfields{background-color:#CCCCCC; padding:10px;  filter:alpha(opacity=50);    -moz-opacity:.50;  opacity:.50; color:#000000; }
+.formelementsblock{background-color:#F1EAD3; padding:5px 10px 5px 10px; border-bottom:5px solid #FFFFFF;}
+.textfield{width:240px; padding:3px; margin:2px; background-color:#FAF7EE; border:1px solid #DDCFA6; font:11px "trebuchet MS", Arial, Helvetica, sans-serif; opacity:0.75;}
+.text_small{width:100px; background-color:#FFFFFF; border:1px solid #999999; font:9px "trebuchet MS", Arial, Helvetica, sans-serif;}
+.listmenu{width:250px; padding:3px; margin:2px; background-color:#FAF7EE; border:1px solid #DDCFA6; font:11px "trebuchet MS", Arial, Helvetica, sans-serif;}
+.textarea{width:240px; padding:3px; margin:2px; background-color:#FAF7EE; border:1px solid #DDCFA6; font:11px "trebuchet MS", Arial, Helvetica, sans-serif;}
+.formpadding{ clear:both; padding-top:10px;}
+.leftpadding{padding-left:10px;}
+.clear{clear:both;}
+.rightalign{float:right;}
+.smalltext{ font-size:10px; font-family:Arial, Helvetica, sans-serif;}
+.designform{background-color:#F1EAD3; padding:5px 10px 5px 10px;}
+
+/* Admin pages styles ends here    */
