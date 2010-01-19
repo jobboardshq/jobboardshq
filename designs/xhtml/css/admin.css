@@ -1,11 +1,25 @@
 @charset "utf-8";
 /* CSS Document */
-body{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; color:#191919; text-decoration:none; line-height:18px;}
+body{font:11px "trebuchet MS", Arial, Helvetica, sans-serif;  color:#191919; text-decoration:none; line-height:18px; }
+
+body.admin{font:11px "trebuchet MS", Arial, Helvetica, sans-serif;  color:#191919; text-decoration:none; line-height:18px; background:url(../images/admin_sitebg.jpg) repeat-x; background-color:#EFE8DE;}
 p{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; color:#191919; text-decoration:none;}
 p.admin{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; color:#191919; text-decoration:none;}
+/* Admin pages containers   */
+#adminheader{margin:0px auto; width:980px; height:97px;}
+.logo{width:300px; float:left;}
+#admin_user{float:right; color:#FFFFFF; padding-top:50px; font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif; color:#FFFFFF;}
+#admin_user a{color:#FFFFFF; text-decoration:none;}
+#admin_user a:hover{ color:#CC9900; text-decoration:underline;}
+#adminbody{margin:0px auto; width:980px; background-color:#FFFFFF; clear:both;}
+#footerlinks{width:100%; background-color:#87BFBC; height:180px;}
+#copyright{width:100%; background-color:#000000; font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#FFFFFF; line-height:40px; text-align:center;}
+#copyright a{width:100%; background-color:#000000; font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#FFFFFF; line-height:40px; text-align:center;}
+#copyright a:hover{color:#CC9900; line-height:40px; text-align:center;}
+
 
 /* Admin pages styles starts here    */
-#admincontainer { width:938px; margin:0px auto; display:block; margin-top:50px; margin-bottom:50px;}
+#admincontainer { width:938px; margin:0px auto; display:block; padding-top:15px; padding-bottom:15px;}
 #admincontainer #top { width:938px; height:24px; display:block; }
 #admincontainer #middle { width:938px; float:left;background:url(../images/admin_bg_middle.gif) repeat-y;}
 #admincontainer #leftblock { width:233px; display:block; float:left;}
@@ -27,7 +41,7 @@ p.admin{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; c
 
 .admin_subheading2{font:300 14px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; line-height:24px; text-decoration:none; }
 .jobblock{background-color:#FBF8ED; padding:10px; border-bottom:1px dashed #CDC199;}
-.staticfields{background-color:#CCCCCC; padding:10px;  filter:alpha(opacity=50);    -moz-opacity:.50;  opacity:.50; color:#000000; }
+.staticfields{background-color:#CCCCCC; padding:10px;  filter:alpha(opacity=50);    -moz-opacity:.50;  opacity:.50; color:#000000; margin-top:5px; }
 .formelementsblock{background-color:#F1EAD3; padding:5px 10px 5px 10px; border-bottom:5px solid #FFFFFF;}
 .textfield{width:240px; padding:3px; margin:2px; background-color:#FAF7EE; border:1px solid #DDCFA6; font:11px "trebuchet MS", Arial, Helvetica, sans-serif; opacity:0.75;}
 .text_small{width:100px; background-color:#FFFFFF; border:1px solid #999999; font:9px "trebuchet MS", Arial, Helvetica, sans-serif;}
@@ -39,5 +53,6 @@ p.admin{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; c
 .rightalign{float:right;}
 .smalltext{ font-size:10px; font-family:Arial, Helvetica, sans-serif;}
 .designform{background-color:#F1EAD3; padding:5px 10px 5px 10px;}
+.meroontext{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#990000;}
 
 /* Admin pages styles ends here    */
