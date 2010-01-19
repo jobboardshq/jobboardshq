@@ -1,0 +1,23 @@
+{% extends 'new_base.html' %}
+
+{% block title %} {{ block.super }} - settings {% endblock title %}
+
+{% block extracss %}
+<style type='text/css'>
+table td {
+  vertical-align: top;
+}
+</style>
+{% endblock extracss %}
+
+{% block content %}
+<form method='post'>
+  <table>
+    {{ form }}
+    <tr>
+      <td>&nbsp;</td>
+      <td><input type='submit' value='Save'/>
+    </tr>
+  </table>
+</form>
+{% endblock content %}

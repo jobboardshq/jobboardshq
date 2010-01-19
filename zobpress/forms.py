@@ -7,7 +7,7 @@ from os.path import join
 import os
 
 from zobpress import models
-from zobpress.models import Board, type_mapping, rev_type_mapping
+from zobpress.models import Board, BoardSettings, type_mapping, rev_type_mapping
 from zobpress.models import JobFormModel, JobFieldModel
 from zobpress.models import Job, JobData, Category, JobFile, Page
 
@@ -15,8 +15,14 @@ class PageForm(forms.ModelForm):
     
     class Meta:
         model = Page
-        exclude = ('job_board')
+        exclude = ('job_board',)
 
+class BoardSettingsForm(forms.ModelForm):
+    
+    class Meta:
+        model = BoardSettings
+        exclude = ('board',)
+        
 class JobStaticForm(forms.ModelForm):
     
     class Meta:
@@ -86,3 +92,8 @@ def get_field_type(data_type, board):
     if data_type == 'CategoryField':
         kwargs['queryset'] = Category.objects.filter(board = board)
     return field_class(**kwargs)
+
+class IndeedSearchForm(forms.Form):
+    # publisher_id = forms.CharField()
+    q = forms.CharField(label=u'what', required=False)
+    l = forms.CharField(label=u'where', required=False)

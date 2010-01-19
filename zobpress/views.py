@@ -12,7 +12,7 @@ from StringIO import StringIO
 from zobpress import models
 from zobpress.models import type_mapping, JobFormModel, JobFieldModel, Job, BoardPayments
 from zobpress.models import Category, Job, Page
-from zobpress.forms import get_job_form, PasswordForm, JobStaticForm, PageForm
+from zobpress.forms import get_job_form, PasswordForm, JobStaticForm, PageForm, BoardSettingsForm, IndeedSearchForm
 from zobpress.decorators import ensure_has_board
 from libs import paypal
 from sitewide import views as sitewide_views
@@ -186,11 +186,31 @@ def create_page(request):
     if request.method == 'POST':
         form = PageForm(request.POST)
         if form.is_valid():
-            Page.objects.create(job_board = request.board, 
-                        title = form.cleaned_data['title'], 
-                        page_slug = form.cleaned_data['page_slug'], 
-                        content = form.cleaned_data['content'])
+            page = form.save(commit=False)
+            page.job_board = request.board
+            page.save()
             return HttpResponseRedirect('/pages/%s/' %(form.cleaned_data['page_slug']))
     else:
         form = PageForm()
     return render_to_response('zobpress/create_page.html', {'form': form}, RequestContext(request))
+
+@ensure_has_board
+def settings(request):
+    if request.method == 'POST':
+        form = BoardSettingsForm(request.POST, instance=request.board.settings)
+        board_settings = form.save(commit=False)
+        board_settings.board = request.board
+        board_settings.save()
+        HttpResponseRedirect(reverse('zobpress_settings'))
+    else:
+        form = BoardSettingsForm(instance=request.board.settings)
+    return render_to_response('zobpress/settings.html', {'form': form}, RequestContext(request))
+
+def indeed_jobs(request):
+    q = request.GET.get('q', '')
+    l = request.GET['l']
+    if not q or l:
+        form = IndeedSearchForm()
+        return render_to_response('zobpress/settings.html', {'form': form}, RequestContext(request))
+    else:
+        # TODO: query the indeed api parse the results & display.

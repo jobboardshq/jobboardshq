@@ -1,0 +1,22 @@
+{% extends 'new_base.html' %}
+
+{% block title %} {{ block.super }} - Widgets {% endblock title %}
+{% block extracss %}
+<style type='text/css'>
+.textarea {
+  width: 700px;
+  height: 50px;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+}
+</style>
+{% endblock extracss %}
+
+{% block content %}
+  display the widgets code here 
+  <p class='textarea'>
+    {{ widget_code }}
+  </p>
+
+{% endblock content %}

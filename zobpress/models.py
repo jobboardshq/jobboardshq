@@ -59,6 +59,18 @@ class Board(models.Model):
     def __unicode__(self):
         return self.name
     
+    def save(self, *args, **kwargs):
+        # create settings
+        BoardSettings.objects.create(board=self)
+        super(Board, self).save(*args, **kwargs)
+    
+class BoardSettings(models.Model):
+    analytics_code = models.TextField(null=True, blank=True)
+    keywords = models.TextField(null=True, blank=True)
+    tag_line = models.CharField(max_length = 250, null=True, blank=True)
+    template = models.CharField(max_length = 100, default='default')
+    board = models.OneToOneField(Board, related_name='settings')
+    
 class BoardPayPal(models.Model):
     board = models.OneToOneField(Board, primary_key = True)
     paypal_token_sec = models.CharField(null = True, blank = True, max_length = 100)

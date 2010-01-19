@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<title>{% block title %}{% endblock %}</title>
+<title>{% block title %} {{ board.name }} {% endblock %}</title>
 
 {% block feed %}
   <link rel="alternate" type="application/rss+xml" title="{{ board.name }}" href="{{ board.get_absolute_url }}" />
@@ -30,13 +30,20 @@
 </head>
 
 <body>
- 
+
+{% load zobpress_filters %}
+
 <div class="span-24 header">
   {{ board }}
   <form action='{% url haystack_search %}'>
     <input type='text' name='q' />
     <input type="submit" value="Search">
   </form>
+  
+  {% if user.is_authenticated %}
+    <ul><li><a href="{% url auth_logout %}">Logout</a></li></ul>
+  {% endif %}
+
 </div>
 
 <div id="admincontainer">
@@ -47,50 +54,33 @@
     <div id="leftblock">
       <ul class="vert-one">
         <li><a href="{% url zobpress_jobs %}" title="All Jobs" {% ifequal current_url '/jobs/' %} class="current" {% endifequal %}>Jobs</a></li>
-        <li><a href="{% url zobpress_add_job %}" title="Add New Job" {% ifequal current_url '' %} class="current" {% endifequal %}>Add New Job </a></li>
+        <li><a href="{% url zobpress_add_job %}" title="Add New Job" {% ifequal current_url '/addjob/' %} class="current" {% endifequal %}>Add New Job </a></li>
         <li><a href="admin_add_newcategory.html" title="Add New Category" {% ifequal current_url '' %} class="current" {% endifequal %}>Add New Category </a></li>
         <li><a href="admin_create_jobform.html" title="Create Job Form" {% ifequal current_url '' %} class="current" {% endifequal %}>Create Job Form </a></li>
-        <li><a href="admin_settings.html" title="Settings" {% ifequal current_url '' %} class="current" {% endifequal %}>Settings </a></li>
+        <li><a href="{% url zobpress_settings %}" title="Settings" {% ifequal current_url '/settings/' %} class="current" {% endifequal %}>Settings </a></li>
         <li><a href="admin_trash.html" title="Trash"  {% ifequal current_url '' %} class="current" {% endifequal %}>Trash </a></li>
-        <li><a href="admin_widgets.html" title="Widgets" {% ifequal current_url '' %} class="current" {% endifequal %}>Widgets</a></li>
+        <li><a href="/widgets/" title="Widgets" {% ifequal current_url '/widgets/' %} class="current" {% endifequal %}>Widgets</a></li>
+          
+        <h3>Feeds</h3>
+        <li><a href="{% url zobpress_feeds_jobs %}">Jobs Feed</a></li>
+        {% if board %}
+          {% if user.is_authenticated %}
+            <h3>Manage</h3>
+            <li><a href="{% url manage_create_job_form %}">Edit job form</a></li>
+          {% endif %}
+          <h3>Job Board Pages</h3>
+          {% for p in board|get_job_board_pages %}
+            <li><a href="{% url zobpress_job_board_page p.page_slug %}"> {{ p.title }}</a></li>
+          {% endfor %}
+        {% endif %}
       </ul>
     </div>
     <!-- leftblock ends -->
     
     <!-- rightblock begins -->
-    <div id="leftblock">
+    <div id="rightblock">
       {% block content %} {% endblock %}
       
-      <div class="span-6 sidebar last">
-        {% if board %}
-          {% if user.is_authenticated %}
-            <ul>
-              <li><a href="{% url auth_logout %}">Logout</a></li>
-            </ul>
-          {% endif %}
-
-          {% if user.is_authenticated %}
-            <h3>Manage</h3>
-            <ul>
-              <li><a href="{% url manage_create_job_form %}">Edit job form</a></li>
-            </ul>
-          {% endif %}
-          
-          <h3>Feeds</h3>
-          <ul>
-            <li><a href="{% url zobpress_feeds_jobs %}">Jobs Feed</a></li>
-          </ul>
-          
-          {% load zobpress_filters %}
-          <h3>Job Board Pages</h3>
-          <ul>
-            {% for p in board|get_job_board_pages %}
-              <li><a href="{% url zobpress_job_board_page p.page_slug %}"> {{ p.title }}</a></li>
-            {% endfor %}
-          </ul>
-        {% endif %}
-      </div>
-
     </div>
     <!-- rightblock ends -->
 
