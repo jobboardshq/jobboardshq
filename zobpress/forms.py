@@ -1,14 +1,13 @@
 from django import forms
 from django.conf import settings
 
-import random
-from copy import copy
+#import random
+#from copy import copy
 from os.path import join
 import os
 
-from zobpress import models
-from zobpress.models import Board, BoardSettings, type_mapping, rev_type_mapping
-from zobpress.models import JobFormModel, JobFieldModel
+from zobpress.models import BoardSettings, type_mapping, rev_type_mapping
+from zobpress.models import JobFormModel, JobFieldModel, JobType
 from zobpress.models import Job, JobData, Category, JobFile, Page
 
 class PageForm(forms.ModelForm):
@@ -24,6 +23,13 @@ class BoardSettingsForm(forms.ModelForm):
         exclude = ('board',)
         
 class JobStaticForm(forms.ModelForm):
+    def __init__(self, board, *args, **kwargs):
+        super(JobStaticForm, self).__init__(*args, **kwargs)
+        self.board = board
+        
+    name = forms.CharField(widget = forms.TextInput(attrs={"class" : "textinput"}))
+    job_type = forms.ModelChoiceField(queryset = Category.objects.all(), widget=forms.RadioSelect)
+    category = forms.ModelChoiceField(queryset = JobType.objects.all(), widget=forms.RadioSelect)
     
     class Meta:
         model = Job
@@ -102,6 +108,7 @@ class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
         exclude = ["board"]
+    
     
     
     

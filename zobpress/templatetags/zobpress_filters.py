@@ -21,6 +21,10 @@ def prettify(data):
     return data.value
 
 @register.filter
+def get_location(job):
+    return ""#TODO
+
+@register.filter
 def strip(s):
     return s.strip()
 

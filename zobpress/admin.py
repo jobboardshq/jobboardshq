@@ -1,5 +1,5 @@
 from zobpress.models import Board, BoardPayments
-from zobpress.models import JobFormModel, JobFieldModel, Category, Job, JobData
+from zobpress.models import JobFormModel, JobFieldModel, Category, Job, JobData, JobType
 
 from django.contrib import admin
 
@@ -22,3 +22,4 @@ admin.site.register(Category, CategoryAdmin)
 admin.site.register(Job)
 admin.site.register(JobData)
 admin.site.register(BoardPayments)
+admin.site.register(JobType)

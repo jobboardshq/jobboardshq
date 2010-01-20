@@ -26,11 +26,14 @@ def index(request):
     # list the jobs for the board
     return jobs(request)
 
-def handle_form(request, Form, job_static_form, template_name, do_redirect = True):
+@ensure_has_board
+def add_job(request):
+    job_static_form = JobStaticForm(board = request.board)
     password_form = PasswordForm()
+    Form = get_job_form(request.board)
     if request.method == 'POST':
         form = Form(data = request.POST, files = request.FILES)
-        job_static_form = JobStaticForm(request.POST)
+        job_static_form = JobStaticForm(board = request.board, data = request.POST)
         if form.is_valid() and job_static_form.is_valid():
             object = form.save()
             object.name = job_static_form.cleaned_data['name']
@@ -40,23 +43,13 @@ def handle_form(request, Form, job_static_form, template_name, do_redirect = Tru
                 object.is_editable = True
                 object.password = password_form.save()
                 object.save()
-            if do_redirect:
-                return HttpResponseRedirect(object.get_absolute_url())
-            else:
-                return object
-    if request.method == 'GET':
+            #return HttpResponseRedirect(object.get_absolute_url())
+            job = object    
+            return HttpResponseRedirect(reverse('zobpress_jobs_paypal', args=[job.id]))
+    else:
         form = Form()
     payload = {'form':form, 'job_static_form': job_static_form, 'password_form':password_form}
-    return render_to_response(template_name, payload, RequestContext(request))
-
-@ensure_has_board
-def add_job(request):
-    job_static_form = JobStaticForm()
-    JobForm = get_job_form(request.board)
-    if request.method == 'POST':
-        job = handle_form(request, JobForm, job_static_form, 'zobpress/addjob.html', do_redirect = False)    
-        return HttpResponseRedirect(reverse('zobpress_jobs_paypal', args=[job.id]))
-    return handle_form(request, JobForm, job_static_form, 'zobpress/addjob.html')
+    return render_to_response('zobpress/addjob.html', payload, RequestContext(request))
 
 @ensure_has_board
 def job(request, job_slug):

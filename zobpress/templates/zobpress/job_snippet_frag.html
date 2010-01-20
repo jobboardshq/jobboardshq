@@ -1,7 +1,15 @@
-<div class="post">
-  <div class="posttop"><h3>{{job.name}}</h3></div>  
-  <div class="postitem">
-    {{job.description|linebreaks|urlize|truncatewords:30}}
-    <a href={{job.get_absolute_url}}>Read more ...</a>
-  </div>
-</div>
+	{% load zobpress_filters %}
+
+		<div class="jobblock">
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td width="400" align="left" valign="top"><span class="jobrole">{{ job.name }}</span>{{ job|get_location }}</td>
+              <td rowspan="2" align="center" valign="middle">{{ job.created_on }}</td>
+              <td width="60" rowspan="2" align="right" valign="bottom"><a href="{{ job.edit_link }}"><img src="{{ MEDIA_URL }}admin/images/edit_icon.gif" alt="Edit the Job" width="32" height="36" /></a></td>
+              <td width="60" rowspan="2" align="right" valign="bottom"><a href="{{ job.edit_link }}"><img src="{{ MEDIA_URL }}admin/images/delete_icon.gif" alt="Delete the Job" width="35" height="35" /></a></td>
+            </tr>
+            <tr>
+              <td align="left" valign="middle"><span class="parttime_badge">Parttime</span><span class="viewed"> Viewed 20 times</span></td>
+            </tr>
+          </table>
+        </div>

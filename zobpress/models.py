@@ -122,7 +122,7 @@ class Category(models.Model):
 class JobType(models.Model):
     board = models.ForeignKey(Board)
     name = models.CharField(max_length = 100)
-    slug = AutoSlugField(max_length = 100)
+    slug = AutoSlugField(max_length = 100, populate_from = "name")
     
     def __unicode__(self):
         return self.name

@@ -1,30 +1,28 @@
-{% extends 'zobpress/base.html' %}
+{% extends 'zobpress-admin/base.html' %}
 
 {% load zobpress_filters %}
 
 
-{% block toptab %}
-<h3>
-    Details for {{job.name}}
-</h3>
-<p>
-    Added on {{job.created_on|date:"jS F Y"}}
-</p>
-{% endblock %}
 
 {% block content %}
+		<h3>
+		    Details for {{job.name}}
+		</h3>
+		<p>
+		    Added on {{job.created_on|date:"jS F Y"}}
+		</p>
     <table>
-{% for data in job.jobdata_set.all %}
-<tr>
-    <th>
-    {{ data.name }}
-    </th>
-    <td>
-    {{ data|prettify }}
-    </td>
-</tr>
-{% endfor %}
-</table>
+		{% for data in job.jobdata_set.all %}
+		<tr>
+		    <th>
+		    {{ data.name }}
+		    </th>
+		    <td>
+		    {{ data|prettify }}
+		    </td>
+		</tr>
+		{% endfor %}
+	</table>
     
 <div>
     {% for job_file in job.jobfile_set.all %}

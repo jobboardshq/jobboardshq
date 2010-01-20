@@ -1,4 +1,4 @@
-{% extends 'admin/base.html' %}
+{% extends 'zobpress-admin/base.html' %}
 
 {% block toptab %}
 <h3>
@@ -14,7 +14,21 @@
        <form action="." method="post" enctype="multipart/form-data">
         <div class="form">
         <table>
-        {{ job_static_form }}
+		{% for field in  job_static_form.visible_fields %}
+			
+			{% if field.errors %}
+			<td>
+				<ul>
+					{{ field.errors }}
+				</ul>
+			</td>
+			{% endif %}
+			<tr>
+              <td width="200" align="left" valign="middle"> {{ field.label }} :</td>
+			  <td align="left" valign="top">{{ field }}</td>
+            </tr>
+			
+		{% endfor %}
         {% for field in form %}
         <tr>
         <th>
