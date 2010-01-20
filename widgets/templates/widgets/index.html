@@ -1,4 +1,4 @@
-{% extends 'new_base.html' %}
+{% extends 'widgets/base.html' %}
 
 {% block title %} {{ block.super }} - Widgets {% endblock title %}
 {% block extracss %}
@@ -14,9 +14,13 @@
 {% endblock extracss %}
 
 {% block content %}
+	<script src="{% url widgets_jobs_js %}">
+		
+	</script>
   display the widgets code here 
   <p class='textarea'>
     {{ widget_code }}
   </p>
+  
 
 {% endblock content %}
