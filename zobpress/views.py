@@ -71,9 +71,7 @@ def jobs(request):
 
 @ensure_has_board
 def edit_job(request, id):
-    job = models.Job.objects.get(id = id)
-    if not job.is_editable:
-        raise Http404
+    job = get_object_or_404(Job, id = id)    
     if request.method == 'POST':
         form = PasswordForm(request.POST)
         if form.is_valid():
@@ -85,14 +83,13 @@ def edit_job(request, id):
     if request.method == 'GET':
         form = PasswordForm()
     payload = {'form':form}
-    return render_to_response('zobpress/editjob.html', payload)
+    return render_to_response('zobpress/editjob.html', payload, RequestContext(request))
 
 @ensure_has_board
 def edit_job_done(request, id):
     job = get_object_or_404(Job, id = id)
+    job_static_form = JobStaticForm(board = request.board)
     JobForm = get_job_form(request.board, job = job)
-    if not job.is_editable:
-        raise Http404    
     if request.method == 'POST':
         form = JobForm(request.POST, files = request.FILES)
         if form.is_valid():
@@ -101,8 +98,8 @@ def edit_job_done(request, id):
     elif request.method == 'GET':
         job = models.Job.objects.get(id = id)
         form = JobForm()
-    payload = {'form': form}
-    return render_to_response('zobpress/editjob.html', payload)
+    payload = {'form': form, "job_static_form": job_static_form}
+    return render_to_response('zobpress/editjob.html', payload, RequestContext(request))
     
 @ensure_has_board
 def category_jobs(request, category_slug):

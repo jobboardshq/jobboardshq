@@ -15,7 +15,8 @@ class PageForm(forms.ModelForm):
     class Meta:
         model = Page
         exclude = ('job_board',)
-
+    
+    
 class BoardSettingsForm(forms.ModelForm):
     
     class Meta:
@@ -28,8 +29,8 @@ class JobStaticForm(forms.ModelForm):
         self.board = board
         
     name = forms.CharField(widget = forms.TextInput(attrs={"class" : "textinput"}))
-    job_type = forms.ModelChoiceField(queryset = Category.objects.all(), widget=forms.RadioSelect)
-    category = forms.ModelChoiceField(queryset = JobType.objects.all(), widget=forms.RadioSelect)
+    job_type = forms.ModelChoiceField(queryset = Category.objects.all(), widget=forms.RadioSelect, empty_label = None)
+    category = forms.ModelChoiceField(queryset = JobType.objects.all(), widget=forms.RadioSelect, empty_label = None)
     
     class Meta:
         model = Job

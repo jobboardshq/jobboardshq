@@ -180,7 +180,6 @@ class Job(models.Model):
     is_active = models.BooleanField(default = False)#listings start as inactive. After Payment become active.
     is_expired = models.BooleanField(default = False)#Has this listing expired yet?
     is_editable = models.BooleanField(default = False)
-    password = models.CharField(max_length = 100, null = True, blank = True)
     paypal_token_sec = models.CharField(max_length = 100,  null = True, blank = True)#Token returned from set_express_checkout
     paypal_token_gec = models.CharField(max_length = 100,  null = True, blank = True)#Token returned from get_express_checkout
     
