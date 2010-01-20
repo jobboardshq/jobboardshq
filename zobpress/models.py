@@ -259,10 +259,10 @@ class JobFile(models.Model):
         return settings.MEDIA_URL + self.public_path
     
 class Page(models.Model):
+    job_board = models.ForeignKey(Board)
     title = models.CharField(max_length=100)
     page_slug = models.SlugField(max_length=100)
     content = models.TextField()
-    job_board = models.ForeignKey(Board)
     
     def __unicode__(self):
         return self.title
