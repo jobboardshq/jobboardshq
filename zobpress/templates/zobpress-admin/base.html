@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>{% block title %} {{ board.name }} {% endblock %}</title>
+
+{% block feed %}
+  <link rel="alternate" type="application/rss+xml" title="{{ board.name }}" href="{{ board.get_absolute_url }}" />
+{% endblock %}
+
+{% block css %}
+  <link href="{{ MEDIA_URL }}admin/css/reset.css" rel="stylesheet" type="text/css" />
+  <link href="{{ MEDIA_URL }}admin/css/admin.css" rel="stylesheet" type="text/css" />
+  <!--[if IE]>
+    <link rel="stylesheet" href="/site_media/css/blueprint/ie.css" type="text/css" media="screen, projection">
+  <![endif]-->
+{% endblock %}
+
+{% block extracss %}{% endblock %}
+
+{% block script %}
+  <script type="text/javascript" src="{{ MEDIA_URL }}admin/js/jquery.js"></script>
+  <script type="text/javascript" src="{{ MEDIA_URL }}admin/js/ui.core.js"></script>
+  <script type="text/javascript" src="{{ MEDIA_URL }}admin/js/json2.js"></script>
+{% endblock %}
+
+{% block extrascript %}{% endblock %}
+
+</head>
+
+<body>
+
+{% load zobpress_filters %}
+
+
+<body class="admin">
+	<div id="adminheader"><a href="#"><img src="{{ MEDIA_URL }}admin/images/zobpress_logo.gif" alt="Zobpress" width="259" height="85" /></a></div>
+ 
+	<div id="adminbody">
+	
+	
+		<div id="admincontainer">
+			  <div id="top"><img src="/site_media/theme_1/images/admin_bg_top.gif" alt="aa" /></div>
+			  <!-- middle begins -->
+			  <div id="middle">
+			    <!-- leftblock begins -->
+			    <div id="leftblock">
+			      <ul class="vert-one">
+			        <li><a href="{% url zobpress_jobs %}" title="All Jobs" {% ifequal current_url '/jobs/' %} class="current" {% endifequal %}>Jobs</a></li>
+			        <li><a href="{% url zobpress_add_job %}" title="Add New Job" {% ifequal current_url '/addjob/' %} class="current" {% endifequal %}>Add New Job </a></li>
+			        <li><a href="{% url zobpress_categories %}" title="Add New Category" {% ifequal current_url '' %} class="current" {% endifequal %}>Categories</a></li>
+			        <li><a href="{% url manage_create_job_form %}" title="Create Job Form" {% ifequal current_url '/categories/' %} class="current" {% endifequal %}>Create Job Form </a></li>
+			        <li><a href="{% url zobpress_settings %}" title="Settings" {% ifequal current_url '/settings/' %} class="current" {% endifequal %}>Settings </a></li>
+			        <li><a href="admin_trash.html" title="Trash"  {% ifequal current_url '' %} class="current" {% endifequal %}>Trash </a></li>
+			        <li><a href="{% url widgets_index %}" title="Widgets" {% ifequal current_url '/widgets/' %} class="current" {% endifequal %}>Widgets</a></li>
+			          
+			        <h3>Feeds</h3>
+			        <li><a href="{% url zobpress_feeds_jobs %}">Jobs Feed</a></li>
+			        {% if board %}
+			          {% if user.is_authenticated %}
+			            <h3>Manage</h3>
+			            <li><a href="{% url manage_create_job_form %}">Edit job form</a></li>
+			          {% endif %}
+			          <h3>Job Board Pages</h3>
+					  
+					  <li><a href="{% url zobpress_create_page %}">Add a new page</a></li>
+			          {% for p in board|get_job_board_pages %}
+			            <li><a href="{% url zobpress_job_board_page p.page_slug %}"> {{ p.title }}</a></li>
+			          {% endfor %}
+			        {% endif %}
+			      </ul>
+			    </div>
+			    <!-- leftblock ends -->
+			    
+			    <!-- rightblock begins -->
+			    <div id="rightblock">
+			      {% block content %} {% endblock %}
+			      
+			    </div>
+			    <!-- rightblock ends -->
+			
+			  <div class="clear"></div>
+			  </div>
+			  <!-- middle ends -->
+			  <div><img src="{{ MEDIA_URL }}admin/images/admin_bg_bottom.gif" alt="aa" width="938" height="24" /></div>
+			</div>
+		</div>
+	</div>
+<div id="footerlinks"></div>
+<div id="copyright">Copyright 2008 © All Rights Reserved by Zobpress</div>
+
+
+</body>
+</html>
+
