@@ -1,9 +1,12 @@
 {% extends 'registration/base.html' %}
 
+
 {% block content %}
 
 <form action="." method="post">
+	
     <table>
+    {% csrf_token %}
     {{ form }}
     </table>
     <div class="buttons" >
