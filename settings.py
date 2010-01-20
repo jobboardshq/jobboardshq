@@ -84,6 +84,9 @@ INDEED_API_URL = "http://api.indeed.com/ads/apisearch"
 
 BASE_DOMAIN = 'foo.tld'
 INTERNAL_IPS = ('127.0.0.1',)
+
+from localsettings import *
+
 if DEBUG:
     try:
         INSTALLED_APPS = list(INSTALLED_APPS)
