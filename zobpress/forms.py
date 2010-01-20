@@ -97,3 +97,11 @@ class IndeedSearchForm(forms.Form):
     # publisher_id = forms.CharField()
     q = forms.CharField(label=u'what', required=False)
     l = forms.CharField(label=u'where', required=False)
+    
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        exclude = ["board"]
+    
+    
+    

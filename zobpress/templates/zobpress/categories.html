@@ -1,0 +1,20 @@
+{% extends "admin/base.html" %}
+
+{% block content %}
+	<ul>
+	{% for category in category_list %}
+		<li>
+			<a href="{% url zobpress_category_jobs category %}">{{ category }}</a>
+		</li>
+	{% empty %}
+		<p>Please add a category</p>
+	{% endfor %}
+	</ul>
+	
+	<form action="." method="post">
+		<table>
+			{{ form }}
+		</table>
+		<input type="submit" name="create-category" value="create-category" />
+	</form>
+{% endblock %}

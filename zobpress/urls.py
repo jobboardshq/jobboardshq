@@ -5,6 +5,7 @@ from django.views.generic.simple import direct_to_template
 urlpatterns = patterns('zobpress.views',
     url(r'^$', 'index', name='zobpress_index'),
     url(r'^addjob/$', 'add_job', name='zobpress_add_job'),
+    url(r'^categories/$', 'categories', name='zobpress_categories'),
     url(r'^jobs/$', 'jobs', name='zobpress_jobs'),
     url(r'^job/(?P<id>\d+)/$', 'job', name='zobpress_job'),
     url(r'^job/(?P<job_slug>[\w\-]+)/$', 'job', name='zobpress_job'),

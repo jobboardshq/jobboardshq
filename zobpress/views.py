@@ -12,10 +12,11 @@ from StringIO import StringIO
 from zobpress import models
 from zobpress.models import type_mapping, JobFormModel, JobFieldModel, Job, BoardPayments
 from zobpress.models import Category, Job, Page
-from zobpress.forms import get_job_form, PasswordForm, JobStaticForm, PageForm, BoardSettingsForm, IndeedSearchForm
+from zobpress.forms import get_job_form, PasswordForm, JobStaticForm, PageForm, BoardSettingsForm, IndeedSearchForm, CategoryForm
 from zobpress.decorators import ensure_has_board
 from libs import paypal
 from sitewide import views as sitewide_views
+
 
 
 def index(request):
@@ -73,7 +74,7 @@ def jobs(request):
     if not order_by in ('name', 'created_on'):
         order_by = '-created_on'
     qs = models.Job.objects.filter(is_active = True).order_by(order_by)
-    return object_list(request, template_name = 'zobpress/jobs.html', queryset = qs, template_object_name = 'jobs', paginate_by=10, extra_context={'extends_var': 'new_base.html'})
+    return object_list(request, template_name = 'zobpress/jobs.html', queryset = qs, template_object_name = 'jobs', paginate_by=10, extra_context={})
 
 @ensure_has_board
 def edit_job(request, id):
@@ -95,7 +96,7 @@ def edit_job(request, id):
 
 @ensure_has_board
 def edit_job_done(request, id):
-    job = models.Job.objects.get(id = id)
+    job = get_object_or_404(Job, id = id)
     JobForm = get_job_form(request.board, job = job)
     if not job.is_editable:
         raise Http404    
@@ -115,6 +116,23 @@ def category_jobs(request, category_slug):
     category = get_object_or_404(Category, slug = category_slug)
     jobs = Job.objects.filter(category = category)
     return object_list(request, queryset = jobs, template_name = 'zobpress/category_job_list.html', template_object_name = 'job')
+
+@ensure_has_board
+def categories(request):
+    form = CategoryForm()
+    categories = Category.objects.all()
+    if request.method == "POST":
+        form = CategoryForm(data = request.POST)
+        if form.is_valid():
+            category = form.save(commit = False)
+            category.board = request.board
+            category.save()
+        return HttpResponseRedirect(reverse("zobpress_index"))
+    extra = {"form": form}
+    return object_list(request, queryset = categories, template_name = 'zobpress/categories.html', template_object_name = 'category', extra_context = extra)
+        
+            
+    
 
 @ensure_has_board
 def feeds_jobs(request):
@@ -213,4 +231,5 @@ def indeed_jobs(request):
         form = IndeedSearchForm()
         return render_to_response('zobpress/settings.html', {'form': form}, RequestContext(request))
     else:
+        pass
         # TODO: query the indeed api parse the results & display.

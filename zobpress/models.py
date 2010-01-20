@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 
 from django.template.defaultfilters import slugify
+from libs.fields import AutoSlugField
 
 import random
 from datetime import date, timedelta
@@ -118,6 +119,15 @@ class Category(models.Model):
     def __unicode__(self):
         return self.name
     
+class JobType(models.Model):
+    board = models.ForeignKey(Board)
+    name = models.CharField(max_length = 100)
+    slug = AutoSlugField(max_length = 100)
+    
+    def __unicode__(self):
+        return self.name
+    
+    
 class JobFormModelManager(models.Manager):
     def create_default_form(self, board):
         job_form = JobFormModel(board = board)
@@ -159,12 +169,6 @@ class JobPublicManager(models.Manager):
             return self.filter(created_on__gt = date.today() - timedelta(days = active_for))
         else:
             return self.all()
-
-class JobType(models.Model):
-    job_type = models.CharField(max_length=100)
-    
-    def __unicode__(self):
-        return self.job_type
     
 class Job(models.Model):
     board = models.ForeignKey(Board)
