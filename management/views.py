@@ -38,8 +38,6 @@ def create_job_form(request):
         return HttpResponseForbidden('You do not have access to this board')
     if request.method == 'POST' and request.is_ajax():
         data = simplejson.load(StringIO(request.POST['data']))
-        import ipdb
-        ipdb.set_trace()
         job_form, created = JobFormModel.objects.get_or_create(board = request.board)
         job_form.jobfieldmodel_set.all().delete()
         order = 1
