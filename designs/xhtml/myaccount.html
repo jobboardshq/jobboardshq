@@ -12,6 +12,7 @@
   <div id="admin_user">Welcome Saikiran | <a href="www.zobpress.com">Visit Site</a> | <a href="#">Log Out</a></div>
 </div>
 <div id="adminbody">
+<div id="loading_message">Please wait for a while...page is loading...</div>
   <div id="admincontainer">
     <div id="top"><img src="images/admin_bg_top.gif" alt="aa" /></div>
     <div id="middle">
@@ -35,28 +36,50 @@
         <div class="formpadding">
           <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
+              <td>&nbsp;</td>
+              <td class="errortext">First name is required</td>
+            </tr>
+            <tr>
               <td width="150">First name :</td>
               <td><input name="textfield3" type="text" class="textfield" id="textfield3" /></td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td class="errortext">Last name is required</td>
             </tr>
             <tr>
               <td>Last name :</td>
               <td><input name="textfield4" type="text" class="textfield" id="textfield4" /></td>
             </tr>
             <tr>
+              <td>&nbsp;</td>
+              <td><span class="errortext">Email  is required</span></td>
+            </tr>
+            <tr>
               <td>Email :</td>
               <td><input name="textfield5" type="text" class="textfield" id="textfield5" /></td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td><span class="errortext">City  is required</span></td>
             </tr>
             <tr>
               <td>Town/ City :</td>
               <td><input name="textfield" type="text" class="textfield" id="textfield" /></td>
             </tr>
+            
             <tr>
               <td>Region :</td>
               <td><input name="textfield2" type="text" class="textfield" id="textfield2" /></td>
             </tr>
+            
             <tr>
               <td>Postal code :</td>
               <td><input name="textfield6" type="text" class="textfield" id="textfield6" /></td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td><span class="errortext">Select Country</span></td>
             </tr>
             <tr>
               <td>Country :</td>
@@ -66,13 +89,17 @@
                 <option>Japan</option>
                 <option>Pakistan</option>
                 <option>Srilanka</option>
-              </select>
-              </td>
+              </select>              </td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td><span class="errortext">Phone number  is required</span></td>
             </tr>
             <tr>
               <td>Primary phone number :</td>
               <td><input name="textfield8" type="text" class="textfield" id="textfield8" /></td>
             </tr>
+            
             <tr>
               <td>Secondary phone number :</td>
               <td><input name="textfield9" type="text" class="textfield" id="textfield9" /></td>
@@ -85,8 +112,8 @@
               <td>&nbsp;</td>
               <td><table width="42%" border="0" align="left" cellpadding="0" cellspacing="2">
                   <tr>
-                    <td align="center" valign="top"><a href="#"><img src="images/save_button.gif" alt="Save" width="118" height="35" /></a></td>
-                    <td align="center" valign="top"><a href="#"><img src="images/cancel_button.gif" alt="Cancel" width="118" height="35" /></a></td>
+                    <td align="center" valign="top"><input name="button" type="submit" class="formbutton" id="button" /></td>
+                    <td align="center" valign="top"><input name="button2" type="Submit" class="formbutton" id="button2" value="Cancel" /></td>
                   </tr>
                 </table></td>
             </tr>
@@ -103,6 +130,6 @@
   </div>
 </div>
 <div id="footerlinks"></div>
-<div id="copyright">Copyright 2008 © All Rights Reserved by Zobpress</div>
+<div id="copyright">Copyright 2010 © All Rights Reserved by Zobpress</div>
 </body>
 </html>
