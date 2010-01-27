@@ -1,0 +1,301 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Front End</title>
+<link href="css/reset.css" rel="stylesheet" type="text/css" />
+<link href="css/frontend.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-1.2.2.pack.js" type="text/javascript"></script>
+<!--[if lt IE 7]>
+        <script type="text/javascript" src="js/unitpngfix.js"></script>
+<![endif]-->
+<script type="text/javascript"> 
+	$(function() {
+		// set opacity to nill on page load
+		$("ul#menu span").css("opacity","0");
+		// on mouse over
+		$("ul#menu span").hover(function () {
+			// animate opacity to full
+			$(this).stop().animate({
+				opacity: 1
+			}, 'slow');
+		},
+		// on mouse out
+		function () {
+			// animate opacity to nill
+			$(this).stop().animate({
+				opacity: 0
+			}, 'slow');
+		});
+	});
+</script>
+</head>
+<body class="frontend">
+<!--Wrapper-->
+<div id="frontend_wrapper">
+  <!--Header Starts-->
+  <div id="header_frontend"><a href="frontend.html"><img src="images/zobpress_demo_logo.png" alt="Zobpress Demo" /></a></div>
+  <!--Header ends-->
+  <!--Top Nav starts-->
+  <div id="frontend_topnav"> <a href="#">Login</a> | <a href="#">Subscribe to RSS </a><img src="images/rss_icon.png" alt="RSS" width="23" height="24"  /> </div>
+  <div class="clear"></div>
+  <!--Top Nav ends-->
+  <!--Search bar starts-->
+  <div id="frontend_searchbar">
+    <div class="searchjobs">Search All Jobs :</div>
+    <div class="searchfield">
+      <input name="textfield" type="text" class="textfield"  id="textfield" value="Type your designation, skills" size="30" />
+    </div>
+    <div class="searchbutton"><a href="#"><img src="images/search_but.png" alt="Search" width="103" height="35" /></a></div>
+    <div class="advancedsearch">| <a href="#" class="searchlink">Advanced Search</a> </div>
+    <div class="postjob">
+      <ul id="menu">
+        <li><a href="#" class="home"><span></span></a></li>
+      </ul>
+    </div>
+  </div>
+  <!--Search bar ends-->
+  <!--content starts-->
+  <div id="frontend_content">
+    <!--left side panel starts here-->
+    <div id="leftpanel">
+      <!--categories panel starts here-->
+      <div id="categories">
+        <div class="top">Jobs by Category</div>
+        <div class="middle">
+          <ul>
+            <li><a href="#">Accounting (3)</a></li>
+            <li><a href="#">Admin-Clerical (3)</a></li>
+            <li><a href="#">Automotive (1)</a></li>
+            <li><a href="#">Banking (2)</a></li>
+            <li> <a href="#">Biotech (1)</a></li>
+            <li><a href="#"> Customer Service (1)</a></li>
+            <li><a href="#"> Design (1)</a></li>
+            <li><a href="#">Education (2)</a></li>
+            <li><a href="#"> Engineering (1))</a></li>
+            <li><a href="#"> Government (1)</a></li>
+            <li><a href="#"> Health Care (1)</a></li>
+            <li><a href="#"> Human Resources (1)</a ></li>
+          </ul>
+        </div>
+        <div class="bottom"></div>
+      </div>
+      <!--categories panel ends here-->
+      <div id="explore">
+        <div class="top">Explore</div>
+        <div class="middle">
+          <ul>
+            <li><a href="#">About Zob Press</a></li>
+            <li><a href="#">Resume Tips</a></li>
+            <li><a href="#">Who we are</a></li>
+            <li><a href="#">Recruiting Process</a></li>
+            <li> <a href="#">Interview Tips & Tricks</a></li>
+          </ul>
+        </div>
+        <div class="bottom"></div>
+      </div>
+      <div id="newsletter">
+        <div>
+          <input name="textfield2" type="text" class="newsletter_textfield" id="textfield2" />
+        </div>
+        <div><a href="#"><img src="images/submit_btn.png" alt="Submit" width="81" height="28" /></a></div>
+      </div>
+    </div>
+    <!--left side panel starts here-->
+    <!--Job Posts stats here-->
+    <div id="rightpanel">
+      <div class="top"></div>
+      <div class="middle">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td><table width="720" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                  <td width="100" class="title"><span class="left_padding">Type</span></td>
+                  <td width="300" class="title">Most Recent Job Offers</td>
+                  <td width="120" class="title">Location</td>
+                  <td width="100" class="title">Posted On</td>
+                  <td>&nbsp;</td>
+                </tr>
+              </table></td>
+          </tr>
+          <tr>
+            <td class="border"></td>
+          </tr>
+          <tr>
+            <td><table width="723" border="0" align="center" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td width="100" align="left" class="colorbg"><span class="left_padding">Fulltime</span></td>
+                  <td width="300" align="left" class="colorbg"><span class="redtext">Django Developer</span> at Applab </td>
+                  <td width="120" align="left" class="colorbg">London </td>
+                  <td width="100" align="left" class="colorbg">22-01-2010 </td>
+                  <td align="left" class="colorbg"><span class="apply_button"><a href="#">Apply</a></span></td>
+                </tr>
+                <tr>
+                  <td width="100" align="left" class="whitebg"><span class="left_padding">Freelance</span></td>
+                  <td width="300" align="left" class="whitebg"><span class="redtext">Business Development</span> at Applab </td>
+                  <td width="120" align="left" class="whitebg">Hyderabad </td>
+                  <td width="100" align="left" class="whitebg">22-01-2010 </td>
+                  <td align="left" class="whitebg"><span class="apply_button"><a href="#">Apply</a></span></td>
+                </tr>
+                <tr>
+                  <td width="100" align="left" class="colorbg"><span class="left_padding">Partime</span></td>
+                  <td width="300" align="left" class="colorbg"><span class="redtext">Web Designer </span> at Applab </td>
+                  <td width="120" align="left" class="colorbg">Mumbai</td>
+                  <td width="100" align="left" class="colorbg">22-01-2010 </td>
+                  <td align="left" class="colorbg"><span class="apply_button"><a href="#">Apply</a></span></td>
+                </tr>
+                <tr>
+                  <td width="100" align="left" class="whitebg"><span class="left_padding">Fulltime</span></td>
+                  <td width="300" align="left" class="whitebg"><span class="redtext">Django Developer</span> at Applab </td>
+                  <td width="120" align="left" class="whitebg">Calcutta</td>
+                  <td width="100" align="left" class="whitebg">22-01-2010 </td>
+                  <td align="left" class="whitebg"><span class="apply_button"><a href="#">Apply</a></span></td>
+                </tr>
+                <tr>
+                  <td width="100" align="left" class="colorbg"><span class="left_padding">Fulltime</span></td>
+                  <td width="300" align="left" class="colorbg"><span class="redtext">Doctor</span> at Applab </td>
+                  <td width="120" align="left" class="colorbg">Delhi</td>
+                  <td width="100" align="left" class="colorbg">22-01-2010 </td>
+                  <td align="left" class="colorbg"><span class="apply_button"><a href="#">Apply</a></span></td>
+                </tr>
+                <tr>
+                  <td width="100" align="left" class="whitebg"><span class="left_padding">Fulltime</span></td>
+                  <td width="300" align="left" class="whitebg"><span class="redtext">Team Lead </span> at Applab </td>
+                  <td width="120" align="left" class="whitebg">Massachutes</td>
+                  <td width="100" align="left" class="whitebg">22-01-2010 </td>
+                  <td align="left" class="whitebg"><span class="apply_button"><a href="#">Apply</a></span></td>
+                </tr>
+                <tr>
+                  <td width="100" align="left" class="colorbg"><span class="left_padding">Freelance</span></td>
+                  <td width="300" align="left" class="colorbg"><span class="redtext">Business Development</span> at Applab </td>
+                  <td width="120" align="left" class="colorbg">California </td>
+                  <td width="100" align="left" class="colorbg">22-01-2010 </td>
+                  <td align="left" class="colorbg"><span class="apply_button"><a href="#">Apply</a></span></td>
+                </tr>
+                <tr>
+                  <td width="100" align="left" class="whitebg"><span class="left_padding">Fulltime</span></td>
+                  <td width="300" align="left" class="whitebg"><span class="redtext">Test Engineer </span> at Applab </td>
+                  <td width="120" align="left" class="whitebg">Mumbai </td>
+                  <td width="100" align="left" class="whitebg">22-01-2010 </td>
+                  <td align="left" class="whitebg"><span class="apply_button"><a href="#">Apply</a></span></td>
+                </tr>
+                <tr>
+                  <td width="100" align="left" class="colorbg"><span class="left_padding">Contract</span></td>
+                  <td width="300" align="left" class="colorbg"><span class="redtext">Sales Manager </span> at Applab </td>
+                  <td width="120" align="left" class="colorbg">Hyderabad </td>
+                  <td width="100" align="left" class="colorbg">22-01-2010 </td>
+                  <td align="left" class="colorbg"><span class="apply_button"><a href="#">Apply</a></span></td>
+                </tr>
+                <tr>
+                  <td width="100" align="left" class="whitebg"><span class="left_padding">Contract</span></td>
+                  <td width="300" align="left" class="whitebg"><span class="redtext">Django Developer</span> at Applab </td>
+                  <td width="120" align="left" class="whitebg">Delhi </td>
+                  <td width="100" align="left" class="whitebg">22-01-2010 </td>
+                  <td align="left" class="whitebg"><span class="apply_button"><a href="#">Apply</a></span></td>
+                </tr>
+                <tr>
+                  <td width="100" align="left" class="colorbg"><span class="left_padding">Fulltime</span></td>
+                  <td width="300" align="left" class="colorbg"><span class="redtext">Php Developer</span> at Applab </td>
+                  <td width="120" align="left" class="colorbg">Bangalore </td>
+                  <td width="100" align="left" class="colorbg">22-01-2010 </td>
+                  <td align="left" class="colorbg"><span class="apply_button"><a href="#">Apply</a></span></td>
+                </tr>
+                <tr>
+                  <td width="100" align="left" class="whitebg"><span class="left_padding">Fulltime</span></td>
+                  <td width="300" align="left" class="whitebg"><span class="redtext">Java Developer</span> at Applab </td>
+                  <td width="120" align="left" class="whitebg">London </td>
+                  <td width="100" align="left" class="whitebg">22-01-2010 </td>
+                  <td align="left" class="whitebg"><span class="apply_button"><a href="#">Apply</a></span></td>
+                </tr>
+                <tr>
+                  <td width="100" align="left" class="colorbg"><span class="left_padding">Freelance</span></td>
+                  <td width="300" align="left" class="colorbg"><span class="redtext">My SQL Developer</span> at Applab </td>
+                  <td width="120" align="left" class="colorbg">Bangalore </td>
+                  <td width="100" align="left" class="colorbg">22-01-2010 </td>
+                  <td align="left" class="colorbg"><span class="apply_button"><a href="#">Apply</a></span></td>
+                </tr>
+                <tr>
+                  <td width="100" align="left" class="whitebg"><span class="left_padding">Fulltime</span></td>
+                  <td width="300" align="left" class="whitebg"><span class="redtext">UI Designer</span> at Applab </td>
+                  <td width="120" align="left" class="whitebg">Hyderabad </td>
+                  <td width="100" align="left" class="whitebg">22-01-2010 </td>
+                  <td align="left" class="whitebg"><span class="apply_button"><a href="#">Apply</a></span></td>
+                </tr>
+                <tr>
+                  <td width="100" align="left" class="colorbg"><span class="left_padding">Fulltime</span></td>
+                  <td width="300" align="left" class="colorbg"><span class="redtext">XHTML/CSS Developer</span> at Applab </td>
+                  <td width="120" align="left" class="colorbg">Delhi </td>
+                  <td width="100" align="left" class="colorbg">22-01-2010 </td>
+                  <td align="left" class="colorbg"><span class="apply_button"><a href="#">Apply</a></span></td>
+                </tr>
+                <tr>
+                  <td width="100" align="left" class="whitebg"><span class="left_padding">Fulltime</span></td>
+                  <td width="300" align="left" class="whitebg"><span class="redtext">JQuery Developer</span> at Applab </td>
+                  <td width="120" align="left" class="whitebg">Chennai </td>
+                  <td width="100" align="left" class="whitebg">22-01-2010 </td>
+                  <td align="left" class="whitebg"><span class="apply_button"><a href="#">Apply</a></span></td>
+                </tr>
+                <tr>
+                  <td width="100" align="left" class="colorbg"><span class="left_padding">Fulltime</span></td>
+                  <td width="300" align="left" class="colorbg"><span class="redtext">Django Developer</span> at Applab </td>
+                  <td width="120" align="left" class="colorbg">London </td>
+                  <td width="100" align="left" class="colorbg">22-01-2010 </td>
+                  <td align="left" class="colorbg"><span class="apply_button"><a href="#">Apply</a></span></td>
+                </tr>
+                <tr>
+                  <td width="100" align="left" class="whitebg"><span class="left_padding">Freelance</span></td>
+                  <td width="300" align="left" class="whitebg"><span class="redtext">Business Development</span> at Applab </td>
+                  <td width="120" align="left" class="whitebg">Hyderabad </td>
+                  <td width="100" align="left" class="whitebg">22-01-2010 </td>
+                  <td align="left" class="whitebg"><span class="apply_button"><a href="#">Apply</a></span></td>
+                </tr>
+                <tr>
+                  <td width="100" align="left" class="colorbg"><span class="left_padding">Partime</span></td>
+                  <td width="300" align="left" class="colorbg"><span class="redtext">Web Designer </span> at Applab </td>
+                  <td width="120" align="left" class="colorbg">Mumbai</td>
+                  <td width="100" align="left" class="colorbg">22-01-2010 </td>
+                  <td align="left" class="colorbg"><span class="apply_button"><a href="#">Apply</a></span></td>
+                </tr>
+                <tr>
+                  <td width="100" align="left" class="whitebg"><span class="left_padding">Fulltime</span></td>
+                  <td width="300" align="left" class="whitebg"><span class="redtext">Django Developer</span> at Applab </td>
+                  <td width="120" align="left" class="whitebg">Calcutta</td>
+                  <td width="100" align="left" class="whitebg">22-01-2010 </td>
+                  <td align="left" class="whitebg"><span class="apply_button"><a href="#">Apply</a></span></td>
+                </tr>
+                <tr>
+                  <td width="100" align="left" class="colorbg"><span class="left_padding">Fulltime</span></td>
+                  <td width="300" align="left" class="colorbg"><span class="redtext">Doctor</span> at Applab </td>
+                  <td width="120" align="left" class="colorbg">Delhi</td>
+                  <td width="100" align="left" class="colorbg">22-01-2010 </td>
+                  <td align="left" class="colorbg"><span class="apply_button"><a href="#">Apply</a></span></td>
+                </tr>
+                <tr>
+                  <td width="100" align="left" class="whitebg"><span class="left_padding">Fulltime</span></td>
+                  <td width="300" align="left" class="whitebg"><span class="redtext">Team Lead </span> at Applab </td>
+                  <td width="120" align="left" class="whitebg">Massachutes</td>
+                  <td width="100" align="left" class="whitebg">22-01-2010 </td>
+                  <td align="left" class="whitebg"><span class="apply_button"><a href="#">Apply</a></span></td>
+                </tr>
+                <tr>
+                  <td width="100" align="left" class="colorbg"><span class="left_padding">Freelance</span></td>
+                  <td width="300" align="left" class="colorbg"><span class="redtext">Business Development</span> at Applab </td>
+                  <td width="120" align="left" class="colorbg">California </td>
+                  <td width="100" align="left" class="colorbg">22-01-2010 </td>
+                  <td align="left" class="colorbg"><span class="apply_button"><a href="#">Apply</a></span></td>
+                </tr>
+              </table></td>
+          </tr>
+        </table>
+        <div id="pagenation"> <a href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">next</a> </div>
+      </div>
+      <div class="bottom"></div>
+    </div>
+    <!--job posts ends here-->
+  </div>
+  <div class="clear"></div>
+  <!--content ends-->
+  <div id="frontend_footer">&copy; Copyright 2010 Zobpress.com. All Rights Reserved</div>
+</div>
+</body>
+</html>
