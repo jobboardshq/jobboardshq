@@ -1,0 +1,11 @@
+@charset "utf-8";
+/* CSS Document */
+
+body.homepage{background:url(../images/site_bg.gif) repeat-x;}
+
+#wrapper{width:100%;}
+#header{ margin:0px auto; width:960px; height:115px;}
+#top_navigation{ margin:0px auto; width:960px; height:48px;}
+#banner{ margin:0px auto; width:960px; height:325px;}
+#content{ margin:0px auto; width:960px; height:115px;}
+#footer{ margin:0px auto; width:960px; height:200px;}
