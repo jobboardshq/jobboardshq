@@ -12,7 +12,7 @@ from StringIO import StringIO
 from zobpress import models
 from zobpress.models import type_mapping, JobFormModel, JobFieldModel, Job, BoardPayments
 from zobpress.models import Category, Job, Page
-from zobpress.forms import get_job_form, PasswordForm, JobStaticForm, PageForm, BoardSettingsForm, IndeedSearchForm, CategoryForm
+from zobpress.forms import get_job_form, JobStaticForm, PageForm, BoardSettingsForm, IndeedSearchForm, CategoryForm
 from zobpress.decorators import ensure_has_board
 from libs import paypal
 from sitewide import views as sitewide_views
@@ -28,6 +28,7 @@ def index(request):
 
 @ensure_has_board
 def add_job(request):
+    "Add a job "
     job_static_form = JobStaticForm(board = request.board)
     Form = get_job_form(request.board)
     if request.method == 'POST':
@@ -37,8 +38,9 @@ def add_job(request):
             job = job_static_form.save()
             Form = get_job_form(request.board, job = job)
             form = Form(data = request.POST, files = request.FILES)
-            if form.is_valid():
-                form.save()
+            assert form.is_valid()
+            form.save()
+            request.user.message_set.create(message="The job form has been edited.")
             return HttpResponseRedirect(reverse('zobpress_jobs_paypal', args=[job.id]))
     else:
         form = Form()
@@ -62,27 +64,26 @@ def jobs(request):
         order_by = '-created_on'
     qs = models.Job.objects.filter(is_active = True).order_by(order_by)
     return object_list(request, template_name = 'zobpress/jobs.html', queryset = qs, template_object_name = 'jobs', paginate_by=10, extra_context={})
-
+#
+#@ensure_has_board
+#def edit_job_old(request, id):
+#    job = get_object_or_404(Job, id = id)    
+#    if request.method == 'POST':
+#        form = PasswordForm(request.POST)
+#        if form.is_valid():
+#            if form.cleaned_data['password'] == job.password:
+#                request.session['job_edit_rights'] = id
+#                return HttpResponseRedirect(('/editjob/%s/done/' % id))
+#            else:
+#                return HttpResponseForbidden('Wrong password. Go back and try again.')
+#    if request.method == 'GET':
+#        form = PasswordForm()
+#    payload = {'form':form}
+#    return render_to_response('zobpress/editjob.html', payload, RequestContext(request))
 @ensure_has_board
 def edit_job(request, id):
-    job = get_object_or_404(Job, id = id)    
-    if request.method == 'POST':
-        form = PasswordForm(request.POST)
-        if form.is_valid():
-            if form.cleaned_data['password'] == job.password:
-                request.session['job_edit_rights'] = id
-                return HttpResponseRedirect(('/editjob/%s/done/' % id))
-            else:
-                return HttpResponseForbidden('Wrong password. Go back and try again.')
-    if request.method == 'GET':
-        form = PasswordForm()
-    payload = {'form':form}
-    return render_to_response('zobpress/editjob.html', payload, RequestContext(request))
-
-@ensure_has_board
-def edit_job_done(request, id):
     job = get_object_or_404(Job, id = id)
-    job_static_form = JobStaticForm(board = request.board)
+    job_static_form = JobStaticForm(board = request.board, instance = job)
     JobForm = get_job_form(request.board, job = job)
     if request.method == 'POST':
         form = JobForm(request.POST, files = request.FILES)

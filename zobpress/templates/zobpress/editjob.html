@@ -13,26 +13,49 @@
        <form action="." method="post" enctype="multipart/form-data">
         <div class="form">
         <table>
+        {% for field in job_static_form %}
+			{% if field.errors %}
+			<tr>
+				<td>
+					<ul>
+						{{ field.errors }}
+					</ul>
+				</td>
+			</tr>
+			{% endif %}
+			<tr>
+              <td width="200" align="left" valign="middle"> {{ field.label_tag }} :</td>
+			  <td align="left" valign="top">
+			  	{{ field }}
+				{% if field.help_text %}<span class="help">{{ field.help_text }}</span>{% endif %}
+			  </td>
+            </tr>
+			
+		{% endfor %}
         {% for field in form %}
-        <tr>
-        <th>
-        {{ field.label_tag }}
-        </th>
-        <td>
-        {% if field.errors %} <span class="error">
-        {% for error in field.errors %}
-        {{ error }}
-        {% endfor %}
-        </span> {% endif %} 
-        {{field}}
-        {% if field.help_text %}<span class="help">{{ field.help_text }}</span>{% endif %}
-        </td>
-        </tr>
-        <div class="clear"></div>
+		
+			{% if field.errors %}
+			<tr>
+				<td>
+					<ul>
+						{{ field.errors }}
+					</ul>
+				</td>
+			</tr>
+			{% endif %}
+			<tr>
+              <td width="200" align="left" valign="middle"> {{ field.label_tag }} :</td>
+			  <td align="left" valign="top">
+			  	{{ field }}
+				{% if field.help_text %}<span class="help">{{ field.help_text }}</span>{% endif %}
+			  </td>
+            </tr>
         
         {% endfor %}
             
         </table>
+		<div class="clear"></div>
+
         <input type="submit" value="submit" name="submit" class="button" />
         </div>        
        </form>

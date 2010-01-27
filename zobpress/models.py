@@ -41,7 +41,7 @@ class BoardManager(models.Manager):
 class Board(models.Model):
     subdomain = models.CharField(max_length = 100, unique = True)
     domain = models.CharField(null = True, blank = True, max_length = 100, unique = True)
-    name = models.CharField(max_length = 100)
+    name = models.CharField(max_length = 100)        
     description = models.TextField()
     
     #Settings for Board
@@ -62,8 +62,8 @@ class Board(models.Model):
     
     def save(self, *args, **kwargs):
         # create settings
-        BoardSettings.objects.create(board=self)
         super(Board, self).save(*args, **kwargs)
+        BoardSettings.objects.create(board=self)
     
 class BoardSettings(models.Model):
     analytics_code = models.TextField(null=True, blank=True)
@@ -130,10 +130,18 @@ class JobType(models.Model):
     
 class JobFormModelManager(models.Manager):
     def create_default_form(self, board):
-        job_form = JobFormModel(board = board)
-        job_form.save()
-        job_description = JobFieldModel(job_form = job_form, name = 'Job Description', type = 'TextField', order = 0)
-        job_description.save()
+        default_fields = [
+                      ("Description", "TextFieldRTE"),
+                      ("URL", "URLField"),
+                      ]
+        job_form_model, created = JobFormModel.objects.get_or_create(board = board)
+        for field_name, field_type in default_fields:
+            JobFieldModel.objects.get_or_create(job_form = job_form_model, name=field_name, type = field_type)
+#        
+#        job_form = JobFormModel(board = board)
+#        job_form.save()
+#        job_description = JobFieldModel(job_form = job_form, name = 'Job Description', type = 'TextField', order = 0)
+#        job_description.save()
 
 class JobFormModel(models.Model):
     "Model for Job form for a specific Job board."
@@ -149,13 +157,15 @@ class JobFieldModel(models.Model):
     job_form = models.ForeignKey(JobFormModel)
     name = models.CharField(max_length = 100)
     type = models.CharField(max_length = 100)
-    order = models.IntegerField()
+    required = models.BooleanField(default = True)
+    order = models.IntegerField(default = 10)
     
     def __unicode__(self):
         return self.job_form.board.name
     
+    
     class Meta:
-        unique_together = (('job_form', 'order'), ('job_form', 'name'))
+        unique_together = (('job_form', 'name'), )
         ordering = ('-order', )
 
 class JobPublicManager(models.Manager):
@@ -216,6 +226,10 @@ class Job(models.Model):
     def get_absolute_url(self):
         return ('zobpress.views.job', [str(self.job_slug)])
     
+    @permalink
+    def edit_link(self):
+        return ('zobpress.views.edit_job', [self.pk])
+    
     class Meta:
         ordering = ('-created_on', )
     
@@ -269,3 +283,15 @@ class Page(models.Model):
     def save(self, *args, **kwargs):
         # TODO: validate the page_slug value
         super(Page, self).save(*args, **kwargs)
+        
+#Signals
+def populate_job_board_form_initial(sender, instance, created, **kwargs):
+    "Called when a board is first created to populate the JObBoardForm"
+    from zobpress.utils import create_inital_form
+    create_inital_form(instance)
+    
+from django.db.models.signals import post_save
+
+post_save.connect(populate_job_board_form_initial, sender = Board)
+    
+    

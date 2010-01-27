@@ -51,6 +51,12 @@ def get_job_form(board, job = None, return_job_fields_also = False):
             forms.Form.__init__(self, *args, **kwargs)
             self.board = board
             self.job = job
+            if job and job.jobdata_set.count():
+                for datum in job.jobdata_set.all():
+                    try:
+                        self.fields[datum.name].initial = datum.value
+                    except KeyError:
+                        pass  
         def save(self):
                 job = self.job
                 if not job:
@@ -93,13 +99,8 @@ def get_job_form(board, job = None, return_job_fields_also = False):
         return type('JobForm', (forms.Form, ), dict(JobForm.__dict__)), job_fields
     else:
         return type('JobForm', (forms.Form, ), dict(JobForm.__dict__))
-     
-class PasswordForm(forms.Form):
-    password = forms.CharField(widget = forms.PasswordInput(attrs = {'size':50}), help_text = 'Enter the passwords assocoiated with this posting. Not required, but allows you to edit the posting later.')
     
-    def save(self):
-        return self.cleaned_data['password']
-    
+
 def get_field_type(data_type, board):
     field_class, kwargs = type_mapping.get(data_type, (forms.CharField, {}))
     if data_type == 'CategoryField':
@@ -117,5 +118,12 @@ class CategoryForm(forms.ModelForm):
         exclude = ["board"]
     
     
+     
+#class PasswordForm(forms.Form):
+#    password = forms.CharField(widget = forms.PasswordInput(attrs = {'size':50}), help_text = 'Enter the passwords assocoiated with this posting. Not required, but allows you to edit the posting later.')
+#    
+#    def save(self):
+#        return self.cleaned_data['password']
+#    
     
     
