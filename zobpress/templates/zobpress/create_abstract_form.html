@@ -17,7 +17,7 @@ $(document).ready(function(){
         $.ajax(
 		{type: "POST",
 		url: '.',
-		'data': {"data": JSON.stringify(form_elements)}, 
+		'data': {"data": JSON.stringify(form_elements), "create-form": true}, 
 		success: function(data){window.location = data},
 		error: function(data){alert("An error has occured.");},
 		});
@@ -137,7 +137,7 @@ function generate_key(){
                 </table>
     		</div>
 			
-			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<table width="1Ghijkl00%" border="0" cellspacing="0" cellpadding="0">
             <tr>
               <td height="250" align="left" valign="top" class="designform">
               		<div class="span-12">
@@ -178,20 +178,27 @@ function generate_key(){
   </div>
 
   <div class="span-18">
-    <form id="submit_form">
-      <input type="submit" name="create" value="" id="submit_button" class="formbutton" />
+    <form id="submit_form" method="post">
+      <input type="submit" name="create-form" value="" id="submit_button" class="formbutton" />
+	  <input type="submit" name="reset-form" value="Reset" id="reset_button" class="" />
     </form>
   </div>
   
   {% block footer_script %}
       <script>
-        {% if form_fields %}
-          {% for field in form_fields %}
-            console.log('{{field.name|strip}}')
-            form_elements[{{forloop.counter}}] = Array('{{ field.name|strip }}', '{{ field.type }}');
-          {% endfor %}
-        {% endif %}
-        console.log(form_elements)
+      	var MAX_ELEMENTS = 1000 
+		handle_old_fields = function(){
+			//{% if form_fields %}
+	          //{% for field in form_fields %}
+			    key = {{forloop.counter0}};
+	            form_elements[key] = Array('{{ field.name|strip }}', '{{ field.type }}');
+				$("#field_"+"{{ field.pk }}").attr("key", key);
+	          //{% endfor %}
+	        //{% endif %}	
+			make_editable();
+			
+		};
+        $(handle_old_fields);
       </script>
 {% endblock %}
     

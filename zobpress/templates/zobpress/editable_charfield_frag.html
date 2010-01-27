@@ -1,6 +1,6 @@
 						
       						<div class="draggable charfield">
-						        <span class="editable_text">{% if field_name %} {{ field_name }} {% else %}Text{% endif %}</span>
+						        <span class="editable_text {% if field_name %}old{% endif %}" id="{% if field_name %}field_{{ field.pk }}{% endif %}">{% if field_name %} {{ field_name }} {% else %}Text{% endif %}</span>
 						        <input type="text" disabled='disabled' />
 						      </div>
       					
