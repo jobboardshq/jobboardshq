@@ -188,6 +188,7 @@ class Job(models.Model):
     job_type = models.ForeignKey(JobType, null=True, blank=True)
     job_slug = models.SlugField(max_length=100)
     
+    times_viewed = models.PositiveIntegerField(default = 0)
     is_active = models.BooleanField(default = False)#listings start as inactive. After Payment become active.
     is_expired = models.BooleanField(default = False)#Has this listing expired yet?
     is_editable = models.BooleanField(default = False)
