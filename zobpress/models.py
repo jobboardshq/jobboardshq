@@ -8,8 +8,7 @@ from django.contrib.sites.models import Site
 from django.template.defaultfilters import slugify
 from libs.fields import AutoSlugField
 
-import random
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 
 type_mapping = {
                 'CharField':(forms.CharField, dict(max_length = 100)), 'TextField': (forms.CharField, dict(widget = forms.Textarea)), 'BooleanField':(forms.BooleanField, dict(required = False)),
@@ -146,6 +145,8 @@ class JobFormModelManager(models.Manager):
 class JobFormModel(models.Model):
     "Model for Job form for a specific Job board."
     board = models.ForeignKey(Board, unique = True)
+    
+    created = models.DateTimeField(default = datetime.now)
     
     objects = JobFormModelManager()
     

@@ -14,7 +14,13 @@ $(document).ready(function(){
     $('.draggable').draggable({helper: 'clone'});
     make_droppable();
     $('#submit_button').click(function(){
-        $.post('.', {'data':JSON.stringify(form_elements)}, function(data){window.location = data;});
+        $.ajax(
+		{type: "POST",
+		url: '.',
+		'data': {"data": JSON.stringify(form_elements)}, 
+		success: function(data){window.location = data},
+		error: function(data){alert("An error has occured.");},
+		});
         return false;
     });
     });
@@ -24,7 +30,6 @@ function make_droppable(){
         {accept:'.draggable',
         drop: function(ev, ui){
             key = form_elements.length;
-            console.log(key);
             name = ui.draggable.children().filter('span').text();
             ui.draggable.children().filter('span').attr('key', key);
             if (ui.draggable.hasClass('charfield')){
@@ -114,31 +119,19 @@ function generate_key(){
       			<table width="100%" border="0" cellspacing="0" cellpadding="0">
       				<tr>
       					<td>
-      						<div class="draggable charfield">
-						        <span class="editable_text">Text</span>
-						        <input type="text" disabled='disabled' />
-						      </div>
+      						{% include "zobpress/editable_charfield_frag.html" %}
       					</td>
 						<td>
-							<div class="draggable textfield">
-						        <span class="editable_text">Large Text</span>
-						        <textarea disabled='disabled'></textarea>
-						      </div>		
+							{% include "zobpress/editable_textfield_frag.html" %}
 						</td>
       				</tr>
 					
 					<tr>
 						<td>
-							<div class="draggable checkbox">
-						        <span class="editable_text">Checkbox</span>
-						        <input type="checkbox" />
-						      </div>
+							{% include "zobpress/editable_checkbox_frag.html" %}
 						</td>
 						<td>
-							<div class="draggable filefield">
-						        <span class="editable_text">File</span>
-						        <input type="file" disabled='disabled'/>
-						      </div>
+							{% include "zobpress/editable_filefield_frag.html" %}
 						</td>
 					</tr>
                 </table>
@@ -152,7 +145,7 @@ function generate_key(){
 					    	<p>
 					    		Drop here
 					    	</p>
-					      {{ board_job_form.as_p }}
+					      {{ editable_form_data|safe }}
 					    </div>
 					 </div>
 			  </td>
@@ -189,11 +182,8 @@ function generate_key(){
       <input type="submit" name="create" value="" id="submit_button" class="formbutton" />
     </form>
   </div>
-    
-{% endblock %}
-
-
-{% block footer_script %}
+  
+  {% block footer_script %}
       <script>
         {% if form_fields %}
           {% for field in form_fields %}
@@ -204,3 +194,7 @@ function generate_key(){
         console.log(form_elements)
       </script>
 {% endblock %}
+    
+{% endblock %}
+
+

@@ -28,7 +28,7 @@ def index(request):
 
 @ensure_has_board
 def add_job(request):
-    "Add a job "
+    "Add a job."
     job_static_form = JobStaticForm(board = request.board)
     Form = get_job_form(request.board)
     if request.method == 'POST':
@@ -49,12 +49,14 @@ def add_job(request):
 
 @ensure_has_board
 def job(request, job_slug):
+    "Show a specifuc job."
     # qs = models.Job.objects.filter(is_active = True)
     job = get_object_or_404(Job, job_slug=job_slug)
     return render_to_response('zobpress/job.html', {'job': job}, RequestContext(request))
 
 @ensure_has_board
 def jobs(request):
+    "Show a paginated list of jobs"
     try:
         order_by = request.GET['order']
     except:
@@ -80,8 +82,11 @@ def jobs(request):
 #        form = PasswordForm()
 #    payload = {'form':form}
 #    return render_to_response('zobpress/editjob.html', payload, RequestContext(request))
+
+
 @ensure_has_board
 def edit_job(request, id):
+    "Edit job with given id."
     job = get_object_or_404(Job, id = id)
     job_static_form = JobStaticForm(board = request.board, instance = job)
     JobForm = get_job_form(request.board, job = job)
@@ -98,6 +103,7 @@ def edit_job(request, id):
     
 @ensure_has_board
 def category_jobs(request, category_slug):
+    "Show jobs from a specific category."
     category = get_object_or_404(Category, slug = category_slug)
     jobs = Job.objects.filter(category = category)
     return object_list(request, queryset = jobs, template_name = 'zobpress/category_job_list.html', template_object_name = 'job')
@@ -121,6 +127,7 @@ def categories(request):
 
 @ensure_has_board
 def feeds_jobs(request):
+    "Show a RSS feed of jobs."
     board = request.board
     title = "Latest Jobs %s" % board.name
     link = reverse('zobpress_feeds_jobs')

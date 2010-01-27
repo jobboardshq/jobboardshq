@@ -32,20 +32,32 @@ def index(request):
 @login_required
 def create_job_form(request):
     "Create a job form for a board."
+    from zobpress.utils import get_editable_form
+    editable_form_data = get_editable_form(request.board) 
     if request.method == 'POST' and request.is_ajax():
         data = simplejson.load(StringIO(request.POST['data']))
+        if not sanitize_data(data):
+            raise Exception("Names are not unique")
         job_form, created = JobFormModel.objects.get_or_create(board = request.board)
         job_form.jobfieldmodel_set.all().delete()
         order = 1
         for field in data:
-            field_obj = JobFieldModel(job_form = job_form, name = field[0], type=field[1], order = order)
-            order += 1
-            field_obj.save()
+            if field:
+                field_obj = JobFieldModel(job_form = job_form, name = field[0], type=field[1], order = order)
+                order += 1
+                field_obj.save()
         success_url = reverse('zobpress_add_job')
         return HttpResponse(success_url)
     board_job_form, form_fields = get_job_form(request.board, return_job_fields_also = True)
-    payload = {'board_job_form': board_job_form(), 'form_fields': form_fields}
+    payload = {'board_job_form': board_job_form(), 'form_fields': form_fields, "editable_form_data": editable_form_data}
     return render_to_response('zobpress/create_job_form.html', payload, RequestContext(request))
+
+def sanitize_data(data):
+    "Check that the names are unique"
+    field_names = [field_name for field_name, field_type in data]
+    if len(set(field_names)) == len(field_names):
+        return data 
+            
 
 @ensure_has_board
 @login_required
