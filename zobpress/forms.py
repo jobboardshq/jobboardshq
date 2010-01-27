@@ -23,14 +23,20 @@ class BoardSettingsForm(forms.ModelForm):
         model = BoardSettings
         exclude = ('board',)
         
-class JobStaticForm(forms.ModelForm):
+class JobStaticForm(forms.ModelForm):    
+    name = forms.CharField(widget = forms.TextInput(attrs={"class" : "textinput"}))
+    job_type = forms.ModelChoiceField(queryset = JobType.objects.all(), widget=forms.RadioSelect, empty_label = None)
+    category = forms.ModelChoiceField(queryset = Category.objects.all(), widget=forms.RadioSelect, empty_label = None)
+    
     def __init__(self, board, *args, **kwargs):
         super(JobStaticForm, self).__init__(*args, **kwargs)
         self.board = board
         
-    name = forms.CharField(widget = forms.TextInput(attrs={"class" : "textinput"}))
-    job_type = forms.ModelChoiceField(queryset = Category.objects.all(), widget=forms.RadioSelect, empty_label = None)
-    category = forms.ModelChoiceField(queryset = JobType.objects.all(), widget=forms.RadioSelect, empty_label = None)
+    def save(self, *args, **kwargs):
+        job = super(JobStaticForm, self).save(commit = False)
+        job.board = self.board
+        return super(JobStaticForm, self).save(*args, **kwargs)
+        
     
     class Meta:
         model = Job

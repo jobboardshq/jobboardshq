@@ -81,59 +81,94 @@ function generate_key(){
 {% endblock %}
 
 {% block content %}
-  <div class="span-12">
-    <div id="input_controls">
-      
-      <div class="draggable charfield">
-        <span class="editable_text">Text</span>
-        <input type="text" disabled='disabled' />
-      </div>
-        
-      <div class="draggable textfield">
-        <span class="editable_text">Large Text</span>
-        <textarea disabled='disabled'></textarea>
-      </div>
-        
-      <div class="draggable checkbox">
-        <span class="editable_text">Checkbox</span>
-        <input type="checkbox" />
-      </div>
-        
-      <div class="draggable filefield">
-        <span class="editable_text">File</span>
-        <input type="file" disabled='disabled'/>
-      </div>
-        
-      <div class="draggable categories">
-        <span class="editable_text">Category</span>
-        <select>
-          {% for category in categories %}
-            <option name="{{ category.id }}" disabled='disabled'>{{category.name}}</option>
-          {% endfor %}
-        </select> 
-      </div>
-    
-    </div>
-  </div>
+
+	  	<div>
+          <div  class="admin_heading">Create Job Form</div>
+        </div>
+
+  	  <div class="admin_subheading1">
+          <p class="admin">Drag and drop the form elements to create Your job form according to your requirements.
+            Drag the elements from the top to the empty area and click on save button.</p>
+        </div>
+        <div class="staticfields"><span class="smalltext">These fields are mandatory and cannot be deleted.</span><br/>
+          Title:
+          <input name="textfield2" type="text" class="text_small" id="textfield2" size="10" />
+          &nbsp;&nbsp;&nbsp;Job Type:
+          <select name="select2" id="select2">
+            <option>Freelance</option>
+            <option>Fulltime</option>
+            <option>Parttime</option>
+          </select>
+          &nbsp;&nbsp;&nbsp;
+          Category:
+          <select name="select3" id="select3">
+            <option>Web Developer</option>
+            <option>Marketing</option>
+            <option>Creative Designers</option>
+          </select>
+          <span class="rightalign"> Hide this</span> 
+		</div>
+		
+		<div class="formpadding">
+			<div id="input_controls">
+      			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+      				<tr>
+      					<td>
+      						<div class="draggable charfield">
+						        <span class="editable_text">Text</span>
+						        <input type="text" disabled='disabled' />
+						      </div>
+      					</td>
+						<td>
+							<div class="draggable textfield">
+						        <span class="editable_text">Large Text</span>
+						        <textarea disabled='disabled'></textarea>
+						      </div>		
+						</td>
+      				</tr>
+					
+					<tr>
+						<td>
+							<div class="draggable checkbox">
+						        <span class="editable_text">Checkbox</span>
+						        <input type="checkbox" />
+						      </div>
+						</td>
+						<td>
+							<div class="draggable filefield">
+						        <span class="editable_text">File</span>
+						        <input type="file" disabled='disabled'/>
+						      </div>
+						</td>
+					</tr>
+                </table>
+    		</div>
+			
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td height="250" align="left" valign="top" class="designform">
+              		<div class="span-12">
+					    <div class="dropbox">
+					    	<p>
+					    		Drop here
+					    	</p>
+					      {{ board_job_form.as_p }}
+					    </div>
+					 </div>
+			  </td>
+            </tr>
+          </table>
+			
+		</div>
+		
     
   <div class="span-6 last">
     {% block input_area_help %}{% endblock %}
   </div>
 
-  <div class="span-12">
-    <div class="dropbox">Drop here
-      {{ board_job_form.as_p }}
-      <script>
-        {% if form_fields %}
-          {% for field in form_fields %}
-            alert('{{field.name|strip}}')
-            form_elements[{{forloop.counter}}] = Array('{{ field.name|strip }}', '{{ field.type }}');
-          {% endfor %}
-        {% endif %}
-        alert(form_elements)
-      </script>
-    </div>
-  </div>
+
+
+  
     
   <div class="span-6 last">
     {% block dropbox_help %}{% endblock %}
@@ -145,4 +180,17 @@ function generate_key(){
     </form>
   </div>
     
+{% endblock %}
+
+
+{% block footer_script %}
+      <script>
+        {% if form_fields %}
+          {% for field in form_fields %}
+            console.log('{{field.name|strip}}')
+            form_elements[{{forloop.counter}}] = Array('{{ field.name|strip }}', '{{ field.type }}');
+          {% endfor %}
+        {% endif %}
+        console.log(form_elements)
+      </script>
 {% endblock %}

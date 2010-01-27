@@ -29,26 +29,20 @@ def index(request):
 @ensure_has_board
 def add_job(request):
     job_static_form = JobStaticForm(board = request.board)
-    password_form = PasswordForm()
     Form = get_job_form(request.board)
     if request.method == 'POST':
         form = Form(data = request.POST, files = request.FILES)
         job_static_form = JobStaticForm(board = request.board, data = request.POST)
         if form.is_valid() and job_static_form.is_valid():
-            object = form.save()
-            object.name = job_static_form.cleaned_data['name']
-            object.save()
-            password_form = PasswordForm(data = request.POST)
-            if password_form.is_valid():
-                object.is_editable = True
-                object.password = password_form.save()
-                object.save()
-            #return HttpResponseRedirect(object.get_absolute_url())
-            job = object    
+            job = job_static_form.save()
+            Form = get_job_form(request.board, job = job)
+            form = Form(data = request.POST, files = request.FILES)
+            if form.is_valid():
+                form.save()
             return HttpResponseRedirect(reverse('zobpress_jobs_paypal', args=[job.id]))
     else:
         form = Form()
-    payload = {'form':form, 'job_static_form': job_static_form, 'password_form':password_form}
+    payload = {'form':form, 'job_static_form': job_static_form}
     return render_to_response('zobpress/addjob.html', payload, RequestContext(request))
 
 @ensure_has_board

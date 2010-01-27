@@ -19,8 +19,6 @@ from libs import paypal
 @ensure_has_board
 @login_required
 def index(request):
-    if not request.user == request.board.owner:
-        return HttpResponseForbidden('You do not have access to this board')
     manage_settings_form = ManageSettingsForm(board= request.board, instance = request.board)
     if request.method == 'POST':
         manage_settings_form = ManageSettingsForm(board= request.board, instance = request.board, data = request.POST)
@@ -34,8 +32,6 @@ def index(request):
 @login_required
 def create_job_form(request):
     "Create a job form for a board."
-    if not request.user == request.board.owner:
-        return HttpResponseForbidden('You do not have access to this board')
     if request.method == 'POST' and request.is_ajax():
         data = simplejson.load(StringIO(request.POST['data']))
         job_form, created = JobFormModel.objects.get_or_create(board = request.board)
@@ -55,8 +51,6 @@ def create_job_form(request):
 @login_required
 def upgrade(request):
     board = request.board
-    if not request.user == request.board.owner:
-        return HttpResponseForbidden('You do not have access to this board')
     pp = paypal.PayPal()
     cost = settings.UPGRADE_COST
     token = pp.SetExpressCheckout(cost, '%s%s'%(board.get_absolute_url(), reverse('manage_board_paypal_appr')), '%s%s'%(board.get_absolute_url(), reverse('manage_upgrade')), L_BILLINGTYPE0 = 'RecurringPayments', L_BILLINGAGREEMENTDESCRIPTION0 = 'Zobpress Upgrade')
@@ -71,8 +65,6 @@ def upgrade(request):
 @login_required
 def upgrade_approved(request):
     board = request.board
-    if not request.user == request.board.owner:
-        return HttpResponseForbidden('You do not have access to this board')
     pp = paypal.PayPal()
     board_pp = BoardPayPal.objects.get(board = board)
     paypal_details = pp.GetExpressCheckoutDetails(board_pp.paypal_token_sec, return_all = True)

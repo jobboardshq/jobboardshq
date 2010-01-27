@@ -17,24 +17,29 @@
 		{% for field in  job_static_form.visible_fields %}
 			
 			{% if field.errors %}
-			<td>
-				<ul>
-					{{ field.errors }}
-				</ul>
-			</td>
+			<tr>
+				<td>
+					<ul>
+						{{ field.errors }}
+					</ul>
+				</td>
+			</tr>
 			{% endif %}
 			<tr>
-              <td width="200" align="left" valign="middle"> {{ field.label }} :</td>
-			  <td align="left" valign="top">{{ field }}</td>
+              <td width="200" align="left" valign="middle"> {{ field.label_tag }} :</td>
+			  <td align="left" valign="top">
+			  	{{ field }}
+				{% if field.help_text %}<span class="help">{{ field.help_text }}</span>{% endif %}
+			  </td>
             </tr>
 			
 		{% endfor %}
         {% for field in form %}
         <tr>
-        <th>
+        <td width="200" align="left" valign="middle">
         {{ field.label_tag }}
-        </th>
-        <td>
+        </td>
+        <td align="left" valign="top">
         {% if field.errors %} <span class="error">
         {% for error in field.errors %}
         {{ error }}
@@ -47,10 +52,6 @@
         <div class="clear"></div>
         
         {% endfor %}
-        
-        <div class="password">
-            {{ password_form }}
-        </div>
             
         </table>
         <input type="submit" value="submit" name="submit" class="button" />
