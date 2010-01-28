@@ -5,20 +5,135 @@
 <title>Zobpress - Get your Job Board live with in minutes</title>
 <link href="css/reset.css" rel="stylesheet" type="text/css" />
 <link href="css/styles.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery-1.2.2.pack.js" type="text/javascript"></script>
 <!--[if lt IE 7]>
         <script type="text/javascript" src="js/unitpngfix.js"></script>
 <![endif]-->
-
+<script type="text/javascript"> 
+	$(function() {
+		// set opacity to nill on page load
+		$("ul#menu span").css("opacity","0");
+		// on mouse over
+		$("ul#menu span").hover(function () {
+			// animate opacity to full
+			$(this).stop().animate({
+				opacity: 1
+			}, 'slow');
+		},
+		// on mouse out
+		function () {
+			// animate opacity to nill
+			$(this).stop().animate({
+				opacity: 0
+			}, 'slow');
+		});
+	});
+</script>
 </head>
-
 <body class="homepage">
-
 <div id="wrapper">
-	<div id="header">Header</div>
-    <div id="top_navigation">top nav</div>
-    <div id="banner">banner</div>
-    <div id="content">content</div>
-    <div id="footer">footer</div>
+  <!--Header starts-->
+  <div id="header"><a href="index.html"><img src="images/zobpress_logo.png" alt="Zob Press Logo" width="243" height="25" /></a></div>
+  <!--Header Ends-->
+  <!--Top Navigation Starts-->
+  <div id="top_navigation">
+    <ul id="nav-example">
+      <li  id="nav-example-01" ><a href="index.html"><span>Home</span></a></li>
+      <li id="nav-example-02"><a href="#"><span>About Us</span></a></li>
+      <li id="nav-example-03"><a href="#" ><span>Products</span></a></li>
+      <li id="nav-example-04"><a href="#"><span>Ambassadors</span></a></li>
+      <li id="nav-example-05"><a href="#"><span>Loyalty Program</span></a></li>
+      <li id="nav-example-06"><a href="#"><span>Terms and Conditions</span></a></li>
+      <li id="nav-example-07"><a href="#"><span>Contact Us</span></a></li>
+      <li id="nav-example-08"><a href="#"><span>Terms and Conditions</span></a></li>
+      <li id="nav-example-09"><a href="#"><span>Contact Us</span></a></li>
+    </ul>
+  </div>
+  <!--Top Navigation ends-->
+  <!--Banner starts-->
+  <div id="banner">
+    <div id="screencast"><img src="images/screencast.gif" alt="Screencast" /></div>
+    <div id="signup"><img src="images/title_homepage.png" alt="Create your Job Board" width="342" height="142" />
+      <div  id="button">
+        <ul id="menu">
+          <li><a href="#" class="home"><span></span></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!--Banner ends-->
+  <!--content starts-->
+  <div id="homecontent">
+    <!--Features starts-->
+    <div id="leftpanel">
+      <h1>Key Features of Zobpress</h1>
+      <div class="features"><img src="images/time.png" alt="Seconds" width="52" height="52" />
+        <p><span class="features_title"> Get your job board in seconds</span> <br/>
+          Create your board in seconds and start adding your jobs right away </p>
+      </div>
+      <div class="features"><img src="images/customize_icon.png" alt="Customize" width="52" height="52" />
+        <p><span class="features_title"> Customizable job and resume fields</span> <br/>
+          Add any number of custom job and resume fields </p>
+      </div>
+      <div class="features"><img src="images/paypal_icon.png" alt="Authorized Payment Gateways" width="52" height="52" />
+        <p><span class="features_title">PayPal, 2checkout and Authorize.net payment gateways </span> <br/>
+          Payment Gatways </p>
+      </div>
+      <div class="features"><img src="images/nodownloads_icon.png" alt="No DOwnloads , No Installations" width="52" height="52" />
+        <p><span class="features_title"> Nothing to download and install</span> <br/>
+          Our job boards are fully-hosted so there's nothing for you to install. </p>
+      </div>
+      <div class="features"><img src="images/search_icon.png" alt="Powerful Search" width="52" height="52" />
+        <p><span class="features_title"> Powerful job / resume search</span> <br/>
+          Quick, advanced, Keyword, Boolean and Zip code radius search </p>
+      </div>
+      
+      <div class="features"><img src="images/alerts_icon.png" alt="Job Alerts" width="52" height="52" />
+        <p><span class="features_title"> New job and resume alerts</span> <br/>
+          New job/resume alerts are sent based on the selected search criteria </p>
+      </div>
+      <div class="features"><img src="images/tracking_icon.png" alt="Application Tracking" width="52" height="52" />
+        <p><span class="features_title"> Application tracking </span> <br/>
+          Employers can View, Delete, Accept or reject applications from job seekers </p>
+      </div>
+    </div>
+    <!--Features ends-->
+    <div id="rightpanel">
+      <div>
+        <h1>About Zob Press</h1>
+        <p>ZobPress Job Board Software let's you launch an easy-to-use advanced Job Board while providing all the key features to generate revenue and be successful in a competitive job board market. Jobbex is scalable and a fully customizable solution to meet your unique Job Board requirements.</p>
+        <p>Our  ZobPress product - JobBoardSoftware, lets employers, recruiters and enterprenuers to publish their own Job Board that can be managed easily. Its development is based on great experience of developing and maintaining various job boards.</p>
+      </div>
+      <br/>
+      <div id="support">
+        <h1>Support</h1>
+        <p>We're always ready to provide our clients with all necessary help and information they need. <br/> <br/>
+          For any questions, please always feel free to contact us at support@smartjobboard.com. We'll be glad to assist you.<br/> <br/>
+          ZobPress JobBoard Support includes:<br/><br/>
+          <ul>
+       	  <li><a href="#">Answering clients questions</a></li>
+<li><a href="#">Bugs fixing</a></li>
+<li><a href="#">Solving web-hosting tech issues</a></li>
+          </ul>
+        </p>
+      </div>
+    </div>
+    <div id="testimonials">
+      <h1>Testimonials</h1>
+      <blockquote>Shabda is a rare breed of developer that can handle both the nitty-gritty technical work and communicate details in a manner the is easy for non-technical types to understand...Shabda is a rare breed of developer that can handle both the nitty-gritty technical work and communicate details in a manner the is easy for non-technical types to understand...<br/>
+        <span class="speaker">Steven Mallows, AdditionalView</span></blockquote>
+    </div>
+  </div>
+  <!--content starts-->
+</div>
+<div class="clear"></div>
+<div id="footer">
+  <div id="footerlinks"><a href="#">Home</a> <a href="#">Features</a> <a href="#">Demo</a> <a href="#">Pricing</a> <a href="#">Support</a> <a href="#">Contact Us</a> <a href="#">Terms & Conditions</a> <a href="#">Privacy Policy</a></div>
+  <div id="icons">
+  	<div id="email"></div>
+    <div id="twitter"></div>
+  </div>
+  <div id="copyrights">&copy; Copyright 2010 Zobpress.com. All Rights Reserved</div>
 </div>
 </body>
 </html>
