@@ -19,7 +19,7 @@ p.admin{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; c
 
 
 /* Admin pages styles starts here    */
-#loading_message { width:938px; margin:0px auto; display:block; text-align:center;}
+#loading_message { width:938px; margin:0px auto; display:block; text-align:center; background-color: "yellow";}
 #admincontainer { width:938px; margin:0px auto; display:block; padding-top:15px; padding-bottom:15px;}
 #admincontainer #top { width:938px; height:24px; display:block; }
 #admincontainer #middle { width:938px; float:left;background:url(../images/admin_bg_middle.gif) repeat-y;}

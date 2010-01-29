@@ -36,6 +36,10 @@ class ManageSettingsForm(forms.ModelForm):
             session_id, account = server.login('zobpress', '4db69244')
             server.create_domain(session_id, domain, subdomain)
         return board
+    
+
+
+
 
     
     

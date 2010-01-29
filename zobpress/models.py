@@ -16,6 +16,7 @@ type_mapping = {
                 'CategoryField': (forms.ModelChoiceField, dict()), 'FileField':(forms.FileField, dict()), 
                 }
 rev_type_mapping_list  = [(v[0], k) for k,v in type_mapping.iteritems()]
+type_mapping_list  = [(k, k) for k,v in type_mapping.iteritems()]
 rev_type_mapping = {}
 for el in rev_type_mapping_list:
     rev_type_mapping[el[0]] = el[1]
@@ -115,6 +116,11 @@ class Category(models.Model):
     def get_jobs_url(self):
         return('zobpress.views.category_jobs', [self.slug])
     
+    @models.permalink
+    def edit_url(self):
+        return('zobpress.views.edit_category', [self.pk])
+    
+    
     def __unicode__(self):
         return self.name
     
@@ -157,7 +163,7 @@ class JobFieldModel(models.Model):
     "Model for Job form fields for a specific Job board."
     job_form = models.ForeignKey(JobFormModel)
     name = models.CharField(max_length = 100)
-    type = models.CharField(max_length = 100)
+    type = models.CharField(max_length = 100, choices= type_mapping_list)
     required = models.BooleanField(default = True)
     order = models.IntegerField(default = 10)
     
@@ -185,6 +191,7 @@ class Job(models.Model):
     board = models.ForeignKey(Board)
     name = models.CharField(max_length = 100, null=True, blank=True)
     category = models.ForeignKey(Category, null = True, blank = True)
+    description = models.TextField()
     job_type = models.ForeignKey(JobType, null=True, blank=True)
     job_slug = models.SlugField(max_length=100)
     
@@ -242,6 +249,11 @@ class Job(models.Model):
             self.job_slug += str(slug_count + 1)
         super(Job, self).save(*args, **kwargs)
         
+class JobContactDetail(models.Model):
+    name = models.CharField(max_length = 200)
+    email = models.EmailField()
+    website = models.URLField()
+        
 class JobData(models.Model):
     job = models.ForeignKey(Job)
     data_type = models.CharField(max_length = 100)
@@ -290,10 +302,40 @@ class Page(models.Model):
 def populate_job_board_form_initial(sender, instance, created, **kwargs):
     "Called when a board is first created to populate the JObBoardForm"
     from zobpress.utils import create_inital_form
-    create_inital_form(instance)
+    if created:
+        create_inital_form(instance)
+        
+initial_categories = [
+                      ("Engineering", "engineering"),
+                      ("Sales", "sales"),
+                      ("Testing", "testing"),
+                      ("Finanace", "finanace")
+                      ] 
+    
+initial_job_types = [
+                     ("Permanent", "permananent"),
+                     ("Freelance", "freelance"),
+                     ("Part time", "part-time"),
+                     ]
+    
+def populate_categories_initial(sender, instance, created, **kwargs):
+    board = instance
+    if created:
+        for category, slug in initial_categories:
+            Category.objects.create(board = board, slug=slug, name = category)
+        
+def populate_job_types_initial(sender, instance, created, **kwargs):
+    board = instance
+    if created:
+        for job_type, slug in initial_job_types:
+            JobType.objects.create(board = board, slug=slug, name = job_type)
+        
+
     
 from django.db.models.signals import post_save
 
 post_save.connect(populate_job_board_form_initial, sender = Board)
+post_save.connect(populate_categories_initial, sender = Board)
+post_save.connect(populate_job_types_initial, sender = Board)
     
     

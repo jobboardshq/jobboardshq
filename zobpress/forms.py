@@ -6,7 +6,8 @@ from django.conf import settings
 from os.path import join
 import os
 
-from zobpress.models import BoardSettings, type_mapping, rev_type_mapping
+from zobpress.models import BoardSettings, type_mapping, rev_type_mapping,\
+    JobContactDetail
 from zobpress.models import JobFormModel, JobFieldModel, JobType
 from zobpress.models import Job, JobData, Category, JobFile, Page
 
@@ -25,6 +26,7 @@ class BoardSettingsForm(forms.ModelForm):
         
 class JobStaticForm(forms.ModelForm):    
     name = forms.CharField(widget = forms.TextInput(attrs={"class" : "textinput"}))
+    description = forms.CharField(widget = forms.Textarea(attrs={"class": "richtext"}))
     job_type = forms.ModelChoiceField(queryset = JobType.objects.all(), widget=forms.RadioSelect, empty_label = None)
     category = forms.ModelChoiceField(queryset = Category.objects.all(), widget=forms.RadioSelect, empty_label = None)
     
@@ -40,7 +42,7 @@ class JobStaticForm(forms.ModelForm):
     
     class Meta:
         model = Job
-        fields = ('name', 'category', 'job_type')
+        fields = ('name', 'description', 'category', 'job_type')
     
 def get_job_form(board, job = None, return_job_fields_also = False):
     """Return the Job form for a specific Board."""
@@ -65,8 +67,6 @@ def get_job_form(board, job = None, return_job_fields_also = False):
                 else:
                     job.jobdata_set.all().delete()
                 for field in self.cleaned_data.iterkeys():
-                    if field in ['name']:
-                        continue
                     data_type = rev_type_mapping[self.fields[field].__class__]
                     job_data = JobData(job = job, name = field, value = self.cleaned_data[field])
                     job_data.data_type = data_type
@@ -117,6 +117,17 @@ class CategoryForm(forms.ModelForm):
         model = Category
         exclude = ["board"]
     
+class JobFieldEditForm(forms.ModelForm):
+    class Meta:
+        model = JobFieldModel
+        fields =  ["name", "type", "required"]
+        
+class JobContactForm(forms.ModelForm):
+    class Meta:
+        model = JobContactDetail
+        fields = ["name", "email", "website"]
+        
+        
     
      
 #class PasswordForm(forms.Form):

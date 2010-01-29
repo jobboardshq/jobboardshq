@@ -19,11 +19,11 @@ def get_editable_form(board):
         job_form = board.jobformmodel_set.order_by("-created")[0]
     except IndexError:
         return None
-    form_fields = job_form.jobfieldmodel_set.all().order_by("-order")
+    form_fields = job_form.jobfieldmodel_set.all().order_by("order")
     final_template = ""
     for field in form_fields:
         template = type_template_mapping[field.type]
-        final_template+=render_to_string(template, {"field_name": field.name})
+        final_template+=render_to_string(template, {"field_name": field.name, "field": field})
     return final_template
         
     

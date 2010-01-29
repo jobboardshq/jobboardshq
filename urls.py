@@ -8,12 +8,13 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Example:
-    (r'^', include('zobpress.urls')),
+    (r'^manage/', include('zobpress.urls')),
     (r'^sitewide/', include('sitewide.urls')),
     (r'^optin/', include('emailsubs.urls')),
     (r'^manage/', include('management.urls')),
     (r'^widgets/', include('widgets.urls')),
     (r'^accounts/', include('registration.urls')),
+    (r'^', include('frontend.urls')),
 
     ('^admin/(.*)', admin.site.root),
     ('^boardadmin/(.*)', board_admin.root),
@@ -30,5 +31,5 @@ urlpatterns += patterns('zobpress.views',
 
 if settings.DEBUG:
     urlpatterns += patterns('',
-        (r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+        (r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT, "show_indexes":True}, ),
     )

@@ -1,0 +1,210 @@
+{% extends 'zobpress-admin/base.html' %}
+
+{% load zobpress_filters %}
+{% block extrascript %}
+<script type="text/javascript" src="/site_media/js/ui.draggable.js"></script>
+<script type="text/javascript" src="/site_media/js/ui.droppable.js"></script>
+<script type="text/javascript" src="/site_media/js/ui.resizable.js"></script>
+<script type="text/javascript" src="/site_media/js/jquery.jeditable.js"></script>
+
+<script>
+form_elements = Array();
+
+$(document).ready(function(){
+    $('.draggable').draggable({helper: 'clone'});
+    make_droppable();
+    $('#submit_button').click(function(){
+        $.ajax(
+		{type: "POST",
+		url: '.',
+		'data': {"data": JSON.stringify(form_elements), "create-form": true}, 
+		success: function(data){window.location = data},
+		error: function(data){alert("An error has occured.");},
+		});
+        return false;
+    });
+    });
+
+function make_droppable(){
+    $('.dropbox').droppable(
+        {accept:'.draggable',
+        drop: function(ev, ui){
+            key = form_elements.length;
+            name = ui.draggable.children().filter('span').text();
+            ui.draggable.children().filter('span').attr('key', key);
+            if (ui.draggable.hasClass('charfield')){
+                form_elements[key] = Array(name, 'CharField');
+            }
+            else if(ui.draggable.hasClass('textfield')){
+                form_elements[key] = Array(name, 'TextField');
+            }
+            else if(ui.draggable.hasClass('checkbox')){
+                form_elements[key] = Array(name, 'BooleanField');
+            }
+            else if(ui.draggable.hasClass('categories')){
+                form_elements[key] = Array(name, 'CategoryField');
+            }
+            else if(ui.draggable.hasClass('filefield')){
+                form_elements[key] = Array(name, 'FileField');
+            }
+            $(this).append(ui.draggable.clone());
+            make_editable();
+            }
+        }
+    )
+}
+function make_editable(){
+    $('.dropbox span').editable(function(value, settings){
+        key = $(this).attr('key');
+		alert(key);
+		alert(value);
+        form_elements[key][0] = value;
+        return value;
+        });
+}
+
+function generate_key(){
+    size = 10;
+    keyboard = "abcdefghijklmnopqrstuvwxyz";
+    key = ""
+    for (i = 0; i < size; i++){
+        key += keyboard[Math.floor(Math.random()*26)];
+    }
+    return key;
+}
+</script>
+{% endblock %}
+
+{% block extracss %}
+
+<style>
+.dropbox{
+    width: 450px;
+    height: 500px;
+    background-color: yellow;
+}
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+	  	<div>
+          <div  class="admin_heading">Create Job Form</div>
+        </div>
+
+  	  <div class="admin_subheading1">
+          <p class="admin">Drag and drop the form elements to create Your job form according to your requirements.
+            Drag the elements from the top to the empty area and click on save button.</p>
+        </div>
+        <div class="staticfields"><span class="smalltext">These fields are mandatory and cannot be deleted.</span><br/>
+          Title:
+          <input name="textfield2" type="text" class="text_small" id="textfield2" size="10" />
+          &nbsp;&nbsp;&nbsp;Job Type:
+          <select name="select2" id="select2">
+            <option>Freelance</option>
+            <option>Fulltime</option>
+            <option>Parttime</option>
+          </select>
+          &nbsp;&nbsp;&nbsp;
+          Category:
+          <select name="select3" id="select3">
+            <option>Web Developer</option>
+            <option>Marketing</option>
+            <option>Creative Designers</option>
+          </select>
+          <span class="rightalign"> Hide this</span> 
+		</div>
+		
+		<div class="formpadding">
+			<div id="input_controls">
+      			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+      				<tr>
+      					<td>
+      						{% include "zobpress/editable_charfield_frag.html" %}
+      					</td>
+						<td>
+							{% include "zobpress/editable_textfield_frag.html" %}
+						</td>
+      				</tr>
+					
+					<tr>
+						<td>
+							{% include "zobpress/editable_checkbox_frag.html" %}
+						</td>
+						<td>
+							{% include "zobpress/editable_filefield_frag.html" %}
+						</td>
+					</tr>
+                </table>
+    		</div>
+			
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td height="250" align="left" valign="top" class="designform">
+              		<div class="span-12">
+					    <div class="dropbox">
+					    	<p>
+					    		Drop here
+					    	</p>
+					      {{ editable_form_data|safe }}
+					    </div>
+					 </div>
+			  </td>
+            </tr>
+          </table>
+			
+		</div>
+		
+		  <div class="staticfields"><span class="smalltext">Hiring company or person details </span><br/>
+            Name:
+            <input name="textfield2" type="text" class="text_small" id="textfield2" size="10" disabled="disabled" />
+            &nbsp;&nbsp;&nbsp;Website:
+            <input name="textfield6" type="text" class="text_small" id="textfield6" size="10" disabled="disabled"  />
+            &nbsp;&nbsp;&nbsp;
+            Email:
+            <input name="textfield7" type="text" class="text_small" id="textfield7" size="10" disabled="disabled"  />
+          </div>
+		  
+		
+    
+  <div class="span-6 last">
+    {% block input_area_help %}{% endblock %}
+  </div>
+
+
+
+  
+    
+  <div class="span-6 last">
+    {% block dropbox_help %}{% endblock %}
+  </div>
+
+  <div class="span-18">
+    <form id="submit_form" method="post">
+      <input type="submit" name="create-form" value="" id="submit_button" class="formbutton" />
+	  <input type="submit" name="reset-form" value="Reset" id="reset_button" class="" />
+    </form>
+  </div>
+  
+  {% block footer_script %}
+      <script>
+      	old_fields_handler = function(){
+			   //{% if form_fields %}
+		          //{% for field in form_fields %}
+		            	//console.log('{{field.name|strip}}');
+		            	form_elements["{{forloop.counter0}}"] = Array('{{ field.name|strip }}', '{{ field.type }}');
+						$("field_"+"{{ field.pk }}").attr("key", "{{forloop.counter0}}");
+		          //{% endfor %}
+		        //{% endif %}
+		        //console.log(form_elements);
+			
+		}
+      	$(old_fields_handler);
+		//$(make_editable);
+      </script>
+{% endblock %}
+    
+{% endblock %}
+
+

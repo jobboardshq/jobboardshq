@@ -12,10 +12,13 @@ from StringIO import StringIO
 from zobpress import models
 from zobpress.models import type_mapping, JobFormModel, JobFieldModel, Job, BoardPayments
 from zobpress.models import Category, Job, Page
-from zobpress.forms import get_job_form, JobStaticForm, PageForm, BoardSettingsForm, IndeedSearchForm, CategoryForm
+from zobpress.forms import get_job_form, JobStaticForm, PageForm, BoardSettingsForm, IndeedSearchForm, CategoryForm,\
+    JobFieldEditForm, JobContactForm
 from zobpress.decorators import ensure_has_board
 from libs import paypal
 from sitewide import views as sitewide_views
+from django.forms.formsets import formset_factory
+from django.forms.models import modelform_factory, modelformset_factory
 
 
 
@@ -30,21 +33,27 @@ def index(request):
 def add_job(request):
     "Add a job."
     job_static_form = JobStaticForm(board = request.board)
+    job_contact_form = JobContactForm()
     Form = get_job_form(request.board)
     if request.method == 'POST':
         form = Form(data = request.POST, files = request.FILES)
         job_static_form = JobStaticForm(board = request.board, data = request.POST)
-        if form.is_valid() and job_static_form.is_valid():
+        job_contact_form = JobContactForm(data = request.POST)
+        if form.is_valid() and job_static_form.is_valid() and job_contact_form.is_valid():
             job = job_static_form.save()
             Form = get_job_form(request.board, job = job)
             form = Form(data = request.POST, files = request.FILES)
             assert form.is_valid()
             form.save()
+            contact = job_contact_form.save(commit = False)
+            contact.job = job
+            contact.board = request.board
+            contact.save()
             request.user.message_set.create(message="The job form has been edited.")
             return HttpResponseRedirect(reverse('zobpress_jobs_paypal', args=[job.id]))
     else:
         form = Form()
-    payload = {'form':form, 'job_static_form': job_static_form}
+    payload = {'form':form, 'job_static_form': job_static_form, "job_contact_form": job_contact_form}
     return render_to_response('zobpress/addjob.html', payload, RequestContext(request))
 
 @ensure_has_board
@@ -124,7 +133,18 @@ def categories(request):
     extra = {"form": form}
     return object_list(request, queryset = categories, template_name = 'zobpress/categories.html', template_object_name = 'category', extra_context = extra)
         
-            
+
+def edit_category(request, category_pk):
+    category = get_object_or_404(Category, pk = category_pk)
+    form = CategoryForm(instance = category)
+    if request.method == "POST":
+        form = CategoryForm(instance = category, data = request.POST)
+        if form.is_valid():
+            form.save()
+        return HttpResponseRedirect(".")
+    payload = dict(category=category, form=form)
+    return render_to_response("zobpress/edit_category.html", payload, RequestContext(request))
+    
     
 
 @ensure_has_board
@@ -227,3 +247,22 @@ def indeed_jobs(request):
     else:
         pass
         # TODO: query the indeed api parse the results & display.
+        
+@ensure_has_board
+@login_required
+def create_job_form_advanced(request):
+    "Create a job form for a board."
+    job_field_formset = modelformset_factory(JobFieldModel, fields=["name", "type", "required"])
+    
+    queryset = JobFieldModel.objects.filter(job_form__board = request.board)
+    payload = {"job_field_formset": job_field_formset(queryset = queryset)}
+    return render_to_response("zobpress/create_job_form_advanced.html", payload, RequestContext(request))
+
+    
+    
+    
+    
+    
+    
+    
+    
