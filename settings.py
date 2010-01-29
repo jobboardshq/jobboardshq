@@ -66,6 +66,7 @@ INSTALLED_APPS = (
     'registration',
     'profiles',
     "frontend",
+    "compressor",
     'django.contrib.auth',
     'django.contrib.admin',
     'django.contrib.contenttypes',

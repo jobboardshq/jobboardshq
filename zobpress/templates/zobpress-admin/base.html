@@ -1,3 +1,5 @@
+{%  load compress %}
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -10,8 +12,10 @@
 {% endblock %}
 
 {% block css %}
+  {% compress css %}
   <link href="{{ MEDIA_URL }}admin/css/reset.css" rel="stylesheet" type="text/css" />
   <link href="{{ MEDIA_URL }}admin/css/admin.css" rel="stylesheet" type="text/css" />
+  {% endcompress %}
   <!--[if IE]>
     <link rel="stylesheet" href="/site_media/css/blueprint/ie.css" type="text/css" media="screen, projection">
   <![endif]-->
@@ -20,10 +24,12 @@
 {% block extracss %}{% endblock %}
 
 {% block script %}
+	{% compress js %}
   <script type="text/javascript" src="{{ MEDIA_URL }}admin/js/jquery.js"></script>
   <script type="text/javascript" src="{{ MEDIA_URL }}admin/js/ui.core.js"></script>
   <script type="text/javascript" src="{{ MEDIA_URL }}admin/js/json2.js"></script>
   <script type="text/javascript" src="{{ MEDIA_URL }}admin/js/admin.js"></script>
+  {% endcompress %}
 {% endblock %}
 
 {% block extrascript %}{% endblock %}
