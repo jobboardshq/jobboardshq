@@ -12,8 +12,5 @@ def index(request):
 def addjob(request):
     return render_to_response("frontend/addjob.html", {}, RequestContext(request))
 
-def subscribe(request):
-    return render_to_response("frontend/subscribe.html", {}, RequestContext(request))
-
 def apply(request, job_slug):
     pass

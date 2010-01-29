@@ -10,7 +10,6 @@ from emailsubs.models import EmailSubscription
 
 class EmailCaptureForm(forms.Form):
     email = forms.EmailField()
-    send_jobs_email = forms.BooleanField(required = False)
     
     def __init__(self, board, *args, **kwargs):
         super(EmailCaptureForm, self).__init__(*args, **kwargs)
@@ -21,10 +20,10 @@ class EmailCaptureForm(forms.Form):
             EmailSubscription.objects.get(board = self.board, email = self.cleaned_data['email'])
         except EmailSubscription.DoesNotExist:
             return self.cleaned_data['email']
-        raise ValidationError('This email is already registered for this board.')
+        raise ValidationError('This email is already registered.')
         
     def save(self):
-        email_sub = EmailSubscription(board = self.board, email = self.cleaned_data['email'], send_jobs_email= self.cleaned_data['send_jobs_email'])
+        email_sub = EmailSubscription(board = self.board, email = self.cleaned_data['email'],)
         random_key = ''.join([random.choice('012345678') for el in  range(10)])
         email_sub.key = random_key
         email_sub.save()
@@ -37,4 +36,6 @@ class EmailCaptureForm(forms.Form):
         return email_sub
     
 def get_site_root(board):
-    return 'http://%s.shabda.tld:8000' % (board.subdomain)#TODO
+    from django.contrib.sites.models import Site
+    site = Site.objects.get_current()
+    return 'http://%s.%s' % (board.subdomain, site.domain)#TODO

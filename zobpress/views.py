@@ -258,6 +258,14 @@ def create_job_form_advanced(request):
     payload = {"job_field_formset": job_field_formset(queryset = queryset)}
     return render_to_response("zobpress/create_job_form_advanced.html", payload, RequestContext(request))
 
+def list_subscriptions(request):
+    "Shows and allows actions for the list of subscribed users."
+    from emailsubs.models import EmailSubscription
+    subscriptions = EmailSubscription.objects.all()
+    payload = {"subscriptions": subscriptions}
+    return render_to_response("zobpress/list_subscriptions.html", payload, RequestContext(request))
+    
+
     
     
     

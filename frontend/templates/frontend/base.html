@@ -41,7 +41,7 @@
 <!--Wrapper-->
 <div id="frontend_wrapper">
   <!--Header Starts-->
-  <div id="header_frontend"><a href="frontend.html"><img src="{{ MEDIA_URL }}frontend/images/zobpress_demo_logo.png" alt="Zobpress Demo" /></a></div>
+  <div id="header_frontend"><a href="{% url frontend_index %}"><img src="{{ MEDIA_URL }}frontend/images/zobpress_demo_logo.png" alt="Zobpress Demo" /></a></div>
   <!--Header ends-->
   <!--Top Nav starts-->
   <div id="frontend_topnav"> <a href="#">Login</a> | <a href="#">Subscribe to RSS </a><img src="{{ MEDIA_URL }}frontend/images/rss_icon.png" alt="RSS" width="23" height="24"  /> </div>
@@ -61,7 +61,7 @@
     <div class="advancedsearch">| <a href="#" class="searchlink">Advanced Search</a> </div>
     <div class="postjob">
       <ul id="menu">
-        <li><a href="{% url frontent_addjob %}" class="home"><span></span></a></li>
+        <li><a href="{% url frontend_addjob %}" class="home"><span></span></a></li>
       </ul>
     </div>
   </div>
@@ -104,12 +104,15 @@
         <div class="bottom"></div>
       </div>
       <div id="newsletter">
-      	<form action="{% url frontent_subscribe %}">
+      	<form action="{% url emailsubs_index %}" method="post">
         <div>
-          <input name="textfield2" type="text" class="newsletter_textfield" id="textfield2" />
+          <input name="email" type="text" class="newsletter_textfield" id="textfield2" />
         </div>
-        <div><input type="submit" value="subscribe" />
-        	<a href="#"><img src="{{ MEDIA_URL }}frontend/images/submit_btn.png" alt="Submit" width="81" height="28" /></a></div>
+        <div>
+        	<input type="submit" value="subscribe" />
+        	<a href="#">
+        		<img src="{{ MEDIA_URL }}frontend/images/submit_btn.png" alt="Submit" width="81" height="28" />
+			</a></div>
 		</form>
       </div>
     </div>
@@ -126,7 +129,7 @@
   	</div>
   <div class="clear"></div>
   <!--content ends-->
-  <div id="frontend_footer">&copy; Copyright 2010 Zobpress.com. All Rights Reserved</div>
+  {% include "frontend/footer.html" %}
 </div>
 </body>
 </html>

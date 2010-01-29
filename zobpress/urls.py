@@ -17,6 +17,7 @@ urlpatterns = patterns('zobpress.views',
     #url(r'^editjob/(?P<id>\d+)/done/$', 'edit_job_done', name='zobpress_edit_job_done'),
     url(r'^about/$', direct_to_template, {'template':'jobs/about.html'}, name='zobpress_about'),
     url(r'^create-page/$', 'create_page', name='zobpress_create_page'),
+    url(r'^subscriptions/$', 'list_subscriptions', name='zobpress_list_subscriptions'),
     
     
     #Categories
@@ -24,6 +25,7 @@ urlpatterns = patterns('zobpress.views',
     
     #Feeds
     url(r'^feeds/jobs/$', 'feeds_jobs', name='zobpress_feeds_jobs'),
+    
     
     #Paypal
     url(r'^job/(?P<id>\d+)/paypal/$', 'job_paypal', name='zobpress_jobs_paypal'),

@@ -1,14 +1,20 @@
 from django.db import models
 
 from zobpress.models import Board
+import datetime
 
 class EmailSubscription(models.Model):
     "Emails subscribed to a board"
     board = models.ForeignKey(Board)
-    email = models.EmailField(unique = True)
-    send_jobs_email = models.BooleanField(default = True)
+    email = models.EmailField()
     is_confirmed = models.BooleanField(default = False)
     key = models.CharField(max_length = 100) #Genrated random key, to validate confirm/unsubscribe
+    
+    created_on = models.DateTimeField(default = datetime.datetime.now)
+    is_active = models.BooleanField(default = True)
+    
+    class Meta:
+        unique_together = (("board", "email"))
     
 class EmailSent(models.Model):
     "Last time emails were sent out for a sepcific board"

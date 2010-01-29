@@ -1,0 +1,21 @@
+{% extends "zobpress/base.html" %}
+
+{% block content %}
+	
+	<table>
+		<tr>
+				<th>Email</th>
+				<th>Created</th>
+				<th>Active?</th>
+			</th>
+		</tr>
+	{% for subscription in subscriptions %}
+		<tr>
+			<td>{{ subscription.email }}</td>
+			<td>{{ subscription.created_on|date }}</td>
+			<td>{{ subscription.is_active|yesno }}</td>
+		</tr>
+	{% endfor %}
+	</table>
+
+{% endblock %}
