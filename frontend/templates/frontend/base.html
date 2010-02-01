@@ -45,7 +45,7 @@
   <div id="header_frontend"><a href="{% url frontend_index %}"><img src="{{ MEDIA_URL }}frontend/images/zobpress_demo_logo.png" alt="Zobpress Demo" /></a></div>
   <!--Header ends-->
   <!--Top Nav starts-->
-  <div id="frontend_topnav"> <a href="#">Login</a> | <a href="#">Subscribe to RSS </a><img src="{{ MEDIA_URL }}frontend/images/rss_icon.png" alt="RSS" width="23" height="24"  /> </div>
+  <div id="frontend_topnav"> <a href="#">Login</a> | <a href="{% url zobpress_feeds_jobs %}">Subscribe to RSS </a><img src="{{ MEDIA_URL }}frontend/images/rss_icon.png" alt="RSS" width="23" height="24"  /> </div>
   <div class="clear"></div>
   <!--Top Nav ends-->
   <!--Search bar starts-->
