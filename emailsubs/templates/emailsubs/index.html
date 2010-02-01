@@ -1,12 +1,21 @@
 {% extends 'emailsubs/base.html' %}
 
 {% block content %}
-
 <form action="." method="post">
-    <table>
-        {{ email_form }}
-    </table>
-    <input type="submit" name="Register" value="Register" />
+  <table width="400" border="0" cellspacing="0" cellpadding="0"  class="left_padding">
+    <tr>
+      <td colspan="3"><h2>Subscribe to recieve an email each day with new jobs.</h2></td>
+    </tr>
+    <tr>
+      <td> {{ email_form.email.label }}</td>
+      <td> {{ email_form.email }}</td>
+      <td><input type="submit" name="Register" value="Subscribe" /></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td class="errortext">{{ email_form.email.errors }}</td>
+      <td>&nbsp;</td>
+    </tr>
+  </table>
 </form>
-
 {% endblock %}

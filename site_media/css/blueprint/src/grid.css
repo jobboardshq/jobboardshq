@@ -24,7 +24,8 @@
 .showgrid { background: url(src/grid.png);  }
 
 /* Body margin for a sensible default look. */
-body { margin:1.5em 0; }
+body { margin:1.5em 0;   font-family: "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;
+}
 
 
 /* Columns

@@ -1,21 +1,23 @@
 @charset "utf-8";
 /* CSS Document */
+body{font-family:"trebuchet MS",Verdana, Arial, Helvetica, sans-serif;}
 body.frontend{background:url(../images/header_frontend_bg.gif) repeat-x; font-family:"trebuchet MS",Verdana, Arial, Helvetica, sans-serif; font-size:11px; line-height:18px;}
 
-#frontend_wrapper{width:100%; margin:0px auto;}
+#frontend_wrapper{width:100%; margin:0px auto; font-family:"trebuchet MS",Verdana, Arial, Helvetica, sans-serif;}
 #header_frontend{ margin:0px auto; width:960px; height:90px; padding-top:25px;}
-#frontend_topnav{ margin:0px auto; width:960px; height:48px; text-align:right;}
+#frontend_topnav{ margin:0px auto; width:960px; height:48px; text-align:right; font:bold 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;}
 #frontend_topnav a{  text-align:right; color:#FFFFFF; font:bold 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; line-height:48px; text-decoration:none; }
 #frontend_topnav a:hover{  text-align:right; color:#000000; text-decoration:underline;}
 #frontend_topnav #rssicon{  width:50px; height:48px; float:right;}
 
-#frontend_searchbar{ clear:both; margin:0px auto; width:960px; height:83px;}
+#frontend_searchbar{ clear:both; margin:0px auto; width:960px; height:83px; font-family:"trebuchet MS",Verdana, Arial, Helvetica, sans-serif;}
 #frontend_searchbar .searchjobs{ width:106px; height:83px; float:left;font: 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;line-height:83px; color:#682C00;}
 
-#frontend_searchbar .searchfield{width:230px; height:56px; float:left; padding-top:27px;}
-#frontend_searchbar .textfield{border:1px solid #C8AC84; padding:5px;}
+#frontend_searchbar .searchfield{width:230px; height:56px; float:left; padding-top:27px; padding-left:10px;}
+#frontend_searchbar .textfield{border:1px solid #C8AC84; padding:5px; width:210px;}
 #frontend_searchbar .searchbutton{width:110px; height:58px; float:left; padding-top:25px;}
-#frontend_searchbar .advancedsearch{width:106px; height:83px; float:left;}
+.searchinputbutton{ width:103px; height:35px; background-image:url(../images/search_but.png); background-repeat:no-repeat; border:0px; cursor:pointer;}
+#frontend_searchbar .advancedsearch{width:176px; height:83px; float:left;}
 .searchlink{font: bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;line-height:83px; color:#A10000; text-decoration:none;}
 .searchlink:hover{font: bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;line-height:83px; color:#000000; text-decoration:underline;}
 #frontend_searchbar .postjob{width:234px; height:68px; float:right; padding-top:15px; position:relative;}
@@ -42,7 +44,7 @@ body.frontend{background:url(../images/header_frontend_bg.gif) repeat-x; font-fa
 #frontend_content #leftpanel #explore .bottom{background:url(../images/categories_bottombg.gif) top left; height:12px;}
 /*ends*/
 #frontend_content #leftpanel #newsletter{width:150px; margin:10px 0px 0px 0px; height:83px; background:url(../images/email_bg.png) no-repeat; padding:110px 25px 0px 25px; text-align:center;}
-.newsletter_textfield{margin-bottom:5px; border:1px solid #630000; padding:3px;}
+.newsletter_textfield{margin-bottom:5px; border:1px solid #630000; padding:3px; width:160px;}
 
 #frontend_content #rightpanel{width:740px; float:left; margin:10px 0px 0px 20px;}
 #frontend_footer{background-color:#000000; width:100%; margin:0px auto;  color:#FFFFFF; text-align:center; padding-top:20px; margin-top:15px; padding-bottom:20px;}
@@ -87,57 +89,22 @@ tr#release-notes td a {color: #333;}
 .clear{clear:both;}
 .left_padding{padding-left:15px;}
 .top_padding{margin-top:10px;}
+.subscribebutton{ width:81px; height:28px; background-image:url(../images/submit_btn.png); background-repeat:no-repeat; border:0px; cursor:pointer;}
 
-
-
-
-	/* Menu Body */
-	ul#menu {
-
-		list-style:none;
-		margin:0;
-		padding:0;
-
-	}
+/* Post Job button fading effect */
+ul#menu {list-style:none;margin:0;padding:0;}
+/* Float LI Elements - horizontal display */
+ul#menu li {float:left;}
+/* Link - common attributes */
+ul#menu li a {background:url(../images/post_job_buttonnew.png) no-repeat ;display:block;height:51px;position:relative;}
+/* Specify width and background position attributes specifically for the class: "home" */
+ul#menu li a.home {width:234px;}
+/* Span (on hover) - common attributes */
+ul#menu li a span {background:url(../images/post_job_buttonnew.png) no-repeat;display:block;position:absolute;top:0;left:0;height:51px;width:234px;z-index:100;}
+/* Span (on hover) - display pointer */
+ul#menu li a span:hover {cursor:pointer;}
+/* Shift background position on hover for the class: "home" */
+ul#menu li a.home span {background-position:0px -51px;}
 	
-	/* Float LI Elements - horizontal display */
-	ul#menu li {
-		float:left;
-	}
-	
-	/* Link - common attributes */
-	ul#menu li a {
-		background:url(../images/post_job_buttonnew.png) no-repeat ;
-		display:block;
-		height:51px;
-		position:relative;
-	}
-	
-	/* Specify width and background position attributes specifically for the class: "home" */
-	ul#menu li a.home {
-		width:234px;
-	}
-	
-	
-	/* Span (on hover) - common attributes */
-	ul#menu li a span {
-		background:url(../images/post_job_buttonnew.png) no-repeat;
-		display:block;
-		position:absolute;
-		top:0;
-		left:0;
-		height:51px;
-		width:234px;
-		z-index:100;
-	}
-	
-	/* Span (on hover) - display pointer */
-	ul#menu li a span:hover {
-		cursor:pointer;
-	}
-	
-	/* Shift background position on hover for the class: "home" */
-	ul#menu li a.home span {
-		background-position:0px -51px;
-	}
-	
+.left_padding{padding-left:20px;}
+.errortext{font:10px Arial, Helvetica, sans-serif; color:#FF0000;}

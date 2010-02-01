@@ -11,7 +11,7 @@
 
 body {
   line-height: 1.5;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;   
+  font-family: "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;
   color:#000;
   background: none;
   font-size: 10pt;
@@ -43,7 +43,7 @@ hr.space {
 /* Text
 -------------------------------------------------------------- */
 
-h1,h2,h3,h4,h5,h6 { font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif; }
+h1,h2,h3,h4,h5,h6 { font-family:"trebuchet MS",Verdana, Arial, Helvetica, sans-serif; }
 code { font:.9em "Courier New", Monaco, Courier, monospace; } 
 
 img { float:left; margin:1.5em 1.5em 1.5em 0; }

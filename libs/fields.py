@@ -56,9 +56,11 @@ class AutoSlugField(CharField):
         field_separator = kwargs.pop('field_separator', u'-')
             
         if populate_from is None:
-            raise ValueError("missing 'populate_from' argument")
+            #raise ValueError("missing 'populate_from' argument")
+			pass
         else:
             self._populate_from = populate_from
+			
         
         self._slugify_func = slugify_func
 

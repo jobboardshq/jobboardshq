@@ -23,6 +23,8 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 
 body { 
   line-height: 1.5; 
+    font-family: "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;
+
 }
 
 /* Tables still need 'cellspacing="0"' in the markup. */
