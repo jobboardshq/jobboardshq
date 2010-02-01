@@ -1,4 +1,5 @@
 {{ object.as_clob }}
 {{ object.name }}
 {{ object.description }}
+{{ object.board }}
 

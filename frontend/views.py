@@ -1,21 +1,29 @@
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
-
-from zobpress.decorators import ensure_has_board
-from libs import paypal
 from django.http import Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
+
+from libs import paypal
+from zobpress.decorators import ensure_has_board
 from zobpress.models import Job, BoardPayments
 from zobpress.forms import JobStaticForm, JobContactForm, get_job_form
 
+from haystack.views import SearchView
+from haystack.forms import SearchForm
 
-def index(request):
+@ensure_has_board
+def index(request, category_slug = None, job_type_slug = None):
     board = request.board
     category = board.category_set.all()
     pages = board.page_set.all()
     jobs = board.job_set.all()
+    if category_slug:
+        jobs = jobs.filter(category__slug = category_slug)
+    if job_type_slug:
+        jobs = jobs.filter(job_type__slug = category_slug)
     return render_to_response("frontend/index.html", {"category":category, "pages": pages, "jobs": jobs}, RequestContext(request))
 
+@ensure_has_board
 def addjob(request):
     board = request.board
     job_static_form = JobStaticForm(board = board)
@@ -57,17 +65,32 @@ def job(request, job_slug):
     job = get_object_or_404(Job, job_slug=job_slug)
     job.times_viewed += 1
     job.save()
-    return render_to_response('zobpress/job.html', {'job': job}, RequestContext(request))
+    return render_to_response('frontend/job.html', {'job': job}, RequestContext(request))
 
-
+@ensure_has_board
 def apply(request, job_slug):
     pass
 
 
+class BoardSearch(SearchView):
+    def __call__(self, request):
+        self.request = request
+        
+        self.form = self.build_form()
+        self.query = self.get_query()
+        results = super(BoardSearch, self).get_results()
+        self.results = results.filter(board = request.board)
+        
+        return self.create_response()
+    
+search = ensure_has_board(BoardSearch(form_class = SearchForm))
+        
+        
+    
+
+
 @ensure_has_board
 def job_paypal(request, id):
-    import ipdb
-    #ipdb.set_trace()
     board = request.board
     job = get_object_or_404(Job, id = id)
     cost = board.cost_per_job_listing

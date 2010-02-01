@@ -17,6 +17,7 @@ MANAGERS = ADMINS
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
 TIME_ZONE = 'America/Chicago'
+#TIME_ZONE = 'Asia/Kabul'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -41,8 +42,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.doc.XViewMiddleware',
     'django.middleware.transaction.TransactionMiddleware',
+    'pagination.middleware.PaginationMiddleware',
     'zobpress.middleware.GetSubdomainMiddleware',
     'zobpress.middleware.RedirectOnInvalidSubdomain',
+    
 )
 
 
@@ -51,6 +54,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.debug",
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
+    "django.core.context_processors.request",
     "zobpress.context_processor.populate_board",
     )
 
@@ -75,6 +79,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'south',
     'haystack',
+    "pagination",
 )
 
 AUTH_PROFILE_MODULE = 'profiles.UserProfile'

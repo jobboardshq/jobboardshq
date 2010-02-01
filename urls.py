@@ -18,7 +18,7 @@ urlpatterns = patterns('',
 
     ('^admin/(.*)', admin.site.root),
     ('^boardadmin/(.*)', board_admin.root),
-    (r'^search/', include('haystack.urls')),
+    #(r'^search/', include('haystack.urls')),
 )
 
 urlpatterns += patterns('zobpress.views',

@@ -1,6 +1,9 @@
  {% extends "frontend/base.html" %}
-
+{% load pagination_tags %}
+{% autopaginate jobs 2 %}
 {% block content %}
+
+
 <div class="middle">
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
@@ -21,11 +24,11 @@
       <td><table width="723" border="0" align="center" cellpadding="0" cellspacing="0">
           {% for job in jobs %}
           <tr class="{% cycle 'colorbg' 'whitebg' %}">
-            <td width="100" align="left" ><span class="left_padding"> {{ job.job_type }} </span> </td>
-            <td width="300" align="left"><span class="redtext"> {{ job.name }}</span> {% if job.company %}
+            <td width="100" align="left" ><span class="left_padding"> <a href="{% url frontend_job_type_jobs job.job_type.slug %}">{{ job.job_type }} </a></span> </td>
+            <td width="300" align="left"><span class="redtext"> <a href="{{ job.get_absolute_url }}">{{ job.name }}</a></span> {% if job.company %}
               at {{ job.company }}
               {% endif %} </td>
-            <td width="120" align="left">{{ job.category.name }} </td>
+            <td width="120" align="left"><a href="{% url frontend_category_jobs job.category.slug  %}">{{ job.category.name }}</a> </td>
             <td width="100" align="left"> {{ job.created_on|date }} </td>
             <td align="left"><span class="apply_button"><a href="{% url frontend_apply job.id %}">Apply</a></span></td>
           </tr>
@@ -33,6 +36,9 @@
         </table></td>
     </tr>
   </table>
-  <div id="pagenation"> <a href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">next</a> </div>
+  <div id="pagenation">
+  	{% paginate %} 
+  
+ </div>
 </div>
 {% endblock %}
