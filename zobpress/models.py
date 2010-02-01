@@ -63,14 +63,16 @@ class Board(models.Model):
     def save(self, *args, **kwargs):
         # create settings
         super(Board, self).save(*args, **kwargs)
-        BoardSettings.objects.create(board=self)
+        BoardSettings.objects.get_or_create(board=self)
     
 class BoardSettings(models.Model):
+    board = models.OneToOneField(Board, related_name='settings')
+    
     analytics_code = models.TextField(null=True, blank=True)
     keywords = models.TextField(null=True, blank=True)
     tag_line = models.CharField(max_length = 250, null=True, blank=True)
     template = models.CharField(max_length = 100, default='default')
-    board = models.OneToOneField(Board, related_name='settings')
+    
     
 class BoardPayPal(models.Model):
     board = models.OneToOneField(Board, primary_key = True)

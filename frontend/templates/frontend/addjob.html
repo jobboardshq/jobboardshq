@@ -2,6 +2,26 @@
 
 {% block content %}
 
-	Add a form to add job here
+	<form action="." method="POST" enctype="multipart/form-data">
+			<fieldset>
+				<table>
+					{{ job_static_form.as_table }}
+				</table>
+			</fieldset>
+			
+			<fieldset>
+				<table>
+					{{ job_form }}
+				</table>
+			</fieldset>
+			
+			<fieldset>
+				<table>
+					{{ job_contact_form }}
+				</table>
+			</fieldset>
+	</fieldset>
+	<input type="submit" name="create-job" value="submit" />
+  </form>
 
 {% endblock %}

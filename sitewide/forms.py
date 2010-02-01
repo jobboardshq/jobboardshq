@@ -16,7 +16,7 @@ class NewBoardForms(RegistrationForm):
             raise ValidationError('This subdomain name is reserved. Please choose another.')
         try:
             Board.objects.get(subdomain = self.cleaned_data['subdomain'])
-        except Board.DoesNotExist:
+        except Board.DoesNotExist: #@UndefinedVariable
             return self.cleaned_data['subdomain']
         raise ValidationError('This subdomain is already taken. Please choose another.')
     

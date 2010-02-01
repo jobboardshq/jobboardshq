@@ -15,7 +15,6 @@ from zobpress.models import Category, Job, Page
 from zobpress.forms import get_job_form, JobStaticForm, PageForm, BoardSettingsForm, IndeedSearchForm, CategoryForm,\
     JobFieldEditForm, JobContactForm
 from zobpress.decorators import ensure_has_board
-from libs import paypal
 from sitewide import views as sitewide_views
 from django.forms.formsets import formset_factory
 from django.forms.models import modelform_factory, modelformset_factory
@@ -31,10 +30,11 @@ def index(request):
 
 @ensure_has_board
 def add_job(request):
-    "Add a job."
+    "Add a job, via the backend."
     job_static_form = JobStaticForm(board = request.board)
     job_contact_form = JobContactForm()
     Form = get_job_form(request.board)
+    form = Form()
     if request.method == 'POST':
         form = Form(data = request.POST, files = request.FILES)
         job_static_form = JobStaticForm(board = request.board, data = request.POST)
@@ -49,21 +49,10 @@ def add_job(request):
             contact.job = job
             contact.board = request.board
             contact.save()
-            request.user.message_set.create(message="The job form has been edited.")
-            return HttpResponseRedirect(reverse('zobpress_jobs_paypal', args=[job.id]))
-    else:
-        form = Form()
+            request.user.message_set.create(message="The job has been added.")
+            return HttpResponseRedirect(reverse('zobpress_index'))
     payload = {'form':form, 'job_static_form': job_static_form, "job_contact_form": job_contact_form}
     return render_to_response('zobpress/addjob.html', payload, RequestContext(request))
-
-@ensure_has_board
-def job(request, job_slug):
-    "Show a specifuc job."
-    # qs = models.Job.objects.filter(is_active = True)
-    job = get_object_or_404(Job, job_slug=job_slug)
-    job.times_viewed += 1
-    job.save()
-    return render_to_response('zobpress/job.html', {'job': job}, RequestContext(request))
 
 @ensure_has_board
 def jobs(request):
@@ -161,60 +150,15 @@ def feeds_jobs(request):
     return HttpResponse(feed.writeString('UTF-8'))
 
 @ensure_has_board
-def job_paypal(request, id):
-    board = request.board
-    job = get_object_or_404(Job, id = id)
-    cost = board.cost_per_job_listing
-    if job.is_active:
-        raise Http404#Already paid for, get outa here.
-    if cost == 0:#No cost. Set active and redirect.
-        job.is_active = True
-        job.save()
-        return HttpResponseRedirect(job.get_absolute_url())
-    pp = paypal.PayPal()
-    token = pp.SetExpressCheckout(cost, '%s%s'%(board.get_absolute_url(), reverse('zobpress_jobs_paypal_appr', args=[job.id])), '%s%s'%(board.get_absolute_url(), reverse('zobpress_jobs_paypal', args=[job.id])))
-    job.paypal_token_sec = token
-    job.save()
-    paypal_url = pp.PAYPAL_URL + token
-    payload = {'job':job, 'paypal_url':paypal_url}
-    return render_to_response('zobpress/job_paypal.html', payload, RequestContext(request))
-
-@ensure_has_board
-def job_paypal_approved(request, id):
-    board = request.board
-    cost = board.cost_per_people_listing
-    job = get_object_or_404(Job, id = id, is_active = False)
-    pp = paypal.PayPal()
-    paypal_details = pp.GetExpressCheckoutDetails(job.paypal_token_sec, return_all = True)
-    payload = {'job':job}
-    if 'Success' in paypal_details['ACK']:
-        payload['ack'] = True
-        token = paypal_details['TOKEN'][0]
-        first_name = paypal_details['FIRSTNAME'][0]
-        last_name = paypal_details['LASTNAME'][0]
-        amt = paypal_details['AMT'][0]
-        payer_id = request.GET['PayerID']
-        payload_update  = {'first_name':first_name, 'last_name':last_name, 'amt':amt}
-        payload.update(payload_update)
-        payment_details  = pp.DoExpressCheckoutPayment(token = token, payer_id = payer_id, amt = cost)
-        if 'Success' in payment_details['ACK']:
-            job.is_active = True
-            job.save()
-            BoardPayments.objects.add_job_payment(board = board, amount = cost)
-        else:
-            payload['ack'] = False
-    else:
-        payload['ack'] = False
-    return render_to_response('zobpress/person_paypal_approved.html', payload, RequestContext(request))
-
-@ensure_has_board
 def job_board_pages(request, page_slug):
+    "Show a page for a Board"
     board = request.board
     page = get_object_or_404(Page, job_board=board, page_slug=page_slug)
     return render_to_response('zobpress/static_pages.html', {'page': page}, RequestContext(request))
 
 @ensure_has_board
 def create_page(request):
+    "Create a page for the board."
     if request.method == 'POST':
         form = PageForm(request.POST)
         if form.is_valid():
