@@ -1,70 +1,68 @@
 {% extends 'sitewide/base.html' %}
 
 {% block content %}
-
-<div class="span-18 last">
-    <h3>
-        Here be a large Header.
-    </h3>
-    
-</div>
-
-<div class="span-6">
-    <h3>Welcome to Zobpress</h3>
-    <p>
-        Zobpress allows you to create large Hosted zob boards, without installing or managing <span class="highlight">anything</span>.
-    </p>
-    <p>
-        Get a Large Register/Read more link here.
-        <br />
-        <a href="{% url sitewide_register_board %}">Register</a> or <a href="">Find more</a>
-    </p>
-</div>
-
-<div class="span-12 last">
-    <p>
-        Add a Large screen shot of Zobpress here.
-    </p>
-</div>
-
-<div class="span-18 last">
-    Here we want a filmstrip type layout, which libks to larger screen shots of the Pages.
-</div>
-
-<div class="span-9">
-    <h4>
-        List of features
-    </h4>
-    <ul>
-        <li>
-            Monetise your readers, by adding a Job board.
-        </li>
-        <li>
-            <span class="highlight">
-                Totally
-            </span>
-            Customisable. Moodify each part of your job board.
-        </li>
-        <li>
-            Use your own Domains or a Zobpress subdomain.
-        </li>
-        <li>
-            List of more features
-        </li>
-    </ul>
-    
-</div>
-
-<div class="span-9 last">
-    <h4>Testimonials</h4>
-    <p>
-        If Zobpress were any better, I would marry it!
-    </p>
-    <p>
-        Lorem ipsm
-    </p>
-    
-</div>
+  <div id="homecontent"> 
+    <!--Features starts--> 
+    <div id="leftpanel"> 
+      <h1>Key Features of Zobpress</h1> 
+      <div class="features"><img src="{{ MEDIA_URL }}sitewide/images/time.png" alt="Seconds" width="52" height="52" /> 
+        <p><span class="features_title"> Get your job board in seconds</span> <br/> 
+          Create your board in seconds and start adding your jobs right away </p> 
+      </div> 
+      <div class="features"><img src="{{ MEDIA_URL }}sitewide/images/customize_icon.png" alt="Customize" width="52" height="52" /> 
+        <p><span class="features_title"> Customizable job and resume fields</span> <br/> 
+          Add any number of custom job and resume fields </p> 
+      </div> 
+      <div class="features"><img src="{{ MEDIA_URL }}sitewide/images/paypal_icon.png" alt="Authorized Payment Gateways" width="52" height="52" /> 
+        <p><span class="features_title">PayPal, 2checkout and Authorize.net payment gateways </span> <br/> 
+          Payment Gatways </p> 
+      </div> 
+      <div class="features"><img src="{{ MEDIA_URL }}sitewide/images/nodownloads_icon.png" alt="No DOwnloads , No Installations" width="52" height="52" /> 
+        <p><span class="features_title"> Nothing to download and install</span> <br/> 
+          Our job boards are fully-hosted so there's nothing for you to install. </p> 
+      </div> 
+      <div class="features"><img src="{{ MEDIA_URL }}sitewide/images/search_icon.png" alt="Powerful Search" width="52" height="52" /> 
+        <p><span class="features_title"> Powerful job / resume search</span> <br/> 
+          Quick, advanced, Keyword, Boolean and Zip code radius search </p> 
+      </div> 
+      <div class="features"><img src="{{ MEDIA_URL }}sitewide/images/alerts_icon.png" alt="Job Alerts" width="52" height="52" /> 
+        <p><span class="features_title"> New job and resume alerts</span> <br/> 
+          New job/resume alerts are sent based on the selected search criteria </p> 
+      </div> 
+      <div class="features"><img src="{{ MEDIA_URL }}sitewide/images/tracking_icon.png" alt="Application Tracking" width="52" height="52" /> 
+        <p><span class="features_title"> Application tracking </span> <br/> 
+          Employers can View, Delete, Accept or reject applications from job seekers </p> 
+      </div> 
+    </div> 
+    <!--Features ends--> 
+    <div id="rightpanel"> 
+      <div> 
+        <h1>About Zob Press</h1> 
+        <p class="aboutus">ZobPress Job Board Software let's you launch an easy-to-use advanced Job Board while providing all the key features to generate revenue and be successful in a competitive job board market. Jobbex is scalable and a fully customizable solution to meet your unique Job Board requirements.</p> 
+        <p>Our  ZobPress product - JobBoardSoftware, lets employers, recruiters and enterprenuers to publish their own Job Board that can be managed easily. Its development is based on great experience of developing and maintaining various job boards.</p> 
+      </div> 
+      <br/> 
+      <div id="support"> 
+        <h1>Support</h1> 
+        <p>We're always ready to provide our clients with all necessary help and information they need. <br/> 
+          <br/> 
+          For any questions, please always feel free to contact us at <a href="mailto:support@smartjobboard.com" class="meroonlink">support@smartjobboard.com</a>. We'll be glad to assist you.<br/> 
+          <br/> 
+          ZobPress JobBoard Support includes:<br/> 
+        <ul> 
+          <li><a href="#">Answering clients questions</a></li> 
+          <li><a href="#">Bugs fixing</a></li> 
+          <li><a href="#">Solving web-hosting tech issues</a></li> 
+        </ul> 
+        </p> 
+      </div> 
+    </div> 
+    <div id="testimonials"> 
+      <h1>Testimonials</h1> 
+      <blockquote>Shabda is a rare breed of developer that can handle both the nitty-gritty technical work and communicate details in a manner the is easy for non-technical types to understand...Shabda is a rare breed of developer that can handle both the nitty-gritty technical work and communicate details in a manner the is easy for non-technical types to understand...<br/> 
+        <span class="speaker">Steven Mallows, AdditionalView</span></blockquote> 
+    </div> 
+  </div> 
 
 
 

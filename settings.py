@@ -42,6 +42,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.doc.XViewMiddleware',
     'django.middleware.transaction.TransactionMiddleware',
     'zobpress.middleware.GetSubdomainMiddleware',
+    'zobpress.middleware.RedirectOnInvalidSubdomain',
 )
 
 
