@@ -25,7 +25,7 @@ p.admin{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; c
 #admincontainer #middle { width:938px; float:left;background:url(../images/admin_bg_middle.gif) repeat-y;}
 #admincontainer #leftblock { width:233px; display:block; float:left;}
 #admincontainer #rightblock { width:640px; padding:0px 30px 0px 30px; float:left; display:block;}
-#admincontainer ul.vert-one{margin:0;padding:0;list-style-type:none;display:block;font:500 14px "trebuchet MS", Arial, Helvetica, sans-serif;line-height:40px;width:232px;border-top:1px solid #DFD5B5;  background-color:#8D250B; color:#FFFFFF; text-indent:10px;}
+#admincontainer ul.vert-one{margin:0;padding:0;list-style-type:none;display:block;font:500 14px "trebuchet MS", Arial, Helvetica, sans-serif;line-height:30px;width:232px;border-top:1px solid #DFD5B5;  background-color:#8D250B; color:#FFFFFF; text-indent:10px;}
 #admincontainer ul.vert-one li{margin:0;padding:0;border-bottom:1px solid #DFD5B5; }
 #admincontainer ul.vert-one li a{display:block;text-decoration:none;color:#fff;padding:0 0 0 20px;width:212px; background-color:#F1EDE0; color:#881900;}
 #admincontainer ul.vert-one li a:hover{background: url(../images/menu_hover.gif) no-repeat; color:#440D00; }
