@@ -64,12 +64,9 @@
         <div class="top">Jobs by Category</div>
         <div class="middle">
           <ul>
-          	{% for category in categories %}
-            <li>
-            	<a href="{{ category.get_absolute_url }}">{{ category.name }} </a>
-				( {{ category.job_set.count }} )
-			</li>
-			{% endfor %}
+            {% for category in categories %}
+            <li> <a href="{{ category.get_absolute_url }}">{{ category.name }} </a> ( {{ category.job_set.count }} ) </li>
+            {% endfor %}
           </ul>
         </div>
         <div class="bottom"></div>

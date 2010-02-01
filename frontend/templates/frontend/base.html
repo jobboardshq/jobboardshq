@@ -1,11 +1,9 @@
-
 {% load compress %}
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Front End</title>
+<title>Job Board - Demo</title>
 <link href="{{ MEDIA_URL }}frontend/css/reset.css" rel="stylesheet" type="text/css" />
 {% compress css %}
 <link href="{{ MEDIA_URL }}frontend/css/frontend.css" rel="stylesheet" type="text/css" />
@@ -51,13 +49,14 @@
   <!--Search bar starts-->
   <div id="frontend_searchbar">
     <div class="searchjobs">Search All Jobs :</div>
-	<form action="{% url haystack_search %}">
-    <div class="searchfield">
-      <input name="textfield" type="text" class="textfield"  id="textfield" value="Type your designation, skills" size="30" />
-    </div>
-	<div class="searchbutton"><a href="#"><input type="submit" value="" class="searchinputbutton" /></a></div>
-	</form>
-    
+    <form action="{% url haystack_search %}">
+      <div class="searchfield">
+        <input name="textfield" type="text" class="textfield"  id="textfield" value="Type your designation, skills" size="30" />
+      </div>
+      <div class="searchbutton"><a href="#">
+        <input type="submit" value="" class="searchinputbutton" />
+        </a></div>
+    </form>
     <div class="advancedsearch">| <a href="#" class="searchlink">Advanced Search</a> </div>
     <div class="postjob">
       <ul id="menu">
@@ -75,12 +74,9 @@
         <div class="top">Jobs by Category</div>
         <div class="middle">
           <ul>
-          	{% for category in categories %}
-            	<li>
-            		<a href="{{ category.get_absolute_url }}">{{ category }} ( {{ category.job_set.count }})</a>
-				</li>
-			{% endfor %}
-            
+            {% for category in categories %}
+            <li> <a href="{{ category.get_absolute_url }}">{{ category }} ( {{ category.job_set.count }})</a> </li>
+            {% endfor %}
           </ul>
         </div>
         <div class="bottom"></div>
@@ -90,30 +86,26 @@
         <div class="top">Explore</div>
         <div class="middle">
           <ul>
-          	{% for page in pages %}
-            	<li>
-            		<a href="{{ page.get_absolute_url }}">{{ page }}</a>
-				</li>
-			{% empty %}
-				<li>
-            		<p>No pages</p>
-				</li>
-			{% endfor %}
+            {% for page in pages %}
+            <li> <a href="{{ page.get_absolute_url }}">{{ page }}</a> </li>
+            {% empty %}
+            <li>
+              <p>No pages</p>
+            </li>
+            {% endfor %}
           </ul>
         </div>
         <div class="bottom"></div>
       </div>
       <div id="newsletter">
-      	<form action="{% url emailsubs_index %}" method="post">
-        <div>
-          <input name="email" type="text" class="newsletter_textfield" id="textfield2" />
-        </div>
-        <div>
-        	
-        	<a href="#">
-        		<input type="submit" value="" class="subscribebutton" />
-			</a></div>
-		</form>
+        <form action="{% url emailsubs_index %}" method="post">
+          <div>
+            <input name="email" type="text" class="newsletter_textfield" id="textfield2" />
+          </div>
+          <div> <a href="#">
+            <input type="submit" value="" class="subscribebutton" />
+            </a></div>
+        </form>
       </div>
     </div>
     <!--left side panel starts here-->
@@ -121,17 +113,13 @@
     <div id="rightpanel">
       <div class="top"></div>
       <div class="middle">{% block content %}{% endblock %} </div>
-	   <div class="bottom"></div>
+      <div class="bottom"></div>
     </div>
     <!--job posts ends here-->
-  	</div>
+  </div>
   <div class="clear"></div>
   <!--content ends-->
-  {% include "frontend/footer.html" %}
-</div>
+  {% include "frontend/footer.html" %} </div>
 </body>
 </html>
-=======
 {% load compress %}
-
-
