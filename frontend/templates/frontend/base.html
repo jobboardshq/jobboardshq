@@ -34,6 +34,14 @@
 			}, 'slow');
 		});
 	});
+	
+	search_button_handler = function(){
+		$("input[name=q]").one("focus", function(){
+			$(this).val("");
+		});	
+		
+	}
+	$(search_button_handler);
 </script>
 {% endcompress %}
 </head>
@@ -44,7 +52,7 @@
   <div id="header_frontend"><a href="{% url frontend_index %}"><img src="{{ MEDIA_URL }}frontend/images/zobpress_demo_logo.png" alt="Zobpress Demo" /></a></div>
   <!--Header ends-->
   <!--Top Nav starts-->
-  <div id="frontend_topnav"> <a href="#">Login</a> | <a href="#">Subscribe to RSS </a><img src="{{ MEDIA_URL }}frontend/images/rss_icon.png" alt="RSS" width="23" height="24"  /> </div>
+  <div id="frontend_topnav"> <a href="#">Login</a> | <a href="{% url zobpress_feeds_jobs %}">Subscribe to RSS </a><img src="{{ MEDIA_URL }}frontend/images/rss_icon.png" alt="RSS" width="23" height="24"  /> </div>
   <div class="clear"></div>
   <!--Top Nav ends-->
   <!--Search bar starts-->
@@ -52,7 +60,7 @@
     <div class="searchjobs">Search All Jobs :</div>
 	<form action="{% url haystack_search %}">
     <div class="searchfield">
-      <input name="textfield" type="text" class="textfield"  id="textfield" value="Type your designation, skills" size="30" />
+      <input name="q" type="text" class="textfield"  id="textfield" value="Type your designation, skills" size="30" />
     </div>
 	<input type="submit" value="search" />
 	<div class="searchbutton"><a href="#"><img src="{{ MEDIA_URL }}frontend/images/search_but.png" alt="Search" width="103" height="35" /></a></div>

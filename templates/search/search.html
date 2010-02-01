@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'frontend/base.html' %}
 
 {% block content %}
 <h2>Search</h2>                                            
@@ -10,7 +10,7 @@
             <td><input type="submit" value="Search"></td>  
         </tr>                                              
     </table>                                               
-</form>                                                    
+</form>                                               
 
 <div id='search_results'>
 {% if page.object_list %}
