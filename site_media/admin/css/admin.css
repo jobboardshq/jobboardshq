@@ -32,7 +32,10 @@ p.admin{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; c
 #admincontainer ul.vert-one li a.current,ul.vert-one li a.current:hover{background: url(../images/menu_hover.gif) no-repeat; color:#440D00;}
 #admincontainer ul.vert-one li a.current{background:url(../images/menu_current.gif) no-repeat; color:#440D00;}
 .addjobs_buttons{width:420px; float:right;  line-height:18px; text-align:right;}
-.jobrole{font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif; color:#8B1B00; line-height:22px;}
+.jobrole{font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif; color:#8B1B00; line-height:22px; text-decoration:underline;}
+.jobrole a{font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif; color:#8B1B00; line-height:22px; text-decoration:underline;}
+.jobrole a:hover{font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif; color:#000000; line-height:22px; text-decoration:underline;}
+
 .viewed{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#666666; padding-left:25px;}
 .fulltime_badge{ text-align:center;  background-color:#788D01; color:#FFFFFF; font:bold 11px Verdana, Arial, Helvetica, sans-serif; width:90px; display:block; float:left; line-height:20px;}
 .freelance_badge{text-align:center; color:#FFFFFF; font:bold 11px Verdana, Arial, Helvetica, sans-serif; width:90px; display:block; float:left; line-height:20px;background-color:#851700;}
