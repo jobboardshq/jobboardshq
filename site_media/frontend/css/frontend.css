@@ -1,6 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
-body{font-family:"trebuchet MS",Verdana, Arial, Helvetica, sans-serif;}
+body{ font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; }
 body.frontend{background:url(../images/header_frontend_bg.gif) repeat-x; font-family:"trebuchet MS",Verdana, Arial, Helvetica, sans-serif; font-size:11px; line-height:18px;}
 
 #frontend_wrapper{width:100%; margin:0px auto; font-family:"trebuchet MS",Verdana, Arial, Helvetica, sans-serif;}
