@@ -1,1 +1,4 @@
-{{object.as_clob}}
+{{ object.as_clob }}
+{{ object.name }}
+{{ object.description }}
+
