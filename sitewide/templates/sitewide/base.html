@@ -51,18 +51,7 @@
   <div id="top_navigation">
   	{% block topnav %} 
     <ul id="nav-example"> 
-      <li  id="nav-example-01" ><a href="{% url sitewide_index %}"><span>Home</span></a></li> 
-      <li id="nav-example-02"><a href="#"><span>Features</span></a></li> 
-      <li id="nav-example-03"><a href="#" ><span>Demo</span></a></li> 
-      <li id="nav-example-04"><a href="#"><span>Pricing</span></a></li> 
-      <li id="nav-example-05"><a href="#"><span>Loyalty Program</span></a></li> 
-      <li id="nav-example-06"><a href="#"><span>Terms and Conditions</span></a></li> 
-      <li id="nav-example-07"><a href="#"><span>Contact Us</span></a></li> 
-      
-	  
-	  <li id="nav-example-08"><a href="#"><span>Login</span></a></li> 
-      <li id="nav-example-09"><a href="{% url sitewide_register_board %}"><span>Sign up</span></a></li>
-	   
+		{% include "sitewide/navbar.html" %}	   
     </ul> 
 	{% endblock topnav %}
   </div> 
@@ -87,19 +76,6 @@
   {% endblock content %}
 </div> 
 <div class="clear"></div> 
-<div id="footer"> 
-  <div id="footerlinks"><a href="#">Home</a> <a href="#">Features</a> <a href="#">Demo</a> <a href="#">Pricing</a> <a href="#">Support</a> <a href="#">Contact Us</a> <a href="#">Terms & Conditions</a> <a href="#">Privacy Policy</a></div> 
-  <div id="icons"> 
-    <div id="email"> 
-      <p>Contact us at :<br/> 
-        <a href="mailto:support@smartjobboard.com" class="redlink">support@smartjobboard.com</a></p> 
-    </div> 
-    <div id="twitter"> 
-      <p>Follow us on Twitter<br/> 
-        <a href="http://twitter.com/ZobPress" target="_blank" class="redlink">http://twitter.com/ZobPress</a></p> 
-    </div> 
-  </div> 
-  <div id="copyrights">&copy; Copyright 2010 Zobpress.com. All Rights Reserved</div> 
-</div> 
+{% include "sitewide/footer.html" %}
 </body> 
 </html> 
