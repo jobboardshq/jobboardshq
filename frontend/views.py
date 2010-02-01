@@ -89,7 +89,9 @@ def job_paypal(request, id):
 def job_paypal_approved(request, id):
     board = request.board
     cost = board.cost_per_job_listing
-    job = get_object_or_404(Job, id = id, is_active = False)
+    job = get_object_or_404(Job, id = id)
+    if job.is_active:
+        return HttpResponseRedirect(job.get_absolute_url())
     pp = paypal.PayPal()
     paypal_details = pp.GetExpressCheckoutDetails(job.paypal_token_sec, return_all = True)
     payload = {'job':job}
@@ -111,5 +113,5 @@ def job_paypal_approved(request, id):
             payload['ack'] = False
     else:
         payload['ack'] = False
-    return render_to_response('frontend/person_paypal_approved.html', payload, RequestContext(request))
+    return render_to_response('frontend/job_paypal_approved.html', payload, RequestContext(request))
 

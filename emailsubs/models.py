@@ -8,7 +8,7 @@ class EmailSubscription(models.Model):
     board = models.ForeignKey(Board)
     email = models.EmailField()
     is_confirmed = models.BooleanField(default = False)
-    key = models.CharField(max_length = 100) #Genrated random key, to validate confirm/unsubscribe
+    key = models.CharField(max_length = 100) #Generated random key, to validate confirm/unsubscribe
     
     created_on = models.DateTimeField(default = datetime.datetime.now)
     is_active = models.BooleanField(default = True)

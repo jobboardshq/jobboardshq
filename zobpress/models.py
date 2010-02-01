@@ -226,7 +226,7 @@ class Job(models.Model):
     def as_clob(self):
         "As a large text."
         snippet = ""
-        snippet += '\n'.join([self.name or '', self.category or '', self.job_type or ''])
+        snippet += '\n'.join([self.name or '', self.category.name or '', self.job_type.name or ''])
         data = self.jobdata_set.all()
         for datum in data:
             snippet += "%s: %s" % (datum.name, datum.value)
@@ -235,7 +235,7 @@ class Job(models.Model):
     
     @permalink
     def get_absolute_url(self):
-        return ('zobpress.views.job', [str(self.job_slug)])
+        return ('frontend.views.job', [str(self.job_slug)])
     
     @permalink
     def edit_link(self):
