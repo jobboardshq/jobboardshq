@@ -11,7 +11,7 @@
 	{% for category in category_list %}
 		<tr>
 			<td>
-				<a href="{% url zobpress_category_jobs category %}">{{ category }}</a>
+				<a href="{% url zobpress_category_jobs category.slug %}">{{ category }}</a>
 			</td>
 			<td>
 				{{ category.job_set.count }} Jobs
