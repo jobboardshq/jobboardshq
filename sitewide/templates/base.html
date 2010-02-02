@@ -19,10 +19,13 @@
 
 {% block extracss %}{% endblock %}
 
+
 {% block script %}
-  <script type="text/javascript" src="/site_media/js/jquery.js"></script>
-  <script type="text/javascript" src="/site_media/js/ui.core.js"></script>
-  <script type="text/javascript" src="/site_media/js/json2.js"></script>
+{% compress js %}
+  <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.js"></script>
+  <script type="text/javascript" src="{{ MEDIA_URL }}js/ui.core.js"></script>
+  <script type="text/javascript" src="{{ MEDIA_URL }}js/json2.js"></script>
+{% endcompress %}
 {% endblock %}
 
 {% block extrascript %}{% endblock %}
