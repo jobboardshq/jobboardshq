@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
 <title>
 	{% block title %}	
-	Zobpress - Get your Job Board live with in minutes
+	Job Boards - Get your Job Board live with in minutes
 	{% endblock title %}
 </title> 
 
@@ -35,14 +35,14 @@
 			}, 'slow');
 		});
 	});
-</script> 
+</script>
 </head> 
 <body class="homepage"> 
 <div id="wrapper"> 
   <!--Header starts--> 
   {% block header %}
   <div id="header">
-  	<a href="{% url sitewide_index %}"><img src="{{ MEDIA_URL }}sitewide/images/zobpress_logo.png" alt="Zob Press Logo" width="243" height="25" /></a>
+  	<a href="{% url sitewide_index %}"><img src="{{ MEDIA_URL }}sitewide/images/jobboards_logo.gif" alt="Job Boards logo" width="304" height="66" /></a>
   {% endblock header %}
   </div> 
   <!--Header Ends--> 
@@ -63,7 +63,7 @@
     <div id="signup"><img src="{{ MEDIA_URL }}sitewide/images/title_homepage.png" alt="Create your Job Board" width="342" height="142" /> 
       <div  id="button"> 
         <ul id="menu"> 
-          <li><a href="{% url sitewide_register_board %}" class="home"><span></span></a></li> 
+          <li><a href="{% url sitewide_register_board %}" ><span></span></a></li> 
         </ul> 
       </div> 
     </div> 

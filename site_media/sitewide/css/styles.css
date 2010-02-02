@@ -15,10 +15,11 @@ h6{font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000
 
 p{font:12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; text-decoration:none; color:#1D1D1D; line-height:18px; margin:0px 0px 8px 0px;}
 p.aboutus{font:12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; text-decoration:none; color:#1D1D1D; line-height:18px; padding:0px 0px 15px 0px;}
-
+p.email{ padding-top:25px; padding-left:130px; color:#FFFFFF; text-align:left; }
+p.twitter{ padding-top:25px; padding-left:130px; color:#FFFFFF; text-align:left; }
 /*Wrapper*/
 #wrapper{width:100%;}
-#header{ margin:0px auto; width:960px; height:70px; padding:45px 0px 0px 00px;}
+#header{ margin:0px auto; width:960px; height:90px; padding:25px 0px 0px 00px;}
 
 /*Top navigation*/
 #top_navigation{ margin:0px auto; width:960px; height:47px; padding-top:1px;}
@@ -88,26 +89,18 @@ blockquote {font:12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; marg
 .speaker{font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000; text-decoration:none; line-height:18px; float:right;}
 
 #footer{ clear:both; width:100%; height:200px; background-color:#000000; margin-top:20px;}
-#footer #icons{ clear:both; margin:0px auto; width:800px; height:103px;  }
-#footer #email{ width:376px; height:98px; float:left; background:url(../images/email_bg.png) no-repeat; margin-top:5px;  }
-#footer #email p{ padding-top:25px; padding-left:130px; color:#FFFFFF;}
-
-#footer #twitter{ width:376px; height:98px; float:right; background:url(../images/twitter_bg.png) no-repeat; margin-top:5px;   }
-#footer #twitter p{ padding-top:25px; padding-left:130px; color:#FFFFFF;}
-
-
-#footerlinks{ width:100%; margin:0px auto; font:bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#FFFFFF; text-decoration:none; line-height:50px; border-bottom:1px solid #282828; text-align:center;}
-#footerlinks a{ color:#FFFFFF; text-decoration:none; line-height:50px; padding:0px 10px 0px 10px; }
-#footerlinks a:hover{  text-decoration:underline; line-height:50px; color:#CC0000;padding:0px 10px 0px 10px; }
-
-
+#footericons{ clear:both; margin:0px auto; width:800px; height:103px;  }
+#footericons #email{ width:376px; height:98px; float:left; background:url(../images/email_bg.png) no-repeat; margin-top:5px; line-height:20px; }
+#footericons #twitter{ width:376px; height:98px; float:right; background:url(../images/twitter_bg.png) no-repeat; margin-top:5px; line-height:20px;  }
+#footerlinks{ margin:0px auto; font:bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#FFFFFF; text-decoration:none;   text-align:center; padding-top:5px; padding-bottom:10px;  line-height:40px; }
+#footerlinks a{ color:#FFFFFF; text-decoration:none; line-height:40px; padding:5px 20px 10px 0px; }
+#footerlinks a:hover{  text-decoration:underline; color:#CC0000;padding:5px 20px 10px 0px; line-height:40px; }
 #copyrights{ width:100%; margin:0px auto; font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#FFFFFF; text-decoration:none; line-height:50px; border-top:1px solid #282828; text-align:center;}
+.onepixelborder{ border-bottom:1px solid #282828; height:1px;}
 
 .redlink{ color:#CC0000; text-decoration:none; }
 .redlink:hover{  text-decoration:underline; color:#FFFFFF; }
-
 .meroonlink{ color:#CC0000; text-decoration:none; }
 .meroonlink:hover{  text-decoration:underline; color:#000000; }
-
 
 .clear{clear:both;}
