@@ -45,7 +45,7 @@ p.aboutus{font:12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; text-d
 #nav-example-08 a:hover {background:url(../images/topnav.gif) -781px -47px no-repeat;}
 #nav-example-09 a:hover {background:url(../images/topnav.gif) -870px -47px no-repeat;}
 
-.home {background:url(../images/topnav.gif) 0px -47px no-repeat;}
+.homeselected {background:url(../images/topnav.gif) 0px -47px no-repeat;}
 .about {background:url(../images/topnav.gif) -70px -47px no-repeat;}
 .products {background:url(../images/topnav.gif) -123px -47px no-repeat;}
 .ambassadors {background:url(../images/topnav.gif) -191px -47px no-repeat;}
