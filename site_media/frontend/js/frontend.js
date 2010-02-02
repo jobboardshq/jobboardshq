@@ -6,3 +6,14 @@ search_handler = function(){
 }
 
 $(search_handler);
+
+rich_text_handler = function(){
+	try {
+		$(".richtext").wymeditor();
+		$(".rich_text").wymeditor();
+	
+	} catch (e) {
+	
+}
+}
+$(rich_text_handler);

@@ -11,7 +11,8 @@ from libs.fields import AutoSlugField
 from datetime import date, datetime, timedelta
 
 type_mapping = {
-                'CharField':(forms.CharField, dict(max_length = 100)), 'TextField': (forms.CharField, dict(widget = forms.Textarea)), 'BooleanField':(forms.BooleanField, dict(required = False)),
+                'CharField':(forms.CharField, dict(max_length = 100)), 'TextField': (forms.CharField, dict(widget = forms.Textarea)), 
+                'BooleanField':(forms.BooleanField, dict(required = False)), 'RTEField':(forms.CharField, dict(widget = forms.Textarea(attrs={"class":"rich_text"}))),
                 'URLField': (forms.URLField, dict()), 'EmailField': (forms.EmailField, dict()),
                 'CategoryField': (forms.ModelChoiceField, dict()), 'FileField':(forms.FileField, dict()), 
                 }

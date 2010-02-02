@@ -182,6 +182,7 @@ def settings(request):
         form = BoardSettingsForm(instance=request.board.settings)
     return render_to_response('zobpress/settings.html', {'form': form}, RequestContext(request))
 
+@ensure_has_board
 def indeed_jobs(request):
     q = request.GET.get('q', '')
     l = request.GET['l']
@@ -202,6 +203,7 @@ def create_job_form_advanced(request):
     payload = {"job_field_formset": job_field_formset(queryset = queryset)}
     return render_to_response("zobpress/create_job_form_advanced.html", payload, RequestContext(request))
 
+@ensure_has_board
 def list_subscriptions(request):
     "Shows and allows actions for the list of subscribed users."
     from emailsubs.models import EmailSubscription

@@ -62,7 +62,8 @@ def addjob(request):
 @ensure_has_board
 def job(request, job_slug):
     "Show a specific job."
-    job = get_object_or_404(Job, job_slug=job_slug)
+    board = request.board
+    job = get_object_or_404(Job, board = board, job_slug=job_slug)
     job.times_viewed += 1
     job.save()
     return render_to_response('frontend/job.html', {'job': job}, RequestContext(request))

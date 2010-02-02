@@ -1,5 +1,10 @@
 {% extends "frontend/base.html" %}
 
+{% block extrajs %}
+	<script type="text/javascript" src="{{ MEDIA_URL }}wymeditor/jquery.wymeditor.js"></script>
+{% endblock extrajs %}
+
+
 {% block content %}
 <form action="." method="POST" enctype="multipart/form-data">
   <fieldset>

@@ -25,8 +25,8 @@ class BoardSettingsForm(forms.ModelForm):
         exclude = ('board',)
         
 class JobStaticForm(forms.ModelForm):    
-    name = forms.CharField(widget = forms.TextInput(attrs={"class" : "textinput"}))
-    description = forms.CharField(widget = forms.Textarea(attrs={"class": "richtext"}))
+    name = forms.CharField(widget = forms.TextInput(attrs={"class" : "textinput",  "size":"50"},))
+    description = forms.CharField(widget = forms.Textarea(attrs={"class": "richtext", "cols" : 60, "rows":25}))
     job_type = forms.ModelChoiceField(queryset = JobType.objects.all(), widget=forms.RadioSelect, empty_label = None)
     category = forms.ModelChoiceField(queryset = Category.objects.all(), widget=forms.RadioSelect, empty_label = None)
     
