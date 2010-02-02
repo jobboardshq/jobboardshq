@@ -1,13 +1,14 @@
 DATABASE_ENGINE = 'mysql'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = 'zobpress_zp'             # Or path to database file if using sqlite3.
-DATABASE_USER = 'zobpress_zp'             # Not used with sqlite3.
-DATABASE_PASSWORD = 'f3a589d8'         # Not used with sqlite3.
+DATABASE_NAME = 'zobpress'             # Or path to database file if using sqlite3.
+DATABASE_USER = 'root'             # Not used with sqlite3.
+DATABASE_PASSWORD = 'shabda'         # Not used with sqlite3.
 DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
 DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = '/home/shabda/jobboard/site_media/'
+MEDIA_ROOT = '/home/shabda/uswaretech_zobpress/site_media/'
+
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -19,12 +20,15 @@ MEDIA_URL = '/site_media/'
 # Examples: "http://foo.com/media/", "/media/".
 ADMIN_MEDIA_PREFIX = '/media/'
 
-ROOT_URLCONF = 'jobboard.urls'
+ROOT_URLCONF = 'urls_main'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'e6v12%-+5u#zr1fz=)2jnn@+9&_7ay8%%&7@sjnf_bxb%z26m-'
 
 EMAIL_SENDER = 'admin@zobpress.com'
+
+import os
+SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -34,8 +38,10 @@ TEMPLATE_DIRS = (
 )
 
 WEBFACTION_DEBUG = False
-SESSION_COOKIE_DOMAIN = '.shabda.tld'
+EMAIL_HOST = "smtp.sendgrid.net"
+EMAIL_PORT = "25"
+EMAIL_HOST_USER = "shabda@uswaretech.com"
+EMAIL_HOST_PASSWORD = "081084"
 
 
 BASE_DOMAIN = 'shabda.tld'
-

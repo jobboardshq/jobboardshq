@@ -44,6 +44,8 @@ class RedirectOnInvalidSubdomain(object):
         if not request.subdomain:
             #No subdomain is set, can't do anything special.
             return
+        if request.subdomain in settings.UNALLOWED_SUBDOMAINS:
+            return 
         if (not request.board) and  (not registration_path in request.path) and (not settings.MEDIA_URL in request.path):
             "We do not know what this subdomain is about. ask for registering"
             return HttpResponseRedirect(registration_path)
