@@ -5,9 +5,10 @@
 
 
 {% block content %}
-		<h3>
+<div class="left_padding">
+		<h4>
 		    Details for {{job.name}}
-		</h3> in <a href="{% url frontend_job_type_jobs  job.job_type.slug %}">{{ job.job_type.name }}</a>
+		</h4> in <a href="{% url frontend_job_type_jobs  job.job_type.slug %}" class="redlink">{{ job.job_type.name }}</a>
 		<p>
 		    Added on {{job.created_on|date:"jS F Y"}}
 		</p>
@@ -33,8 +34,8 @@
 
 {% if job.is_editable %}
 <div class="edit">
-    <a href="{% url zobpress_edit_job job.id %}">Edit this Job</a>
+    <a href="{% url zobpress_edit_job job.id %}" class="blacklink">Edit this Job</a>
 </div>
 {% endif %}
-
+</div>
 {% endblock %}
