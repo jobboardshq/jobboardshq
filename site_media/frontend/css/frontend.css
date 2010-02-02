@@ -3,7 +3,16 @@
 body{ font-family:"trebuchet MS", Arial, Helvetica, sans-serif; }
 body.frontend{background:url(../images/header_frontend_bg.gif) repeat-x; font-family:"trebuchet MS", Arial, Helvetica, sans-serif; font-size:11px; line-height:18px;}
 
-#frontend_wrapper{width:100%; margin:0px auto; font-family:Verdana, Arial, Helvetica, sans-serif;}
+/*Headings*/
+h1{font:bold 18px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000; text-decoration:none; line-height:24px; letter-spacing:-1px; padding-bottom:8px;}
+h2{font:bold 16px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000; text-decoration:none; line-height:20px;}
+h3{font:bold 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000; text-decoration:none; line-height:18px;}
+h4{font:bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000; text-decoration:none; line-height:18px;}
+h5{font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000; text-decoration:none; line-height:18px;}
+h6{font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000; text-decoration:none; line-height:18px;}
+
+
+#frontend_wrapper{width:100%; margin:0px auto; font-family:"trebuchet MS",Verdana, Arial, Helvetica, sans-serif;}
 #header_frontend{ margin:0px auto; width:960px; height:90px; padding-top:25px;}
 #frontend_topnav{ margin:0px auto; width:960px; height:48px; text-align:right; font:bold 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;}
 #frontend_topnav a{  text-align:right; color:#FFFFFF; font:bold 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; line-height:48px; text-decoration:none; }
@@ -52,7 +61,7 @@ body.frontend{background:url(../images/header_frontend_bg.gif) repeat-x; font-fa
 #frontend_content #rightpanel .top{width:726px; background:url(../images/body_top.gif) no-repeat; height:14px; }
 #frontend_content #rightpanel .middle{width:726px; ;background:url(../images/body_middlebg.gif) repeat-y; }
 #frontend_content #rightpanel .bottom{width:726px;background:url(../images/body_bottom.gif) no-repeat; height:14px;}
-#frontend_content #rightpanel .title{ font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#A10000; text-decoration:none; padding:3px 0px 11px 0px;}
+#frontend_content #rightpanel .title{ font:bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#A10000; text-decoration:none; padding:3px 0px 11px 0px;}
 #frontend_content #rightpanel .border{ border-top:1px dashed #D9C6AC; height:1px;}
 .colorbg{background-color:#F9F5EF; font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;line-height:28px; color:#000000; text-decoration:none;}
 .whitebg{background-color:#FFFFFF; font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;line-height:28px; color:#000000; text-decoration:none;}
@@ -91,7 +100,10 @@ tr#release-notes td a {color: #333;}
 .top_padding{margin-top:10px;}
 .subscribebutton{ width:81px; height:28px; background-image:url(../images/submit_btn.png); background-repeat:no-repeat; border:0px; cursor:pointer;}
 
-.redlink{ font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#A10000; text-decoration:none;}
+.redtext{ font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#A10000; text-decoration:underline;}
+.redtext:hover{ font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#000000; text-decoration:underline;}
+
+.redlink{ font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#A10000; text-decoration:underline;}
 .redlink:hover{ font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#000000; text-decoration:underline;}
 
 .blacklink{ font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#000000; text-decoration:underline;}
@@ -100,8 +112,6 @@ tr#release-notes td a {color: #333;}
 .redbadge{ font:11px Tahoma, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none; background-color:#A10000; padding:1px 5px 1px 5px; color:#FFFFFF; }
 .redbadge:hover{ font:11px Tahoma, Arial, Helvetica, sans-serif;color:#FFFFFF; text-decoration:none; background-color:#000000; padding:1px 5px 1px 5px;}
 /* Post Job button fading effect */
-
-
 	/* Menu Body */
 	ul#menu {
 
