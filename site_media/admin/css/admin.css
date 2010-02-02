@@ -5,7 +5,7 @@ body{font:11px "trebuchet MS", Arial, Helvetica, sans-serif;  color:#191919; tex
 body.admin{font:11px "trebuchet MS", Arial, Helvetica, sans-serif;  color:#191919; text-decoration:none; line-height:18px; background:url(../images/admin_sitebg.jpg) repeat-x; background-color:#EFE8DE;}
 p{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; color:#191919; text-decoration:none;}
 p.admin{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; color:#191919; text-decoration:none;}
-a {font-size: 11px;	color: #000000;}
+a {	color: #000000;}
 a:link {text-decoration: none;}
 a:visited {text-decoration: none;color: #000000;}
 a:hover {text-decoration: underline;color: #A10000;}

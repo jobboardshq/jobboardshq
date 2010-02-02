@@ -7,4 +7,4 @@ from us, until you confirm.
 
 {{ site_root }}{% url emailsubs_confirm email_sub.id %}?key={{ email_sub.key }}
 
-- Team Zobpress
+- Team Job Boards HQ

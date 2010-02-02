@@ -1,7 +1,8 @@
 {% extends 'frontend/base.html' %}
 
 {% block content %}
-<h2>Search</h2>                                            
+<div class="left_padding">
+<h4>Search</h4>                                            
 <form method="get" action=".">                             
     <table>                                                
         {{ form.as_table }}                                
@@ -14,16 +15,21 @@
 
 <div id='search_results'>
 {% if page.object_list %}
-    <h2>Search Results for: {{ query }}</h2>
+    <h4>Search Results for: {{ query }}</h4>
     {% for result in page.object_list %}
         <div class='search_result_wrapper'>
-            <a href="{{ result.object.get_absolute_url }}">
+        <ul>
+        <li>
+            <a href="{{ result.object.get_absolute_url }}" class="blacklink">
             {{ result.object.name }}
             </a>
+            </li>
+            </ul>
         </div>
     {% empty %}
         <p>No results found.</p>
     {% endfor %}
 {% endif %}
+</div>
 </div>
 {% endblock content %}
