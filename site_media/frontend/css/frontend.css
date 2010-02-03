@@ -29,7 +29,8 @@ h6{font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000
 #frontend_searchbar .advancedsearch{width:176px; height:83px; float:left;}
 .searchlink{font: bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;line-height:83px; color:#A10000; text-decoration:none;}
 .searchlink:hover{font: bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;line-height:83px; color:#000000; text-decoration:underline;}
-#frontend_searchbar .postjob{width:234px; height:68px; float:right; padding-top:15px; position:relative;}
+#frontend_searchbar .postjob{width:234px; height:51px; float:right; margin-top:15px; position:relative; background:url(../images/post_job_buttonnew.png) no-repeat; cursor:pointer;}
+#frontend_searchbar .postjob:hover{width:234px; height:51px; float:right; margin-top:15px; position:relative; background:url(../images/post_job_buttonnew.png) no-repeat 0 -51px;}
 #frontend_content{width:960px; margin:0px auto; }
 #frontend_content #leftpanel{width:200px; float:left; margin:10px 0px 0px 0px;}
 /*categories comtainer*/
