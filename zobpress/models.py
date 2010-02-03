@@ -216,6 +216,7 @@ class Job(models.Model):
     paypal_token_sec = models.CharField(max_length = 100,  null = True, blank = True)#Token returned from set_express_checkout
     paypal_token_gec = models.CharField(max_length = 100,  null = True, blank = True)#Token returned from get_express_checkout
     
+    objects = models.Manager()
     public_objects = JobPublicManager()
     
     created_on = models.DateTimeField(auto_now_add = 1)
