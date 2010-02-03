@@ -2,18 +2,22 @@
 
 {% block toptab %}
 
-<h3>
-  Recently posted jobs.
-</h3>
+
 {% endblock %}
 
 {% block content %}
+<div class="admin_heading">Recently posted jobs.</div>
+<div class="admin_subheading1">
+  <p class="admin">These are the recently posted jobs. </p>
+</div>
+
   {% for job in jobs_list %}
     {% include 'zobpress/job_snippet_frag.html' %}
   {% endfor %}
 {% endblock %}
 
 {% block sidebar %}
+
 <h2>Sort</h2>
   
 <ul>

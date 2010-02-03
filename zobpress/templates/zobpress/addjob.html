@@ -7,12 +7,16 @@
 {% endblock %}
 
 {% block toptab %}
-<h3>
-    Enter Your details. Enter as much information as possible. Every one likes to know more, before they take a job!
-</h3>
+
+
 {% endblock %}
 
 {% block content %}
+<div class="admin_heading">Add New Job</div>
+<div class="admin_subheading1">
+  <p class="admin"> Enter Your details. Enter as much information as possible. Every one likes to know more, before they take a job! </p>
+</div>
+
 <div class="post">
 
 <br />
@@ -32,10 +36,10 @@
 			</tr>
 			{% endif %}
 			<tr>
-              <td width="200" align="left" valign="middle"> {{ field.label_tag }} :</td>
+              <td width="250" align="left" valign="middle"> {{ field.label_tag }} :</td>
 			  <td align="left" valign="top">
 			  	{{ field }}
-				{% if field.help_text %}<span class="help">{{ field.help_text }}</span>{% endif %}
+				{% if field.help_text %}<span class="help">{{ field.help_text }} :</span>{% endif %}
 			  </td>
             </tr>
 			
@@ -43,7 +47,7 @@
         {% for field in form %}
         <tr>
         <td width="200" align="left" valign="middle">
-        {{ field.label_tag }}
+        {{ field.label_tag }} :
         </td>
         <td align="left" valign="top">
         {% if field.errors %} <span class="error">
@@ -62,7 +66,7 @@
 		{% for field in job_contact_form %}
         <tr>
         <td width="200" align="left" valign="middle">
-        {{ field.label_tag }}
+        {{ field.label_tag }} :
         </td>
         <td align="left" valign="top">
         {% if field.errors %} <span class="error">
@@ -80,7 +84,7 @@
 		
             
         </table>
-        <input type="submit" value="submit" name="submit" class="button wymupdate"" />
+       <div align="center"><input type="submit" value="submit" name="submit" class="button wymupdate"" /></div>
         </div>        
        </form>
 

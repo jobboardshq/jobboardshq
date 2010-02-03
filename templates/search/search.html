@@ -14,7 +14,6 @@
 </form>                                               
 
 <div id='search_results'>
-{% if page.object_list %}
     <h4>Search Results for: {{ query }}</h4>
     {% for result in page.object_list %}
         <div class='search_result_wrapper'>
@@ -29,7 +28,6 @@
     {% empty %}
         <p>No results found.</p>
     {% endfor %}
-{% endif %}
 </div>
 </div>
 {% endblock content %}
