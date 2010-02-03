@@ -13,11 +13,14 @@ class EmailSubscription(models.Model):
     created_on = models.DateTimeField(default = datetime.datetime.now)
     is_active = models.BooleanField(default = True)
     
+    def __unicode__(self):
+        return self.board.name
+    
     class Meta:
         unique_together = (("board", "email"))
     
 class EmailSent(models.Model):
-    "Last time emails were sent out for a sepcific board"
+    "Last time emails were sent out for a specific board"
     board = models.ForeignKey(Board, unique = True)
     num_times_sent = models.PositiveIntegerField(default = 0)
     
@@ -25,4 +28,4 @@ class EmailSent(models.Model):
     updated_on =  models.DateTimeField(auto_now = 1)
     
     def __unicode__(self):
-        return self.board
+        return self.board.name

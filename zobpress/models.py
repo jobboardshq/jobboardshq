@@ -9,6 +9,7 @@ from django.template.defaultfilters import slugify
 from libs.fields import AutoSlugField
 
 from datetime import date, datetime, timedelta
+from django.core.urlresolvers import reverse
 
 type_mapping = {
                 'CharField':(forms.CharField, dict(max_length = 100)), 'TextField': (forms.CharField, dict(widget = forms.Textarea)), 
@@ -134,16 +135,19 @@ class JobType(models.Model):
     def __unicode__(self):
         return self.name
     
-    
+default_fields = [
+                      ("Location", "CharField", True, "Where is this job located?"),
+                      ("Approximate Budget", "CharField", False, "What is the approximate budget? Leave blank if you are not sure."),
+                      ("Company", "CharField", False, "What is name of the company offering this job. Leave blank if you would rather not disclose this."),
+                      ("Company Url", "CharField", False, "Url of the company. (Optional.)"),
+                ]    
 class JobFormModelManager(models.Manager):
     def create_default_form(self, board):
-        default_fields = [
-                      ("Description", "TextFieldRTE"),
-                      ("URL", "URLField"),
-                      ]
+        
         job_form_model, created = JobFormModel.objects.get_or_create(board = board)
-        for field_name, field_type in default_fields:
-            JobFieldModel.objects.get_or_create(job_form = job_form_model, name=field_name, type = field_type)
+        for field_name, field_type, required, help_text in default_fields:
+            JobFieldModel.objects.get_or_create(job_form = job_form_model, name=field_name, type = field_type,\
+                                                 required = required, help_text = help_text)
 #        
 #        job_form = JobFormModel(board = board)
 #        job_form.save()
@@ -167,6 +171,7 @@ class JobFieldModel(models.Model):
     name = models.CharField(max_length = 100)
     type = models.CharField(max_length = 100, choices= type_mapping_list)
     required = models.BooleanField(default = True)
+    help_text = models.TextField(max_length = 100, null = True, blank = True)
     order = models.IntegerField(default = 10)
     
     def __unicode__(self):
@@ -188,6 +193,13 @@ class JobPublicManager(models.Manager):
             return self.filter(created_on__gt = date.today() - timedelta(days = active_for))
         else:
             return self.all()
+
+class BoardSpecificEntitiesManager(models.Manager):
+    def get_query_set(self):
+        pass
+    
+class BoardSpecificEntities(models.Manager):
+    board = models.ForeignKey(Board)    
     
 class Job(models.Model):
     board = models.ForeignKey(Board)
@@ -204,7 +216,6 @@ class Job(models.Model):
     paypal_token_sec = models.CharField(max_length = 100,  null = True, blank = True)#Token returned from set_express_checkout
     paypal_token_gec = models.CharField(max_length = 100,  null = True, blank = True)#Token returned from get_express_checkout
     
-    objects = models.Manager()
     public_objects = JobPublicManager()
     
     created_on = models.DateTimeField(auto_now_add = 1)
@@ -289,16 +300,26 @@ class JobFile(models.Model):
     
 class Page(models.Model):
     job_board = models.ForeignKey(Board)
-    title = models.CharField(max_length=100)
-    page_slug = models.SlugField(max_length=100)
+    title = models.CharField(max_length=100, help_text="Title of the created page.")
+    page_slug = models.SlugField(max_length=100, unique = False, help_text="Slug to be used as url identifier.")
     content = models.TextField()
     
     def __unicode__(self):
         return self.title
     
+    def get_absolute_url(self):
+        return reverse("frontend_job_board_page", args =[self.page_slug])
+    
     def save(self, *args, **kwargs):
-        # TODO: validate the page_slug value
+        if not self.page_slug and not self.pk:
+            self.page_slug = slugify(self.title)
+            slug_count = Page.objects.filter(page_slug__icontains = self.page_slug, job_board=self.job_board).count()
+            if slug_count:
+                self.page_slug = self.page_slug +str(slug_count)
         super(Page, self).save(*args, **kwargs)
+        
+    class Meta:
+        unique_together = ("job_board", "page_slug")
         
 #Signals
 def populate_job_board_form_initial(sender, instance, created, **kwargs):
@@ -319,6 +340,12 @@ initial_job_types = [
                      ("Freelance", "freelance"),
                      ("Part time", "part-time"),
                      ]
+
+initial_pages = [
+                 ("Privacy Policy", "Update your privacy policy here."),
+                 ("Faqs", "Update your Faqs here."),
+                 ("Contact Us", "Update your contact us page here.")
+                 ]
     
 def populate_categories_initial(sender, instance, created, **kwargs):
     board = instance
@@ -332,12 +359,23 @@ def populate_job_types_initial(sender, instance, created, **kwargs):
         for job_type, slug in initial_job_types:
             JobType.objects.create(board = board, slug=slug, name = job_type)
         
+        
+def populate_pages_initial(sender, instance, created, **kwargs):
+    "Populate the pages when the board is first created"
+    board = instance      
+    if created:
+        for title, content in initial_pages:
+            Page.objects.create(job_board = board, title = title, content = content)
+          
+    
 
     
 from django.db.models.signals import post_save
 
+#Populate the database with initial things.
 post_save.connect(populate_job_board_form_initial, sender = Board)
 post_save.connect(populate_categories_initial, sender = Board)
 post_save.connect(populate_job_types_initial, sender = Board)
+post_save.connect(populate_pages_initial, sender = Board)
     
     

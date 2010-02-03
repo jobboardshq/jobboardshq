@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 
 from libs import paypal
 from zobpress.decorators import ensure_has_board
-from zobpress.models import Job, BoardPayments
+from zobpress.models import Job, BoardPayments, Page
 from zobpress.forms import JobStaticForm, JobContactForm, get_job_form
 
 from haystack.views import SearchView
@@ -20,7 +20,7 @@ def index(request, category_slug = None, job_type_slug = None):
     if category_slug:
         jobs = jobs.filter(category__slug = category_slug)
     if job_type_slug:
-        jobs = jobs.filter(job_type__slug = category_slug)
+        jobs = jobs.filter(job_type__slug = job_type_slug)
     return render_to_response("frontend/index.html", {"category":category, "pages": pages, "jobs": jobs}, RequestContext(request))
 
 @ensure_has_board
@@ -85,10 +85,13 @@ class BoardSearch(SearchView):
         return self.create_response()
     
 search = ensure_has_board(BoardSearch(form_class = SearchForm))
-        
-        
-    
 
+@ensure_has_board
+def job_board_pages(request, page_slug):
+    "Show a page for a Board"
+    board = request.board
+    page = get_object_or_404(Page, job_board=board, page_slug=page_slug)
+    return render_to_response('frontend/static_pages.html', {'page': page}, RequestContext(request))
 
 @ensure_has_board
 def job_paypal(request, id):

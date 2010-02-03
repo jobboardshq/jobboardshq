@@ -21,13 +21,7 @@ urlpatterns = patterns('',
     #(r'^search/', include('haystack.urls')),
 )
 
-urlpatterns += patterns('zobpress.views',
-    url(r'^pages/(?P<page_slug>.*)/$', 'job_board_pages', name='zobpress_job_board_page'),
-    # url(r'^edit/(?P<page_slug>.*)/$', 'edit_pages', name='zobpress_edit_page'),
-    url(r'^create-page/$', 'create_page', name='zobpress_create_page'),
-    url(r'^settings/$', 'settings', name='zobpress_settings'),
-    url(r'^indeed-jobs/$', 'indeed_jobs', name='zobpress_indeed_jobs'),
-)
+
 
 if settings.DEBUG:
     urlpatterns += patterns('',

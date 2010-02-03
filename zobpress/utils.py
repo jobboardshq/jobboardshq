@@ -6,6 +6,7 @@ type_template_mapping = {
                 'TextField': "zobpress/editable_textfield_frag.html", 
                 'BooleanField':"zobpress/editable_checkbox_frag.html",
                 'FileField':"zobpress/editable_filefield_frag.html",
+                'RTEField':"zobpress/editable_textfield_frag.html",
                 }
 
 def create_inital_form(board):

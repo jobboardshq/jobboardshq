@@ -16,6 +16,8 @@ urlpatterns = patterns('frontend.views',
         url(r'^job/(?P<id>\d+)/paypal/$', 'job_paypal', name='frontend_job_paypal'),
         url(r'^job/(?P<id>\d+)/paypal/approved/$', 'job_paypal_approved', name='frontend_job_paypal_appr'),
         
+        url(r'^pages/(?P<page_slug>.*)/$', 'job_board_pages', name='frontend_job_board_page'),
+        
         url(r'^search/$', "search", name='frontend_search'),
            
         )

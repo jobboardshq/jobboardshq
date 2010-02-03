@@ -44,6 +44,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.transaction.TransactionMiddleware',
     'pagination.middleware.PaginationMiddleware',
     'zobpress.middleware.GetSubdomainMiddleware',
+    'zobpress.middleware.ThreadLocals',
     'zobpress.middleware.RedirectOnInvalidSubdomain',
     
 )

@@ -33,6 +33,9 @@ class JobStaticForm(forms.ModelForm):
     def __init__(self, board, *args, **kwargs):
         super(JobStaticForm, self).__init__(*args, **kwargs)
         self.board = board
+        self.fields["job_type"].queryset = JobType.objects.filter(board = self.board)
+        self.fields["category"].queryset = Category.objects.filter(board = self.board)
+        
         
     def save(self, *args, **kwargs):
         job = super(JobStaticForm, self).save(commit = False)

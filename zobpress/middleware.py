@@ -50,4 +50,20 @@ class RedirectOnInvalidSubdomain(object):
             "We do not know what this subdomain is about. ask for registering"
             return HttpResponseRedirect(registration_path)
 
+# threadlocals middleware
+try:
+    from threading import local
+except ImportError:
+    from django.utils._threading_local import local
+
+_thread_locals = local()
+def get_current_board():
+    return getattr(_thread_locals, 'board', None)
+
+class ThreadLocals(object):
+    """Middleware that gets various objects from the
+    request object and saves them in thread local storage."""
+    def process_request(self, request):
+        _thread_locals.board = getattr(request, 'board', None)
+
             

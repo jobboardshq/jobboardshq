@@ -150,26 +150,6 @@ def feeds_jobs(request):
         feed.add_item(title = job.name, link = job.get_absolute_url(), description=job.as_snippet())
     return HttpResponse(feed.writeString('UTF-8'))
 
-@ensure_has_board
-def job_board_pages(request, page_slug):
-    "Show a page for a Board"
-    board = request.board
-    page = get_object_or_404(Page, job_board=board, page_slug=page_slug)
-    return render_to_response('zobpress/static_pages.html', {'page': page}, RequestContext(request))
-
-@ensure_has_board
-def create_page(request):
-    "Create a page for the board."
-    if request.method == 'POST':
-        form = PageForm(request.POST)
-        if form.is_valid():
-            page = form.save(commit=False)
-            page.job_board = request.board
-            page.save()
-            return HttpResponseRedirect('/pages/%s/' %(form.cleaned_data['page_slug']))
-    else:
-        form = PageForm()
-    return render_to_response('zobpress/create_page.html', {'form': form}, RequestContext(request))
 
 @ensure_has_board
 def settings(request):
@@ -211,6 +191,36 @@ def list_subscriptions(request):
     subscriptions = EmailSubscription.objects.all()
     payload = {"subscriptions": subscriptions}
     return render_to_response("zobpress/list_subscriptions.html", payload, RequestContext(request))
+
+@ensure_has_board
+def edit_page(request, page_slug):
+    page = get_object_or_404(Page, page_slug = page_slug)
+    form = PageForm(instance = page)
+    if request.method == 'POST':
+        form = PageForm(data = request.POST, instance = page)
+        if form.is_valid():
+            form.save()
+            request.user.message_set.create(message = "Page %s has been edited." % page.title)
+            return HttpResponseRedirect(reverse("zobpress_job_board_page", args =[page.page_slug]))
+    payload = {"form": form}
+    return render_to_response("zobpress/edit_page.html", payload, RequestContext(request))
+    
+@ensure_has_board
+def create_page(request):
+    "Create a page for the board."
+    if request.method == 'POST':
+        form = PageForm(request.POST)
+        if form.is_valid():
+            page = form.save(commit=False)
+            page.job_board = request.board
+            page.save()
+            request.user.message_set.create(message = "Page %s has been created." % page.title)
+            return HttpResponseRedirect(reverse("zobpress_job_board_page", args =[page.page_slug]))
+    else:
+        form = PageForm()
+    return render_to_response('zobpress/create_page.html', {'form': form}, RequestContext(request))
+    
+    
     
 
     
