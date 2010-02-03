@@ -6,19 +6,19 @@
   <p class="admin">Here is the list of subscribed users. </p>
 </div>
 	
-	<table>
-		<tr>
-				<th>Email</th>
-				<th>Created</th>
-				<th>Active?</th>
-			</th>
+	<table width="500">
+<tr>
+				<td class="meroontext"  width="200">Email</td>
+				<td width="150" align="center" class="meroontext">Created</td>
+				<td width="150" align="center" class="meroontext">Active?</td>
+			</td>
 		</tr>
 	{% for subscription in subscriptions %}
 		<tr>
-			<td>{{ subscription.email }}</td>
-			<td>{{ subscription.created_on|date }}</td>
-			<td>{{ subscription.is_active|yesno }}</td>
-		</tr>
+			<td width="200">{{ subscription.email }}</td>
+		  <td width="150" align="center">{{ subscription.created_on|date }}</td>
+		  <td width="150" align="center">{{ subscription.is_active|yesno }}</td>
+	  </tr>
 	{% endfor %}
 	</table>
 

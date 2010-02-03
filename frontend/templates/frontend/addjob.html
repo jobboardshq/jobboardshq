@@ -1,28 +1,35 @@
 {% extends "frontend/base.html" %}
 
 {% block extrajs %}
-	<script type="text/javascript" src="{{ MEDIA_URL }}wymeditor/jquery.wymeditor.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}wymeditor/jquery.wymeditor.js"></script>
 {% endblock extrajs %}
 
 
 {% block content %}
-<form action="." method="POST" enctype="multipart/form-data">
+<div class="frontend_heading">Add New Job</div>
+<div class="frontend_subheading1">
+  <p class="frontend"> Enter Your details. Enter as much information as possible. Every one likes to know more, before they take a job! </p>
+</div>
+<div class="frontend_content">
   <fieldset>
-  <table>
+  <table class="leftalign">
     {{ job_static_form.as_table }}
   </table>
   </fieldset>
   <fieldset>
-  <table>
+  <table class="leftalign">
     {{ job_form }}
   </table>
   </fieldset>
   <fieldset>
-  <table>
+  <table class="leftalign">
     {{ job_contact_form }}
   </table>
   </fieldset>
   </fieldset>
-  <input type="submit" name="create-job" value="submit"  class="wymupdate" />
-</form>
+  <div align="center" style="padding-top:10px;">
+    <input type="submit" name="create-job" value="submit"  class="wymupdate" />
+    </form>
+  </div>
+</div>
 {% endblock %}
