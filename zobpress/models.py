@@ -74,7 +74,6 @@ class BoardSettings(models.Model):
     tag_line = models.CharField(max_length = 250, null=True, blank=True)
     template = models.CharField(max_length = 100, default='default')
     
-    
 class BoardPayPal(models.Model):
     board = models.OneToOneField(Board, primary_key = True)
     paypal_token_sec = models.CharField(null = True, blank = True, max_length = 100)

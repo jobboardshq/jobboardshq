@@ -87,7 +87,7 @@ def jobs(request):
 @ensure_has_board
 def edit_job(request, id):
     "Edit job with given id."
-    job = get_object_or_404(Job, id = id)
+    job = get_object_or_404(Job, board=request.board, id = id)
     job_static_form = JobStaticForm(board = request.board, instance = job)
     JobForm = get_job_form(request.board, job = job)
     if request.method == 'POST':
@@ -96,7 +96,7 @@ def edit_job(request, id):
             job = form.save()
             return HttpResponseRedirect(job.get_absolute_url())
     elif request.method == 'GET':
-        job = models.Job.objects.get(id = id)
+        job = models.Job.objects.get(board = request.board, id = id)
         form = JobForm()
     payload = {'form': form, "job_static_form": job_static_form}
     return render_to_response('zobpress/editjob.html', payload, RequestContext(request))
@@ -104,7 +104,7 @@ def edit_job(request, id):
 @ensure_has_board
 def category_jobs(request, category_slug):
     "Show jobs from a specific category."
-    category = get_object_or_404(Category, slug = category_slug)
+    category = get_object_or_404(Category, board = request.board, slug = category_slug)
     jobs = Job.objects.filter(category = category)
     return object_list(request, queryset = jobs, template_name = 'zobpress/category_job_list.html', template_object_name = 'job')
 
@@ -123,8 +123,9 @@ def categories(request):
     return object_list(request, queryset = categories, template_name = 'zobpress/categories.html', template_object_name = 'category', extra_context = extra)
         
 
+@ensure_has_board
 def edit_category(request, category_pk):
-    category = get_object_or_404(Category, pk = category_pk)
+    category = get_object_or_404(Category, board = request.board, pk = category_pk)
     form = CategoryForm(instance = category)
     if request.method == "POST":
         form = CategoryForm(instance = category, data = request.POST)
