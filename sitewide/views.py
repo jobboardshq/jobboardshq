@@ -1,17 +1,17 @@
-from django.http import HttpResponse, HttpResponseRedirect, Http404, HttpResponseForbidden
-from django.views.generic.list_detail import object_list, object_detail
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.core.urlresolvers import reverse
-
-from emailsubs.models import EmailSent
-from sitewide.forms import NewBoardForms
+from sitewide.forms import NewBoardForms, ContactUsForm
 
 from registration.views import register
 
 def index(request):
     payload = {}
     return render_to_response('sitewide/index.html', payload, RequestContext(request))
+
+def contact(request):
+    form = ContactUsForm()
+    payload = {"form": form}
+    return render_to_response('sitewide/contact.html', payload, RequestContext(request))
 
 def register_board(request):
     "This wrapper around the register view"

@@ -1,5 +1,9 @@
 {% extends "zobpress-admin/base.html" %}
 
+{% block extra_script %}
+<script type="text/javascript" src="{{ MEDIA_URL }}admin/js/categories.js"></script>
+{% endblock extra_script %}
+
 {% block content %}
 <div class="admin_heading">Add New Category</div>
 <div class="admin_subheading1">
@@ -21,11 +25,11 @@
 
 <table width="300">
   {% for category in category_list %}
-  <tr>
+  <tr id="category_{{ category.pk }}">
     <td width="190"><a href="{% url zobpress_category_jobs category.slug %}" class="redtext">{{ category }}:</a> </td>
     <td width="70"> {{ category.job_set.count }} Jobs </td>
     <td width="70" align="center"><a href="{{ category.edit_url }}"  class="blacklink"> Edit </a> </td>
-    <td width="70" align="center"><a href="{{ category.delete_url }}" class="blacklink"> Delete </a> </td>
+    <td width="70" align="center"><a href="{% url zobpress_delete_category category.pk  %}" class="blacklink delete_link"> Delete </a> </td>
   <tr/>
   {% empty %}
   <p>Please add a category</p>

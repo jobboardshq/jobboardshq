@@ -15,7 +15,7 @@ class PageForm(forms.ModelForm):
     
     class Meta:
         model = Page
-        exclude = ('job_board',)
+        exclude = ('board',)
     
     
 class BoardSettingsForm(forms.ModelForm):

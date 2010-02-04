@@ -1,4 +1,4 @@
-from zobpress.models import Board, BoardPayments
+from zobpress.models import Board, BoardPayments, DeletedEntities
 from zobpress.models import JobFormModel, JobFieldModel, Category, Job, JobData, JobType
 
 from django.contrib import admin
@@ -23,3 +23,4 @@ admin.site.register(Job)
 admin.site.register(JobData)
 admin.site.register(BoardPayments)
 admin.site.register(JobType)
+admin.site.register(DeletedEntities)

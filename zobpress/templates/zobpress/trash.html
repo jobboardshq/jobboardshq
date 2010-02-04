@@ -1,0 +1,19 @@
+{% extends "zobpress-admin/base.html" %}
+
+
+{% block content %}
+	<table>
+	{% for entity in deleted %}
+		<tr>
+			<td>{{ entity.get_content_object }}</td>
+			<td>
+				<form action="{% url zobpress_untrash entity.pk %}" method="post">
+					<input type="submit" value="Undelete" />
+				</action>	
+			</td>
+		</tr>
+		
+	{% endfor %}
+	</table>
+	
+{% endblock %}	

@@ -24,3 +24,24 @@ class NewBoardForms(RegistrationForm):
         user = super(NewBoardForms, self).save(*args, **kwargs)
         return Board.objects.register_new_board(subdomain = self.cleaned_data['subdomain'], name=self.cleaned_data['name'], description= self.cleaned_data['description'], user = user)
         
+        
+from sitewide.models import ContactedPeople
+
+from django import forms
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+
+class ContactUsForm(forms.ModelForm):
+    def save(self, *args, **kwargs):
+        super(ContactUsForm, self).save(*args, **kwargs)
+        #Email now.
+        subject = render_to_string("frontend/emails/contact_subject.txt")
+        message = render_to_string("frontend/emails/contact_message.txt")
+#        from_email = 
+#        send_mail(subject, message, from_email, recipient_list, fail_silently)
+        
+    
+    class Meta:
+        model = ContactedPeople
+        
+ 

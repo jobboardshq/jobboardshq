@@ -30,4 +30,4 @@ def strip(s):
 
 @register.filter
 def get_job_board_pages(board):
-    return Page.objects.filter(job_board = board)
+    return Page.objects.filter(board = board)

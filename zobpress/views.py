@@ -10,7 +10,8 @@ from django.contrib.auth.decorators import login_required
 from StringIO import StringIO
 
 from zobpress import models
-from zobpress.models import type_mapping, JobFormModel, JobFieldModel, Job, BoardPayments
+from zobpress.models import type_mapping, JobFormModel, JobFieldModel, Job, BoardPayments,\
+    JobType, DeletedEntities
 from zobpress.models import Category, Job, Page
 from zobpress.forms import get_job_form, JobStaticForm, PageForm, BoardSettingsForm, IndeedSearchForm, CategoryForm,\
     JobFieldEditForm, JobContactForm
@@ -64,7 +65,7 @@ def jobs(request):
     if order_by == 'created_on': order_by = '-created_on'
     if not order_by in ('name', 'created_on'):
         order_by = '-created_on'
-    qs = models.Job.objects.filter(is_active = True).order_by(order_by)
+    qs = models.Job.objects.filter().order_by(order_by)
     return object_list(request, template_name = 'zobpress/jobs.html', queryset = qs, template_object_name = 'jobs', paginate_by=10, extra_context={})
 #
 #@ensure_has_board
@@ -104,7 +105,10 @@ def edit_job(request, id):
 @ensure_has_board
 def category_jobs(request, category_slug):
     "Show jobs from a specific category."
+    import ipdb
+    ipdb.set_trace()
     category = get_object_or_404(Category, board = request.board, slug = category_slug)
+    
     jobs = Job.objects.filter(category = category)
     return object_list(request, queryset = jobs, template_name = 'zobpress/category_job_list.html', template_object_name = 'job')
 
@@ -190,6 +194,10 @@ def list_subscriptions(request):
     from emailsubs.models import EmailSubscription
     subscriptions = EmailSubscription.objects.all()
     payload = {"subscriptions": subscriptions}
+    if request.method ==  "POST":
+        pass
+        
+        
     return render_to_response("zobpress/list_subscriptions.html", payload, RequestContext(request))
 
 @ensure_has_board
@@ -212,13 +220,53 @@ def create_page(request):
         form = PageForm(request.POST)
         if form.is_valid():
             page = form.save(commit=False)
-            page.job_board = request.board
+            page.board = request.board
             page.save()
             request.user.message_set.create(message = "Page %s has been created." % page.title)
             return HttpResponseRedirect(reverse("zobpress_job_board_page", args =[page.page_slug]))
     else:
         form = PageForm()
     return render_to_response('zobpress/create_page.html', {'form': form}, RequestContext(request))
+
+def trash(request):
+    deleted = DeletedEntities.objects.all()
+    deleted_objects =  [el.get_content_object() for el in deleted]
+    payload = {"deleted": deleted, "deleted_objects":deleted_objects}
+    return render_to_response('zobpress/trash.html', payload, RequestContext(request))
+
+def untrash(request, pk):
+    if request.method == "POST":
+        deleted_object = DeletedEntities.objects.get(pk = pk)
+        obj =  deleted_object.get_content_object()
+        obj.is_deleted = False
+        obj.save()
+        deleted_object.delete()
+        request.user.message_set.create(message = "You have undeleted %s." % obj)
+        return HttpResponseRedirect(reverse("zobpress_trash"))
+        
+
+
+######Ajax views############
+
+def delete_job(request, job_id):
+    job = get_object_or_404(Job, pk = job_id)
+    job.delete()
+    payload = {"name": job.name, "pk": job.pk}
+    return HttpResponse(simplejson.dumps(payload))
+
+def delete_category(request, category_id):
+    category = get_object_or_404(Category, pk = category_id)
+    category.delete()
+    payload = {"name": category.name, "pk": category.pk}
+    return HttpResponse(simplejson.dumps(payload))
+    
+def delete_job_type(request, job_id):
+    job_type = get_object_or_404(JobType, pk = job_id)
+    job_type.delete()
+    payload = {"name": job_type.name, "pk": job_type.pk}
+    return HttpResponse(simplejson.dumps(payload))
+
+
     
     
     

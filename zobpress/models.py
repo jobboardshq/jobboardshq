@@ -4,8 +4,10 @@ from django import forms
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
-
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes import generic
 from django.template.defaultfilters import slugify
+
 from libs.fields import AutoSlugField
 
 from datetime import date, datetime, timedelta
@@ -66,6 +68,51 @@ class Board(models.Model):
         # create settings
         super(Board, self).save(*args, **kwargs)
         BoardSettings.objects.get_or_create(board=self)
+        
+from zobpress.middleware import get_current_board
+
+class BoardSpecificEntitiesManager(models.Manager):
+    def get_query_set(self, *args, **kwargs):
+        board = get_current_board()
+        qs = super(BoardSpecificEntitiesManager, self).get_query_set( *args, **kwargs)
+        if board:
+            qs =  qs.filter(board = board)
+        field_names = [field.name for field in self.model._meta.fields]
+        if "is_deleted" in field_names:
+            qs = qs.filter(is_deleted = False)
+        return qs
+    
+    
+    
+class BoardSpecificEntities(models.Model):
+    board = models.ForeignKey(Board)
+    
+    objects = BoardSpecificEntitiesManager()
+    
+    def save(self, *args, **kwargs):
+        if not self.board:
+            self.board = get_current_board()
+        super(BoardSpecificEntities, self).save(*args, **kwargs)
+    
+    class Meta:
+        abstract = True
+        
+class DeletedEntities(models.Model):
+    board = models.ForeignKey(Board)
+    deleted_on = models.DateTimeField(default = datetime.now)
+    
+    object_id = models.PositiveIntegerField()
+    content_type = models.ForeignKey(ContentType)
+    
+    content_object = generic.GenericForeignKey()
+    
+    def get_content_object(self):
+        klass = self.content_type.model_class()
+        try:
+            return klass.all_objects.get(pk = self.object_id)
+        except klass.DoesNotExist:
+            pass
+        
     
 class BoardSettings(models.Model):
     board = models.OneToOneField(Board, related_name='settings')
@@ -105,11 +152,16 @@ class BoardPayments(models.Model):
     
     objects = BoardPaymentsManager()
     
-class Category(models.Model):
+class Category(BoardSpecificEntities):
     "Categories for a specific board"
-    board = models.ForeignKey(Board)
+    
+    #board = models.ForeignKey(Board)
     name = models.CharField(max_length = 100)
     slug = models.SlugField(max_length = 100)
+    is_deleted = models.BooleanField(default = False)
+    
+    all_objects = models.Manager()
+    objects = BoardSpecificEntitiesManager()
     
     @models.permalink
     def get_absolute_url(self):
@@ -123,14 +175,23 @@ class Category(models.Model):
     def edit_url(self):
         return('zobpress.views.edit_category', [self.pk])
     
+    def delete(self):
+        "Never delete"
+        model_delete(self)
+    
     
     def __unicode__(self):
         return self.name
     
-class JobType(models.Model):
-    board = models.ForeignKey(Board)
+class JobType(BoardSpecificEntities):
+    #board = models.ForeignKey(Board)
     name = models.CharField(max_length = 100)
     slug = AutoSlugField(max_length = 100, populate_from = "name")
+    is_deleted = models.BooleanField(default = False)
+    
+    def delete(self):
+        "Never delete"
+        model_delete(self)
     
     def __unicode__(self):
         return self.name
@@ -140,7 +201,8 @@ default_fields = [
                       ("Approximate Budget", "CharField", False, "What is the approximate budget? Leave blank if you are not sure."),
                       ("Company", "CharField", False, "What is name of the company offering this job. Leave blank if you would rather not disclose this."),
                       ("Company Url", "CharField", False, "Url of the company. (Optional.)"),
-                ]    
+                ]  
+  
 class JobFormModelManager(models.Manager):
     def create_default_form(self, board):
         
@@ -182,7 +244,8 @@ class JobFieldModel(models.Model):
         unique_together = (('job_form', 'name'), )
         ordering = ('-order', )
 
-class JobPublicManager(models.Manager):
+    
+class JobPublicManager(BoardSpecificEntitiesManager):
     def get_query_set(self):
         return super(JobPublicManager, self).get_query_set().filter(is_active = True)
         
@@ -192,17 +255,10 @@ class JobPublicManager(models.Manager):
         if active_for:
             return self.filter(created_on__gt = date.today() - timedelta(days = active_for))
         else:
-            return self.all()
-
-class BoardSpecificEntitiesManager(models.Manager):
-    def get_query_set(self):
-        pass
+            return self.all()    
     
-class BoardSpecificEntities(models.Manager):
-    board = models.ForeignKey(Board)    
-    
-class Job(models.Model):
-    board = models.ForeignKey(Board)
+class Job(BoardSpecificEntities):
+    #board = models.ForeignKey(Board)
     name = models.CharField(max_length = 100, null=True, blank=True)
     category = models.ForeignKey(Category, null = True, blank = True)
     description = models.TextField()
@@ -216,7 +272,10 @@ class Job(models.Model):
     paypal_token_sec = models.CharField(max_length = 100,  null = True, blank = True)#Token returned from set_express_checkout
     paypal_token_gec = models.CharField(max_length = 100,  null = True, blank = True)#Token returned from get_express_checkout
     
-    objects = models.Manager()
+    is_deleted = models.BooleanField(default = False)
+    
+    all_objects = models.Manager()
+    objects = BoardSpecificEntitiesManager()
     public_objects = JobPublicManager()
     
     created_on = models.DateTimeField(auto_now_add = 1)
@@ -224,6 +283,10 @@ class Job(models.Model):
     
     def __unicode__(self):
         return self.name or ''
+    
+    def delete(self):
+        model_delete(self)
+    
     
     def as_snippet(self):
         "Get the current job as a snippet."
@@ -264,6 +327,7 @@ class Job(models.Model):
         super(Job, self).save(*args, **kwargs)
         
 class JobContactDetail(models.Model):
+    job = models.ForeignKey(Job)
     name = models.CharField(max_length = 200)
     email = models.EmailField()
     website = models.URLField()
@@ -299,8 +363,8 @@ class JobFile(models.Model):
     def get_absolute_url(self):
         return settings.MEDIA_URL + self.public_path
     
-class Page(models.Model):
-    job_board = models.ForeignKey(Board)
+class Page(BoardSpecificEntities):
+    #job_board = models.ForeignKey(Board)
     title = models.CharField(max_length=100, help_text="Title of the created page.")
     page_slug = models.SlugField(max_length=100, unique = False, help_text="Slug to be used as url identifier.")
     content = models.TextField()
@@ -314,13 +378,13 @@ class Page(models.Model):
     def save(self, *args, **kwargs):
         if not self.page_slug and not self.pk:
             self.page_slug = slugify(self.title)
-            slug_count = Page.objects.filter(page_slug__icontains = self.page_slug, job_board=self.job_board).count()
+            slug_count = Page.objects.filter(page_slug__icontains = self.page_slug, board=self.board).count()
             if slug_count:
                 self.page_slug = self.page_slug +str(slug_count)
         super(Page, self).save(*args, **kwargs)
         
     class Meta:
-        unique_together = ("job_board", "page_slug")
+        unique_together = ("board", "page_slug")
         
 #Signals
 def populate_job_board_form_initial(sender, instance, created, **kwargs):
@@ -366,9 +430,17 @@ def populate_pages_initial(sender, instance, created, **kwargs):
     board = instance      
     if created:
         for title, content in initial_pages:
-            Page.objects.create(job_board = board, title = title, content = content)
+            Page.objects.create(board = board, title = title, content = content)
           
     
+def model_delete(model_obj):
+        "Never delete"
+        d = DeletedEntities()
+        d.content_object = model_obj
+        d.board = model_obj.board
+        d.save()
+        model_obj.is_deleted = True
+        model_obj.save()
 
     
 from django.db.models.signals import post_save

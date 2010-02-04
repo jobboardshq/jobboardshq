@@ -3,14 +3,20 @@
 {% block toptab %}
 
 
+
+
 {% endblock %}
+
+{% block extrascript %}
+<script type="text/javascript" src="{{ MEDIA_URL }}admin/js/jobs.js"></script>
+{% endblock extrascript %}
+
 
 {% block content %}
 <div class="admin_heading">Recently posted jobs.</div>
 <div class="admin_subheading1">
   <p class="admin">These are the recently posted jobs. </p>
 </div>
-
   {% for job in jobs_list %}
     {% include 'zobpress/job_snippet_frag.html' %}
   {% endfor %}

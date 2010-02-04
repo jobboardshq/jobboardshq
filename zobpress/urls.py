@@ -17,6 +17,9 @@ urlpatterns = patterns('zobpress.views',
     url(r'^about/$', direct_to_template, {'template':'jobs/about.html'}, name='zobpress_about'),
     url(r'^create-page/$', 'create_page', name='zobpress_create_page'),
     url(r'^subscriptions/$', 'list_subscriptions', name='zobpress_list_subscriptions'),
+    url(r'^trash/$', 'trash', name='zobpress_trash'),
+    url(r'^untrash/(?P<pk>\d+)/$', 'untrash', name='zobpress_untrash'),
+    
     
     
     #Categories
@@ -28,6 +31,12 @@ urlpatterns = patterns('zobpress.views',
     
     
 )
+
+urlpatterns += patterns('zobpress.views',
+        url(r'^ajax/delete/(?P<job_id>\d+)/$', 'delete_job', name='zobpress_delete_job'),
+        url(r'^ajax/category-delete/(?P<category_id>\d+)/$', 'delete_category', name='zobpress_delete_category'),
+        url(r'^ajax/type-delete/(?P<job_type_id>\d+)/$', 'delete_category', name='zobpress_delete_job_type'),
+)                        
 
 urlpatterns += patterns('zobpress.views',
     
