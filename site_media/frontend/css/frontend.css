@@ -110,6 +110,8 @@ tr#release-notes td a {color: #333;}
 .blacklink{ font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#000000; text-decoration:underline;}
 .blacklink:hover{ font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#A10000; text-decoration:underline;}
 
+.blackboldtext{ font:bold 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none;}
+
 .redbadge{ font:11px Tahoma, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none; background-color:#A10000; padding:1px 5px 1px 5px; color:#FFFFFF; }
 .redbadge:hover{ font:11px Tahoma, Arial, Helvetica, sans-serif;color:#FFFFFF; text-decoration:none; background-color:#000000; padding:1px 5px 1px 5px;}
 .left_padding{padding-left:20px;}
