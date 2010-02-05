@@ -52,11 +52,11 @@
 <ul class="vert-one">
 <li><a href="{% url zobpress_jobs %}" title="All Jobs" {% ifequal current_url '/manage/jobs/' %} class="current" {% endifequal %}>Jobs</a></li>
 <li><a href="{% url zobpress_add_job %}" title="Add New Job" {% ifequal current_url '/manage/addjob/' %} class="current" {% endifequal %}>Add New Job </a></li>
-<li><a href="{% url zobpress_categories %}" title="Add New Category" {% ifequal current_url '/manage/newcategory' %} class="current" {% endifequal %}>Categories</a></li>
-<li><a href="{% url manage_create_job_form %}" title="Create Job Form" {% ifequal current_url '/manage/jobform' %} class="current" {% endifequal %}>Create Job Form </a></li>
-<li><a href="{% url zobpress_list_subscriptions %}" title="See current subscriptions" {% ifequal current_url '/subscriptions' %} class="current" {% endifequal %}>See current subscriptions</a></li>
-<li><a href="{% url zobpress_settings %}" title="Settings" {% ifequal current_url '/settings/' %} class="current" {% endifequal %}>Settings </a></li>
-<li><a href="{% url zobpress_trash %}" title="Trash"  {% ifequal current_url '' %} class="current" {% endifequal %}>Trash </a></li>
+<li><a href="{% url zobpress_categories %}" title="Add New Category" {% ifequal current_url '/manage/categories/' %} class="current" {% endifequal %}>Categories</a></li>
+<li><a href="{% url manage_create_job_form %}" title="Create Job Form" {% ifequal current_url '/manage/create/jobform/' %} class="current" {% endifequal %}>Create Job Form </a></li>
+<li><a href="{% url zobpress_list_subscriptions %}" title="See current subscriptions" {% ifequal current_url '/manage/subscriptions/' %} class="current" {% endifequal %}>See current subscriptions</a></li>
+<li><a href="{% url zobpress_settings %}" title="Settings" {% ifequal current_url '/manage/settings/' %} class="current" {% endifequal %}>Settings </a></li>
+<li><a href="{% url zobpress_trash %}" title="Trash"  {% ifequal current_url '/manage/trash/' %} class="current" {% endifequal %}>Trash </a></li>
 <li><a href="{% url widgets_index %}" title="Widgets" {% ifequal current_url '/widgets/' %} class="current" {% endifequal %}>Widgets</a></li>
 <ul>
   Feeds
@@ -66,7 +66,7 @@
 			          {% if user.is_authenticated %}
 <ul>
   Manage
-  <li><a href="{% url manage_create_job_form %}">Edit job form</a></li>
+  <li><a href="{% url manage_create_job_form %}" title="Edit Job Form"  >Edit job form</a></li>
 </ul>
 {% endif %}
 <ul>

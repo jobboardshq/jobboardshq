@@ -1,32 +1,23 @@
 {% extends 'zobpress/base.html' %}
 
 {% block toptab %}
-<h3>
-    Enter the password associated with this Developer/Job to be able to edit the profile.
-</h3>
+<h3> Enter the password associated with this Developer/Job to be able to edit the profile. </h3>
 {% endblock %}
 
 {% block content %}
-<div class="post">
-
-<br />
-
-       <form action="." method="post">
-        <div class="form">            
-        {% for field in form %}
-        {% if field.errors %} <span class="error">
-        {% for error in field.errors %}
-        {{ error }}
-        {% endfor %}
-        </span> {% endif %}            
-        {{ field.label_tag }}
-        {{field}}
-        {% if field.help_text %}<span class="help">{{ field.help_text }}</span>{% endif %}
-        <div class="clear"></div>
-        {% endfor %}
-        <input type="submit" value="submit" name="submit" class="button" />
-        </div>        
-       </form>
-
+<div class="post"> <br />
+  <form action="." method="post">
+    <div class="form"> {% for field in form %}
+      {% if field.errors %} <span class="error"> {% for error in field.errors %}
+      {{ error }}
+      {% endfor %} </span> {% endif %}            
+      {{ field.label_tag }}
+      {{field}}
+      {% if field.help_text %}<span class="help">{{ field.help_text }}</span>{% endif %}
+      <div class="clear"></div>
+      {% endfor %}
+      <input type="submit" value="submit" name="submit" class="button" />
+    </div>
+  </form>
 </div>
 {% endblock %}

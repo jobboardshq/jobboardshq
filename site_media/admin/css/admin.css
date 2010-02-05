@@ -33,14 +33,14 @@ p.admin{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; c
 #admincontainer ul.vert-one li a.current,ul.vert-one li a.current:hover{background: url(../images/menu_hover.gif) no-repeat; color:#440D00;}
 #admincontainer ul.vert-one li a.current{background:url(../images/menu_current.gif) no-repeat; color:#440D00;}
 .addjobs_buttons{width:420px; float:right;  line-height:18px; text-align:right;}
-.jobrole{font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif; color:#8B1B00; line-height:22px; text-decoration:underline;}
-.jobrole a{font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif; color:#8B1B00; line-height:22px; text-decoration:underline;}
-.jobrole a:hover{font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif; color:#000000; line-height:22px; text-decoration:underline;}
+.jobrole{font:12px "trebuchet MS", Arial, Helvetica, sans-serif; color:#8B1B00; line-height:18px; text-decoration:none;}
+.jobrole a{font:12px "trebuchet MS", Arial, Helvetica, sans-serif; color:#8B1B00; line-height:18px; text-decoration:none;}
+.jobrole a:hover{font:12px "trebuchet MS", Arial, Helvetica, sans-serif; color:#000000; line-height:18px; text-decoration:underline;}
 
 .viewed{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#666666; padding-left:25px;}
-.fulltime_badge{ text-align:center;  background-color:#788D01; color:#FFFFFF; font:bold 11px Verdana, Arial, Helvetica, sans-serif; width:90px; display:block; float:left; line-height:20px;}
-.freelance_badge{text-align:center; color:#FFFFFF; font:bold 11px Verdana, Arial, Helvetica, sans-serif; width:90px; display:block; float:left; line-height:20px;background-color:#851700;}
-.parttime_badge{text-align:center; color:#FFFFFF; font:bold 11px Verdana, Arial, Helvetica, sans-serif; width:90px; display:block; float:left; line-height:20px;background-color:#B07800;}
+.fulltime_badge{ text-align:center;  background-color:#788D01; color:#FFFFFF; font:bold 11px  Tahoma, Arial, Helvetica, sans-serif; display:block; float:left;  line-height:18px;}
+.freelance_badge{text-align:center; color:#FFFFFF; font:bold 11px  Tahoma, Arial, Helvetica, sans-serif; width:90px; display:block; float:left; line-height:18px;background-color:#851700;}
+.parttime_badge{text-align:center; color:#FFFFFF; font:bold 11px  Tahoma, Arial, Helvetica, sans-serif; width:90px; display:block; float:left;  line-height:18px;background-color:#A10000;}
 .admin_heading{font:bold 14px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; line-height:30px; text-decoration:none; width:200px; float:left; }
 .admin_subheading1{ clear:both;font:500 14px "trebuchet MS", Arial, Helvetica, sans-serif; color:#191919; line-height:24px; text-decoration:none; border-top:1px dashed #CDC199;border-bottom:1px dashed #CDC199; padding:9px 0px 9px 0px; }
 
@@ -72,3 +72,8 @@ p.admin{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; c
 .blacklink{ font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#000000; text-decoration:underline; padding:0px 5px 0px 5px;}
 .blacklink:hover{ font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#A10000; text-decoration:underline; padding:0px 5px 0px 5px;}
 .div_toppading{padding-top:10px;}
+.apply{width:113px ; height:31px; border:none; background:url(../images/submit_button.png); cursor:pointer; color:#FFFFFF;font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif; text-align:center; display:block; float:right; line-height:30px;}
+.apply:hover{width:113px ; height:31px; border:none; background:url(../images/submit_button_r.png); cursor:pointer;  color:#FFFFFF;font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif;text-align:center;display:block; line-height:30px;}
+.blackboldtext{ font:bold 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none;}
+.redboldtext{ font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#A10000; text-decoration:none;}
+.13redbold{ font:bold 13px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#A10000; text-decoration:none;}

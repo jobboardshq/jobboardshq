@@ -5,34 +5,16 @@
 <div class="admin_subheading1">
   <p class="admin">Thank you for making the payment. </p>
 </div>
-
-
 {% if ack %}
-
-    
-<p>
-
-Your details are,
-<br />
-First Name: {{ first_name }}
-<br />
-Last Name: {{ last_name }}
-<br />
-Amount: {{ amt }}
-<br />
+<p> Your details are, <br />
+  First Name: {{ first_name }} <br />
+  Last Name: {{ last_name }} <br />
+  Amount: {{ amt }} <br />
 </p>
-
-<p>
-    <a href="{{ person.get_absolute_url }}">See Person</a>
-</p>
-
+<p> <a href="{{ person.get_absolute_url }}">See Person</a> </p>
 {% else %}
-
-<p>
-There was a problem with your request. You have not been charged any money. Please start the request or
-contact us.
-</p>
-
+<p> There was a problem with your request. You have not been charged any money. Please start the request or
+  contact us. </p>
 {% endif %}
 
 

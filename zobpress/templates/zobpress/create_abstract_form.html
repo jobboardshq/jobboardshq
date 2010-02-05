@@ -2,11 +2,10 @@
 
 {% load zobpress_filters %}
 {% block extrascript %}
-<script type="text/javascript" src="/site_media/js/ui.draggable.js"></script>
-<script type="text/javascript" src="/site_media/js/ui.droppable.js"></script>
-<script type="text/javascript" src="/site_media/js/ui.resizable.js"></script>
-<script type="text/javascript" src="/site_media/js/jquery.jeditable.js"></script>
-
+<script type="text/javascript" src="{{ MEDIA_URL }}js/ui.draggable.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}js/ui.droppable.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}js/ui.resizable.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.jeditable.js"></script>
 <script>
 form_elements = Array();
 
@@ -74,118 +73,90 @@ function generate_key(){
 {% endblock %}
 
 {% block extracss %}
-
 <style>
 .dropbox{
-    width: 450px;
-    height: 500px;
-    background-color: yellow;
+    width: 620px;
+
+    background-color: #F1EAD3;
 }
 </style>
-
 {% endblock %}
 
 {% block content %}
-
-	  	<div>
-          <div  class="admin_heading">Create Job Form</div>
-        </div>
-
-  	  <div class="admin_subheading1">
-          <p class="admin">Drag and drop the form elements to create Your job form according to your requirements.
-            Drag the elements from the top to the empty area and click on save button.</p>
-        </div>
-        <div class="staticfields"><span class="smalltext">These fields are mandatory and cannot be deleted.</span><br/>
-          Title:
-          <input name="textfield2" type="text" class="text_small" id="textfield2" size="10" />
-          &nbsp;&nbsp;&nbsp;Job Type:
-          <select name="select2" id="select2">
-            <option>Freelance</option>
-            <option>Fulltime</option>
-            <option>Parttime</option>
-          </select>
-          &nbsp;&nbsp;&nbsp;
-          Category:
-          <select name="select3" id="select3">
-            <option>Web Developer</option>
-            <option>Marketing</option>
-            <option>Creative Designers</option>
-          </select>
-          <span class="rightalign"> Hide this</span> 
-		</div>
-		
-		<div class="formpadding">
-			<div id="input_controls">
-      			<table width="100%" border="0" cellspacing="0" cellpadding="0">
-      				<tr>
-      					<td>
-      						{% include "zobpress/editable_charfield_frag.html" %}
-      					</td>
-						<td>
-							{% include "zobpress/editable_textfield_frag.html" %}
-						</td>
-      				</tr>
-					
-					<tr>
-						<td>
-							{% include "zobpress/editable_checkbox_frag.html" %}
-						</td>
-						<td>
-							{% include "zobpress/editable_filefield_frag.html" %}
-						</td>
-					</tr>
-                </table>
-    		</div>
-			
-			<table width="1Ghijkl00%" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-              <td height="250" align="left" valign="top" class="designform">
-              		<div class="span-12">
-					    <div class="dropbox">
-					    	<p>
-					    		Drop here
-					    	</p>
-					      {{ editable_form_data|safe }}
-					    </div>
-					 </div>
-			  </td>
-            </tr>
-          </table>
-			
-		</div>
-		
-		<div class="staticfields"><span class="smalltext">Hiring company or person details </span><br/>
-            Name:
-            <input name="textfield2" type="text" class="text_small" id="textfield2" size="10" disabled="disabled" />
-            &nbsp;&nbsp;&nbsp;Website:
-            <input name="textfield6" type="text" class="text_small" id="textfield6" size="10" disabled="disabled"  />
-            &nbsp;&nbsp;&nbsp;
-            Email:
-            <input name="textfield7" type="text" class="text_small" id="textfield7" size="10" disabled="disabled"  />
-          </div>
-		
-    
-  <div class="span-6 last">
-    {% block input_area_help %}{% endblock %}
+<div>
+  <div  class="admin_heading">Create Job Form</div>
+</div>
+<div class="admin_subheading1">
+  <p class="admin">Drag and drop the form elements to create Your job form according to your requirements.
+    Drag the elements from the top to the empty area and click on save button.</p>
+</div>
+<div class="staticfields"><span class="smalltext">These fields are mandatory and cannot be deleted.</span><br/>
+  Title:
+  <input name="textfield2" type="text" class="text_small" id="textfield2" size="10" />
+  &nbsp;&nbsp;&nbsp;Job Type:
+  <select name="select2" id="select2"  class="text_small">
+    <option>Select Job Type</option>
+    <option>Freelance</option>
+    <option>Fulltime</option>
+    <option>Parttime</option>
+  </select>
+  &nbsp;&nbsp;&nbsp;
+  Category:
+  <select name="select3" id="select3"  class="text_small">
+    <option>Select Category</option>
+    <option>Web Developer</option>
+    <option>Marketing</option>
+    <option>Creative Designers</option>
+  </select>
+  <!--   <span class="rightalign"> Hide this</span> -->
+</div>
+<div class="formpadding">
+  <div id="input_controls">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td align="left" valign="top"> {% include "zobpress/editable_charfield_frag.html" %} </td>
+        <td align="left" valign="top">{% include "zobpress/editable_checkbox_frag.html" %} </td>
+      </tr>
+      <tr>
+        <td align="left" valign="top">{% include "zobpress/editable_filefield_frag.html" %} </td>
+        <td align="left" valign="top">{% include "zobpress/editable_textfield_frag.html" %}</td>
+      </tr>
+    </table>
   </div>
-
-
-
-  
-    
-  <div class="span-6 last">
-    {% block dropbox_help %}{% endblock %}
-  </div>
-
-  <div class="span-18">
+  <table width="1Ghijkl00%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td height="250" align="left" valign="top" class="designform"><div class="span-12">
+          <div class="dropbox">
+            <h2>Drop here </h2>
+            {{ editable_form_data|safe }} </div>
+        </div></td>
+    </tr>
+  </table>
+</div>
+<div class="staticfields"><span class="smalltext">Hiring company or person details </span><br/>
+  Name:
+  <input name="textfield2" type="text" class="text_small" id="textfield2" size="10" disabled="disabled" />
+  &nbsp;&nbsp;&nbsp;Website:
+  <input name="textfield6" type="text" class="text_small" id="textfield6" size="10" disabled="disabled"  />
+  &nbsp;&nbsp;&nbsp;
+  Email:
+  <input name="textfield7" type="text" class="text_small" id="textfield7" size="10" disabled="disabled"  />
+</div>
+<div class="span-6 last"> {% block input_area_help %}{% endblock %} </div>
+<div class="span-6 last"> {% block dropbox_help %}{% endblock %} </div>
+<br/>
+<div class="span-18">
+  <table width="240" border="0" align="center" cellpadding="0" cellspacing="0">
     <form id="submit_form" method="post">
-      <input type="submit" name="create-form" value="" id="submit_button" class="formbutton" />
-	  <input type="submit" name="reset-form" value="Reset" id="reset_button" class="" />
+      <tr>
+        <td align="center"><input type="submit" name="create-form" value="Submit" id="submit_button" class="apply" /></td>
+        <td align="center"><input type="submit" name="reset-form" value="Reset" id="reset_button" class="apply" /></td>
+      </tr>
     </form>
-  </div>
-  
-  {% block footer_script %}
-      <script>
+  </table>
+</div>
+{% block footer_script %}
+<script>
       	var MAX_ELEMENTS = 1000 
 		handle_old_fields = function(){
 			//{% if form_fields %}
@@ -202,6 +173,4 @@ function generate_key(){
       </script>
 {% endblock %}
     
-{% endblock %}
-
-
+{% endblock %} 

@@ -1,40 +1,28 @@
 {% extends 'zobpress-admin/base.html' %}
 
 {% block toptab %}
-<h3>
-    Enter Your details. Enter as much information as possible to get your self noticed.
-</h3>
+<h3> Enter Your details. Enter as much information as possible to get your self noticed. </h3>
 {% endblock %}
 
 {% block content %}
-<div class="post">
-
-<br />
-
-       <form action="." method="post" enctype="multipart/form-data">
-        <div class="form">
-        <table>
+<div class="post"> <br />
+  <form action="." method="post" enctype="multipart/form-data">
+    <div class="form">
+      <table>
         {% for field in form %}
         <tr>
-        <th>
-            {{ field.label_tag }}
-        </th>
-        <td>
-        {% if field.errors %} <span class="error">
-        {% for error in field.errors %}
-        {{ error }}
-        {% endfor %}
-        </span> {% endif %}  
-        {{field}}
-        {% if field.help_text %}<span class="help">{{ field.help_text }}</span>{% endif %}
-        </td>
-        <div class="clear"></div>
+          <th> {{ field.label_tag }} </th>
+          <td> {% if field.errors %} <span class="error"> {% for error in field.errors %}
+            {{ error }}
+            {% endfor %} </span> {% endif %}  
+            {{field}}
+            {% if field.help_text %}<span class="help">{{ field.help_text }}</span>{% endif %} </td>
+          <div class="clear"></div>
         </tr>
         {% endfor %}
-        </table>
-        <input type="submit" value="submit" name="submit" class="button" />
-        </div>        
-       </form>
-
+      </table>
+      <input type="submit" value="submit" name="submit" class="button" />
+    </div>
+  </form>
 </div>
 {% endblock %}

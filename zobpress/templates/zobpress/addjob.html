@@ -1,9 +1,7 @@
 {% extends 'zobpress-admin/base.html' %}
 
 {% block extrascript %}
-
 <script type="text/javascript" src="{{ MEDIA_URL }}wymeditor/jquery.wymeditor.js"></script>
-
 {% endblock %}
 
 {% block toptab %}
@@ -16,71 +14,54 @@
 <div class="admin_subheading1">
   <p class="admin"> Enter Your details. Enter as much information as possible. Every one likes to know more, before they take a job! </p>
 </div>
-
-<div class="post">
-
-<br />
-
-       <form action="." method="post" enctype="multipart/form-data">
-        <div class="form">
-        <table border="0" cellpadding="0" cellspacing="0" >
-		{% for field in  job_static_form.visible_fields %}
-			
-			{% if field.errors %}
-
-			{% endif %}
-<tr>
-			  <td align="left" valign="middle">&nbsp;</td>
-			  <td align="left" valign="top"><ul>
-						{{ field.errors }}
-					</ul></td>
-		  </tr>
-			<tr>
-              <td width="250" align="left" valign="middle"> {{ field.label_tag }} :</td>
-			  <td align="left" valign="top">
-			  	{{ field }}
-				{% if field.help_text %}<span class="help">{{ field.help_text }} :</span>{% endif %}			  </td>
-            </tr>
-			
-		{% endfor %}
+<div class="post"> <br />
+  <form action="." method="post" enctype="multipart/form-data">
+    <div class="form">
+      <table border="0" cellpadding="0" cellspacing="0" >
+        {% for field in  job_static_form.visible_fields %}
+        
+        {% if field.errors %}
+        
+        {% endif %}
+        <tr>
+          <td align="left" valign="middle">&nbsp;</td>
+          <td align="left" valign="top"><ul>
+              {{ field.errors }}
+            </ul></td>
+        </tr>
+        <tr>
+          <td width="250" align="left" valign="middle"> {{ field.label_tag }} :</td>
+          <td align="left" valign="top"> {{ field }}
+            {% if field.help_text %}<span class="help">{{ field.help_text }} :</span>{% endif %} </td>
+        </tr>
+        {% endfor %}
         {% for field in form %}
         <tr>
-        <td width="200" align="left" valign="middle">
-        {{ field.label_tag }} :        </td>
-        <td align="left" valign="top">
-
-        {{field}}        {% if field.errors %} <span class="errorlist">
-        {% for error in field.errors %}
-        {{ error }}
-        {% endfor %}
-        </span> {% endif %} 
-        {% if field.help_text %}<span class="help">{{ field.help_text }}</span>{% endif %}        </td>
+          <td width="200" align="left" valign="middle"> {{ field.label_tag }} : </td>
+          <td align="left" valign="top"> {{field}}        {% if field.errors %} <span class="errorlist"> {% for error in field.errors %}
+            {{ error }}
+            {% endfor %} </span> {% endif %} 
+            {% if field.help_text %}<span class="help">{{ field.help_text }}</span>{% endif %} </td>
         </tr>
         <div class="clear"></div>
-        
         {% endfor %}
-		
-		{% for field in job_contact_form %}
+        
+        {% for field in job_contact_form %}
         <tr>
-        <td width="200" align="left" valign="middle">
-        {{ field.label_tag }} :        </td>
-        <td align="left" valign="top">
-        {{field}}        {% if field.errors %} <span class="errorlist">
-        {% for error in field.errors %}
-        {{ error }}
-        {% endfor %}
-        </span> {% endif %} 
-
-        {% if field.help_text %}<span class="help">{{ field.help_text }}</span>{% endif %}        </td>
+          <td width="200" align="left" valign="middle"> {{ field.label_tag }} : </td>
+          <td align="left" valign="top"> {{field}}        {% if field.errors %} <span class="errorlist"> {% for error in field.errors %}
+            {{ error }}
+            {% endfor %} </span> {% endif %} 
+            
+            {% if field.help_text %}<span class="help">{{ field.help_text }}</span>{% endif %} </td>
         </tr>
         <div class="clear"></div>
-        
         {% endfor %}
-        </table>
-       <div align="center"><input type="submit" value="submit" name="submit" class="button wymupdate"" /></div>
-        </div>        
-       </form>
-
+      </table>
+      <div align="center"  style="width:350px; padding-top:10px;">
+        <input type="submit" value="Submit" name="submit" class="apply" />
+      </div>
+    </div>
+  </form>
 </div>
-       
 {% endblock %}

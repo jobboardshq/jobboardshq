@@ -3,27 +3,17 @@
 {% load zobpress_filters %}
 
 {% block toptab %}
-<h3>
-    Details for {{person.name}}
-</h3>
-<p>
-    Added on {{person.created_on|date:"jS F Y"}}
-</p>
+<h3> Details for {{person.name}} </h3>
+<p> Added on {{person.created_on|date:"jS F Y"}} </p>
 {% endblock %}
 
 {% block content %}
-
 <table>
-{% for data in person.employeedata_set.all %}
-<tr>
-    <th>
-    {{ data.name }}
-    </th>
-    <td>
-    {{ data|prettify }}
-    </td>
-</tr>
-{% endfor %}
+  {% for data in person.employeedata_set.all %}
+  <tr>
+    <th> {{ data.name }} </th>
+    <td> {{ data|prettify }} </td>
+  </tr>
+  {% endfor %}
 </table>
-
 {% endblock %}

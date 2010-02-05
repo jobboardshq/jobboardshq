@@ -2,18 +2,16 @@
 
 
 {% block content %}
-	<table>
-	{% for entity in deleted %}
-		<tr>
-			<td>{{ entity.get_content_object }}</td>
-			<td>
-				<form action="{% url zobpress_untrash entity.pk %}" method="post">
-					<input type="submit" value="Undelete" />
-				</action>	
-			</td>
-		</tr>
-		
-	{% endfor %}
-	</table>
-	
-{% endblock %}	
+<div class="admin_heading">Trash</div>
+<div class="admin_subheading1">
+  <p class="admin">Here is the list of deleted items. </p>
+</div>
+<table>
+  {% for entity in deleted %}
+  <tr>
+    <td width="150" align="left" valign="middle" class="blackboldtext">{{ entity.get_content_object }} </td>
+    <td><input type="submit" value="Undelete"  class="apply" />
+    </td>
+    {% endfor %}
+</table>
+{% endblock %} 

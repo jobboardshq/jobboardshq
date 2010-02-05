@@ -3,25 +3,14 @@
 
 
 {% block content %}
-
-	<table>
-	{% for form in job_field_formset.forms %}
-		<tr>
-		 {% for field in form.visible_fields %}
-		 	<td>
-		 		<p>
-		 		{{ field.label_tag }}
-				</p>
-				<p>
-					{% if field.errors %}
-					{% endif %}	
-					{{ field }}	
-				</p>
-		 	</td>
-		 {% endfor %}
-		</tr>
-	{% endfor %}
-	</table>
-
-
+<table>
+  {% for form in job_field_formset.forms %}
+  <tr> {% for field in form.visible_fields %}
+    <td><p> {{ field.label_tag }} </p>
+      <p> {% if field.errors %}
+        {% endif %}	
+        {{ field }} </p></td>
+    {% endfor %} </tr>
+  {% endfor %}
+</table>
 {% endblock %}

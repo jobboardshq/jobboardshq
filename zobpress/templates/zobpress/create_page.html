@@ -3,20 +3,25 @@
 {% block title %} {{ board.name }} - Create Page {% endblock title %}
 
 {% block content %}
-
 <div class="admin_heading">Add New Page</div>
 <div class="admin_subheading1">
   <p class="admin">Create a new page and add content for the page. </p>
 </div>
-<table align="left">
- <form method='post'>
-
- 
-  {{ form }}
+<table >
+  <form method='post'>
+   
+    <tr>
+      <td align="left" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td>&nbsp;</td>
-    <td><input type='submit' value='Create Page' /></td>
+    <td> {{ form }}</td>
   </tr>
+</table>
+</td>
+    </tr>
+    <tr>
+      <td align="left" valign="top"><input type='submit' value='Create Page' class="apply" /></td>
+    </tr>
   </form>
 </table>
+
 {% endblock content %}

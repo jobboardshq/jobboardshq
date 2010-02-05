@@ -17,32 +17,24 @@
 <div class="admin_subheading1">
   <p class="admin">These are the recently posted jobs. </p>
 </div>
-  {% for job in jobs_list %}
+{% for job in jobs_list %}
     {% include 'zobpress/job_snippet_frag.html' %}
   {% endfor %}
 {% endblock %}
 
 {% block sidebar %}
-
 <h2>Sort</h2>
-  
 <ul>
-  <li><a href="/jobs/?order=name">Sort by Name</a></li>
-  <li><a href="/jobs/?order=created_on">Sort by Date</a></li>
-<li>
-{% endblock %}
-
-{% block pagination %}
-
-{% if is_paginated %}
-  {% if has_previous %}
-    <span class="pre">&laquo;<a href=".?page={{previous}}">Previous Post</a></span>
+<li><a href="/jobs/?order=name">Sort by Name</a></li>
+<li><a href="/jobs/?order=created_on">Sort by Date</a></li>
+<li> {% endblock %}
+  
+  {% block pagination %}
+  
+  {% if is_paginated %}
+  {% if has_previous %} <span class="pre">&laquo;<a href=".?page={{previous}}">Previous Post</a></span> {% endif %}
+  
+  {% if has_next %} <span class="next"><a href=".?page={{next}}">Next Post</a>&raquo;</span> {% endif %}
   {% endif %}
-    
-  {% if has_next %}
-    <span class="next"><a href=".?page={{next}}">Next Post</a>&raquo;</span>
-  {% endif %}
-{% endif %}
-
-<div class="clear2"></div>
-{% endblock %}
+  <div class="clear2"></div>
+  {% endblock %}

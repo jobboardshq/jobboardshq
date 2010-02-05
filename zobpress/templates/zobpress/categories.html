@@ -13,16 +13,17 @@
   <table>
     {{ form }}
   </table>
-  <table width="250px;">
-  <tr align="center"><td>
-  <input type="submit" name="create-category" value="Create-Category" />
-  </td></tr></table>
+  <table width="210">
+    <tr>
+      <td  align="center"><input type="submit" name="create-category" value="Submit" class="apply" />
+      </td>
+    </tr>
+  </table>
 </form>
 <br/>
 <div class="admin_subheading1">
   <p class="admin">These are the existing categories. You can edit or delete them. </p>
 </div>
-
 <table width="300">
   {% for category in category_list %}
   <tr id="category_{{ category.pk }}">
@@ -35,5 +36,4 @@
   <p>Please add a category</p>
   {% endfor %}
 </table>
-
 {% endblock %}
