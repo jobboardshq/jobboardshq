@@ -75,7 +75,7 @@ p.twitter{ padding-top:25px; padding-left:130px; color:#FFFFFF; text-align:left;
 #homecontent #leftpanel .features img{ float:left; display:block; margin:0px 15px 0px 0px;  }
 .features_title{font:bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000; text-decoration:none; }
 
-#homecontent #leftpanel_innerpage{width:960px; float:left; margin-top:20px; }
+#homecontent #leftpanel_innerpage{width:960px; margin:0px auto; }
 #homecontent #leftpanel_innerpage .features{width:940px; padding:10px 5px 10px 0px; border-bottom:1px dashed #D9C6AC; }
 #homecontent #leftpanel_innerpage .features img{ float:left; display:block; margin:0px 15px 0px 0px;  }
 .features_title{font:bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000; text-decoration:none; }
