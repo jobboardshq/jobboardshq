@@ -125,3 +125,7 @@ p.frontend{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900
 
 /*form elements*/
 fieldset{border:1px solid #E9D4B7; margin-top:5px;}
+.jobname{width:500px; background-color:#FBF8ED; border:1px solid #D8C7AF;}
+.jobname input{border:none; padding:3px;}
+.jobdetails input{width:300px; background-color:#FBF8ED; border:1px solid #D8C7AF; padding:3px;}
+.contactdetails input{width:300px; background-color:#FBF8ED; border:1px solid #D8C7AF; padding:3px;}
