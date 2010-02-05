@@ -1,49 +1,32 @@
+
 {% extends 'frontend/base.html' %}
-
 {% load zobpress_filters %}
-
-
-
 {% block content %}
-<div class="left_padding">
-		<h4>
-		    Details for {{job.name}}
-		</h4> in <a href="{% url frontend_job_type_jobs  job.job_type.slug %}" class="redlink">{{ job.job_type.name }}</a>
-		<p>
-		    Added on {{job.created_on|date:"jS F Y"}}
-		</p>
-		
-		<div class="description">
-			{{ job.description|safe }}
-		</div>
-   
-   
-    <table>
-    	<h3></h3>
-		{% for data in job.jobdata_set.all %}
-		<tr>
-		    <th>
-		    {{ data.name }}
-		    </th>
-		    <td>
-		    {{ data|prettify }}
-		    </td>
-		</tr>
-		{% endfor %}
-	</table>
-	
-	
-    
-<div>
-    {% for job_file in job.jobfile_set.all %}
-        <a href="{{ MEDIA_URL }}{{ job_file.public_path }}">{{ job_file.uploaded_file }}</a>
-    {% endfor %}
-</div>
+<div class="frontend_heading"> Details for <span class="blackboldtext">{{job.name}}</span></div>
+<div class="frontend_jobdescription">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="left" valign="middle"> <p class="frontend">in <a href="{% url frontend_job_type_jobs  job.job_type.slug %}" class="redlink">{{ job.job_type.name }}</a> </p></td>
+    <td align="center" valign="middle"><span class="apply">Apply</span></td>
+  </tr>
+</table>
 
-{% if job.is_editable %}
-<div class="edit">
-    <a href="{% url zobpress_edit_job job.id %}" class="blacklink">Edit this Job</a>
+
 </div>
-{% endif %}
-</div>
+<div class="left_padding">
+   <h5> Added on {{job.created_on|date:"jS F Y"}} </h5>
+ 
+  <div> <p  class="description">{{ job.description|safe }}</p> </div><br/>
+  <table width="100%">
+    {% for data in job.jobdata_set.all %}
+    <tr>
+      <td width="150" align="left" class="redboldtext"> {{ data.name }}: </td>
+      <td align="left" > {{ data|prettify }} </td>
+    </tr>
+    {% endfor %}
+  </table>
+  <div > {% for job_file in job.jobfile_set.all %} : <a href="{{ MEDIA_URL }}{{ job_file.public_path }}">{{ job_file.uploaded_file }}</a> {% endfor %} </div>
+  {% if job.is_editable %}
+  <div class="edit"> <a href="{% url zobpress_edit_job job.id %}" class="blacklink">Edit this Job</a> </div>
+  {% endif %} </div>
 {% endblock %}

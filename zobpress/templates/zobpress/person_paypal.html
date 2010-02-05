@@ -1,14 +1,18 @@
 {% extends 'zobpress/base.html' %}
 
 {% block content %}
+<div class="admin_heading">You are making a payment for adding the listing {{ person.name }}</div>
+<div class="admin_subheading1">
+  <p class="admin">Pay now with Paypal </p>
+</div>
 
-You are making a payment for adding the listing {{ person.name }}
 
 
+<div class="left_padding">
 <p>
-    Pay now with Paypal
+    
     <a href="{{ paypal_url }}"><img src="{{ MEDIA_URL }}images/btn_xpressCheckout.gif" align="left" style="margin-right:7px;"></a>
 </p>
 
-
+</div>
 {% endblock %}
