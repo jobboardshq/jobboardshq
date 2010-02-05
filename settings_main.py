@@ -58,11 +58,11 @@ HAYSTACK_SEARCH_ENGINE = 'whoosh'
 HAYSTACK_WHOOSH_PATH = (os.path.join(os.path.dirname(__file__), 'search_index/'))
 
 INSTALLED_APPS = (
-    'zobpress',
+    #'zobpress',
     'sitewide',
     'emailsubs',
     'widgets',
-    'management',
+    #'management',
     'registration',
     'profiles',
     "frontend",
