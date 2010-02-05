@@ -34,7 +34,9 @@
 <body>
 {% load zobpress_filters %}
 <body class="admin">
-<div id="adminheader"><a href="#"><img src="{{ MEDIA_URL }}admin/images/jobpress_logo_admin.gif" alt="Zobpress" width="318" height="81" /></a></div>
+<div id="adminheader">
+<div class="logo"><a href="#"><img src="{{ MEDIA_URL }}admin/images/jobpress_logo_admin.gif" alt="Zobpress" width="318" height="81" /></a></div><div id="admin_user">Welcome <span class="blacktext">Saikiran</span> | <a href="www.zobpress.com">Visit Site</a> | <a href="#">Log Out</a></div>
+</div>
 <div id="adminbody">
 <div id="loading_message"> {% if messages %}
   <ul>
