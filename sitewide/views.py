@@ -10,6 +10,11 @@ def index(request):
 
 def contact(request):
     form = ContactUsForm()
+    if request.method == "POST":
+        form = ContactUsForm(data = request.POST)
+        if form.is_valid():
+            form.save()
+            return render_to_response('sitewide/contact.html', {}, RequestContext(request))
     payload = {"form": form}
     return render_to_response('sitewide/contact.html', payload, RequestContext(request))
 

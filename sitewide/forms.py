@@ -1,9 +1,11 @@
 from django import forms
 from django.forms import ValidationError
 from django.conf import settings
+from django.template.loader import render_to_string
 
 from zobpress.models import Board
 from registration.forms import RegistrationForm
+from django.core.mail import send_mail
 
 class NewBoardForms(RegistrationForm):
     subdomain = forms.CharField(max_length = 100)
@@ -27,9 +29,8 @@ class NewBoardForms(RegistrationForm):
         
 from sitewide.models import ContactedPeople
 
-from django import forms
-from django.core.mail import send_mail
-from django.template.loader import render_to_string
+
+
 
 class ContactUsForm(forms.ModelForm):
     def save(self, *args, **kwargs):
@@ -37,8 +38,9 @@ class ContactUsForm(forms.ModelForm):
         #Email now.
         subject = render_to_string("frontend/emails/contact_subject.txt")
         message = render_to_string("frontend/emails/contact_message.txt")
-#        from_email = 
-#        send_mail(subject, message, from_email, recipient_list, fail_silently)
+        from_email = settings.ADMINS[0]
+        recipient_list = settings.ADMINS
+        send_mail(subject, message, from_email, recipient_list, fail_silently =False)
         
     
     class Meta:

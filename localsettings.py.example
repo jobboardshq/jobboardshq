@@ -25,6 +25,9 @@ ROOT_URLCONF = 'jobboard.urls'
 SECRET_KEY = 'e6v12%-+5u#zr1fz=)2jnn@+9&_7ay8%%&7@sjnf_bxb%z26m-'
 
 EMAIL_SENDER = 'admin@zobpress.com'
+import os
+SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
+
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".

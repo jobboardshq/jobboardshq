@@ -69,10 +69,11 @@ class Board(models.Model):
         super(Board, self).save(*args, **kwargs)
         BoardSettings.objects.get_or_create(board=self)
         
-from zobpress.middleware import get_current_board
+
 
 class BoardSpecificEntitiesManager(models.Manager):
     def get_query_set(self, *args, **kwargs):
+        from zobpress.middleware import get_current_board
         board = get_current_board()
         qs = super(BoardSpecificEntitiesManager, self).get_query_set( *args, **kwargs)
         if board:
@@ -91,6 +92,7 @@ class BoardSpecificEntities(models.Model):
     
     def save(self, *args, **kwargs):
         if not self.board:
+            from zobpress.middleware import get_current_board
             self.board = get_current_board()
         super(BoardSpecificEntities, self).save(*args, **kwargs)
     
