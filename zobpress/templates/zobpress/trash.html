@@ -9,8 +9,11 @@
 <table>
   {% for entity in deleted %}
   <tr>
-    <td width="150" align="left" valign="middle" class="blackboldtext">{{ entity.get_content_object }} </td>
-    <td><input type="submit" value="Undelete"  class="apply" />
+  
+    <td width="250" align="left" valign="middle" class="12blacktext" >{{ entity.get_content_object }} </td>
+    <td><form action="{% url zobpress_untrash entity.pk %}" method="post">
+    <input type="submit" value="Undelete"  class="apply" />
+    </form>
     </td>
     {% endfor %}
 </table>
