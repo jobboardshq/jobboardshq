@@ -128,9 +128,9 @@ def categories(request):
 @ensure_has_board
 def edit_category(request, category_pk):
     category = get_object_or_404(Category, board = request.board, pk = category_pk)
-    form = CategoryForm(instance = category)
+    form = CategoryForm(instance = category, board = request.board)
     if request.method == "POST":
-        form = CategoryForm(instance = category, data = request.POST)
+        form = CategoryForm(instance = category, data = request.POST, board = request.board)
         if form.is_valid():
             form.save()
         return HttpResponseRedirect(".")
