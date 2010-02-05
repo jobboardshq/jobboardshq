@@ -105,24 +105,22 @@ def edit_job(request, id):
 @ensure_has_board
 def category_jobs(request, category_slug):
     "Show jobs from a specific category."
-    import ipdb
-    ipdb.set_trace()
     category = get_object_or_404(Category, board = request.board, slug = category_slug)
-    
     jobs = Job.objects.filter(category = category)
     return object_list(request, queryset = jobs, template_name = 'zobpress/category_job_list.html', template_object_name = 'job')
 
 @ensure_has_board
 def categories(request):
-    form = CategoryForm()
+    form = CategoryForm(board = request.board)
     categories = Category.objects.all()
     if request.method == "POST":
-        form = CategoryForm(data = request.POST)
+        form = CategoryForm(data = request.POST, board = request.board)
         if form.is_valid():
             category = form.save(commit = False)
             category.board = request.board
             category.save()
-        return HttpResponseRedirect(reverse("zobpress_index"))
+            request.user.message_set.create(message = "The category %s has been added." % category.name)
+            return HttpResponseRedirect(".")
     extra = {"form": form}
     return object_list(request, queryset = categories, template_name = 'zobpress/categories.html', template_object_name = 'category', extra_context = extra)
         

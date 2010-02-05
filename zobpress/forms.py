@@ -118,7 +118,20 @@ class IndeedSearchForm(forms.Form):
 class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
-        exclude = ["board"]
+        exclude = ["board", "is_deleted"]
+        
+    def __init__(self, board, *args, **kwargs):
+        super(CategoryForm, self).__init__(*args, **kwargs)
+        self.board = board
+        
+        
+    def clean_name(self):
+        data = self.cleaned_data
+        try:
+            Category.objects.get(name =  data["name"], board = self.board)
+            raise forms.ValidationError("This name is already taken. Please choose another.")
+        except Category.DoesNotExist:
+            return data["name"]
     
 class JobFieldEditForm(forms.ModelForm):
     class Meta:
