@@ -1,8 +1,11 @@
 {% extends "frontend/base.html" %}
 
+{% load compress %}
+
 {% block extrajs %}
-<script type="text/javascript" src="{{ MEDIA_URL }}tiny_mce/tiny_mce.js"></script>
-<script type="text/javascript" src="{{ MEDIA_URL }}tiny_mce/jquery.tinymce.js"></script>
+	{% compress js %}
+		<script type="text/javascript" src="{{ MEDIA_URL }}tiny_mce/jquery.tinymce.js"></script>
+	{% endcompress %}
 {% endblock extrajs %}
 
 

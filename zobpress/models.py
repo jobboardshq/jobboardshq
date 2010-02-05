@@ -165,6 +165,7 @@ class Category(BoardSpecificEntities):
     all_objects = models.Manager()
     objects = BoardSpecificEntitiesManager()
     
+    
     @models.permalink
     def get_absolute_url(self):
         return('zobpress.views.category_jobs', [self.slug])
@@ -184,6 +185,9 @@ class Category(BoardSpecificEntities):
     
     def __unicode__(self):
         return self.name
+    
+    class Meta:
+        unique_together = ("board", "name", "is_deleted")
     
 class JobType(BoardSpecificEntities):
     #board = models.ForeignKey(Board)
@@ -261,20 +265,26 @@ class JobPublicManager(BoardSpecificEntitiesManager):
     
 class Job(BoardSpecificEntities):
     #board = models.ForeignKey(Board)
-    name = models.CharField(max_length = 100, null=True, blank=True)
+    name = models.CharField(max_length = 300, null=True, blank=True)
+    
     category = models.ForeignKey(Category, null = True, blank = True)
-    description = models.TextField()
     job_type = models.ForeignKey(JobType, null=True, blank=True)
+    
+    description = models.TextField()
+    
     job_slug = models.SlugField(max_length=100)
     
     times_viewed = models.PositiveIntegerField(default = 0)
+    
     is_active = models.BooleanField(default = False)#listings start as inactive. After Payment become active.
     is_expired = models.BooleanField(default = False)#Has this listing expired yet?
     is_editable = models.BooleanField(default = False)
+    is_deleted = models.BooleanField(default = False)
+    
     paypal_token_sec = models.CharField(max_length = 100,  null = True, blank = True)#Token returned from set_express_checkout
     paypal_token_gec = models.CharField(max_length = 100,  null = True, blank = True)#Token returned from get_express_checkout
     
-    is_deleted = models.BooleanField(default = False)
+    
     
     all_objects = models.Manager()
     objects = BoardSpecificEntitiesManager()
@@ -322,10 +332,11 @@ class Job(BoardSpecificEntities):
         ordering = ('-created_on', )
     
     def save(self, *args, **kwargs):
-        self.job_slug = slugify(self.name)
-        slug_count = Job.objects.filter(job_slug__icontains = self.job_slug).count()
-        if slug_count:
-            self.job_slug += str(slug_count + 1)
+        if not self.pk:
+            self.job_slug = slugify(self.name)
+            slug_count = Job.objects.filter(job_slug__icontains = self.job_slug).count()
+            if slug_count:
+                self.job_slug += str(slug_count + 1)
         super(Job, self).save(*args, **kwargs)
         
 class JobContactDetail(models.Model):

@@ -10,6 +10,7 @@ def _get_field(instance, name):
     except AttributeError:
         raise ValueError("Model %s has no field '%s'" % \
                              (instance.__class__.__name__, name))
+        
 
 class AutoSlugField(CharField):
     """ A SlugField that automatically populate itself using the value of another
@@ -57,10 +58,9 @@ class AutoSlugField(CharField):
             
         if populate_from is None:
             #raise ValueError("missing 'populate_from' argument")
-			pass
+            pass
         else:
             self._populate_from = populate_from
-			
         
         self._slugify_func = slugify_func
 

@@ -1,13 +1,18 @@
+import os
+SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
+
+
 DATABASE_ENGINE = 'mysql'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = 'zobpress_zp'             # Or path to database file if using sqlite3.
-DATABASE_USER = 'zobpress_zp'             # Not used with sqlite3.
-DATABASE_PASSWORD = 'f3a589d8'         # Not used with sqlite3.
+DATABASE_NAME = ''             # Or path to database file if using sqlite3.
+DATABASE_USER = ''             # Not used with sqlite3.
+DATABASE_PASSWORD = ''         # Not used with sqlite3.
 DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
 DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = '/home/shabda/jobboard/site_media/'
+#MEDIA_ROOT = '/home/shabda/jobboard/site_media/'
+MEDIA_ROOT = os.path.join(SITE_ROOT, 'templates')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -25,8 +30,6 @@ ROOT_URLCONF = 'jobboard.urls'
 SECRET_KEY = 'e6v12%-+5u#zr1fz=)2jnn@+9&_7ay8%%&7@sjnf_bxb%z26m-'
 
 EMAIL_SENDER = 'admin@zobpress.com'
-import os
-SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 
 
 TEMPLATE_DIRS = (
@@ -37,8 +40,14 @@ TEMPLATE_DIRS = (
 )
 
 WEBFACTION_DEBUG = False
-SESSION_COOKIE_DOMAIN = '.shabda.tld'
+
+EMAIL_HOST = ""
+EMAIL_PORT = "25"
+EMAIL_HOST_USER = ""
+EMAIL_HOST_PASSWORD = ""
 
 
-BASE_DOMAIN = 'shabda.tld'
+
+
+BASE_DOMAIN = 'shabda.tld'###VERY VERY IMPORTANT
 

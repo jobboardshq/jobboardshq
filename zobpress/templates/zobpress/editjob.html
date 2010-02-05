@@ -1,5 +1,13 @@
 {% extends 'zobpress-admin/base.html' %}
 
+{% load compress %}
+
+{% block extrascript %}
+	{% compress js %}
+	<script type="text/javascript" src="{{ MEDIA_URL }}tiny_mce/jquery.tinymce.js"></script>
+	{% endcompress %}
+{% endblock %}
+
 {% block content %}
 <div class="admin_heading">Edit Job</div>
 <div class="admin_subheading1">

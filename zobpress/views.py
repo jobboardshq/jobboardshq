@@ -32,18 +32,18 @@ def index(request):
 @ensure_has_board
 def add_job(request):
     "Add a job, via the backend."
-    job_static_form = JobStaticForm(board = request.board)
-    job_contact_form = JobContactForm()
-    Form = get_job_form(request.board)
-    form = Form()
+    job_static_form = JobStaticForm(board = request.board, prefix = "job_static_form")
+    job_contact_form = JobContactForm(prefix = "job_contact_form")
+    Form = get_job_form(request.board,)
+    form = Form( prefix = "form")
     if request.method == 'POST':
-        form = Form(data = request.POST, files = request.FILES)
-        job_static_form = JobStaticForm(board = request.board, data = request.POST)
-        job_contact_form = JobContactForm(data = request.POST)
+        form = Form(data = request.POST, files = request.FILES, prefix = "form")
+        job_static_form = JobStaticForm(board = request.board, data = request.POST, prefix = "job_static_form")
+        job_contact_form = JobContactForm(data = request.POST, prefix = "job_contact_form")
         if form.is_valid() and job_static_form.is_valid() and job_contact_form.is_valid():
             job = job_static_form.save()
             Form = get_job_form(request.board, job = job)
-            form = Form(data = request.POST, files = request.FILES)
+            form = Form(data = request.POST, files = request.FILES, prefix = "form")
             assert form.is_valid()
             form.save()
             contact = job_contact_form.save(commit = False)

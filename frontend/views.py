@@ -26,18 +26,18 @@ def index(request, category_slug = None, job_type_slug = None):
 @ensure_has_board
 def addjob(request):
     board = request.board
-    job_static_form = JobStaticForm(board = board)
-    job_contact_form = JobContactForm()
+    job_static_form = JobStaticForm(board = board, prefix="job_static_form")
+    job_contact_form = JobContactForm(prefix="job_contact_form")
     JobForm = get_job_form(board = request.board)
-    form = JobForm()
+    form = JobForm(prefix="form")
     if request.method == "POST":
-        form = JobForm(data = request.POST, files = request.FILES)
-        job_static_form = JobStaticForm(board = request.board, data = request.POST)
-        job_contact_form = JobContactForm(data = request.POST)
+        form = JobForm(data = request.POST, files = request.FILES, prefix = "form")
+        job_static_form = JobStaticForm(board = request.board, data = request.POST, prefix = "job_static_form")
+        job_contact_form = JobContactForm(data = request.POST, prefix = "job_contact_form")
         if form.is_valid() and job_static_form.is_valid() and job_contact_form.is_valid():
             job = job_static_form.save()
             Form = get_job_form(request.board, job = job)
-            form = Form(data = request.POST, files = request.FILES)
+            form = Form(data = request.POST, files = request.FILES,  prefix = "form")
             assert form.is_valid()
             form.save()
             contact = job_contact_form.save(commit = False)
