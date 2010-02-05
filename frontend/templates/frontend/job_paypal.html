@@ -1,7 +1,14 @@
 {% extends 'frontend/base.html' %}
 
 {% block content %}
+<div class="frontend_heading">You are making a payment for adding the Job : <span class="blackboldtext">{{ job.name }}</span></div>
+<div class="frontend_subheading1">
+  <p class="frontend">Pay now with Paypal </p>
+</div>
 
-You are making a payment for adding the Job {{ job.name }}
-<p> Pay now with Paypal <a href="{{ paypal_url }}"><img src="{{ MEDIA_URL }}images/btn_xpressCheckout.gif" align="left" style="margin-right:7px;"></a> </p>
+<div class="left_padding">
+
+<p> <br/> <a href="{{ paypal_url }}"><img src="{{ MEDIA_URL }}images/btn_xpressCheckout.gif" align="left" style="margin-right:7px;"></a> </p>
+<br/><br/><br/>
+</div>
 {% endblock %}

@@ -11,25 +11,54 @@
   <p class="frontend"> Enter Your details. Enter as much information as possible. Every one likes to know more, before they take a job! </p>
 </div>
 <div class="frontend_content">
-  <fieldset>
-  <table class="leftalign">
-    {{ job_static_form.as_table }}
-  </table>
-  </fieldset>
-  <fieldset>
-  <table class="leftalign">
-    {{ job_form }}
-  </table>
-  </fieldset>
-  <fieldset>
-  <table class="leftalign">
-    {{ job_contact_form }}
-  </table>
-  </fieldset>
-  </fieldset>
-  <div align="center" style="padding-top:10px;">
+  <form action="." method="post">
+    <fieldset>
+    <table border="0" cellpadding="0" cellspacing="2" class="leftalign">
+      {% for field in job_static_form.visible_fields %}
+      <tr>
+        <td width="150"> {{ field.label_tag }} : </td>
+        <td class="jobname">{{ field }}</td>
+        {{ field.help_text }} </tr>
+      <tr> {% if field.errors %}
+        <td>&nbsp;</td>
+        <td> {{ field.errors }} </td>
+        {% endif %} </tr>
+      {% endfor %}
+    </table>
+    </fieldset>
+    <fieldset>
+    <table border="0" cellpadding="0" cellspacing="2" class="leftalign">
+      {% for field in job_form.visible_fields %}
+      <tr>
+        <td width="150">{{ field.label_tag}} :</td>
+        <td class="jobdetails">{{ field }}</td>
+        {{ field.help_text }} </tr>
+      <tr> {% if field.errors %}
+        <td>&nbsp;</td>
+        <td>{{ field.errors }}</td>
+        {% endif %} </tr>
+      {% endfor %}
+    </table>
+    </fieldset>
+    <fieldset>
+    <table border="0" cellpadding="0" cellspacing="2" class="leftalign">
+      {% for field in job_contact_form.visible_fields %}
+      <tr>
+        <td width="150">{{ field.label_tag}} :</td>
+        <td class="contactdetails">{{ field }}</td>
+        {{ field.hep_text}} </tr>
+      <tr> {% if field.errors %}
+        <td>&nbsp;</td>
+        <td>{{ field.errors }}</td>
+        {% endif %} </tr>
+      {% endfor %}
+
+    </table>
+    </fieldset>
+    </fieldset>
+    <div align="center" style="padding-top:10px;">
     <input type="submit" name="create-job" value="submit"  class="wymupdate" />
-    </form>
-  </div>
+  </form>
+</div>
 </div>
 {% endblock %}

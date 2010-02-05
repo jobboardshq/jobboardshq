@@ -1,20 +1,24 @@
-{% extends 'frontend
-/base.html' %}
+{% extends 'frontend/base.html' %}
 
 {% block content %}
 
 {% if ack %}
-<p> Thank you for making the payment.
-<p>
-<p> Your details are, <br />
+<div class="frontend_heading">Thank you for making the payment.</div>
+<div class="frontend_subheading1">
+  <p class="frontend">Your details are as follows </p>
+</div>
+<div class="left_padding">
+
+<p> <br />
   First Name: {{ first_name }} <br />
   Last Name: {{ last_name }} <br />
   Amount: {{ amt }} <br />
 </p>
-<p> <a href="{{ job.get_absolute_url }}">See Job</a> </p>
+<p> <a href="{{ job.get_absolute_url }}" class="blacklink">See Job</a> </p>
 {% else %}
 <p> There was a problem with your request. You have not been charged any money. Please start the request or
   contact us. </p>
+  </div>
 {% endif %}
 
 {% endblock %}
