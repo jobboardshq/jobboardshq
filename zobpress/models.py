@@ -267,7 +267,7 @@ class Job(BoardSpecificEntities):
     #board = models.ForeignKey(Board)
     name = models.CharField(max_length = 300, null=True, blank=True)
     
-    category = models.ForeignKey(Category, null = True, blank = True)
+    category = models.ForeignKey(Category)
     job_type = models.ForeignKey(JobType, null=True, blank=True)
     
     description = models.TextField()
@@ -343,7 +343,7 @@ class JobContactDetail(models.Model):
     job = models.ForeignKey(Job)
     name = models.CharField(max_length = 200)
     email = models.EmailField()
-    website = models.URLField()
+    website = models.URLField(null = True, blank = True)
         
 class JobData(models.Model):
     job = models.ForeignKey(Job)
@@ -444,6 +444,9 @@ def populate_pages_initial(sender, instance, created, **kwargs):
     if created:
         for title, content in initial_pages:
             Page.objects.create(board = board, title = title, content = content)
+    
+
+    
           
     
 def model_delete(model_obj):
@@ -454,14 +457,54 @@ def model_delete(model_obj):
         d.save()
         model_obj.is_deleted = True
         model_obj.save()
+        
+
+    
+def create_initial_jobs(board):
+    job_details = {
+        "name":"This is a sample Job post.",
+        "description": """You can edit it, or delete it. <p>You can format yout text. <strong>This is bold, for example</b></p>
+        """,
+        "Location": "Anywhere",
+        "Company": "Acme, Inc",
+        "Approximate Budget": "Depends",
+        "Company Url": "http://example.com",  
+        
+        
+    }    
+    
+    job_contact_details = {
+        "name": "Jane Smith",
+        "email": "jane@example.com"                       
+    }
+    category = board.category_set.all()[0]
+    job_type = board.jobtype_set.all()[0]
+    job = Job.objects.create(name = job_details["name"], 
+                       description = job_details["description"],
+                       board = board,
+                       category = category,
+                       job_type = job_type,
+                       )
+    for name, value in job_details.items():
+        if not name in ["name", "description"]:
+            JobData.objects.create(name = name, value = value, data_type="TextField", job = job)
+    JobContactDetail.objects.create(name = job_contact_details["name"], email=job_contact_details["email"], job=job)
+    
+def populate_initial_jobs(sender, instance, created, **kwargs):
+    board = instance
+    create_initial_jobs(board)
+        
 
     
 from django.db.models.signals import post_save
 
 #Populate the database with initial things.
+
 post_save.connect(populate_job_board_form_initial, sender = Board)
 post_save.connect(populate_categories_initial, sender = Board)
 post_save.connect(populate_job_types_initial, sender = Board)
 post_save.connect(populate_pages_initial, sender = Board)
+post_save.connect(populate_initial_jobs, sender = Board)
+
     
     

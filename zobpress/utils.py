@@ -1,4 +1,4 @@
-from zobpress.models import Board, Job, JobFormModel
+from zobpress.models import Board, Job, JobFormModel, JobData, JobContactDetail
 from django.template.loader import render_to_string
 
 type_template_mapping = {
@@ -12,6 +12,15 @@ type_template_mapping = {
 def create_inital_form(board):
     """When a board is first registered, create the default board for them."""
     JobFormModel.objects.create_default_form(board)
+    
+    
+
+                        
+                        
+
+
+    
+        
     
 def get_editable_form(board):
     "Given  a board, show the form which is editable"
