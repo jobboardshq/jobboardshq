@@ -16,7 +16,7 @@ def index(request, category_slug = None, job_type_slug = None):
     board = request.board
     category = board.category_set.all()
     pages = board.page_set.all()
-    jobs = board.job_set.all()
+    jobs = board.job_set.all().filter(is_deleted = False)
     if category_slug:
         jobs = jobs.filter(category__slug = category_slug)
     if job_type_slug:
