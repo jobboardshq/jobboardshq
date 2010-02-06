@@ -5,13 +5,13 @@
 <div class="middle">
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
-      <td><table width="720" border="0" cellspacing="0" cellpadding="0">
+      <td><table width="723" border="0" align="center" cellpadding="3" cellspacing="0">
           <tr>
-            <td width="100" class="title"><span class="left_padding">Type</span></td>
-            <td width="300" class="title">Most Recent Job Offers</td>
-            <td width="120" class="title">Category</td>
-            <td width="100" class="title">Posted On</td>
-            <td>&nbsp;</td>
+            <td width="140" align="left" class="title"><span class="left_padding">Type</span></td>
+            <td width="304" align="left" class="title">Most Recent Job Offers</td>
+            <td width="130" align="left" class="title">Category</td>
+            <td width="80" align="left" class="title">Posted On</td>
+            <td align="left">&nbsp;</td>
           </tr>
         </table></td>
     </tr>
@@ -19,15 +19,15 @@
       <td class="border"></td>
     </tr>
     <tr>
-      <td><table width="723" border="0" align="center" cellpadding="0" cellspacing="0">
+      <td><table width="723" border="0" align="center" cellpadding="3" cellspacing="0">
           {% for job in jobs %}
           <tr class="{% cycle 'colorbg' 'whitebg' %}">
-            <td width="100" align="left" ><span class="left_padding"> <a href="{% url frontend_job_type_jobs job.job_type.slug %}" class="redbadge">{{ job.job_type }} </a></span> </td>
+            <td width="130" align="left" ><span class="left_padding"> <a href="{% url frontend_job_type_jobs job.job_type.slug %}" class="badge1">{{ job.job_type }} </a></span> </td>
             <td width="300" align="left"><span class="redtext"> <a href="{{ job.get_absolute_url }}" class="redtext">{{ job.name }}</a></span> {% if job.company %}
               at {{ job.company }}
               {% endif %} </td>
-            <td width="120" align="left"><a href="{% url frontend_category_jobs job.category.slug  %}" class="blacklink">{{ job.category.name }}</a> </td>
-            <td width="100" align="left"> {{ job.created_on|date }} </td>
+            <td width="124" align="left"><a href="{% url frontend_category_jobs job.category.slug  %}" class="blacklink">{{ job.category.name }}</a> </td>
+            <td width="80" align="left"> {{ job.created_on|date }} </td>
             <td align="left"><span class="apply_button"><a href="{% url frontend_apply job.job_slug %}">Apply</a></span></td>
           </tr>
           {% endfor %}

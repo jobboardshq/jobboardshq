@@ -3,38 +3,57 @@
 {% load zobpress_filters %}
 
 {% block content %}
-	
-	<h3>
-		Fill this form to apply for this job
-	</h3>
-	<table>
-		<form action="." method="post" enctype="multipart/form-data">
-			
-			{{ form }}
-			<tr>
-				<td>
-					<input type="submit" value="apply" />
-				</td>
-			</tr>
-		</form>
-	</table>
-	
-	<h3>
-		Or contact directly at
-	</h3>
-		<p>
-			{% if contact.name %}
-				Name: {{  contact.name }}
-			{% endif %}
-		</p>
-		<p>
-			Email: {{ contact.email|mailhide }}
-		</p>
-		<p>
-		{% if contact.website %}
-				Name: <A href="{{ contact.website }}">{{  contact.website }}</A>
-			{% endif %}
-		</p>	
-	
-
-{% endblock content %}
+<div class="frontend_heading">Apply for this job</div>
+<div class="frontend_subheading1">
+  <p class="frontend">Fill this form to apply for this job </p>
+</div>
+<div class="frontend_content">
+  <form action="." method="post" enctype="multipart/form-data">
+    <table width="500" border="0" cellspacing="2" cellpadding="0">
+      {% for field in form.visible_fields %}
+      <tr>
+        <td width="120" align="left" valign="top">{{ field.label_tag }} :</td>
+        <td align="left" valign="top" class="applyjob">{{ field }}</td>
+        <!--{{ field.help_text }}-->
+      </tr>
+      {% if field.errors %}
+      <tr>
+        <td align="left" valign="top">&nbsp;</td>
+        <td align="left" valign="top">{{ field.errors }}</td>
+        {% endif %} </tr>
+      {% endfor %}
+      <tr>
+        <td colspan="2" align="center"><input type="submit" value="Apply" id="submit_button"/></td>
+      </tr>
+    </table>
+  </form>
+  <table width="500" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td colspan="2"><h3>Or contact directly at :</h3></td>
+    </tr>
+    <tr>{% if contact.name %}
+      <td>Name: </td>
+      <td>{{  contact.name }}</td>
+      {% endif %}
+    </tr>
+    
+    <tr>
+      <td> Email:</td>
+      <td class="redlink">{{ contact.email|mailhide }}</td>
+    </tr>
+    <tr>
+    {% if contact.website %}
+      <td> Name:</td>
+      <td><A href="{{ contact.website }}" class="redlink">{{  contact.website }}</A></td>
+    </tr>
+    {% endif %}
+  </table>
+<!--  <h3> </h3>
+  <p> {% if contact.name %}
+    Name: {{  contact.name }}
+    {% endif %} </p>
+  <p> Email: {{ contact.email|mailhide }} </p>
+  <p> {% if contact.website %}
+    Name: <A href="{{ contact.website }}">{{  contact.website }}</A> {% endif %} </p>
+</div>-->
+{% endblock content %} 

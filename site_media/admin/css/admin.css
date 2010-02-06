@@ -33,9 +33,9 @@ p.admin{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; c
 #admincontainer ul.vert-one li a.current,ul.vert-one li a.current:hover{background: url(../images/menu_hover.gif) no-repeat; color:#440D00;}
 #admincontainer ul.vert-one li a.current{background:url(../images/menu_current.gif) no-repeat; color:#440D00;}
 .addjobs_buttons{width:420px; float:right;  line-height:18px; text-align:right;}
-.jobrole{font:12px "trebuchet MS", Arial, Helvetica, sans-serif; color:#8B1B00; line-height:18px; text-decoration:none;}
-.jobrole a{font:12px "trebuchet MS", Arial, Helvetica, sans-serif; color:#8B1B00; line-height:18px; text-decoration:none;}
-.jobrole a:hover{font:12px "trebuchet MS", Arial, Helvetica, sans-serif; color:#000000; line-height:18px; text-decoration:underline;}
+.jobrole{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#8B1B00; line-height:18px; text-decoration:none;}
+.jobrole a{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#8B1B00; line-height:18px; text-decoration:none;}
+.jobrole a:hover{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#000000; line-height:18px; text-decoration:underline;}
 
 .viewed{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#666666; padding-left:25px;}
 .fulltime_badge{ text-align:center;  background-color:#788D01; color:#FFFFFF; font:bold 11px  Tahoma, Arial, Helvetica, sans-serif; display:block; float:left;  line-height:18px;}
@@ -79,3 +79,22 @@ p.admin{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; c
 .blackboldtext{ font:bold 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none;}
 .redboldtext{ font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#A10000; text-decoration:none;}
 .13redbold{ font:bold 13px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#A10000; text-decoration:none;}
+
+/* job type colours */
+.badge1{ font: bold 11px Tahoma, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none; background-color:#BD0000; padding:2px 3px 2px 3px; color:#FFFFFF; }
+.badge1:hover{  background-color:#000000; }
+
+.badge2{ font:11px Tahoma, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none; background-color:#788D01; padding:2px 3px 2px 3px; color:#FFFFFF; }
+.badge2:hover{  background-color:#000000; }
+
+.badge3{ font:11px Tahoma, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none; background-color:#DA9500; padding:2px 3px 2px 3px; color:#FFFFFF; }
+.badge3:hover{  background-color:#000000; }
+
+.badge4{ font:11px Tahoma, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none; background-color:#6A1200; padding:2px 3px 2px 3px; color:#FFFFFF; }
+.badge4:hover{  background-color:#000000; }
+
+.badge5{ font:11px Tahoma, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none; background-color:#EC8000; padding:2px 3px 2px 3px; color:#FFFFFF; }
+.badge5:hover{  background-color:#000000; }
+/* job type colours */
+.buttonbg{width:113px ; height:31px; border:none; background:url(../images/applybut_bg.png); cursor:pointer; color:#FFFFFF;font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif; text-align:center; display:block;  line-height:30px;}
+.buttonbg:hover{width:113px ; height:31px; border:none; background:url(../images/applybut_bg_r.png); cursor:pointer;  color:#FFFFFF;font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif;text-align:center;display:block; line-height:30px;}

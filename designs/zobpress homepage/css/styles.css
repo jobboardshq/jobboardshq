@@ -75,7 +75,7 @@ p.twitter{ padding-top:25px; padding-left:130px; color:#FFFFFF; text-align:left;
 #homecontent #leftpanel .features img{ float:left; display:block; margin:0px 15px 0px 0px;  }
 .features_title{font:bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000; text-decoration:none; }
 
-#homecontent #leftpanel_innerpage{width:960px; float:left; margin-top:20px; }
+#homecontent #leftpanel_innerpage{width:960px; margin:0px auto; }
 #homecontent #leftpanel_innerpage .features{width:940px; padding:10px 5px 10px 0px; border-bottom:1px dashed #D9C6AC; }
 #homecontent #leftpanel_innerpage .features img{ float:left; display:block; margin:0px 15px 0px 0px;  }
 .features_title{font:bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000; text-decoration:none; }
@@ -109,3 +109,22 @@ blockquote {font:12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; marg
 .meroonlink{ color:#CC0000; text-decoration:none; }
 .meroonlink:hover{  text-decoration:underline; color:#000000; }
 .clear{clear:both;}
+
+/* pricing page */
+#pricingtable{width:898px; margin:0px auto;}
+#pricingtable #top{width:898px; background: url(../images/pricing_table_top.gif) no-repeat; height:25px;}
+#pricingtable #middle{width:896px; border-left:1px solid #EEDABC; border-right:1px solid #EEDABC; background-color:#FDF9F3;}
+#pricingtable #bottom{width:898px; background: url(../images/pricing_table_bottom.gif) no-repeat; height:25px}
+#pricingtable #column1{width:306px; float:left; display:block; margin-top:63px;border-top:1px solid #EEDABC;}
+#pricingtable #column1 li{font:14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#482B00; text-decoration:none; padding-left:20px; line-height:29px; border-bottom:1px solid #EEDABC;}
+
+#pricingtable #column2{width:107px; height:472px; float:left; display:block; margin-right:9px; background:url(../images/free_pricing.png) no-repeat;}
+#pricingtable #column3{width:107px; height:472px;float:left; display:block; margin-right:9px;background:url(../images/starter_pricing.png) no-repeat;}
+#pricingtable #column4{width:107px; height:472px;float:left; display:block; margin-right:9px;background:url(../images/pro_pricing.png) no-repeat;}
+#pricingtable #column5{width:107px; height:472px;float:left; display:block; margin-right:9px;background:url(../images/elite_pricing.png) no-repeat;}
+#pricingtable #column6{width:107px; height:472px;float:left; display:block; margin-right:9px;background:url(../images/unlimited_pricing.png) no-repeat;}
+
+.pricing_signup{width:92px; height:40px; background:url(../images/pricing_signup_but.png) no-repeat; display:block; margin-top:415px; margin-left:8px; cursor:pointer;}
+.pricing_signup:hover{width:92px; height:40px; background:url(../images/pricing_signup_but_r.png) no-repeat; display:block; margin-top:415px; margin-left:8px; cursor:pointer;}
+.pricing_prosignup{width:92px; height:40px; background:url(../images/pricing_pro_but.png) no-repeat; display:block; margin-top:415px; margin-left:8px; cursor:pointer;}
+.pricing_prosignup:hover{width:92px; height:40px; background:url(../images/pricing_pro_but_r.png) no-repeat; display:block; margin-top:415px; margin-left:8px; cursor:pointer;}

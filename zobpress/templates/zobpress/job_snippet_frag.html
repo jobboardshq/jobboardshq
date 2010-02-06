@@ -8,7 +8,7 @@
       <td width="60" rowspan="2" align="right" valign="bottom"><a href="{% url zobpress_delete_job job.pk %}" class="delete_link"><img src="{{ MEDIA_URL }}admin/images/delete_icon.gif" alt="Delete the Job" width="35" height="35" /></a></td>
     </tr>
     <tr>
-      <td align="left" valign="middle"><span class="parttime_badge">{{ job.job_type }}</span><span class="viewed"> Viewed {{ job.times_viewed }} times</span></td>
+      <td align="left" valign="middle"><span class="badge1">{{ job.job_type }}</span><span class="viewed"> Viewed {{ job.times_viewed }} times</span></td>
     </tr>
   </table>
 </div>
