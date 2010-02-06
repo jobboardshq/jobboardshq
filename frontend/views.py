@@ -90,7 +90,7 @@ search = ensure_has_board(BoardSearch(form_class = SearchForm))
 def job_board_pages(request, page_slug):
     "Show a page for a Board"
     board = request.board
-    page = get_object_or_404(Page, job_board=board, page_slug=page_slug)
+    page = get_object_or_404(Page, board=board, page_slug=page_slug)
     return render_to_response('frontend/static_pages.html', {'page': page}, RequestContext(request))
 
 @ensure_has_board
