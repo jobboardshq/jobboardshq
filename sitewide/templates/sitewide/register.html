@@ -1,4 +1,6 @@
-<title>Register with Job Boards</title>{% extends "sitewide/base_inner.html" %}
+<title>Register with Job Boards</title>
+
+{% extends "sitewide/base_inner.html" %}
 
 	{% block title %}	
 		 Register - {{ block.super }}
@@ -9,10 +11,28 @@
 
 
 {% block content %}
-<form action="." method="post">
-  <table>
-    {{ new_board_form }}
-  </table>
-  <input type="submit" name="Register" value="Register" />
-</form>
+<div id="leftpanel_innerpage">
+  <div id="pricingtable">
+    <form action="." method="post">
+      <table width="500" border="0" cellspacing="2" cellpadding="0">
+        <tr>
+          <td colspan="2"><h1>Register with us</h1></td>
+        </tr>
+        <tr> {% for field in new_board_form.visible_fields %}
+          <td align="left" valign="top" class="contactlabel">{{ field.label_tag }} :</td>
+          <td align="left" valign="top" class="contact">{{ field }}</td>
+        </tr>
+        <tr> {% if field.errors %}
+          <td align="left" valign="top">&nbsp;</td>
+          <td align="left" valign="top">{{ field.errors }}</td>
+          {% endif %} </tr>
+        {% endfor %}
+        <tr>
+          <td>&nbsp;</td>
+          <td align="center"><input type="submit" name="Register" value="Register"  class="contactsubmit"/></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</div>
 {% endblock %}

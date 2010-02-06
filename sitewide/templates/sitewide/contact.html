@@ -1,37 +1,63 @@
-<title>Contact Job Boards team</title>{% extends "sitewide/base_inner.html" %}
+<title>Contact Job Boards team</title>
+
+{% extends "sitewide/base_inner.html" %}
 
 {% block banner %}
 {% endblock banner %}
 
 {% block content %}
-     <div id="leftpanel_innerpage">
-<div id="pricingtable">
-
-	<table>
-		<form>
-			{{ form }}
-				<tr>
-			<td>
-				<input type="submit" name="submit" value="Get in Touch" />
-			</td>
-		</tr>
-	
-		</form>
-	</table>	
-	
-	<p>
-		Or get in touch with us Via.
-		
-	</p>
-	<p>
-		Email: XXXXXXXXXXXXXXXXX
-		Phone: XXXXXXXXXXXXXXX
-		Fax: XXXXXXXXXXXXXX
-		Skype: XXXXXXXXXXX
-		Twitter; XXXXXXXXXXXXX	
-        </p>
-        </div>
-       
-</div>   </div>
-	
-{% endblock content %}
+<div id="leftpanel_innerpage">
+  <div id="pricingtable">
+    <form>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td align="left" valign="top"><table width="500" border="0" cellspacing="2" cellpadding="0">
+              <tr>
+                <td colspan="2"  align="left" valign="top"><h1>Contact Us</h1></td>
+              </tr>
+              {% for field in form.visible_fields %}
+              <tr>
+                <td width="260" align="left" valign="top" class="contactlabel">{{ field.label_tag }} :</td>
+                <td align="left" valign="top" class="contact">{{ field }}</td>
+              </tr>
+              <tr> {% if field.errors %}
+                <td align="left" valign="top">&nbsp;</td>
+                <td align="left" valign="top">{{ field.errors }}</td>
+                {% endif %} </tr>
+              {% endfor %}
+              <tr>
+                <td>&nbsp;</td>
+                <td  align="center"><input type="submit" name="submit" value="Get in Touch"  class="contactsubmit" /></td>
+              </tr>
+            </table></td>
+          <td><table width="100%" border="0" cellspacing="2" cellpadding="0">
+              <tr>
+                <td colspan="2"><h1>Or get in touch with us Via. </h1></td>
+              </tr>
+              <tr>
+                <td  class="contactlabel"> Email: </td>
+                <td ><a href="mailto:support@jobboardshq.com" class="contactlabel">support@jobboardshq.com</a></td>
+              </tr>
+              <tr>
+                <td  class="contactlabel"> Phone:</td>
+                <td  class="contactlabel"> +91- 99499 97612</td>
+              </tr>
+              <tr>
+                <td  class="contactlabel"> Fax:</td>
+                <td  class="contactlabel"> +91-80-6688-5584</td>
+              </tr>
+              <tr>
+                <td  class="contactlabel">Skype:</td>
+                <td><a href="#" class="contactlabel">shabda.raaj</a></td>
+              </tr>
+              <tr>
+                <td  class="contactlabel"> Twitter:</td>
+                <td><a href="http://twitter.com/uswaretech" target="_blank" class="contactlabel"> uswaretech</a></td>
+              </tr>
+            </table></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</div>
+{% endblock %}
