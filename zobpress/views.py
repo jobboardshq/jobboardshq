@@ -178,13 +178,32 @@ def indeed_jobs(request):
         
 @ensure_has_board
 @login_required
+def create_job_form_advanced1(request):
+    "Create a job form for a board."
+    job_field_formset = modelformset_factory(JobFieldModel, fields=["name", "type", "required"])
+    queryset = JobFieldModel.objects.filter(job_form__board = request.board)
+    job_field_formset(queryset = queryset)
+    
+    if request.method == "POST":
+        job_field_formset(queryset = queryset, data = request.POST)
+    
+    
+    payload = {"job_field_formset": job_field_formset}
+    return render_to_response("zobpress/create_job_form_advanced.html", payload, RequestContext(request))
+
 def create_job_form_advanced(request):
     "Create a job form for a board."
     job_field_formset = modelformset_factory(JobFieldModel, fields=["name", "type", "required"])
-    
     queryset = JobFieldModel.objects.filter(job_form__board = request.board)
-    payload = {"job_field_formset": job_field_formset(queryset = queryset)}
+    forms = job_field_formset(queryset = queryset)
+    if request.method == "POST":
+        forms = job_field_formset(queryset = queryset, data = request.POST)
+        if forms.is_valid():
+            forms.save()
+            return HttpResponseRedirect(".")
+    payload = {"job_field_formset": forms}
     return render_to_response("zobpress/create_job_form_advanced.html", payload, RequestContext(request))
+
 
 @ensure_has_board
 def list_subscriptions(request):

@@ -4,13 +4,28 @@
 
 {% block content %}
 <table>
+  <form method="post" action=".">
   {% for form in job_field_formset.forms %}
-  <tr> {% for field in form.visible_fields %}
-    <td><p> {{ field.label_tag }} </p>
-      <p> {% if field.errors %}
-        {% endif %}	
-        {{ field }} </p></td>
+  <tr> 
+    {% for field in form.visible_fields %}
+      <td>
+      	<p> {{ field.label_tag }} </p>
+         <p> {% if field.errors %}
+		 	{{ field.errors }}
+           {% endif %}	
+           {{ field }} 
+		</p>
+		</td>
+		
+		
     {% endfor %} </tr>
+	{% for field in form.hidden_fields %}
+  		{{ field }}
+  	{% endfor %}
   {% endfor %}
+  
+  {{ job_field_formset.management_form }}
+  <input type="submit" name="create-form"  value="Update the form" />
+  </form>
 </table>
 {% endblock %}
