@@ -35,7 +35,7 @@
 {% load zobpress_filters %}
 <body class="admin">
 <div id="adminheader">
-<div class="logo"><a href="#"><img src="{{ MEDIA_URL }}admin/images/jobpress_logo_admin.gif" alt="Zobpress" width="318" height="81" /></a></div>
+<div class="logo"><a href="{% url zobpress_index %}"><img src="{{ MEDIA_URL }}admin/images/jobpress_logo_admin.gif" alt="Zobpress" width="318" height="81" /></a></div>
 <div id="admin_user">Welcome <span class="blacktext">{{ user.username }}</span> | <a href="{% url frontend_index %}">Visit Site</a> | 
 <a href="{% url auth_logout %}">Log Out</a></div>
 </div>

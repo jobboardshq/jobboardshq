@@ -10,6 +10,7 @@ from zobpress.forms import JobStaticForm, JobContactForm, get_job_form
 
 from haystack.views import SearchView
 from haystack.forms import SearchForm
+from frontend.forms import ApplyForm
 
 @ensure_has_board
 def index(request, category_slug = None, job_type_slug = None):
@@ -70,7 +71,20 @@ def job(request, job_slug):
 
 @ensure_has_board
 def apply(request, job_slug):
-    pass
+    job = get_object_or_404(Job, job_slug = job_slug)
+    contact = job.primary_contact
+    form = ApplyForm(board = request.board)
+    if request.method == "POST":
+        form = ApplyForm(board = request.board, data = request.POST, files = request.FILES)
+        if form.is_valid():
+            applicant = form.save(commit = False)
+            applicant.board = request.board
+            applicant.job = job
+            applicant.save()
+            return HttpResponseRedirect(reverse("frontend_apply_thanks",))
+        
+    payload = {"form": form, "contact":contact}
+    return render_to_response("frontend/apply.html", payload, RequestContext(request))
 
 
 class BoardSearch(SearchView):

@@ -28,7 +28,7 @@
               {% endif %} </td>
             <td width="120" align="left"><a href="{% url frontend_category_jobs job.category.slug  %}" class="blacklink">{{ job.category.name }}</a> </td>
             <td width="100" align="left"> {{ job.created_on|date }} </td>
-            <td align="left"><span class="apply_button"><a href="{% url frontend_apply job.id %}">Apply</a></span></td>
+            <td align="left"><span class="apply_button"><a href="{% url frontend_apply job.job_slug %}">Apply</a></span></td>
           </tr>
           {% endfor %}
         </table></td>

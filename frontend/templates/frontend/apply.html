@@ -1,0 +1,40 @@
+{% extends "frontend/base.html" %}
+
+{% load zobpress_filters %}
+
+{% block content %}
+	
+	<h3>
+		Fill this form to apply for this job
+	</h3>
+	<table>
+		<form action="." method="post" enctype="multipart/form-data">
+			
+			{{ form }}
+			<tr>
+				<td>
+					<input type="submit" value="apply" />
+				</td>
+			</tr>
+		</form>
+	</table>
+	
+	<h3>
+		Or contact directly at
+	</h3>
+		<p>
+			{% if contact.name %}
+				Name: {{  contact.name }}
+			{% endif %}
+		</p>
+		<p>
+			Email: {{ contact.email|mailhide }}
+		</p>
+		<p>
+		{% if contact.website %}
+				Name: <A href="{{ contact.website }}">{{  contact.website }}</A>
+			{% endif %}
+		</p>	
+	
+
+{% endblock content %}

@@ -332,6 +332,11 @@ class Job(BoardSpecificEntities):
     def edit_link(self):
         return ('zobpress.views.edit_job', [self.pk])
     
+    @property
+    def primary_contact(self):
+        if self.jobcontactdetail_set.all().count():
+            return self.jobcontactdetail_set.all()[0]
+    
     class Meta:
         ordering = ('-created_on', )
     
@@ -379,6 +384,14 @@ class JobFile(models.Model):
     
     def get_absolute_url(self):
         return settings.MEDIA_URL + self.public_path
+    
+class Applicant(BoardSpecificEntities):
+    job = models.ForeignKey(Job)
+    name = models.CharField(max_length = 100, help_text = "Your name")
+    response = models.TextField(help_text = "What would you like to say")
+    email = models.EmailField(help_text = "Your email id")
+    resume = models.FileField(upload_to = "resumes")
+    
     
 class Page(BoardSpecificEntities):
     #job_board = models.ForeignKey(Board)

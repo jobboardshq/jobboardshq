@@ -1,4 +1,6 @@
 from django.conf.urls.defaults import patterns, url
+from django.views.generic.simple import direct_to_template
+
 
 
 
@@ -9,7 +11,9 @@ urlpatterns = patterns('frontend.views',
         
         url(r"^addjob/$", "addjob", name="frontend_addjob"),
         
+        url(r"^apply/done/$", direct_to_template, {"template": "frontend/apply_done.html"}, name="frontend_apply_thanks"),
         url(r"^apply/(?P<job_slug>[\w-]+)/$", "apply", name="frontend_apply"),   
+        
         url(r'^job/(?P<job_slug>[\w\-]+)/$', 'job', name='frontend_job'),
         
         #Paypal

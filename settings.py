@@ -95,6 +95,8 @@ INDEED_API_URL = "http://api.indeed.com/ads/apisearch"
 BASE_DOMAIN = 'foo.tld'
 INTERNAL_IPS = ('127.0.0.1',)
 
+EMAIL_THUMBNAILS = "email"
+
 from localsettings import *
 
 #if DEBUG:
