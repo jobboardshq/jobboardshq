@@ -178,6 +178,10 @@ class Category(BoardSpecificEntities):
     def edit_url(self):
         return('zobpress.views.edit_category', [self.pk])
     
+    def get_public_jobs(self):
+        "Gets public jobs of a category, that which has not been deleted, or made inactive."
+        return self.job_set.filter(is_active = True, is_deleted = False)
+    
     def delete(self):
         "Never delete"
         model_delete(self)
