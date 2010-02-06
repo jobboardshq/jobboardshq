@@ -45,8 +45,6 @@ FONTCOLOR = "#888"
 
 @register.filter
 def mailhide(value):
-    import ipdb
-    #ipdb.set_trace()
     email_md5 = md5.new(value).hexdigest()
     email_path = os.path.join(settings.MEDIA_ROOT, settings.EMAIL_THUMBNAILS).replace('\\', '/')
     em_file_path = os.path.join(email_path, email_md5 + '.png').replace('\\', '/')
