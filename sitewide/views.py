@@ -3,6 +3,8 @@ from django.template import RequestContext
 from sitewide.forms import NewBoardForms, ContactUsForm
 
 from registration.views import register
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
 
 def index(request):
     payload = {}
@@ -14,7 +16,7 @@ def contact(request):
         form = ContactUsForm(data = request.POST)
         if form.is_valid():
             form.save()
-            return render_to_response('sitewide/contact.html', {}, RequestContext(request))
+            return HttpResponseRedirect(reverse("sitewide_contact_done"))
     payload = {"form": form}
     return render_to_response('sitewide/contact.html', payload, RequestContext(request))
 

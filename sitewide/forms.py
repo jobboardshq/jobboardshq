@@ -36,10 +36,10 @@ class ContactUsForm(forms.ModelForm):
     def save(self, *args, **kwargs):
         super(ContactUsForm, self).save(*args, **kwargs)
         #Email now.
-        subject = render_to_string("frontend/emails/contact_subject.txt")
-        message = render_to_string("frontend/emails/contact_message.txt")
-        from_email = settings.ADMINS[0]
-        recipient_list = settings.ADMINS
+        subject = render_to_string("sitewide/emails/contact_subject.txt")
+        message = render_to_string("sitewide/emails/contact_message.txt")
+        from_email = settings.ADMINS[0][1]
+        recipient_list = [el[1] for el in settings.ADMINS]
         send_mail(subject, message, from_email, recipient_list, fail_silently =False)
         
     

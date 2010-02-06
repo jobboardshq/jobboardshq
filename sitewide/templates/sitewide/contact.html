@@ -8,7 +8,7 @@
 {% block content %}
 <div id="leftpanel_innerpage">
   <div id="pricingtable">
-    <form>
+    <form method="post" action=".">
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td align="left" valign="top"><table width="500" border="0" cellspacing="2" cellpadding="0">
@@ -27,9 +27,12 @@
               {% endfor %}
               <tr>
                 <td>&nbsp;</td>
-                <td  align="center"><input type="submit" name="submit" value="Get in Touch"  class="contactsubmit" /></td>
+                <td  align="center">
+                	<input type="submit" name="submit" value="Get in Touch"  class="contactsubmit" /></td>
               </tr>
-            </table></td>
+            </table>
+			</form>
+			</td>
           <td><table width="100%" border="0" cellspacing="2" cellpadding="0">
               <tr>
                 <td colspan="2"><h1>Or get in touch with us Via. </h1></td>
@@ -57,7 +60,7 @@
             </table></td>
         </tr>
       </table>
-    </form>
+    
   </div>
 </div>
 {% endblock %}

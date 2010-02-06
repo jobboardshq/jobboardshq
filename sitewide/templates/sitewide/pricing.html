@@ -5,47 +5,49 @@
 {% endblock banner %}
 
 {% block content %}
-<div id="leftpanel_innerpage">
-  <div id="pricingtable">
-    
-      <h1>
-        Its Free until 1st June.Hurry Up!</h1>
-    
-    <div id="top"></div>
-    <div id="middle">
-      <div id="column1">
-        <ul>
-          <li>Custom Domains names</li>
-          <li>Accept Paypal</li>
-          <li>Number of job posts per month</li>
-          <li>Maximum number of categories</li>
-          <li>Maximum number of email subscribers</li>
-          <li>Maximum number of Job types</li>
-          <li>Page views per month</li>
-          <li>Remove Jobboardshq branding</li>
-          <li>Use any templates</li>
-          <li>Seo Optmiised</li>
-          <li>Price/Month</li>
-        </ul>
-      </div>
-      <div id="column2"> <a href="#">
-        <div class="pricing_signup"></div>
-        </a> </div>
-      <div id="column3"> <a href="#">
-        <div class="pricing_signup"></div>
-        </a> </div>
-      <div id="column4"> <a href="#">
-        <div class="pricing_prosignup"></div>
-        </a> </div>
-      <div id="column5"> <a href="#">
-        <div class="pricing_signup"></div>
-        </a> </div>
-      <div id="column6"> <a href="#">
-        <div class="pricing_signup"></div>
-        </a> </div>
-      <div class="clear"></div>
-    </div>
-    <div id="bottom"></div>
-  </div>
-</div>
+    <div id="leftpanel_innerpage">
+<div id="pricingtable">
+        <div>
+          <h1 align="center"><br />Free until 1st June.
+		  	<br />
+			<a href="{% url sitewide_register_board %}">Sign up now</a>
+		  </h1>
+        </div>
+        <div id="top"></div>
+        <div id="middle">
+          <div id="column1">
+            <ul>
+              <li>Custom Domains names</li>
+              <li>Accept Paypal</li>
+              <li>Number of job posts per month</li>
+              <li>Maximum number of categories</li>
+              <li>Maximum number of email subscribers</li>
+              <li>Maximum number of Job types</li>
+              <li>Page views per month</li>
+              <li>Remove Jobboardshq branding</li>
+              <li>Use any templates</li>
+              <li>Seo Optmiised</li>
+              <li>Price/Month</li>
+            </ul>
+          </div>
+          <div id="column2">
+            <a href="{% url sitewide_register_board %}"><div class="pricing_signup"></div></a>
+          </div>
+          <div id="column3">
+            <a href="{% url sitewide_register_board %}"><div class="pricing_signup"></div></a>
+          </div>
+          <div id="column4">
+            <a href="{% url sitewide_register_board %}"><div class="pricing_prosignup"></div></a>
+          </div>
+          <div id="column5">
+           <a href="{% url sitewide_register_board %}"> <div class="pricing_signup"></div></a>
+          </div>
+          <div id="column6">
+           <a href="{% url sitewide_register_board %}"> <div class="pricing_signup"></div></a>
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div id="bottom"></div>
+      </div>    </div>
+
 {% endblock content %}
