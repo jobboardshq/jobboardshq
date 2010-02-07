@@ -46,7 +46,7 @@ def addjob(request):
             contact.job = job
             contact.board = request.board
             contact.save()
-            request.user.message_set.create(message="The job has been added.")
+            #request.user.message_set.create(message="The job has been added.")
             #The job has been added. It is inactive yet. Ask user to pay via Paypal if needed.
             if not board.cost_per_job_listing:
                 #There is no charge for adding Jobs to this board.

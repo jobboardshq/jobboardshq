@@ -308,6 +308,7 @@ class Job(BoardSpecificEntities):
     is_expired = models.BooleanField(default = False)#Has this listing expired yet?
     is_editable = models.BooleanField(default = False)
     is_deleted = models.BooleanField(default = False)
+    is_default = models.BooleanField(default = False)
     
     paypal_token_sec = models.CharField(max_length = 100,  null = True, blank = True)#Token returned from set_express_checkout
     paypal_token_gec = models.CharField(max_length = 100,  null = True, blank = True)#Token returned from get_express_checkout
@@ -526,6 +527,7 @@ def create_initial_jobs(board):
                        board = board,
                        category = category,
                        job_type = job_type,
+                       is_default = True
                        )
     for name, value in job_details.items():
         if not name in ["name", "description"]:

@@ -10,7 +10,7 @@ from registration.views import register
 
 def index(request):
     from zobpress.models import Job
-    latestjob = Job.objects.latest()
+    latestjob = Job.objects.filter(is_default = False).latest()
     payload = {"latestjob": latestjob}
     return render_to_response('sitewide/index.html', payload, RequestContext(request))
 
