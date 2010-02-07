@@ -14,7 +14,7 @@
 <body class="innerpage">
 <div id="wrapper">
   <!--Header starts-->
-   {% block header %}
+  {% block header %}
   <div id="header"> <a href="{% url sitewide_index %}"><img src="{{ MEDIA_URL }}sitewide/images/jobboards_logo.gif" alt="Job Boards logo" width="315" height="67" /></a> {% endblock header %} </div>
   <!--Header Ends-->
   <!--Top Navigation Starts-->
@@ -25,8 +25,16 @@
     {% endblock topnav %} </div>
   <!--Top Navigation ends-->
   <!--Banner starts-->
-  <div id="banner_innerpage"> {% block banner %} </div>
-  {% endblock banner %} </div>
+  <div id="banner_innerpage">
+    <!-- {% block banner %} -->
+    <div class="title"><img src="images/innerbanner_title.png" alt="Create your own in seconds - No Downloads and No Installations" width="587" height="115" /></div>
+    <a href="register.html" >
+    <div id="signupbut"></div>
+    </a>
+    <div class="clear"></div>
+  </div>
+  <!-- {% endblock banner %}-->
+</div>
 <!--Banner ends-->
 {% block content %}
 <!--content starts-->

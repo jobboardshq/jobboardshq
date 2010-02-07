@@ -64,6 +64,12 @@ p.twitter{ padding-top:25px; padding-left:130px; color:#FFFFFF; text-align:left;
 #banner #signup #button{width:288px; text-align:center; margin:0px auto; background:url(../images/post_job_buttonnew.png) no-repeat; height:65px; cursor:pointer; margin-top:25px; }
 #banner #signup #button:hover{width:288px; text-align:center; margin:0px auto; background:url(../images/post_job_buttonnew.png) 0 -65px no-repeat;  margin-top:25px;}
 #banner_innerpage{ margin:0px auto; width:960px; height:150px;}
+#banner_innerpage{ margin:0px auto; width:960px; height:150px;}
+#banner_innerpage .title{width:600px; height:130px; float:left; padding:20px 0px 0px 0px;}
+#banner_innerpage #signupbut{width:288px;  text-align:center; margin:0px auto; background:url(../images/post_job_buttonnew.png) no-repeat; height:65px; cursor:pointer; margin:40px 0px 0px 50px; float:left;}
+#banner_innerpage #signupbut:hover{width:288px;  text-align:center; margin:0px auto; background:url(../images/post_job_buttonnew.png) 0 -65px no-repeat; height:65px; cursor:pointer;  margin:40px 0px 0px 50px; }
+
+
 /*Banner styles ends*/
 
 /*Content styles*/
