@@ -69,7 +69,7 @@ def jobs(request, job_type_slug=None):
     if not order_by in ('name', 'created_on'):
         order_by = '-created_on'
     qs = models.Job.objects.filter().order_by(order_by)
-    if job_type:
+    if job_type_slug:
         qs = qs.filter(job_type__slug = job_type_slug)
     return object_list(request, template_name = 'zobpress/jobs.html', queryset = qs, template_object_name = 'jobs', paginate_by=10, extra_context={})
 
