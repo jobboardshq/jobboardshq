@@ -1,15 +1,17 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from sitewide.forms import NewBoardForms, ContactUsForm
-
-from registration.views import register
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth.views import login
 from django.contrib.auth import authenticate
 
+from sitewide.forms import NewBoardForms, ContactUsForm
+from registration.views import register
+
 def index(request):
-    payload = {}
+    from zobpress.models import Job
+    latestjob = Job.objects.latest()
+    payload = {"latestjob": latestjob}
     return render_to_response('sitewide/index.html', payload, RequestContext(request))
 
 def contact(request):
@@ -25,7 +27,11 @@ def contact(request):
 def register_board(request):
     "This wrapper around the register view"
     #return register(request, form_class = NewBoardForms)
-    new_board_form =  NewBoardForms(subdomain = request.subdomain)
+    subdomain = getattr(request, "subdomain", None)
+    if subdomain:
+        new_board_form =  NewBoardForms(subdomain = subdomain)
+    else:
+        new_board_form =  NewBoardForms()
     if request.method == 'POST':
         new_board_form = NewBoardForms(data = request.POST)
         if new_board_form.is_valid():

@@ -116,6 +116,8 @@ def categories(request):
     return object_list(request, queryset = categories, template_name = 'zobpress/categories.html', template_object_name = 'category', extra_context = extra)
 
 
+@ensure_is_admin
+@ensure_has_board
 def job_types(request):
     job_types = JobType.objects.all()
     form = JobTypeForm()
@@ -145,21 +147,6 @@ def edit_category(request, category_pk):
     return render_to_response("zobpress/edit_category.html", payload, RequestContext(request))
     
     
-
-@ensure_is_admin
-@ensure_has_board
-def feeds_jobs(request):
-    "Show a RSS feed of jobs."
-    board = request.board
-    title = "Latest Jobs %s" % board.name
-    link = reverse('zobpress_feeds_jobs')
-    description = "Latest Jobs added to our site %s" % board.name
-    feed = feedgenerator.Atom1Feed(title = title, link = link, description = description)
-    jobs = Job.objects.filter(board = board)
-    for job in jobs:
-        feed.add_item(title = job.name, link = job.get_absolute_url(), description=job.as_snippet())
-    return HttpResponse(feed.writeString('UTF-8'))
-
 
 @ensure_is_admin
 @ensure_has_board
@@ -249,6 +236,8 @@ def edit_page(request, page_slug):
     payload = {"form": form}
     return render_to_response("zobpress/edit_page.html", payload, RequestContext(request))
     
+
+@ensure_is_admin
 @ensure_has_board
 def create_page(request):
     "Create a page for the board."
@@ -264,12 +253,18 @@ def create_page(request):
         form = PageForm()
     return render_to_response('zobpress/create_page.html', {'form': form}, RequestContext(request))
 
+
+@ensure_is_admin
+@ensure_has_board
 def trash(request):
     deleted = DeletedEntities.objects.all()
     deleted_objects =  [el.get_content_object() for el in deleted]
     payload = {"deleted": deleted, "deleted_objects":deleted_objects}
     return render_to_response('zobpress/trash.html', payload, RequestContext(request))
 
+
+@ensure_is_admin
+@ensure_has_board
 def untrash(request, pk):
     if request.method == "POST":
         deleted_object = DeletedEntities.objects.get(pk = pk)
@@ -284,18 +279,27 @@ def untrash(request, pk):
 
 ######Ajax views############
 
+
+@ensure_is_admin
+@ensure_has_board
 def delete_job(request, job_id):
     job = get_object_or_404(Job, pk = job_id)
     job.delete()
     payload = {"name": job.name, "pk": job.pk}
     return HttpResponse(simplejson.dumps(payload))
 
+
+@ensure_is_admin
+@ensure_has_board
 def delete_category(request, category_id):
     category = get_object_or_404(Category, pk = category_id)
     category.delete()
     payload = {"name": category.name, "pk": category.pk}
     return HttpResponse(simplejson.dumps(payload))
-    
+  
+
+@ensure_is_admin
+@ensure_has_board    
 def delete_job_type(request, job_id):
     job_type = get_object_or_404(JobType, pk = job_id)
     job_type.delete()

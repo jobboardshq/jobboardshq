@@ -23,6 +23,9 @@ urlpatterns = patterns('frontend.views',
         url(r'^pages/(?P<page_slug>.*)/$', 'job_board_pages', name='frontend_job_board_page'),
         
         url(r'^search/$', "search", name='frontend_search'),
+        
+        #Feeds
+        url(r'^feeds/jobs/$', 'feeds_jobs', name='frontend_feeds_jobs'),
            
         )
 

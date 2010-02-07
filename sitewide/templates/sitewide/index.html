@@ -40,29 +40,39 @@
   <div id="rightpanel">
     <div>
       <h1>About Job Boards</h1>
-      <p class="aboutus">Job Boards Job Board Software let's you launch an easy-to-use advanced Job Board while providing all the key features to generate revenue and be successful in a competitive job board market. Job Boards is scalable and a fully customizable solution to meet your unique Job Board requirements.</p>
-      <p>Our  Job Boards product - JobBoardshq, lets employers, recruiters and enterprenuers to publish their own Job Board that can be managed easily. Its development is based on great experience of developing and maintaining various job boards.</p>
+      <p class="aboutus">JobBoardsHQ Job Board Software lets you launch an easy-to-use advanced Job Board,
+      while providing the key features to generate revenue and be successful in the competitive job board market.
+      JobBoardsHQ is scalable and <strong>fully customizable</strong> solution to meet your unique Job Board requirements.</p>
+      <p>Our  Job Boards product - JobBoardsHq, lets employers, recruiters and enterprenuers to publish their own Job Board.
+      that can be managed easily. Its development is based on great experience of developing and maintaining various job boards.
+      With nothing to nothing, and nothing to install, you would be up and running in minutes.
+      </p>
     </div>
     <br/>
     <div id="support">
       <h1>Support</h1>
       <p>We're always ready to provide our clients with all necessary help and information they need. <br/>
         <br/>
-        For any questions, please always feel free to contact us at <a href="mailto:support@jobboardshq.com" class="meroonlink">support@jobboardshq.com</a>. We'll be glad to assist you.<br/>
+        For any questions, please contact us at <a href="mailto:hello@jobboardshq.com" class="meroonlink">hello@jobboardshq.com</a>. We'll be glad to assist you.<br/>
+        
         <br/>
-        ZobPress JobBoard Support includes:<br/>
+        We can help you to:<br/>
       <ul>
-        <li><a href="#">Answering clients questions</a></li>
-        <li><a href="#">Bugs fixing</a></li>
-        <li><a href="#">Solving web-hosting tech issues</a></li>
+        <li>Customise the JobBoard to your unique requirements.</li>
+        <li>Help you get started.</li>
+        <li>Answer any questions.</li>
       </ul>
       </p>
     </div>
   </div>
   <div id="testimonials">
-    <h1>Testimonials</h1>
-    <blockquote>Shabda is a rare breed of developer that can handle both the nitty-gritty technical work and communicate details in a manner the is easy for non-technical types to understand...Shabda is a rare breed of developer that can handle both the nitty-gritty technical work and communicate details in a manner the is easy for non-technical types to understand...<br/>
-      <span class="speaker">Steven Mallows, AdditionalView</span></blockquote>
+    <h1>Latest posted job</h1>
+    <blockquote>
+      <p>{{ latestjob.name }}</p>
+      {{ latestjob.description|truncatewords_html:50|safe }}
+      <br/>
+      <span class="speaker">
+        <a href="{{ latestjob.board.get_absolute_url }}{{ latestjob.get_absolute_url }}">Visit site</a></span></blockquote>
   </div>
 </div>
 {% endblock %} 

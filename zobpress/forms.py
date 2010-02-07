@@ -12,7 +12,7 @@ from zobpress.models import JobFormModel, JobFieldModel, JobType
 from zobpress.models import Job, JobData, Category, JobFile, Page
 
 class PageForm(forms.ModelForm):
-    
+    content = forms.CharField(widget = forms.Textarea(attrs = {"class": "RTEField"}))
     class Meta:
         model = Page
         exclude = ('board',)

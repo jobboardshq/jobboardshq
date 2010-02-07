@@ -3,7 +3,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Job Board - Demo</title>
+<title>{{ board.name }} - {{ board_settings.tag_line }}</title>
+<meta keyword="{{ board.description }}" />
+<meta keyword="{{ board_settings.keywords }}" />
+
 <link href="{{ MEDIA_URL }}frontend/css/reset.css" rel="stylesheet" type="text/css" />
 {% compress css %}
 <link href="{{ MEDIA_URL }}frontend/css/frontend.css" rel="stylesheet" type="text/css" />
@@ -47,7 +50,7 @@
 </div>
   <!--Header ends-->
   <!--Top Nav starts-->
-  <div id="frontend_topnav"> <a href="#">Login</a> | <a href="{% url zobpress_feeds_jobs %}">Subscribe to RSS </a><img src="{{ MEDIA_URL }}frontend/images/rss_icon.png" alt="RSS" width="23" height="24"  /> </div>
+  <div id="frontend_topnav"> <a href="#">Login</a> | <a href="{% url frontend_feeds_jobs %}">Subscribe to RSS </a><img src="{{ MEDIA_URL }}frontend/images/rss_icon.png" alt="RSS" width="23" height="24"  /> </div>
   <div class="clear"></div>
   <!--Top Nav ends-->
   <!--Search bar starts-->

@@ -2,6 +2,10 @@
 
 {% block title %} {{ board.name }} - Create Page {% endblock title %}
 
+{% block extrascript %}
+<script type="text/javascript" src="{{ MEDIA_URL }}tiny_mce/jquery.tinymce.js"></script>
+{% endblock extrascript %}
+
 {% block content %}
 <div class="admin_heading">Add New Page</div>
 <div class="admin_subheading1">

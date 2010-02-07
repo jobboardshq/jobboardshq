@@ -9,7 +9,7 @@ $(function(){
 
 rich_text_handler = function(){	
        try {
-			$('.richtext, .rich_text').tinymce({
+			$('.richtext, .rich_text, .RTEField').tinymce({
 			// Location of TinyMCE script
 			script_url : '/site_media/tiny_mce/tiny_mce.js',
  

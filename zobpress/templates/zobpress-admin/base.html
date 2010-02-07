@@ -78,7 +78,7 @@
 <li><a href="{% url widgets_index %}" title="Widgets" {% ifequal current_url '/widgets/' %} class="current" {% endifequal %}>Widgets</a></li>
 <ul>
   Feeds
-  <li><a href="{% url zobpress_feeds_jobs %}" title="Jobs Feed"  >Jobs Feed </a></li>
+  <li><a href="{% url frontend_feeds_jobs %}" title="Jobs Feed"  >Jobs Feed </a></li>
 </ul>
 {% if board %}
 			          {% if user.is_authenticated %}

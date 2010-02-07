@@ -29,8 +29,7 @@ urlpatterns = patterns('zobpress.views',
     #Categories
     url(r'^categories/jobs/(?P<category_slug>[\w-]+)/$', 'category_jobs', name='zobpress_category_jobs'),
     
-    #Feeds
-    url(r'^feeds/jobs/$', 'feeds_jobs', name='zobpress_feeds_jobs'),
+    
     
     
     

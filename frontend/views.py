@@ -1,6 +1,6 @@
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
-from django.http import Http404, HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 
 from libs import paypal
@@ -11,6 +11,7 @@ from zobpress.forms import JobStaticForm, JobContactForm, get_job_form
 from haystack.views import SearchView
 from haystack.forms import SearchForm
 from frontend.forms import ApplyForm
+from django.utils import feedgenerator
 
 @ensure_has_board
 def index(request, category_slug = None, job_type_slug = None):
@@ -99,6 +100,20 @@ class BoardSearch(SearchView):
         return self.create_response()
     
 search = ensure_has_board(BoardSearch(form_class = SearchForm))
+
+@ensure_has_board
+def feeds_jobs(request):
+    "Show a RSS feed of jobs."
+    board = request.board
+    title = "Latest Jobs %s" % board.name
+    link = reverse('frontend_feeds_jobs')
+    description = "Latest Jobs added to our site %s" % board.name
+    feed = feedgenerator.Atom1Feed(title = title, link = link, description = description)
+    jobs = Job.objects.filter(board = board)
+    for job in jobs:
+        feed.add_item(title = job.name, link = job.get_absolute_url(), description=job.as_snippet())
+    return HttpResponse(feed.writeString('UTF-8'))
+
 
 @ensure_has_board
 def job_board_pages(request, page_slug):
