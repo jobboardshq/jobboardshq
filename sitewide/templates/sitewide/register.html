@@ -17,7 +17,8 @@
         </tr>
         <tr> {% for field in new_board_form.visible_fields %}
           <td align="left" valign="top" class="contactlabel">{{ field.label_tag }} :</td>
-          <td align="left" valign="top" class="contact">{{ field }}</td>
+          <td align="left" valign="top" class="contact">{{ field }}
+		  			  </td>
         </tr>
         <tr> {% if field.errors %}
           <td align="left" valign="top">&nbsp;</td>

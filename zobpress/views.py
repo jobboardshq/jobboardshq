@@ -15,7 +15,8 @@ from zobpress.models import type_mapping, JobFormModel, JobFieldModel, Job, Boar
 from zobpress.models import Category, Job, Page
 from zobpress.forms import get_job_form, JobStaticForm, PageForm, BoardSettingsForm, IndeedSearchForm, CategoryForm,\
     JobFieldEditForm, JobContactForm
-from zobpress.decorators import ensure_has_board
+from zobpress.decorators import ensure_has_board, can_access_board_backend,\
+    ensure_is_admin
 from sitewide import views as sitewide_views
 from django.forms.formsets import formset_factory
 from django.forms.models import modelform_factory, modelformset_factory
@@ -55,7 +56,7 @@ def add_job(request):
     payload = {'form':form, 'job_static_form': job_static_form, "job_contact_form": job_contact_form}
     return render_to_response('zobpress/addjob.html', payload, RequestContext(request))
 
-@ensure_has_board
+@ensure_is_admin
 def jobs(request):
     "Show a paginated list of jobs"
     try:

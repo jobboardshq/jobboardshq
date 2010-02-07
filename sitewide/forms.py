@@ -8,10 +8,15 @@ from registration.forms import RegistrationForm
 from django.core.mail import send_mail
 
 class NewBoardForms(RegistrationForm):
-    subdomain = forms.CharField(max_length = 100)
-    name = forms.CharField(max_length = 100)
-    description = forms.CharField(widget = forms.Textarea)
+    subdomain = forms.CharField(max_length = 100, help_text="The subdomain you want. Eg, if you want nurses.jobboardhq.com enter nurses here.")
+    name = forms.CharField(max_length = 100, help_text="The name of your job board, eg The nurses job board.")
+    description = forms.CharField(widget = forms.Textarea, help_text="Describe your jobboard. This is used at various places like meta keywords.")
     #email = forms.EmailField()
+    
+    def __init__(self, subdomain = None, *args, **kwargs):
+        super(NewBoardForms, self).__init__(*args, **kwargs)
+        self.fields["subdomain"].initial = subdomain
+        
     
     def clean_subdomain(self):
         if self.cleaned_data['subdomain'] in settings.UNALLOWED_SUBDOMAINS:
@@ -23,8 +28,12 @@ class NewBoardForms(RegistrationForm):
         raise ValidationError('This subdomain is already taken. Please choose another.')
     
     def save(self, *args, **kwargs):
+        data = self.cleaned_data
+        username = data["username"]
+        password = data["password1"]
         user = super(NewBoardForms, self).save(*args, **kwargs)
-        return Board.objects.register_new_board(subdomain = self.cleaned_data['subdomain'], name=self.cleaned_data['name'], description= self.cleaned_data['description'], user = user)
+        #Return the username password so the user can be logged in in the next step.
+        return Board.objects.register_new_board(subdomain = self.cleaned_data['subdomain'], name=self.cleaned_data['name'], description= self.cleaned_data['description'], user = user), username, password
         
         
 from sitewide.models import ContactedPeople

@@ -3,6 +3,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
+{% load compress %}
+
 <title>{% block title %}{% endblock %}</title>
 
 {% block feed %}
@@ -37,7 +39,7 @@
 <div class="container">
   <div class="span-24 header">
     {{ board }}
-    <form action='{% url haystack_search %}'>
+    <form action='{% url frontend_search %}'>
       <table>
         <input type='text' name='q' />
         <tr>

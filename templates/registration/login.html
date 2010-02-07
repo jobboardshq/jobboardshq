@@ -9,6 +9,7 @@
     {% csrf_token %}
     {{ form }}
     </table>
+	<input type="hidden" name="next" value="{{ next }}" />
     <div class="buttons" >
         <input type="submit" name="Login" value="login" />
     </div>

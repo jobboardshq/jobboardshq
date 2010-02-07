@@ -61,6 +61,9 @@ class Board(models.Model):
         current_site = Site.objects.get_current()
         return 'http://%s.%s' % (self.subdomain, current_site.domain)
     
+    def get_management_url(self):
+        return "%s/%s/" % (self.get_absolute_url(), 'manage')
+    
     def __unicode__(self):
         return self.name
     
