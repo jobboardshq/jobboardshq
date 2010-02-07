@@ -9,7 +9,7 @@
 <li>
     <a href="{{ job.get_absolute_url}} " >{{ job.name }}</a>
     <p class="post">
-        {{ job.as_snippet }}
+        {{ job.description|truncatewords_html:50|safe }}
     </p>
 </li>
 {% endfor %}

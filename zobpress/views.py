@@ -14,12 +14,11 @@ from zobpress.models import type_mapping, JobFormModel, JobFieldModel, Job, Boar
     JobType, DeletedEntities
 from zobpress.models import Category, Job, Page
 from zobpress.forms import get_job_form, JobStaticForm, PageForm, BoardSettingsForm, IndeedSearchForm, CategoryForm,\
-    JobFieldEditForm, JobContactForm
-from zobpress.decorators import ensure_has_board, can_access_board_backend,\
+    JobFieldEditForm, JobContactForm, BoardEditForm, JobTypeForm
+from zobpress.decorators import ensure_has_board,\
     ensure_is_admin
 from sitewide import views as sitewide_views
-from django.forms.formsets import formset_factory
-from django.forms.models import modelform_factory, modelformset_factory
+from django.forms.models import  modelformset_factory
 
 
 
@@ -30,6 +29,8 @@ def index(request):
     # list the jobs for the board
     return jobs(request)
 
+
+@ensure_is_admin
 @ensure_has_board
 def add_job(request):
     "Add a job, via the backend."
@@ -57,7 +58,8 @@ def add_job(request):
     return render_to_response('zobpress/addjob.html', payload, RequestContext(request))
 
 @ensure_is_admin
-def jobs(request):
+@ensure_has_board
+def jobs(request, job_type_slug=None):
     "Show a paginated list of jobs"
     try:
         order_by = request.GET['order']
@@ -67,25 +69,11 @@ def jobs(request):
     if not order_by in ('name', 'created_on'):
         order_by = '-created_on'
     qs = models.Job.objects.filter().order_by(order_by)
+    if job_type:
+        qs = qs.filter(job_type__slug = job_type_slug)
     return object_list(request, template_name = 'zobpress/jobs.html', queryset = qs, template_object_name = 'jobs', paginate_by=10, extra_context={})
-#
-#@ensure_has_board
-#def edit_job_old(request, id):
-#    job = get_object_or_404(Job, id = id)    
-#    if request.method == 'POST':
-#        form = PasswordForm(request.POST)
-#        if form.is_valid():
-#            if form.cleaned_data['password'] == job.password:
-#                request.session['job_edit_rights'] = id
-#                return HttpResponseRedirect(('/editjob/%s/done/' % id))
-#            else:
-#                return HttpResponseForbidden('Wrong password. Go back and try again.')
-#    if request.method == 'GET':
-#        form = PasswordForm()
-#    payload = {'form':form}
-#    return render_to_response('zobpress/editjob.html', payload, RequestContext(request))
 
-
+@ensure_is_admin
 @ensure_has_board
 def edit_job(request, id):
     "Edit job with given id."
@@ -103,6 +91,7 @@ def edit_job(request, id):
     payload = {'form': form, "job_static_form": job_static_form}
     return render_to_response('zobpress/editjob.html', payload, RequestContext(request))
     
+@ensure_is_admin
 @ensure_has_board
 def category_jobs(request, category_slug):
     "Show jobs from a specific category."
@@ -110,6 +99,7 @@ def category_jobs(request, category_slug):
     jobs = Job.objects.filter(category = category)
     return object_list(request, queryset = jobs, template_name = 'zobpress/category_job_list.html', template_object_name = 'job')
 
+@ensure_is_admin
 @ensure_has_board
 def categories(request):
     form = CategoryForm(board = request.board)
@@ -124,8 +114,24 @@ def categories(request):
             return HttpResponseRedirect(".")
     extra = {"form": form}
     return object_list(request, queryset = categories, template_name = 'zobpress/categories.html', template_object_name = 'category', extra_context = extra)
+
+
+def job_types(request):
+    job_types = JobType.objects.all()
+    form = JobTypeForm()
+    if request.method == "POST":
+        form = JobTypeForm(data = request.POST)
+        if form.is_valid():
+            job_type = form.save(commit = False)
+            job_type.board = request.board
+            job_type.save()
+            request.user.message_set.create(message = "%s job type has been created" % job_type.name)
+            return HttpResponseRedirect(".")
+    payload = {"job_types":job_types, "form":form}
+    return render_to_response("zobpress/job_types.html", payload, RequestContext(request))
         
 
+@ensure_is_admin
 @ensure_has_board
 def edit_category(request, category_pk):
     category = get_object_or_404(Category, board = request.board, pk = category_pk)
@@ -140,6 +146,7 @@ def edit_category(request, category_pk):
     
     
 
+@ensure_is_admin
 @ensure_has_board
 def feeds_jobs(request):
     "Show a RSS feed of jobs."
@@ -154,18 +161,25 @@ def feeds_jobs(request):
     return HttpResponse(feed.writeString('UTF-8'))
 
 
+@ensure_is_admin
 @ensure_has_board
 def settings(request):
+    board_form = BoardEditForm(instance = request.board)
+    form = BoardSettingsForm(instance=request.board.settings)
     if request.method == 'POST':
-        form = BoardSettingsForm(request.POST, instance=request.board.settings)
-        board_settings = form.save(commit=False)
-        board_settings.board = request.board
-        board_settings.save()
-        HttpResponseRedirect(reverse('zobpress_settings'))
-    else:
-        form = BoardSettingsForm(instance=request.board.settings)
-    return render_to_response('zobpress/settings.html', {'form': form}, RequestContext(request))
+        board_form = BoardEditForm(instance = request.board, data = request.POST)
+        form = BoardSettingsForm(instance=request.board.settings, data = request.POST, files= request.FILES)
+        if board_form.is_valid() and form.is_valid():
+            board_form.save()
+            board_settings = form.save(commit=False)
+            board_settings.board = request.board
+            board_settings.save()
+            request.user.message_set.create(message = "Your settings have been updated.")
+            HttpResponseRedirect(reverse('zobpress_settings'))
+    payload = {'form': form, "board_form": board_form}
+    return render_to_response('zobpress/settings.html', payload , RequestContext(request))
 
+@ensure_is_admin
 @ensure_has_board
 def indeed_jobs(request):
     q = request.GET.get('q', '')
@@ -177,8 +191,8 @@ def indeed_jobs(request):
         pass
         # TODO: query the indeed api parse the results & display.
         
+@ensure_is_admin
 @ensure_has_board
-@login_required
 def create_job_form_advanced1(request):
     "Create a job form for a board."
     job_field_formset = modelformset_factory(JobFieldModel, fields=["name", "type", "required"])
@@ -192,6 +206,8 @@ def create_job_form_advanced1(request):
     payload = {"job_field_formset": job_field_formset}
     return render_to_response("zobpress/create_job_form_advanced.html", payload, RequestContext(request))
 
+@ensure_is_admin
+@ensure_has_board
 def create_job_form_advanced(request):
     "Create a job form for a board."
     job_field_formset = modelformset_factory(JobFieldModel, fields=["name", "type", "required"])
@@ -206,6 +222,7 @@ def create_job_form_advanced(request):
     return render_to_response("zobpress/create_job_form_advanced.html", payload, RequestContext(request))
 
 
+@ensure_is_admin
 @ensure_has_board
 def list_subscriptions(request):
     "Shows and allows actions for the list of subscribed users."
@@ -218,6 +235,7 @@ def list_subscriptions(request):
         
     return render_to_response("zobpress/list_subscriptions.html", payload, RequestContext(request))
 
+@ensure_is_admin
 @ensure_has_board
 def edit_page(request, page_slug):
     page = get_object_or_404(Page, page_slug = page_slug)

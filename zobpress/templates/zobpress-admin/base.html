@@ -35,7 +35,20 @@
 {% load zobpress_filters %}
 <body class="admin">
 <div id="adminheader">
-<div class="logo"><a href="{% url zobpress_index %}"><img src="{{ MEDIA_URL }}admin/images/jobpress_logo_admin.gif" alt="Zobpress" width="318" height="81" /></a></div>
+<div class="logo">
+	<a href="{% url zobpress_index %}">
+		{% if board_settings.logo %}
+			<img src="{{ board_settings.logo.url }}" alt="Zobpress" width="318" height="81" />
+		{% else %}
+			<h3>
+				{{ board.name }}
+			</h3>
+			<h4>
+				{{ board_settings.tag_line }}
+			</h4>
+		{% endif %}
+	</a>
+</div>
 <div id="admin_user">Welcome <span class="blacktext">{{ user.username }}</span> | <a href="{% url frontend_index %}">Visit Site</a> | 
 <a href="{% url auth_logout %}">Log Out</a></div>
 </div>
@@ -57,6 +70,7 @@
 <li><a href="{% url zobpress_jobs %}" title="All Jobs" {% ifequal current_url '/manage/jobs/' %} class="current" {% endifequal %}>Jobs</a></li>
 <li><a href="{% url zobpress_add_job %}" title="Add New Job" {% ifequal current_url '/manage/addjob/' %} class="current" {% endifequal %}>Add New Job </a></li>
 <li><a href="{% url zobpress_categories %}" title="Add New Category" {% ifequal current_url '/manage/categories/' %} class="current" {% endifequal %}>Categories</a></li>
+<li><a href="{% url zobpress_job_types %}" title="Add New jobtype" {% ifequal current_url '/manage/job_types/' %} class="current" {% endifequal %}>Job types</a></li>
 <li><a href="{% url manage_create_job_form %}" title="Create Job Form" {% ifequal current_url '/manage/create/jobform/' %} class="current" {% endifequal %}>Create Job Form </a></li>
 <li><a href="{% url zobpress_list_subscriptions %}" title="See current subscriptions" {% ifequal current_url '/manage/subscriptions/' %} class="current" {% endifequal %}>See current subscriptions</a></li>
 <li><a href="{% url zobpress_settings %}" title="Settings" {% ifequal current_url '/manage/settings/' %} class="current" {% endifequal %}>Settings </a></li>

@@ -11,5 +11,11 @@ delete_handler = function(){
 $(function(){
 	$(".delete_link").click(delete_handler);
 });
+slugify_slug = function(){
+	$("#id_name").slugify("#id_slug");
+}
+$(slugify_slug);
+
+
 
 

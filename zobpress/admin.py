@@ -1,4 +1,4 @@
-from zobpress.models import Board, BoardPayments, DeletedEntities
+from zobpress.models import Board, BoardPayments, DeletedEntities, BoardSettings
 from zobpress.models import JobFormModel, JobFieldModel, Category, Job, JobData, JobType
 
 from django.contrib import admin
@@ -16,6 +16,7 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ('__unicode__', 'board', 'name')
 
 admin.site.register(Board, BoardAdmin)
+admin.site.register(BoardSettings)
 admin.site.register(JobFormModel, JobFormModelAdmin)
 admin.site.register(JobFieldModel, JobFieldModelAdmin)
 admin.site.register(Category, CategoryAdmin)

@@ -9,7 +9,11 @@ urlpatterns = patterns('zobpress.views',
     url(r'^categories/$', 'categories', name='zobpress_categories'),
     url(r'^category/edit/(?P<category_pk>\d+)/$', 'edit_category', name='zobpress_edit_category'),
     
+    url(r'^job_types/$', 'job_types', name='zobpress_job_types'),
+    #url(r'^job_types/$', 'job_types', name='zobpress_categories'),
+    
     url(r'^jobs/$', 'jobs', name='zobpress_jobs'),
+    url(r'^jobs/(?P<job_type_slug>[\w-]+)/$', 'jobs', name='zobpress_jobs_job_type'),
     #url(r'^job/(?P<id>\d+)/$', 'job', name='zobpress_job'),
     url(r'^jobform/advanced/$', 'create_job_form_advanced', name='zobpress_create_job_form_advanced'),
     url(r'^editjob/(?P<id>\d+)/$', 'edit_job', name='zobpress_edit_job'),
@@ -23,7 +27,7 @@ urlpatterns = patterns('zobpress.views',
     
     
     #Categories
-    url(r'^categories/jobs/(?P<category_slug>\w+)/$', 'category_jobs', name='zobpress_category_jobs'),
+    url(r'^categories/jobs/(?P<category_slug>[\w-]+)/$', 'category_jobs', name='zobpress_category_jobs'),
     
     #Feeds
     url(r'^feeds/jobs/$', 'feeds_jobs', name='zobpress_feeds_jobs'),

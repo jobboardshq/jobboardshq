@@ -56,6 +56,8 @@ class Board(models.Model):
     owner = models.ForeignKey(User)
     
     objects = BoardManager()
+        
+        
     
     def get_absolute_url(self):
         current_site = Site.objects.get_current()
@@ -68,9 +70,7 @@ class Board(models.Model):
         return self.name
     
     def save(self, *args, **kwargs):
-        # create settings
         super(Board, self).save(*args, **kwargs)
-        BoardSettings.objects.get_or_create(board=self)
         
 
 
@@ -122,10 +122,14 @@ class DeletedEntities(models.Model):
 class BoardSettings(models.Model):
     board = models.OneToOneField(Board, related_name='settings')
     
-    analytics_code = models.TextField(null=True, blank=True)
-    keywords = models.TextField(null=True, blank=True)
-    tag_line = models.CharField(max_length = 250, null=True, blank=True)
-    template = models.CharField(max_length = 100, default='default')
+    analytics_code = models.TextField(null=True, blank=True, help_text="Enter you google analytics or similar code. This is put in the footer of all public facing pages.")
+    keywords = models.TextField(null=True, blank=True, help_text="Keywords describing the board. This is used as part of Meta keywords.")
+    tag_line = models.CharField(max_length = 250, null=True, blank=True, help_text="Tag lien describing your board. Used as part of title.")
+    template = models.CharField(max_length = 100, default='default', help_text="Template to use for the site")
+    logo = models.ImageField(upload_to = "board_logos", help_text = "Logo for the site.")
+    
+    def __unicode__(self):
+        return self.board.name
     
 class BoardPayPal(models.Model):
     board = models.OneToOneField(Board, primary_key = True)
@@ -161,12 +165,20 @@ class Category(BoardSpecificEntities):
     "Categories for a specific board"
     
     #board = models.ForeignKey(Board)
-    name = models.CharField(max_length = 100)
-    slug = models.SlugField(max_length = 100)
+    name = models.CharField(max_length = 100, help_text="Name of category")
+    slug = models.SlugField(max_length = 100, help_text = "Slug used in url.")
+    category_count = models.SmallIntegerField(default = 0)
     is_deleted = models.BooleanField(default = False)
     
     all_objects = models.Manager()
     objects = BoardSpecificEntitiesManager()
+    
+    def save(self, *args, **kwargs):
+        if not self.category_count:
+            self.category_count = Category.objects.filter(board = self.board).count()
+        if not self.slug:
+            self.slug = slugify(self.name)+str(Category.objects.filter(board = self.board, slug__icontains = self.slug).count())
+        super(Category, self).save(*args, **kwargs)
     
     
     @models.permalink
@@ -200,7 +212,16 @@ class JobType(BoardSpecificEntities):
     #board = models.ForeignKey(Board)
     name = models.CharField(max_length = 100)
     slug = AutoSlugField(max_length = 100, populate_from = "name")
+    count = models.SmallIntegerField(default = 0)
+    
     is_deleted = models.BooleanField(default = False)
+    
+    def save(self, *args, **kwargs):
+        if not self.count:
+            self.count = JobType.objects.filter(board = self.board).count()
+        super(JobType, self).save(*args, **kwargs)
+        
+    
     
     def delete(self):
         "Never delete"
@@ -512,7 +533,13 @@ def create_initial_jobs(board):
     
 def populate_initial_jobs(sender, instance, created, **kwargs):
     board = instance
-    create_initial_jobs(board)
+    if created:
+        create_initial_jobs(board)
+    
+def populate_initial_settings(sender, instance, created, **kwargs):
+    board = instance
+    if created:
+        BoardSettings.objects.create(board=board, tag_line = "Not just another job board.")    
         
 
     

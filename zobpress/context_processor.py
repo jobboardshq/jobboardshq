@@ -6,8 +6,10 @@ def populate_board(request):
     board = request.board
     if board:
         categories = Category.objects.filter(board = board)
+        board_settings = board.settings
     else:
         categories = []
-    return {'board':request.board, 'categories':categories, 'current_url': request.META['PATH_INFO'], "base_domain": settings.BASE_DOMAIN}
+        board_settings = None
+    return {'board':request.board, 'categories':categories, "board_settings": board_settings, 'current_url': request.META['PATH_INFO'], "base_domain": settings.BASE_DOMAIN}
 
     

@@ -36,8 +36,22 @@
       <li><a href="#fragment-3"><span>Change Password</span></a></li>
     </ul>
     <div id="fragment-1">
-      <form action="." method="post">
+      <form action="." method="post" enctype="multipart/form-data">
         <table width="100%" border="0" cellspacing="0" cellpadding="2">
+          {% for field in board_form.visible_fields %}
+          {% if field.errors %}
+          <tr>
+            <td> {{ field.errors }} </td>
+          </tr>
+          {% endif %}
+          <tr>
+            <td width="170" align="left" valign="top"> {{ field.label }}</td>
+            <td align="left" valign="top"> {{ field }} 
+			<br />
+			{{ field.help_text }}
+			</td>
+          </tr>
+          {% endfor %}
           {% for field in form.visible_fields %}
           {% if field.errors %}
           <tr>
@@ -46,7 +60,10 @@
           {% endif %}
           <tr>
             <td width="170" align="left" valign="top"> {{ field.label }}</td>
-            <td align="left" valign="top"> {{ field }} </td>
+            <td align="left" valign="top"> {{ field }} 
+			<br />
+			{{ field.help_text }}
+			</td>
           </tr>
           {% endfor %}
           <tr>

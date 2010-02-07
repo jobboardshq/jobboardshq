@@ -1,0 +1,38 @@
+{% extends "zobpress-admin/base.html" %}
+
+{% block content %}
+     <p class="admin">Create a new job type. </p>
+	<table>
+		<form action="." method="post">
+		{{ form }}
+		<tr><td>
+		<input type="submit" name="create" value="create job type" class="apply"  />
+		</td></tr>
+		</form>
+	</table>
+	
+	<table>
+		
+		<p class="admin">Or Edit exisiting job types.</p>
+	{% for job_type in job_types %}
+		<tr>
+			<td>
+				<a href="{% url zobpress_jobs_job_type job_type.slug %}">{{ job_type.name }}</a>		
+			</td>
+			<td>
+				<a href="">
+					Edit
+				</a>
+				
+			</td>
+			<td>
+				<a href="">
+					Delete
+				</a>
+				
+			</td>
+		</tr>
+	{% endfor %}
+	</table>
+	
+{% endblock content %}

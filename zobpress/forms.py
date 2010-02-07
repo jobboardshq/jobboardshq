@@ -7,7 +7,7 @@ from os.path import join
 import os
 
 from zobpress.models import BoardSettings, type_mapping, rev_type_mapping,\
-    JobContactDetail
+    JobContactDetail, Board
 from zobpress.models import JobFormModel, JobFieldModel, JobType
 from zobpress.models import Job, JobData, Category, JobFile, Page
 
@@ -17,12 +17,16 @@ class PageForm(forms.ModelForm):
         model = Page
         exclude = ('board',)
     
+class BoardEditForm(forms.ModelForm):
+    class Meta:
+        model = Board
+        fields = ("name", "description")
     
 class BoardSettingsForm(forms.ModelForm):
     
     class Meta:
         model = BoardSettings
-        exclude = ('board',)
+        exclude = ('board', 'templates')
         
 class JobStaticForm(forms.ModelForm):    
     name = forms.CharField(widget = forms.TextInput(attrs={"class" : "textinput",  "size":"50"},))
@@ -118,7 +122,7 @@ class IndeedSearchForm(forms.Form):
 class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
-        exclude = ["board", "is_deleted"]
+        exclude = ["board", "category_count", "is_deleted"]
         
     def __init__(self, board, *args, **kwargs):
         super(CategoryForm, self).__init__(*args, **kwargs)
@@ -132,6 +136,12 @@ class CategoryForm(forms.ModelForm):
             raise forms.ValidationError("This name is already taken. Please choose another.")
         except Category.DoesNotExist:
             return data["name"]
+        
+class JobTypeForm(forms.ModelForm):
+    class Meta:
+        model = JobType
+        fields = ["name"]
+                
     
 class JobFieldEditForm(forms.ModelForm):
     class Meta:
