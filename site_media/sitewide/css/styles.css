@@ -33,27 +33,27 @@ p.twitter{ padding-top:25px; padding-left:130px; color:#FFFFFF; text-align:left;
 #nav-example-03 {width: 85px;}
 #nav-example-04 {width: 94px;}
 #nav-example-05 {width: 102px;}
-#nav-example-06 {width: 122px;}
-#nav-example-07 {width: 178px;}
-#nav-example-08 {width: 89px;}
-#nav-example-09 {width: 90px;}
+#nav-example-06 {width: 300px;}
+#nav-example-07 {width: 89px;}
+#nav-example-08 {width: 90px;}
 #nav-example-01 a:hover {background:url(../images/topnav.gif) 0px -47px no-repeat;}
 #nav-example-02 a:hover {background:url(../images/topnav.gif) -92px -47px no-repeat;}
 #nav-example-03 a:hover {background:url(../images/topnav.gif) -200px -47px no-repeat;}
 #nav-example-04 a:hover {background:url(../images/topnav.gif) -285px -47px no-repeat;}
 #nav-example-05 a:hover {background:url(../images/topnav.gif) -379px -47px no-repeat;}
 #nav-example-06 a:hover {background:url(../images/topnav.gif) -481px -47px no-repeat;}
-#nav-example-07 a:hover {background:url(../images/topnav.gif) -603px -47px no-repeat;}
-#nav-example-08 a:hover {background:url(../images/topnav.gif) -781px -47px no-repeat;}
-#nav-example-09 a:hover {background:url(../images/topnav.gif) -870px -47px no-repeat;}
+#nav-example-07 a:hover {background:url(../images/topnav.gif) -781px -47px no-repeat;}
+#nav-example-08 a:hover {background:url(../images/topnav.gif) -870px -47px no-repeat;}
+
+
 .homeselected {background:url(../images/topnav.gif) 0px -47px no-repeat;}
 .featuresselected {background:url(../images/topnav.gif) -92px -47px no-repeat;}
 .demo {background:url(../images/topnav.gif) -200px -47px no-repeat;}
 .pricing {background:url(../images/topnav.gif) -285px -47px no-repeat;}
 .support {background:url(../images/topnav.gif) -379px -47px no-repeat;}
 .contactus {background:url(../images/topnav.gif) -481px -47px no-repeat;}
-.space {background:url(../images/topnav.gif) -603px -47px no-repeat;}
-.login {background:url(../images/topnav.gif) -781px -47px no-repeat;}
+.space {background:url(../images/topnav.gif) -781px -47px no-repeat;}
+.login {background:url(../images/topnav.gif) -870px -47px no-repeat;}
 .signup {background:url(../images/topnav.gif) -870px -47px no-repeat;}
 /*Top navigation ends*/
 
@@ -65,7 +65,7 @@ p.twitter{ padding-top:25px; padding-left:130px; color:#FFFFFF; text-align:left;
 #banner #signup #button:hover{width:288px; text-align:center; margin:0px auto; background:url(../images/post_job_buttonnew.png) 0 -65px no-repeat;  margin-top:25px;}
 #banner_innerpage{ margin:0px auto; width:960px; height:150px;}
 #banner_innerpage{ margin:0px auto; width:960px; height:150px;}
-#banner_innerpage .title{width:600px; height:130px; float:left; padding:20px 0px 0px 0px;}
+#banner_innerpage .title{width:570px; height:130px; float:left; padding:20px 0px 0px 30px;}
 #banner_innerpage #signupbut{width:288px;  text-align:center; margin:0px auto; background:url(../images/post_job_buttonnew.png) no-repeat; height:65px; cursor:pointer; margin:40px 0px 0px 50px; float:left;}
 #banner_innerpage #signupbut:hover{width:288px;  text-align:center; margin:0px auto; background:url(../images/post_job_buttonnew.png) 0 -65px no-repeat; height:65px; cursor:pointer;  margin:40px 0px 0px 50px; }
 
@@ -142,3 +142,13 @@ fieldset{border:1px solid #E9D4B7; margin-top:5px;}
 
 .errortext{font:10px Arial, Helvetica, sans-serif; color:#FF0000;}
 .errorlist{font:10px Arial, Helvetica, sans-serif; color:#FF0000;}
+
+
+/* demo page */
+#frontend_demo{width:420px; float:left; text-align:center; border:5px solid #F1EDE0; background-color:#FCF9EF; margin-top:15px; padding:5px;}
+#frontend_demo img{ border:3px solid #F1EDE0;}
+#frontend_demo img:hover{ border:3px solid #D4C490;}
+
+#backend_demo{width:420px; float:left; text-align:center; border:5px solid #F1EDE0; margin-left:10px;background-color:#FCF9EF; margin-top:15px; padding:5px;}
+#backend_demo img{ border:3px solid #F1EDE0;}
+#backend_demo img:hover{ border:3px solid #D4C490;}
