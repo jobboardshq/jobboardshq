@@ -68,11 +68,6 @@ class Board(models.Model):
     
     def __unicode__(self):
         return self.name
-    
-    def save(self, *args, **kwargs):
-        super(Board, self).save(*args, **kwargs)
-        
-
 
 class BoardSpecificEntitiesManager(models.Manager):
     def get_query_set(self, *args, **kwargs):
