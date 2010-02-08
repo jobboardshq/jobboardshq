@@ -22,8 +22,9 @@ urlpatterns = patterns('',
 )
 
 
-
-if settings.DEBUG:
+show_media = getattr(settings, "SHOW_MEDIA", settings.DEBUG)
+                     
+if (settings.DEBUG or show_media):
     urlpatterns += patterns('',
         (r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT, "show_indexes":True}, ),
     )
