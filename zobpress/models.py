@@ -212,7 +212,7 @@ class Category(BoardSpecificEntities):
 class JobType(BoardSpecificEntities):
     #board = models.ForeignKey(Board)
     name = models.CharField(max_length = 100)
-    slug = models.SlugField(max_length = 100, populate_from = "name")
+    slug = models.SlugField(max_length = 100)
     count = models.SmallIntegerField(default = 0)
     
     is_deleted = models.BooleanField(default = False)
