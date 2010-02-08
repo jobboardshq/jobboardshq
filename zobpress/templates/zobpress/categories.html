@@ -24,16 +24,27 @@
 <div class="admin_subheading1">
   <p class="admin">These are the existing categories. You can edit or delete them. </p>
 </div>
-<table width="300">
+<table bgcolor="#FBF8ED" width="100%">
+<tr>
+<td>
+
+<table width="300" >
   {% for category in category_list %}
   <tr id="category_{{ category.pk }}">
-    <td width="190"><a href="{% url zobpress_category_jobs category.slug %}" class="redtext">{{ category }}:</a> </td>
-    <td width="70"> {{ category.job_set.count }} Jobs </td>
-    <td width="70" align="center"><a href="{{ category.edit_url }}"  class="blacklink"> Edit </a> </td>
-    <td width="70" align="center"><a href="{% url zobpress_delete_category category.pk  %}" class="blacklink delete_link"> Delete </a> </td>
+    <td width="190" align="left" valign="middle"><a href="{% url zobpress_category_jobs category.slug %}" class="redtext">{{ category }}:</a> </td>
+    <td width="70" align="left" valign="middle"> {{ category.job_set.count }} Jobs </td>
+    <td width="70" align="left" valign="middle"><a href="{{ category.edit_url }}"  class="blacklink"> 
+  <img src="{{ MEDIA_URL }}admin/images/edit_icon.gif" alt="Edit the Job" width="32" height="36" />
+     </a> </td>
+    <td width="70" align="left" valign="middle"><a href="{% url zobpress_delete_category category.pk  %}" class="blacklink delete_link"> 
+    <img src="{{ MEDIA_URL }}admin/images/delete_icon.gif" alt="Delete the Job" width="35" height="35" />
+    </a> </td>
   <tr/>
   {% empty %}
   <p>Please add a category</p>
   {% endfor %}
+</table>
+</td>
+</tr>
 </table>
 {% endblock %}

@@ -102,3 +102,5 @@ p.admin{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; c
 .buttonbg{width:113px ; height:31px; border:none; background:url(../images/applybut_bg.png); cursor:pointer; color:#FFFFFF;font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif; text-align:center; display:block;  line-height:30px;}
 .buttonbg:hover{width:113px ; height:31px; border:none; background:url(../images/applybut_bg_r.png); cursor:pointer;  color:#FFFFFF;font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif;text-align:center;display:block; line-height:30px;}
 .tagline{ font:14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#FFFFFF; text-decoration:none;}
+.redbutton{width:113px ; height:31px; border:none; background:url(../images/submit_button.png); cursor:pointer; color:#FFFFFF;font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif; text-align:center; display:block; line-height:30px;}
+.redbutton:hover{width:113px ; height:31px; border:none; background:url(../images/submit_button_r.png); cursor:pointer;  color:#FFFFFF;font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif;text-align:center;display:block; line-height:30px;}

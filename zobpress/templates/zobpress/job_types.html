@@ -1,12 +1,17 @@
 {% extends "zobpress-admin/base.html" %}
 
 {% block content %}
-     <p class="admin">Create a new job type. </p>
+<div class="admin_heading">Create a new job type. </div>
+<div class="admin_subheading1">
+  <p class="admin">Add a new job type by filling the below field and then click "Create Jobtype". </p>
+</div>
+
+  
 	<table>
 		<form action="." method="post">
 		{{ form }}
 		<tr><td>
-		<input type="submit" name="create" value="create job type" class="apply"  />
+		<input type="submit" name="create" value="Create job type" class="redbutton"  />
 		</td></tr>
 		</form>
 	</table>
