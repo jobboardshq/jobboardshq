@@ -7,7 +7,9 @@
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td align="left" valign="middle"> <p class="frontend">in <a href="{% url frontend_job_type_jobs  job.job_type.slug %}" class="redlink">{{ job.job_type.name }}</a> </p></td>
-    <td align="center" valign="middle"><span class="apply">Apply</span></td>
+    <td align="center" valign="middle"><span class="apply">
+    	<a href="{% url frontend_apply job.job_slug %}">Apply</a>
+	</span></td>
   </tr>
 </table>
 
