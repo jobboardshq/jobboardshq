@@ -545,12 +545,21 @@ from django.db.models.signals import post_save
 
 #Populate the database with initial things.
 
-post_save.connect(populate_job_board_form_initial, sender = Board)
-post_save.connect(populate_categories_initial, sender = Board)
-post_save.connect(populate_job_types_initial, sender = Board)
-post_save.connect(populate_pages_initial, sender = Board)
-post_save.connect(populate_initial_jobs, sender = Board)
-post_save.connect(populate_initial_settings, sender = Board)
+
+#post_save.connect(populate_job_board_form_initial, sender = Board)
+#post_save.connect(populate_categories_initial, sender = Board)
+#post_save.connect(populate_job_types_initial, sender = Board)
+#post_save.connect(populate_pages_initial, sender = Board)
+#post_save.connect(populate_initial_jobs, sender = Board)
+#post_save.connect(populate_initial_settings, sender = Board)
+
+def initial_populate(sender, instance, created, **kwargs):
+    functions = [populate_job_board_form_initial, populate_categories_initial, populate_job_types_initial, populate_pages_initial, \
+         populate_initial_jobs, populate_initial_settings]
+    for function in functions:
+        function(sender, instance, created, **kwargs)
+        
+post_save.connect(initial_populate, sender = Board)        
 
 
     
