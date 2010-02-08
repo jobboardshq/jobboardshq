@@ -99,6 +99,7 @@ h6{font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000
 .blacklink{ font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#000000; text-decoration:underline;}
 .blacklink:hover{ font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#A10000; text-decoration:underline;}
 
+.tagline{ font: 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#FFFFFF; text-decoration:none;}
 .blackboldtext{ font:bold 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none;}
 .redboldtext{ font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#A10000; text-decoration:none;}
 
@@ -109,7 +110,7 @@ h6{font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000
 .errorlist{font:10px Arial, Helvetica, sans-serif; color:#FF0000;}
 .leftalign{text-align:left; vertical-align:top;}
 .frontend_content{width:680px; margin:0px auto; padding-top:5px;}
-.frontend_heading{font:bold 14px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; text-decoration:none;  float:left; padding-left:20px; padding-bottom:13px; }
+.frontend_heading{font:bold 14px "trebuchet MS", Arial, Helvetica, sans-serif; color:#9C0000; text-decoration:none;  float:left; padding-left:20px; padding-bottom:13px; }
 .frontend_subheading1{ clear:both;font:500 14px "trebuchet MS", Arial, Helvetica, sans-serif; color:#191919; line-height:24px; text-decoration:none; border-top:1px dashed #CDC199;border-bottom:1px dashed #CDC199; padding:9px 0px 9px 20px; }
 p.frontend{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; color:#191919; text-decoration:none;}
 p.description{font:12px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; color:#191919; text-decoration:none; line-height:18px; padding:5px 0px 5px 0px; }
@@ -125,6 +126,7 @@ fieldset{border:1px solid #E9D4B7; margin-top:5px;}
 .contactdetails input{width:300px; background-color:#FBF8ED; border:1px solid #D8C7AF; padding:3px;}
 #submit_button{width:113px ; height:31px; border:none; background:url(../images/submit_button.png); cursor:pointer; display:block; color:#FFFFFF;font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif;}
 #submit_button:hover{width:113px ; height:31px; border:none; background:url(../images/submit_button_r.png); cursor:pointer; display:block; color:#FFFFFF;font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif;}
+.legendfront{font:bold 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000; text-decoration:none; line-height:24px;  padding-bottom:8px; padding-top:10px;}
 
 /* job type colours */
 .badge1{ font: bold 11px Tahoma, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none; background-color:#BD0000; padding:2px 3px 2px 3px; color:#FFFFFF; }

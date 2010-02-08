@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<link rel="icon" type="image/vnd.microsoft.icon" href="{{ MEDIA_URL }}favicon.ico" />	
+<link rel="icon" type="image/vnd.microsoft.icon" href="{{ MEDIA_URL }}favicon.ico" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>{% block title %} {{ board.name }} {% endblock %}</title>
 {% block feed %}
@@ -25,8 +25,6 @@
 <script type="text/javascript" src="{{ MEDIA_URL }}admin/js/ui.core.js"></script>
 <script type="text/javascript" src="{{ MEDIA_URL }}admin/js/json2.js"></script>
 <script type="text/javascript" src="{{ MEDIA_URL }}admin/js/admin.js"></script>
-
-
 {% endcompress %}
 {% endblock %}
 
@@ -36,22 +34,11 @@
 {% load zobpress_filters %}
 <body class="admin">
 <div id="adminheader">
-<div class="logo">
-	<a href="{% url zobpress_index %}">
-		{% if board_settings.logo %}
-			<img src="{{ board_settings.logo.url }}" alt="Zobpress" width="318" height="81" />
-		{% else %}
-			<h3>
-				{{ board.name }}
-			</h3>
-			<h4>
-				{{ board_settings.tag_line }}
-			</h4>
-		{% endif %}
-	</a>
-</div>
-<div id="admin_user">Welcome <span class="blacktext">{{ user.username }}</span> | <a href="{% url frontend_index %}">Visit Site</a> | 
-<a href="{% url auth_logout %}">Log Out</a></div>
+  <div class="logo"> <a href="{% url zobpress_index %}"> {% if board_settings.logo %} <img src="{{ board_settings.logo.url }}" alt="Zobpress" width="318" height="81" /> {% else %}
+    
+    {{ board.name }} <br/> </a> 
+    <span class="tagline"> {{ board_settings.tag_line }} </span> {% endif %}</div>
+  <div id="admin_user">Welcome <span class="blacktext">{{ user.username }}</span> | <a href="{% url frontend_index %}">Visit Site</a> | <a href="{% url auth_logout %}">Log Out</a></div>
 </div>
 <div id="adminbody">
 <div id="loading_message"> {% if messages %}
@@ -108,6 +95,6 @@
 </div>
 </div>
 </div>
-<div id="copyright">Copyright 2010 © All Rights Reserved by Job Boards</div>
+<div id="copyright"> &copy; Copyright 2009-2010 <a href="http://www.jobboardshq.com/">JobBoardsHQ.com</a>. All Rights Reserved | <a href="http://uswaretech.com/">A Usware Technologies productions</a> </div>
 </body>
 </html>

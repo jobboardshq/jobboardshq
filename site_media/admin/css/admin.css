@@ -8,7 +8,10 @@ p.admin{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; c
 
 /* Admin pages containers   */
 #adminheader{margin:0px auto; width:980px; height:97px;}
-.logo{width:300px; float:left;}
+.logo{width:500px; float:left;font:bold 24px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#FFFFFF; text-decoration:none;}
+.logo a{width:500px; float:left;font:bold 24px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#FFFFFF; text-decoration:none;}
+.logo a:hover{width:500px; float:left; font:bold 24px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#D4C490; text-decoration:underline;}
+
 #admin_user{float:right; color:#FFFFFF; padding-top:50px; font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif; color:#FFFFFF;}
 #admin_user a{color:#FFFFFF; text-decoration:none;}
 #admin_user a:hover{ color:#000000; text-decoration:underline;}
@@ -98,3 +101,4 @@ p.admin{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; c
 /* job type colours */
 .buttonbg{width:113px ; height:31px; border:none; background:url(../images/applybut_bg.png); cursor:pointer; color:#FFFFFF;font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif; text-align:center; display:block;  line-height:30px;}
 .buttonbg:hover{width:113px ; height:31px; border:none; background:url(../images/applybut_bg_r.png); cursor:pointer;  color:#FFFFFF;font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif;text-align:center;display:block; line-height:30px;}
+.tagline{ font:14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#FFFFFF; text-decoration:none;}

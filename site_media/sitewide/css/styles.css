@@ -101,6 +101,10 @@ blockquote {font:12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; marg
 #footerlinks a{ color:#FFFFFF; text-decoration:none; line-height:40px; padding:5px 20px 10px 0px; }
 #footerlinks a:hover{  text-decoration:underline; color:#CC0000;padding:5px 20px 10px 0px; line-height:40px; }
 #copyrights{ width:100%; margin:0px auto; font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#FFFFFF; text-decoration:none; line-height:50px; border-top:1px solid #282828; text-align:center;}
+#copyrights a{ font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#FFFFFF; text-decoration:underline; text-align:center;}
+#copyrights a:hover{text-align:center; color:#CC3300; text-decoration:underline;}
+
+
 .onepixelborder{ border-bottom:1px solid #282828; height:1px;}
 
 /*Others styles*/

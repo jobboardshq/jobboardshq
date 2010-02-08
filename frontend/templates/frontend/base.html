@@ -34,11 +34,8 @@
       
       {{ board.name }}
       
-      {% endif %} </a> {% if not board_settings.logo %}
-      
-      {{ board_settings.tag_line }}
-      
-      {% endif %} </div>
+      {% endif %} </a> {% if not board_settings.logo %}<br/>
+      <span class="tagline">{{ board_settings.tag_line }}</span> {% endif %} </div>
     <div id="frontend_topnav"> <a href="#">Login</a> | <a href="{% url frontend_feeds_jobs %}">Subscribe to RSS </a><img src="{{ MEDIA_URL }}frontend/images/rss_icon.png" alt="RSS" width="23" height="24"  /> </div>
     <!--Header ends-->
     <!--Top Nav starts-->
