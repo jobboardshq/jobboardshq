@@ -63,6 +63,9 @@ h6{font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000
 
 #frontend_content #rightpanel{width:740px; float:left; margin:10px 0px 0px 20px;}
 #frontend_footer{background-color:#000000; width:100%; margin:0px auto;  color:#FFFFFF; text-align:center; padding-top:20px; margin-top:15px; padding-bottom:20px;}
+#frontend_footer a{background-color:#000000;  margin:0px auto;  color:#FFFFFF; text-align:center; }
+#frontend_footer a:hover{background-color:#000000; width:100%; margin:0px auto;  color:#CC0000; text-align:center;}
+
 
 #frontend_content #rightpanel .top{width:726px; background:url(../images/body_top.gif) no-repeat; height:14px; }
 #frontend_content #rightpanel .middle{width:726px; ;background:url(../images/body_middlebg.gif) repeat-y; }
