@@ -57,7 +57,10 @@ class Board(models.Model):
     
     objects = BoardManager()
         
-        
+    def save(self, *args, **kwargs):
+        super(Board, self).save(*args, **kwargs)
+        created = bool(self.pk)
+        initial_populate(Board, self, created)
     
     def get_absolute_url(self):
         current_site = Site.objects.get_current()
@@ -562,7 +565,7 @@ def initial_populate(sender, instance, created, **kwargs):
     for function in functions:
         function(sender, instance, created, **kwargs)
         
-post_save.connect(initial_populate, sender = Board)        
+#post_save.connect(initial_populate, sender = Board)        
 
 
     
