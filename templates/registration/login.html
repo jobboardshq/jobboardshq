@@ -10,7 +10,7 @@
       <table width="100%" border="0" cellspacing="2" cellpadding="0">
         {% csrf_token %}
         {% if form.non_field_errors %}
-        	 {{ form.non_field_errors }}
+        {{ form.non_field_errors }}
         {% endif %}
         {% for field in form.visible_fields %}
         <tr>
@@ -20,15 +20,15 @@
         <tr> {% if field.errors %}
           <td align="left">&nbsp;</td>
           <td align="left">{{ field.errors }}</td>
-        {% endif %} </tr>
+          {% endif %} </tr>
         {% endfor %}
         <tr>
-        <td align="left">&nbsp;</td>
-        <td align="center">  <input type="submit" name="Login" value="login"  class="contactsubmit" /></td>
+          <td align="left">&nbsp;</td>
+          <td align="center"><input type="submit" name="Login" value="login"  class="contactsubmit" /></td>
         </tr>
       </table>
       <input type="hidden" name="next" value="{{ next }}" />
-  </fieldset>
+      </fieldset>
     </form>
   </div>
 </div>

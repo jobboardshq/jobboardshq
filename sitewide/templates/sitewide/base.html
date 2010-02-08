@@ -3,11 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="icon" type="image/vnd.microsoft.icon" href="{{ MEDIA_URL }}favicon.ico" />
-<title>
-	{% block title %}	
+<title>{% block title %}	
 		JobBoardsHQ - Hosted job board software - Start your job board in minutes.
-	{% endblock title %}
-</title>
+	{% endblock title %}</title>
 <link href="{{ MEDIA_URL }}sitewide/css/reset.css" rel="stylesheet" type="text/css" />
 <link href="{{ MEDIA_URL }}sitewide/css/styles.css" rel="stylesheet" type="text/css" />
 <!--[if lt IE 7]>
@@ -31,14 +29,10 @@
   <div id="banner"> {% block banner %}
     <div id="screencast"><img src="{{ MEDIA_URL }}sitewide/images/screencast.gif" alt="Screencast" /></div>
     <a href="{% url sitewide_register_board %}">
-    <div id="signup">
-	
-	<img src="{{ MEDIA_URL }}sitewide/images/title_homepage.png" alt="Create your Job Board" width="342" height="142" />
-	
+    <div id="signup"> <img src="{{ MEDIA_URL }}sitewide/images/title_homepage.png" alt="Create your Job Board" width="342" height="142" />
       <div  id="button"> </div>
     </div>
-    </a>
-    {% endblock banner %} </div>
+    </a> {% endblock banner %} </div>
   <!--Banner ends-->
   {% block content %}
   <!--content starts-->

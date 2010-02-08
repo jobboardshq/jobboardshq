@@ -8,53 +8,51 @@
   <div id="pricingtable">
     <form method="post" action=".">
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td align="left" valign="top"><table width="500" border="0" cellspacing="2" cellpadding="0">
+            <tr>
+              <td colspan="2"  align="left" valign="top"><h1>Contact Us</h1></td>
+            </tr>
+            {% for field in form.visible_fields %}
+            <tr>
+              <td width="260" align="left" valign="top" class="contactlabel">{{ field.label_tag }} :</td>
+              <td align="left" valign="top" class="contact">{{ field }}</td>
+            </tr>
+            <tr> {% if field.errors %}
+              <td align="left" valign="top">&nbsp;</td>
+              <td align="left" valign="top">{{ field.errors }}</td>
+              {% endif %} </tr>
+            {% endfor %}
+            <tr>
+              <td>&nbsp;</td>
+              <td  align="center"><input type="submit" name="submit" value="Get in Touch"  class="contactsubmit" /></td>
+            </tr>
+          </table>
+    </form>
+    </td>
+    <td><table width="100%" border="0" cellspacing="2" cellpadding="0">
         <tr>
-          <td align="left" valign="top"><table width="500" border="0" cellspacing="2" cellpadding="0">
-              <tr>
-                <td colspan="2"  align="left" valign="top"><h1>Contact Us</h1></td>
-              </tr>
-              {% for field in form.visible_fields %}
-              <tr>
-                <td width="260" align="left" valign="top" class="contactlabel">{{ field.label_tag }} :</td>
-                <td align="left" valign="top" class="contact">{{ field }}</td>
-              </tr>
-              <tr> {% if field.errors %}
-                <td align="left" valign="top">&nbsp;</td>
-                <td align="left" valign="top">{{ field.errors }}</td>
-                {% endif %} </tr>
-              {% endfor %}
-              <tr>
-                <td>&nbsp;</td>
-                <td  align="center">
-                	<input type="submit" name="submit" value="Get in Touch"  class="contactsubmit" /></td>
-              </tr>
-            </table>
-			</form>
-			</td>
-          <td><table width="100%" border="0" cellspacing="2" cellpadding="0">
-              <tr>
-                <td colspan="2"><h1>Or get in touch with us Via. </h1></td>
-              </tr>
-              <tr>
-                <td  class="contactlabel"> Email: </td>
-                <td ><a href="mailto:hello@jobboardshq.com" class="contactlabel">hello@jobboardshq.com</a></td>
-              </tr>
-              <tr>
-                <td  class="contactlabel"> Phone:</td>
-                <td  class="contactlabel"> +91- 99499 97612</td>
-              </tr>
-              <tr>
-                <td  class="contactlabel"> Fax:</td>
-                <td  class="contactlabel"> +91-80-6688-5584</td>
-              </tr>
-              <tr>
-                <td  class="contactlabel"> Twitter:</td>
-                <td><a href="http://twitter.com/jobboardshq" target="_blank" class="contactlabel">jobboardshq</a></td>
-              </tr>
-            </table></td>
+          <td colspan="2"><h1>Or get in touch with us Via. </h1></td>
         </tr>
-      </table>
-    
+        <tr>
+          <td  class="contactlabel"> Email: </td>
+          <td ><a href="mailto:hello@jobboardshq.com" class="contactlabel">hello@jobboardshq.com</a></td>
+        </tr>
+        <tr>
+          <td  class="contactlabel"> Phone:</td>
+          <td  class="contactlabel"> +91- 99499 97612</td>
+        </tr>
+        <tr>
+          <td  class="contactlabel"> Fax:</td>
+          <td  class="contactlabel"> +91-80-6688-5584</td>
+        </tr>
+        <tr>
+          <td  class="contactlabel"> Twitter:</td>
+          <td><a href="http://twitter.com/jobboardshq" target="_blank" class="contactlabel">jobboardshq</a></td>
+        </tr>
+      </table></td>
+    </tr>
+    </table>
   </div>
 </div>
-{% endblock %}
+{% endblock %} 

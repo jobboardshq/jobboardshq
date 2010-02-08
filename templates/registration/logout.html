@@ -1,12 +1,11 @@
 {% extends 'registration/base.html' %}
 
 {% block content %}
-
-<form>
-    <p>
-        You have logged out. Login Again?
-        <a href="{% url auth_login %}">Login</a>
-    </p>
-</form>
-
+<div id="leftpanel_innerpage">
+  <div id="pricingtable">
+    <form>
+      <p> You have logged out. Login Again? <a href="{% url auth_login %}">Login</a> </p>
+    </form>
+  </div>
+</div>
 {% endblock %}

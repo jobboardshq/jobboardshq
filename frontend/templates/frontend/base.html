@@ -7,20 +7,16 @@
 <title>{{ board.name }} - {{ board_settings.tag_line }}</title>
 <meta keyword="{{ board.description }}" />
 <meta keyword="{{ board_settings.keywords }}" />
-
 <link href="{{ MEDIA_URL }}frontend/css/reset.css" rel="stylesheet" type="text/css" />
 {% compress css %}
 <link href="{{ MEDIA_URL }}frontend/css/frontend.css" rel="stylesheet" type="text/css" />
 {% endcompress %}
-
 <script>
 	document.domain = "{{ base_domain }}";
 </script>
-
-
 {% compress js %}
-	<script src="{{ MEDIA_URL }}frontend/js/jquery-1.4.js" type="text/javascript"></script>
-	<script src="{{ MEDIA_URL }}frontend/js/frontend.js" type="text/javascript"></script>
+<script src="{{ MEDIA_URL }}frontend/js/jquery-1.4.js" type="text/javascript"></script>
+<script src="{{ MEDIA_URL }}frontend/js/frontend.js" type="text/javascript"></script>
 {% endcompress %}
 
 {% block extrajs %}
@@ -34,27 +30,19 @@
 <div id="frontend_wrapper">
   <!--Header Starts-->
   <div id="header_frontendcontainer">
-  <div id="header_frontend">
-  	<a href="{% url frontend_index %}">
-  		{% if board_settings.logo %}
-  			<img src="{{ board_settings.logo.url }}" alt="Job Boards Demo" />
-		{% else %}
-			
-				{{ board.name }}
-			
-		{% endif %}
-	</a>
-		{% if not board_settings.logo %}
-	
-				{{ board_settings.tag_line }}
-	
-		{% endif %}
-</div>
-  <div id="frontend_topnav"> <a href="#">Login</a> | <a href="{% url frontend_feeds_jobs %}">Subscribe to RSS </a><img src="{{ MEDIA_URL }}frontend/images/rss_icon.png" alt="RSS" width="23" height="24"  /> </div>
-
-  <!--Header ends-->
-  <!--Top Nav starts-->
-  <div class="clear"></div>
+    <div id="header_frontend"> <a href="{% url frontend_index %}"> {% if board_settings.logo %} <img src="{{ board_settings.logo.url }}" alt="Job Boards Demo" /> {% else %}
+      
+      {{ board.name }}
+      
+      {% endif %} </a> {% if not board_settings.logo %}
+      
+      {{ board_settings.tag_line }}
+      
+      {% endif %} </div>
+    <div id="frontend_topnav"> <a href="#">Login</a> | <a href="{% url frontend_feeds_jobs %}">Subscribe to RSS </a><img src="{{ MEDIA_URL }}frontend/images/rss_icon.png" alt="RSS" width="23" height="24"  /> </div>
+    <!--Header ends-->
+    <!--Top Nav starts-->
+    <div class="clear"></div>
   </div>
   <!--Top Nav ends-->
   <!--Search bar starts-->
@@ -71,14 +59,7 @@
     <div class="advancedsearch">| <a href="#" class="searchlink">Advanced Search</a> </div>
     <a href="{% url frontend_addjob %}" >
     <div class="postjob"> </div>
-    </a>
-    <!--    <div class="postjob">
-      <ul id="menu">
-        <li><a href="{% url frontend_addjob %}" class="postjobs"><span></span></a></li>
-      </ul>
-    </div>
--->
-  </div>
+    </a> </div>
   <!--Search bar ends-->
   <!--content starts-->
   <div id="frontend_content">
