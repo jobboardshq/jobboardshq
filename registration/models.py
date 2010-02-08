@@ -60,7 +60,7 @@ class RegistrationManager(models.Manager):
         return False
     
     def create_inactive_user(self, username, password, email,
-                             send_email=True, profile_callback=None):
+                             subdomain, send_email=True, profile_callback=None):
         """
         Create a new, inactive ``User``, generates a
         ``RegistrationProfile`` and email its activation key to the
@@ -101,6 +101,7 @@ class RegistrationManager(models.Manager):
             message = render_to_string('registration/activation_email.txt',
                                        { 'activation_key': registration_profile.activation_key,
                                          'expiration_days': settings.ACCOUNT_ACTIVATION_DAYS,
+                                         "subdomain": subdomain, 
                                          'site': current_site })
             
             send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [new_user.email])

@@ -6,6 +6,7 @@ from django.template.loader import render_to_string
 from zobpress.models import Board
 from registration.forms import RegistrationForm
 from django.core.mail import send_mail
+from registration.models import RegistrationProfile
 
 class NewBoardForms(RegistrationForm):
     subdomain = forms.CharField(max_length = 100, help_text="The subdomain you want. Eg, if you want nurses.jobboardhq.com enter nurses here.")
@@ -27,12 +28,19 @@ class NewBoardForms(RegistrationForm):
             return self.cleaned_data['subdomain']
         raise ValidationError('This subdomain is already taken. Please choose another.')
     
-    def save(self, *args, **kwargs):
+    def save(self, profile_callback=None):
         data = self.cleaned_data
         username = data["username"]
         password = data["password1"]
-        user = super(NewBoardForms, self).save(*args, **kwargs)
+        #user = super(NewBoardForms, self).save(*args, **kwargs)
         #Return the username password so the user can be logged in in the next step.
+        subdomain = self.cleaned_data['subdomain']
+        new_user = RegistrationProfile.objects.create_inactive_user(username=self.cleaned_data['username'],
+                                                                    password=self.cleaned_data['password1'],
+                                                                    email=self.cleaned_data['email'],
+                                                                    subdomain=subdomain,
+                                                                    profile_callback=profile_callback)
+        user =  new_user
         return Board.objects.register_new_board(subdomain = self.cleaned_data['subdomain'], name=self.cleaned_data['name'], description= self.cleaned_data['description'], user = user), username, password
         
         
