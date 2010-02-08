@@ -135,9 +135,12 @@ fieldset{border:1px solid #E9D4B7; margin-top:5px;}
 #submit_button{width:113px ; height:31px; border:none; background:url(../images/submit_button.png); cursor:pointer; display:block; color:#FFFFFF;font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif;}
 #submit_button:hover{width:113px ; height:31px; border:none; background:url(../images/submit_button_r.png); cursor:pointer; display:block; color:#FFFFFF;font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif;}
 .contactlabel{font:12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#482B00; text-decoration:none; line-height:22px; }
-.contactlabel:hover{font:12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#A10000; text-decoration:underline;line-height:22px;  }
+
+
 .contactsubmit{width:113px ; height:31px; border:none; background:url(../images/applybut_bg.png); cursor:pointer; color:#FFFFFF;font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif; text-align:center; display:block;  line-height:30px;}
 .contactsubmit:hover{width:113px ; height:31px; border:none; background:url(../images/applybut_bg_r.png); cursor:pointer;  color:#FFFFFF;font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif;text-align:center;display:block; line-height:30px;}
+legend{font:bold 18px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000; text-decoration:none; line-height:24px;  padding-bottom:8px; padding-top:10px;}
+.login_fieldset{width:420px; margin:0px auto; font:12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#482B00; text-decoration:none; line-height:22px;}
 /*form elements*/
 
 .errortext{font:10px Arial, Helvetica, sans-serif; color:#FF0000;}

@@ -16,7 +16,7 @@
   <tr>
     <td width="200">{{ subscription.email }}</td>
     <td width="150" align="center">{{ subscription.created_on|date }}</td>
-    <td width="150" align="center">{{ subscription.is_active|yesno }}</td>
+    <td width="150" align="center">{% if subscription.is_active %}yes{% else %}no{% endif %}</td>
   </tr>
   {% endfor %}
 </table>

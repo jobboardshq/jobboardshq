@@ -13,8 +13,13 @@ h6{font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000
 
 
 #frontend_wrapper{width:100%; margin:0px auto; font-family:"trebuchet MS",Verdana, Arial, Helvetica, sans-serif;}
-#header_frontend{ margin:0px auto; width:960px; height:90px; padding-top:25px;}
-#frontend_topnav{ margin:0px auto; width:960px; height:48px; text-align:right; font:bold 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;}
+#header_frontendcontainer{ margin:0px auto; width:960px;}
+
+#header_frontend{ margin:0px auto; width:660px; height:90px; padding-top:25px; font:bold 24px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#FFFFFF; text-decoration:none; float:left;}
+#header_frontend a{ font:bold 24px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#FFFFFF; text-decoration:none;}
+#header_frontend a:hover{ font:bold 24px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#D4C490; text-decoration:underline;}
+
+#frontend_topnav{ margin:0px auto; width:300px; height:48px; text-align:right; font:bold 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; float:left;padding-top:35px;}
 #frontend_topnav a{  text-align:right; color:#FFFFFF; font:bold 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; line-height:48px; text-decoration:none; }
 #frontend_topnav a:hover{  text-align:right; color:#000000; text-decoration:underline;}
 #frontend_topnav #rssicon{  width:50px; height:48px; float:right;}
