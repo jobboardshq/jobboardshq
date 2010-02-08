@@ -8,7 +8,7 @@ p.admin{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; c
 
 /* Admin pages containers   */
 #adminheader{margin:0px auto; width:980px; height:97px;}
-.logo{width:500px; float:left;font:bold 24px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#FFFFFF; text-decoration:none;}
+.logo{width:500px; float:left;font:bold 24px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#FFFFFF; text-decoration:none; margin-top:25px;}
 .logo a{width:500px; float:left;font:bold 24px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#FFFFFF; text-decoration:none;}
 .logo a:hover{width:500px; float:left; font:bold 24px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#D4C490; text-decoration:underline;}
 

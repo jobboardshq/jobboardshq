@@ -9,29 +9,31 @@
   text-align: center;
   display: table-cell;
   vertical-align: middle;
+  font: 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;
+   color:#000000;
 }
+.widget_border
+{
+padding:5px;
+border:1px solid #996600;
+width:300px;
+margin:0px auto;
+margin-top:10px;
+}
+
 </style>
 {% endblock extracss %}
 
 {% block content %}
-
- 		<div class="admin_heading">Widgets</div>
-        	<div class="admin_subheading1">
-          		<p class="admin">Copy the code below to include this widget in your site.</p>
-        	</div>	
-
-
-	<script src="{% url widgets_jobs_js %}">
+<div class="admin_heading">Widgets</div>
+<div class="admin_subheading1">
+  <p class="admin">Copy the code below to include this widget in your site.</p>
+</div>
+<div class="widget_border">
+  <script src="{% url widgets_jobs_js %}">
 		
 	</script>
- 
-  
-  
-  <p>
-  	Copy this code.
-  <p class='textarea'>
-    {{ widget_code }}
-  </p>
-  
-
+</div>
+<p> Copy this code.
+<p class='textarea'> {{ widget_code }} </p>
 {% endblock content %}
