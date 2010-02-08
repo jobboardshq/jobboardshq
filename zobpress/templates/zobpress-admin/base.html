@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>{% block title %} {{ board.name }} {% endblock %}</title>
 {% block feed %}
-<link rel="alternate" type="application/rss+xml" title="{{ board.name }}" href="{{ board.get_absolute_url }}" />
+<link rel="alternate" type="application/rss+xml" title="{{ board.name }}" href="{% url frontend_feeds_jobs %}" />
 {% endblock %}
 
 {% block css %}
@@ -19,16 +19,7 @@
 
 {% block extracss %}{% endblock %}
 
-{% block script %}
-	{% compress js %}
-<script type="text/javascript" src="{{ MEDIA_URL }}admin/js/jquery.js"></script>
-<script type="text/javascript" src="{{ MEDIA_URL }}admin/js/ui.core.js"></script>
-<script type="text/javascript" src="{{ MEDIA_URL }}admin/js/json2.js"></script>
-<script type="text/javascript" src="{{ MEDIA_URL }}admin/js/admin.js"></script>
-{% endcompress %}
-{% endblock %}
 
-{% block extrascript %}{% endblock %}
 </head>
 <body>
 {% load zobpress_filters %}
@@ -96,5 +87,17 @@
 </div>
 </div>
 <div id="copyright"> &copy; Copyright 2009-2010 <a href="http://www.jobboardshq.com/">JobBoardsHQ.com</a>. All Rights Reserved | <a href="http://uswaretech.com/">A Usware Technologies productions</a> </div>
+{% block script %}
+	{% compress js %}
+	<script type="text/javascript" src="{{ MEDIA_URL }}admin/js/jquery.js"></script>
+	<script type="text/javascript" src="{{ MEDIA_URL }}admin/js/ui.core.js"></script>
+	<script type="text/javascript" src="{{ MEDIA_URL }}admin/js/json2.js"></script>
+	<script type="text/javascript" src="{{ MEDIA_URL }}admin/js/admin.js"></script>
+
+
+	{% endcompress %}
+{% endblock %}
+
+{% block extrascript %}{% endblock %}
 </body>
 </html>

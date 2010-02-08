@@ -1,5 +1,5 @@
 from zobpress.models import Board, BoardPayments, DeletedEntities, BoardSettings
-from zobpress.models import JobFormModel, JobFieldModel, Category, Job, JobData, JobType
+from zobpress.models import JobFormModel, JobFieldModel, Category, Job, JobData, JobType, Page, Applicant
 
 from django.contrib import admin
 
@@ -25,3 +25,5 @@ admin.site.register(JobData)
 admin.site.register(BoardPayments)
 admin.site.register(JobType)
 admin.site.register(DeletedEntities)
+admin.site.register(Page)
+admin.site.register(Applicant)
