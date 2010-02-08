@@ -62,7 +62,7 @@ class Board(models.Model):
         #Everytime after that, it should be False
         created = not bool(self.pk)
         super(Board, self).save(*args, **kwargs)
-        if not created:
+        if created:
             initial_populate(Board, self, created)
     
     def get_absolute_url(self):
