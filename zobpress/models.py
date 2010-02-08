@@ -555,6 +555,8 @@ post_save.connect(populate_categories_initial, sender = Board)
 post_save.connect(populate_job_types_initial, sender = Board)
 post_save.connect(populate_pages_initial, sender = Board)
 post_save.connect(populate_initial_jobs, sender = Board)
+post_save.connect(populate_initial_settings, sender = Board)
+
 
     
     
