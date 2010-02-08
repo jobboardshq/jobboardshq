@@ -58,9 +58,12 @@ class Board(models.Model):
     objects = BoardManager()
         
     def save(self, *args, **kwargs):
+        #The first time created would be True.
+        #Everytime after that, it should be False
+        created = not bool(self.pk)
         super(Board, self).save(*args, **kwargs)
-        created = bool(self.pk)
-        initial_populate(Board, self, created)
+        if not created:
+            initial_populate(Board, self, created)
     
     def get_absolute_url(self):
         current_site = Site.objects.get_current()
