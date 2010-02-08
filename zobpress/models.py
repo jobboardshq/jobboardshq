@@ -515,19 +515,22 @@ def create_initial_jobs(board):
         "name": "Jane Smith",
         "email": "jane@example.com"                       
     }
-    category = board.category_set.all()[0]
-    job_type = board.jobtype_set.all()[0]
-    job = Job.objects.create(name = job_details["name"], 
+    try:
+        category = board.category_set.all()[0]
+        job_type = board.jobtype_set.all()[0]
+        job = Job.objects.create(name = job_details["name"], 
                        description = job_details["description"],
                        board = board,
                        category = category,
                        job_type = job_type,
                        is_default = True
                        )
-    for name, value in job_details.items():
-        if not name in ["name", "description"]:
-            JobData.objects.create(name = name, value = value, data_type="TextField", job = job)
-    JobContactDetail.objects.create(name = job_contact_details["name"], email=job_contact_details["email"], job=job)
+        for name, value in job_details.items():
+            if not name in ["name", "description"]:
+                JobData.objects.create(name = name, value = value, data_type="TextField", job = job)
+        JobContactDetail.objects.create(name = job_contact_details["name"], email=job_contact_details["email"], job=job)
+    except IndexError:
+        pass
     
 def populate_initial_jobs(sender, instance, created, **kwargs):
     board = instance
