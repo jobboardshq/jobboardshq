@@ -13,13 +13,6 @@
 {% compress css %}
 <link href="{{ MEDIA_URL }}frontend/css/frontend.css" rel="stylesheet" type="text/css" />
 {% endcompress %}
-<script>
-	document.domain = "{{ base_domain }}";
-</script>
-{% compress js %}
-<script src="{{ MEDIA_URL }}frontend/js/jquery-1.4.js" type="text/javascript"></script>
-<script src="{{ MEDIA_URL }}frontend/js/frontend.js" type="text/javascript"></script>
-{% endcompress %}
 
 
 </head>
@@ -124,7 +117,9 @@
         <script type="text/javascript" src="js/unitpngfix.js"></script>
 <![endif]-->
 {% block analytics %}  
-	{{ board_settings.analytics_code }}
+	{% if board_settings.analytics_code %}
+		{{ board_settings.analytics_code }}
+	{% endif %}
 {% endblock analytics %}
   
 </body>
