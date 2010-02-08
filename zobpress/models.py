@@ -171,8 +171,8 @@ class Category(BoardSpecificEntities):
     category_count = models.SmallIntegerField(default = 0)
     is_deleted = models.BooleanField(default = False)
     
-    all_objects = models.Manager()
     objects = BoardSpecificEntitiesManager()
+    all_objects = models.Manager()
     
     def save(self, *args, **kwargs):
         if not self.category_count:
@@ -212,10 +212,13 @@ class Category(BoardSpecificEntities):
 class JobType(BoardSpecificEntities):
     #board = models.ForeignKey(Board)
     name = models.CharField(max_length = 100)
-    slug = AutoSlugField(max_length = 100, populate_from = "name")
+    slug = models.SlugField(max_length = 100, populate_from = "name")
     count = models.SmallIntegerField(default = 0)
     
     is_deleted = models.BooleanField(default = False)
+    
+    objects = BoardSpecificEntitiesManager()
+    all_objects = models.Manager()
     
     def save(self, *args, **kwargs):
         if not self.count:
@@ -316,9 +319,9 @@ class Job(BoardSpecificEntities):
     
     
     
-    all_objects = models.Manager()
     objects = BoardSpecificEntitiesManager()
     public_objects = JobPublicManager()
+    all_objects = models.Manager()
     
     created_on = models.DateTimeField(auto_now_add = 1)
     updated_on = models.DateTimeField(auto_now = 1)
@@ -419,12 +422,20 @@ class Applicant(BoardSpecificEntities):
     email = models.EmailField(help_text = "Your email id")
     resume = models.FileField(upload_to = "resumes")
     
+    objects = BoardSpecificEntitiesManager()
+    all_objects = models.Manager()
+    
+    
+    
     
 class Page(BoardSpecificEntities):
     #job_board = models.ForeignKey(Board)
     title = models.CharField(max_length=100, help_text="Title of the created page.")
     page_slug = models.SlugField(max_length=100, unique = False, help_text="Slug to be used as url identifier.")
     content = models.TextField()
+    
+    objects = BoardSpecificEntitiesManager()
+    all_objects = models.Manager()
     
     def __unicode__(self):
         return self.title
