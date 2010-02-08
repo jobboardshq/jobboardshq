@@ -56,8 +56,8 @@ def addjob(request):
             else:
                 return HttpResponseRedirect(reverse("frontend_job_paypal", args=[job.pk]))
             
-        
-    payload = {"job_static_form": job_static_form, "job_contact_form": job_contact_form, "job_form": form}
+    pages = board.page_set.all()
+    payload = {"job_static_form": job_static_form, "job_contact_form": job_contact_form, "job_form": form, "pages": pages}
     return render_to_response("frontend/addjob.html", payload, RequestContext(request))
 
 
@@ -68,10 +68,12 @@ def job(request, job_slug):
     job = get_object_or_404(Job, board = board, job_slug=job_slug)
     job.times_viewed += 1
     job.save()
-    return render_to_response('frontend/job.html', {'job': job}, RequestContext(request))
+    pages = board.page_set.all()
+    return render_to_response('frontend/job.html', {'job': job, "pages": pages}, RequestContext(request))
 
 @ensure_has_board
 def apply(request, job_slug):
+    board = request.board
     job = get_object_or_404(Job, job_slug = job_slug)
     contact = job.primary_contact
     form = ApplyForm(board = request.board)
@@ -83,8 +85,9 @@ def apply(request, job_slug):
             applicant.job = job
             applicant.save()
             return HttpResponseRedirect(reverse("frontend_apply_thanks",))
-        
-    payload = {"form": form, "contact":contact}
+    
+    pages = board.page_set.all() 
+    payload = {"form": form, "contact":contact, "pages": pages}
     return render_to_response("frontend/apply.html", payload, RequestContext(request))
 
 
@@ -119,8 +122,9 @@ def feeds_jobs(request):
 def job_board_pages(request, page_slug):
     "Show a page for a Board"
     board = request.board
+    pages = board.page_set.all()
     page = get_object_or_404(Page, board=board, page_slug=page_slug)
-    return render_to_response('frontend/static_pages.html', {'page': page}, RequestContext(request))
+    return render_to_response('frontend/static_pages.html', {'page': page, "pages": pages}, RequestContext(request))
 
 @ensure_has_board
 def job_paypal(request, id):
@@ -138,7 +142,8 @@ def job_paypal(request, id):
     job.paypal_token_sec = token
     job.save()
     paypal_url = pp.PAYPAL_URL + token
-    payload = {'job':job, 'paypal_url':paypal_url}
+    pages = board.page_set.all()
+    payload = {'job':job, 'paypal_url':paypal_url, "pages": pages}
     return render_to_response('frontend/job_paypal.html', payload, RequestContext(request))
 
 @ensure_has_board
@@ -169,5 +174,6 @@ def job_paypal_approved(request, id):
             payload['ack'] = False
     else:
         payload['ack'] = False
+    payload['pages'] = board.page_set.all()
     return render_to_response('frontend/job_paypal_approved.html', payload, RequestContext(request))
 
