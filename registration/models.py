@@ -3,7 +3,6 @@ import random
 import re
 import sha
 
-from django.conf import settings
 from django.db import models
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
@@ -97,12 +96,14 @@ class RegistrationManager(models.Manager):
                                        { 'site': current_site })
             # Email subject *must not* contain newlines
             subject = ''.join(subject.splitlines())
-            
+            from django.conf import settings
             message = render_to_string('registration/activation_email.txt',
                                        { 'activation_key': registration_profile.activation_key,
                                          'expiration_days': settings.ACCOUNT_ACTIVATION_DAYS,
                                          "subdomain": subdomain, 
+                                         "user": new_user,
                                          'site': current_site })
+            
             
             send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [new_user.email])
         return new_user
@@ -222,6 +223,7 @@ class RegistrationProfile(models.Model):
            method returns ``True``.
         
         """
+        from django.conf import settings
         expiration_date = datetime.timedelta(days=settings.ACCOUNT_ACTIVATION_DAYS)
         return self.activation_key == "ALREADY_ACTIVATED" or \
                (self.user.date_joined + expiration_date <= datetime.datetime.now())

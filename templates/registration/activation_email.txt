@@ -1,8 +1,14 @@
-Hi,
+Hi {{ user.username }},
 
 Thanks you for creating an account at {{ site }}.
 
-Please click on the link at http://{{ subdomain }}.{{ site }}{% url registration_activate activation_key %} to activate your account.
+Please click on the link at http://{{ subdomain }}.{{ site }}{% url registration_activate activation_key %} 
+to activate your account.
+
+If you received this email in error, please disregard this and no further emails will be sent by us.
+
+Thanks for using JobBoardsHQ, and please feel free to email us at hello@jobboardshq.com, or to me at
+shabda@uswaretech.com if you need any help. 
 
 Thanks,
-Team Zobpress
+Team JobBoardsHQ

@@ -98,7 +98,8 @@ class BoardSearch(SearchView):
         self.form = self.build_form()
         self.query = self.get_query()
         results = super(BoardSearch, self).get_results()
-        self.results = results.filter(board = request.board)
+        if results:
+            self.results = results.filter(board = request.board)
         
         return self.create_response()
     

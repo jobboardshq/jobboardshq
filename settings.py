@@ -64,6 +64,9 @@ HAYSTACK_SITECONF = 'uswaretech_zobpress.search_sites'
 HAYSTACK_SEARCH_ENGINE = 'whoosh'
 HAYSTACK_WHOOSH_PATH = (os.path.join(os.path.dirname(__file__), 'search_index/'))
 
+
+
+
 INSTALLED_APPS = (
     'zobpress',
     'sitewide',
@@ -97,9 +100,8 @@ INTERNAL_IPS = ('127.0.0.1',)
 
 EMAIL_THUMBNAILS = "email"
 
-DEFAULT_FROM_EMAIL = "hello@jobboardshq.com"
 
-from localsettings import *
+#from localsettings import *
 
 #if DEBUG:
 #    try:

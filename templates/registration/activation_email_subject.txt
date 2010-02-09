@@ -1,1 +1,1 @@
-Account created at {{ site }}
+Account created at {{ site }}. Activation required.

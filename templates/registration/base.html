@@ -17,29 +17,13 @@
   {% block header %}
   <div id="header"> <a href="{% url sitewide_index %}"><img src="{{ MEDIA_URL }}sitewide/images/jobboards_logo.gif" alt="Job Boards logo" width="315" height="67" /></a> {% endblock header %} </div>
   <!--Header Ends-->
-  <!--Top Navigation Starts-->
-  <div id="top_navigation"> {% block topnav %}
-    <ul id="nav-example">
-      {% include "sitewide/navbar.html" %}
-    </ul>
-    {% endblock topnav %} </div>
-  <!--Top Navigation ends-->
-  <!--Banner starts-->
-  <div id="banner_innerpage">
-    <!-- {% block banner %} -->
-    <div class="title"><img src="{{ MEDIA_URL }}sitewide/images/innerbanner_title.png" alt="Create your own in seconds - No Downloads and No Installations" width="587" height="115" /></div>
-    <a href="register.html" >
-    <div id="signupbut"></div>
-    </a>
-    <div class="clear"></div>
-  </div>
-  <!-- {% endblock banner %}-->
-</div>
-<!--Banner ends-->
-{% block content %}
-<!--content starts-->
-<!--content starts-->
-{% endblock content %}
+        <br />
+		<br />
+		<br />
+		{% block content %}
+		<!--content starts-->
+		<!--content starts-->
+		{% endblock content %}
 </div>
 <div class="clear"></div>
 {% include "sitewide/footer.html" %}
