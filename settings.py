@@ -101,7 +101,7 @@ INTERNAL_IPS = ('127.0.0.1',)
 EMAIL_THUMBNAILS = "email"
 
 
-#from localsettings import *
+from localsettings import *
 
 #if DEBUG:
 #    try:
