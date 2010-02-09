@@ -138,7 +138,11 @@ def job_paypal(request, id):
         job.is_active = True
         job.save()
         return HttpResponseRedirect(job.get_absolute_url())
-    pp = paypal.PayPal()
+    from django.conf import settings
+    if settings.PAYPAL_DEBUG:
+        pp = paypal.PayPal()
+    else:
+        pp = paypal.PayPal(api_endpoint = settings.API_ENDPOINT, paypal_url = settings.PAYPAL_URL, signature_values = settings.SIGNATURE_VALUES)
     token = pp.SetExpressCheckout(cost, '%s%s'%(board.get_absolute_url(), reverse('frontend_job_paypal_appr', args=[job.id])), '%s%s'%(board.get_absolute_url(), reverse('frontend_job_paypal', args=[job.id])))
     job.paypal_token_sec = token
     job.save()

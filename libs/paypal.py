@@ -35,7 +35,7 @@ class PayPal:
     API_ENDPOINT = ""
     PAYPAL_URL = ""
     
-    def __init__(self):
+    def __init__(self, api_endpoint = None, paypal_url=None, signature_values = None, ):
         ## Sandbox values
         self.signature_values = {
         'USER' : 'shabda_1225388780_biz_api1.uswaretech.com', # Edit this to your API user name
@@ -46,6 +46,14 @@ class PayPal:
         self.API_ENDPOINT = 'https://api-3t.sandbox.paypal.com/nvp' # Sandbox URL, not production
         self.PAYPAL_URL = 'https://www.sandbox.paypal.com/webscr&cmd=_express-checkout&token='
         self.signature = urllib.urlencode(self.signature_values) + "&"
+        
+        if api_endpoint:
+            self.API_ENDPOINT = api_endpoint
+        if paypal_url:
+            self.PAYPAL_URL = paypal_url
+        if signature_values:
+            self.signature = urllib.urlencode(signature_values) + "&"
+            
 
     # API METHODS
     def SetExpressCheckout(self, amount, return_url, cancel_url, **kwargs):
