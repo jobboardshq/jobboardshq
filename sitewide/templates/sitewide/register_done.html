@@ -1,0 +1,47 @@
+{% extends "sitewide/base_basic.html" %}
+
+{% block content %}
+
+<br />
+<br />
+
+<br />
+<br />
+
+<div id="homecontent">
+    <!--Features starts-->
+    <div id="leftpanel_innerpage">
+      <div id="pricingtable">
+	      <h1>
+	      	Thank you for registering a board on JobBoardsHQ.
+	      </h1>
+		  
+		  <p>
+		  	You are less that a minute away from start managing your Job board!
+		  </p>
+		  
+		  <p>
+		  	We have sent  a mail to you, click on the link in that mail, and your ready to login. Thanks again, and 
+			if you need any help getting started, please mail us at <a href="mailto:hello@jobboardshq.com">hello@jobboardshq.com</a>.
+		  </p>
+		 
+		 {% if board %} 
+		 <h3>
+		 	Things to do
+		 </h3>
+		 
+		 <ul>
+		 	<li>
+		 		<a href="{{ board.get_absolute_url }}">See your board all ready and waiting for you. </a>
+		 	</li>
+			<li>
+		 		<a href="{{ board.get_management_url }}">Manage your board.</a> (After you have activated your account.)
+		 	</li>
+		 </ul>		
+		{% endif %} 
+		  
+		  <div class="clear"></div>
+    </div>
+    <!--Features ends-->
+    <!--content starts-->
+{% endblock content %}

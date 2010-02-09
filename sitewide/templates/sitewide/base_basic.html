@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{% block title %}	
+	Job Boards - Get your Job Board live with in minutes
+	{% endblock title %}</title>
+<link href="{{ MEDIA_URL }}sitewide/css/reset.css" rel="stylesheet" type="text/css" />
+<link href="{{ MEDIA_URL }}sitewide/css/styles.css" rel="stylesheet" type="text/css" />
+<!--[if lt IE 7]>
+        <script type="{{ MEDIA_URL }}sitewide/text/javascript" src="js/unitpngfix.js"></script>
+<![endif]-->
+</head>
+<body class="innerpage">
+	<div id="wrapper">
+		
+  	<div id="header">
+  		{% block header %} 
+       		<a href="{% url sitewide_index %}"><img src="{{ MEDIA_URL }}sitewide/images/jobboards_logo.gif" alt="Job Boards logo" width="315" height="67" /></a> 
+	   {% endblock header %}
+   	</div>
+
+			{% block content %}
+				<!--content starts-->
+				<!--content starts-->
+			{% endblock content %}
+	</div>
+<div class="clear"></div>
+</body>
+</html>

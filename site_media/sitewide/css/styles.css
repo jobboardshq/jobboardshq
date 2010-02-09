@@ -159,3 +159,8 @@ legend{font:bold 18px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; colo
 #backend_demo{width:420px; float:left; text-align:center; border:5px solid #F1EDE0; margin-left:10px;background-color:#FCF9EF; margin-top:15px; padding:5px;}
 #backend_demo img{ border:3px solid #F1EDE0;}
 #backend_demo img:hover{ border:3px solid #D4C490;}
+
+.helptext{
+	font-size: 70%;
+	
+}

@@ -60,12 +60,12 @@ HAYSTACK_WHOOSH_PATH = (os.path.join(os.path.dirname(__file__), 'search_index/')
 INSTALLED_APPS = (
     #'zobpress',
     'sitewide',
-    'emailsubs',
-    'widgets',
+    #'emailsubs',
+    #'widgets',
     #'management',
     'registration',
-    'profiles',
-    "frontend",
+    #'profiles',
+    #"frontend",
     "compressor",
     'django.contrib.auth',
     'django.contrib.admin',
@@ -73,8 +73,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'south',
-    'haystack',
-    "pagination",
+    #'haystack',
+    #"pagination",
 )
 
 AUTH_PROFILE_MODULE = 'profiles.UserProfile'

@@ -38,12 +38,20 @@ def register_board(request):
             board, username, password = new_board_form.save()
             #Ok board is registered.
             #Login the new user and redirect them to their new board.
-            user = authenticate(username =username, password=password)
-            login(request, user)
-            user.message_set.create(message = "Your board has been created.")
-            return HttpResponseRedirect(board.get_management_url())
+            request.session["board"] = board
+            return HttpResponseRedirect(reverse("sitewide_register_board_done"))
             
     payload = {'new_board_form':new_board_form}
     return render_to_response('sitewide/register.html', payload, RequestContext(request))
     
+    
+def register_board_done(request, template):
+    try:
+        board = request.session["board"]
+        del request.session["board"]
+    except KeyError:
+        board = None
+    
+    payload = {"board": board}
+    return render_to_response(template, payload, RequestContext(request))
     
