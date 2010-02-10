@@ -3,8 +3,54 @@
 
 {% block content %}
 <div id="leftpanel_innerpage">
-  <div id="pricingtable">
-    <form action="." method="post">
+  <div id="login_bg">
+  
+    
+      <form action="." method="post">
+        <table width="300" border="0" cellspacing="0" cellpadding="0">
+          {% csrf_token %}
+          {% if form.non_field_errors %}
+          {{ form.non_field_errors }}
+          {% endif %}
+          {% for field in form.visible_fields %}
+          <tr>
+            <td>{{ field.label_tag }} :</td>
+          </tr>
+          <tr>
+            <td >  <div id="login_base"><span class="textfield_login">{{ field }}</span></div></td>
+          </tr>
+          {% if field.errors %}
+          <tr>
+            <td>{{ field.errors }}</td>
+            {% endif %} </tr>
+          {% endfor %}
+         
+            <tr>
+         
+            <td height="55" align="center" valign="bottom"><table width="157" border="0" align="center" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td height="55" align="center" valign="bottom"><input type="submit" name="Login" value="Login"  class="button" /></td>
+                </tr>
+              </table></td>
+          </tr>
+          <tr>
+            <td height="95" align="center" valign="bottom">First time here?</td>
+          </tr>
+          <tr>
+            <td align="center" valign="middle" height="65"><a href="{% url sitewide_register_board %}">
+              <img src="{{ MEDIA_URL }}sitewide/images/register_button.png" alt="Register" width="157" height="45" />            </a></td>
+          </tr>
+          <tr>
+            <td align="center" valign="bottom">Or try our demo account.<br/>
+              Username: demo    Password: demo </td>
+          </tr>
+        </table>
+        <input type="hidden" name="next" value="{{ next }}" />
+      </form>
+
+  </div>
+</div>
+<!--     <form action="." method="post">
       <fieldset class="login_fieldset">
       <legend>Login</legend>
       <table width="100%" border="0" cellspacing="2" cellpadding="0">
@@ -30,6 +76,5 @@
       <input type="hidden" name="next" value="{{ next }}" />
       </fieldset>
     </form>
-  </div>
-</div>
+-->
 {% endblock %}
