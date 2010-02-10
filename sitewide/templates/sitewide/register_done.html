@@ -22,7 +22,7 @@
 		  
 		  <p>
 		  	We have sent  a mail to you, click on the link in that mail, and your ready to login. Thanks again, and 
-			if you need any help getting started, please mail us at <a href="mailto:hello@jobboardshq.com">hello@jobboardshq.com</a>.
+			if you need any help getting started, please mail us at <a href="mailto:hello@jobboardshq.com" class="meroonlink">hello@jobboardshq.com</a>.
 		  </p>
 		 
 		 {% if board %} 
@@ -32,10 +32,10 @@
 		 
 		 <ul>
 		 	<li>
-		 		<a href="{{ board.get_absolute_url }}">See your board all ready and waiting for you. </a>
+		 		<a href="{{ board.get_absolute_url }}" class="meroonlink">See your board all ready and waiting for you. </a>
 		 	</li>
 			<li>
-		 		<a href="{{ board.get_management_url }}">Manage your board.</a> (After you have activated your account.)
+		 		<a href="{{ board.get_management_url }}" class="meroonlink">Manage your board.</a> (After you have activated your account.)
 		 	</li>
 		 </ul>		
 		{% endif %} 
