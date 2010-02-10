@@ -65,6 +65,8 @@
       </p>
     </div>
   </div>
+  
+  {% if latestjob %}
   <div id="testimonials">
     <h1>Latest posted job</h1>
     <blockquote>
@@ -74,5 +76,6 @@
       <span class="speaker">
         <a href="{{ latestjob.board.get_absolute_url }}{{ latestjob.get_absolute_url }}">Visit site</a></span></blockquote>
   </div>
+  {% endif %}
 </div>
 {% endblock %} 

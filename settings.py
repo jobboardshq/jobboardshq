@@ -40,9 +40,11 @@ TEMPLATE_LOADERS = (
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.doc.XViewMiddleware',
     'django.middleware.transaction.TransactionMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'pagination.middleware.PaginationMiddleware',
     'zobpress.middleware.GetSubdomainMiddleware',
     'zobpress.middleware.ThreadLocals',
@@ -57,6 +59,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
     "django.core.context_processors.request",
+    'django.contrib.messages.context_processors.messages',
     "zobpress.context_processor.populate_board",
     )
 
@@ -82,6 +85,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
+    'django.contrib.messages',
     'south',
     'haystack',
     "pagination",

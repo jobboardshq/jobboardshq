@@ -6,14 +6,14 @@
 <script src="{{ MEDIA_URL }}admin/js/jquery-1.1.3.1.pack.js" type="text/javascript"></script>
 <script src="{{ MEDIA_URL }}admin/js/jquery.tabs.min.js" type="text/javascript"></script>
 <script type="text/javascript">
-            $(function() {
-
-                $('#container-1').tabs();
-                $('#container-2').tabs(2);
-                $('#container-3').tabs({ fxSlide: true });
-                
-            });
-        </script>
+$(function() {
+  {% ifequal display_tab 'password' %}
+	$('#container-1').tabs(3);
+  {% else %}
+	$('#container-1').tabs();
+  {% endifequal %}
+});
+</script>
 {% endblock %}
 
 {% block extracss %}
@@ -35,6 +35,8 @@
       <li><a href="#fragment-2"><span>Templates</span></a></li>
       <li><a href="#fragment-3"><span>Change Password</span></a></li>
     </ul>
+	
+	<!-- first tab begins -->
     <div id="fragment-1">
       <form action="." method="post" enctype="multipart/form-data">
         <table width="100%" border="0" cellspacing="0" cellpadding="2">
@@ -73,35 +75,29 @@
         </table>
       </form>
     </div>
+	<!-- first tab ends -->
+	
+	<!-- second tab begins -->
     <div id="fragment-2">
       <p>coming soon...</p>
     </div>
+	<!-- second tab ends -->
+	
+	<!-- third tab begins -->
     <div id="fragment-3">
-      <table width="100%" border="0" cellspacing="0" cellpadding="2">
-        <tr>
-          <td width="170">Current Password :</td>
-          <td><input name="textfield" type="text" class="textfield" id="textfield" /></td>
-        </tr>
-        <tr>
-          <td>Change Password :</td>
-          <td><input name="textfield2" type="text" class="textfield" id="textfield2" /></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td><table width="42%" border="0" align="left" cellpadding="0" cellspacing="2">
-              <tr>
-                <td align="left" valign="top">
-                  <input type="submit" name="button" id="button" value="Save" />
-                  </td>
-              </tr>
-            </table></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-        </tr>
-      </table>
+	  <form action='{% url zobpress_password_change %}' method='post'>
+		{% csrf_token %}
+		<table width="100%" border="0" cellspacing="0" cellpadding="2">
+		  {{ password_change_form }}
+		  <tr>
+			<td>&nbsp;</td>
+			<td><input type="submit" name="button" id="button" value="Save" /></td>
+		  </tr>
+		</table>
+	  </form>
     </div>
+	<!-- third tab ends -->
+  	
   </div>
 </div>
 {% endblock content %}

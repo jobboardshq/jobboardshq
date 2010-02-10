@@ -46,5 +46,6 @@ urlpatterns += patterns('zobpress.views',
     url(r'^edit/(?P<page_slug>.*)/$', 'edit_page', name='zobpress_job_board_page'),
     url(r'^create-page/$', 'create_page', name='zobpress_create_page'),
     url(r'^settings/$', 'settings', name='zobpress_settings'),
+    url(r'^change-password/$', 'change_password', name='zobpress_password_change'),
     url(r'^indeed-jobs/$', 'indeed_jobs', name='zobpress_indeed_jobs'),
 )

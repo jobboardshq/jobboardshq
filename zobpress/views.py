@@ -6,6 +6,8 @@ from django.core.urlresolvers import reverse
 from django.utils import feedgenerator
 from django.utils import simplejson
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib import messages
 
 from StringIO import StringIO
 
@@ -163,9 +165,26 @@ def settings(request):
             board_settings.save()
             request.user.message_set.create(message = "Your settings have been updated.")
             HttpResponseRedirect(reverse('zobpress_settings'))
-    payload = {'form': form, "board_form": board_form}
+    password_change_form = PasswordChangeForm(user=request.user)
+    payload = {'form': form, "board_form": board_form, 'password_change_form': password_change_form}
     return render_to_response('zobpress/settings.html', payload , RequestContext(request))
 
+@ensure_is_admin
+@ensure_has_board
+def change_password(request):
+    if request.method == 'POST':
+        password_change_form = PasswordChangeForm(user=request.user, data=request.POST)
+        if password_change_form.is_valid():
+            password_change_form.save()
+            messages.add_message(request, messages.SUCCESS, 'Your Password is updated successfully.')
+            return HttpResponseRedirect(reverse('zobpress_settings'))
+    else:
+        password_change_form = PasswordChangeForm(user=request.user)
+    board_form = BoardEditForm(instance = request.board)
+    form = BoardSettingsForm(instance=request.board.settings)
+    payload = {'form': form, "board_form": board_form, 'password_change_form': password_change_form, 'display_tab': 'password'}
+    return render_to_response('zobpress/settings.html', payload , RequestContext(request))
+        
 @ensure_is_admin
 @ensure_has_board
 def indeed_jobs(request):

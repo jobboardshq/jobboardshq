@@ -109,6 +109,7 @@ var WRInitTime=(new Date()).getTime();
 
 {% block extrascript %}{% endblock %}
 
+{% if not debug %}
 <!-- ClickTale Bottom part -->
 <div id="ClickTaleDiv" style="display: none;"></div>
 <script type="text/javascript">
@@ -119,7 +120,7 @@ if(document.location.protocol!='https:')
 if(typeof ClickTale=='function') ClickTale(36878,0.5,"www");
 </script>
 <!-- ClickTale end of Bottom part -->
-
+{% endif %}
 
 </body>
 </html>

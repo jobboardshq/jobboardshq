@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse
 from django.conf import settings
 from django.utils.http import urlquote
 from django.utils.functional import wraps
-from django.utils.decorators import auto_adapt_to_methods
+# from django.utils.decorators import auto_adapt_to_methods
 from django.contrib.auth import REDIRECT_FIELD_NAME
 
 class ensure_has_board(object):
