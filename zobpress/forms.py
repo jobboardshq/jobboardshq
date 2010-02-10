@@ -26,7 +26,7 @@ class BoardSettingsForm(forms.ModelForm):
     
     class Meta:
         model = BoardSettings
-        exclude = ('board', 'templates')
+        exclude = ('board', 'template')
         
 class JobStaticForm(forms.ModelForm):    
     name = forms.CharField(widget = forms.TextInput(attrs={"class" : "textinput",  "size":"50"},))

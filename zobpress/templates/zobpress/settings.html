@@ -39,6 +39,7 @@ $(function() {
 	<!-- first tab begins -->
     <div id="fragment-1">
       <form action="." method="post" enctype="multipart/form-data">
+		{% csrf_token %}
         <table width="100%" border="0" cellspacing="0" cellpadding="2">
           {% for field in board_form.visible_fields %}
           {% if field.errors %}

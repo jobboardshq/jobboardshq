@@ -44,7 +44,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.doc.XViewMiddleware',
     'django.middleware.transaction.TransactionMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'pagination.middleware.PaginationMiddleware',
     'zobpress.middleware.GetSubdomainMiddleware',
     'zobpress.middleware.ThreadLocals',

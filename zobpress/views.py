@@ -8,7 +8,7 @@ from django.utils import simplejson
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
-
+from django.views.decorators.csrf import csrf_protect
 from StringIO import StringIO
 
 from zobpress import models
@@ -149,7 +149,7 @@ def edit_category(request, category_pk):
     return render_to_response("zobpress/edit_category.html", payload, RequestContext(request))
     
     
-
+@csrf_protect
 @ensure_is_admin
 @ensure_has_board
 def settings(request):
@@ -163,12 +163,13 @@ def settings(request):
             board_settings = form.save(commit=False)
             board_settings.board = request.board
             board_settings.save()
-            request.user.message_set.create(message = "Your settings have been updated.")
+            messages.add_message(request, messages.SUCCESS, "Your settings have been updated.")
             HttpResponseRedirect(reverse('zobpress_settings'))
     password_change_form = PasswordChangeForm(user=request.user)
     payload = {'form': form, "board_form": board_form, 'password_change_form': password_change_form}
     return render_to_response('zobpress/settings.html', payload , RequestContext(request))
 
+@csrf_protect
 @ensure_is_admin
 @ensure_has_board
 def change_password(request):
