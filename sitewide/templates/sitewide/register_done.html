@@ -1,12 +1,6 @@
-{% extends "sitewide/base_basic.html" %}
+{% extends "sitewide/base_register.html" %}
 
 {% block content %}
-
-<br />
-<br />
-
-<br />
-<br />
 
 <div id="homecontent">
     <!--Features starts-->
@@ -38,10 +32,17 @@
 		 		<a href="{{ board.get_management_url }}" class="meroonlink">Manage your board.</a> (After you have activated your account.)
 		 	</li>
 		 </ul>		
-		{% endif %} 
-		  
-		  <div class="clear"></div>
+         
+{% endif %} 
+     <br/>
+     <br/><br/>
+     <br/>
+     <br/><br/>
+	     
+	    <div class="clear"></div>
     </div>
+</div>
+</div>
     <!--Features ends-->
     <!--content starts-->
 {% endblock content %}
