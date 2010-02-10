@@ -19,7 +19,7 @@ p.email{ padding-top:25px; padding-left:130px; color:#FFFFFF; text-align:left; }
 p.twitter{ padding-top:25px; padding-left:130px; color:#FFFFFF; text-align:left; }
 
 /*Wrapper*/
-#wrapper{width:100%;}
+#wrapper{margin:0px auto; width:960px;}
 #header{ margin:0px auto; width:960px; height:90px; padding:25px 0px 0px 00px;}
 
 /*Top navigation*/
