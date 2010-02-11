@@ -7,7 +7,9 @@
 		JobBoardsHQ - Hosted job board software - Start your job board in minutes.
 	{% endblock title %}</title>
 <link href="{{ MEDIA_URL }}sitewide/css/reset.css" rel="stylesheet" type="text/css" />
+{% compress css %}
 <link href="{{ MEDIA_URL }}sitewide/css/styles.css" rel="stylesheet" type="text/css" />
+{% endcompress %}
 <!--[if lt IE 7]>
         <script type="{{ MEDIA_URL }}sitewide/text/javascript" src="js/unitpngfix.js"></script>
 <![endif]-->
