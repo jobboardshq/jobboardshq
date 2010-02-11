@@ -50,31 +50,4 @@
 
   </div>
 </div>
-<!--     <form action="." method="post">
-      <fieldset class="login_fieldset">
-      <legend>Login</legend>
-      <table width="100%" border="0" cellspacing="2" cellpadding="0">
-        {% csrf_token %}
-        {% if form.non_field_errors %}
-        {{ form.non_field_errors }}
-        {% endif %}
-        {% for field in form.visible_fields %}
-        <tr>
-          <td align="left" class="contactlabel">{{ field.label_tag }} :</td>
-          <td align="left" class="contact">{{ field }}</td>
-        </tr>
-        <tr> {% if field.errors %}
-          <td align="left">&nbsp;</td>
-          <td align="left">{{ field.errors }}</td>
-          {% endif %} </tr>
-        {% endfor %}
-        <tr>
-          <td align="left">&nbsp;</td>
-          <td align="center"><input type="submit" name="Login" value="login"  class="contactsubmit" /></td>
-        </tr>
-      </table>
-      <input type="hidden" name="next" value="{{ next }}" />
-      </fieldset>
-    </form>
--->
 {% endblock %}
