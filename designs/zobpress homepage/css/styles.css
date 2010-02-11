@@ -3,8 +3,9 @@
 
 body{font: 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#1D1D1D;}
 
-body.homepage{background:url(../images/site_bg.gif) repeat-x;}
-body.innerpage{background:url(../images/site_bginner.gif) repeat-x;}
+body.homepage{background:url(../images/site_bg.gif) repeat-x; font:11px "trebuchet MS", Arial, Helvetica, sans-serif;  color:#191919; text-decoration:none; line-height:18px;}
+body.innerpage{background:url(../images/site_bginner.gif) repeat-x; font:11px "trebuchet MS", Arial, Helvetica, sans-serif;  color:#191919; text-decoration:none; line-height:18px;}
+body.login{background:url(../images/site_bginner.gif) repeat-x; background-color:#EFE8DE;font:11px "trebuchet MS", Arial, Helvetica, sans-serif;  color:#191919; text-decoration:none; line-height:18px;}
 
 /*Headings*/
 h1{font:bold 18px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000; text-decoration:none; line-height:24px; letter-spacing:-1px; padding-bottom:8px;}
@@ -19,8 +20,9 @@ p.aboutus{font:12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; text-d
 p.email{ padding-top:25px; padding-left:130px; color:#FFFFFF; text-align:left; }
 p.twitter{ padding-top:25px; padding-left:130px; color:#FFFFFF; text-align:left; }
 /*Wrapper*/
-#wrapper{width:100%;}
+#wrapper{margin:0px auto; width:960px;}
 #header{ margin:0px auto; width:960px; height:90px; padding:25px 0px 0px 00px;}
+#innerpage_content{width:960px; margin:0px auto; }
 
 /*Top navigation*/
 #top_navigation{ margin:0px auto; width:960px; height:47px; padding-top:1px;}
@@ -33,19 +35,18 @@ p.twitter{ padding-top:25px; padding-left:130px; color:#FFFFFF; text-align:left;
 #nav-example-03 {width: 85px;}
 #nav-example-04 {width: 94px;}
 #nav-example-05 {width: 102px;}
-#nav-example-06 {width: 122px;}
-#nav-example-07 {width: 178px;}
-#nav-example-08 {width: 89px;}
-#nav-example-09 {width: 90px;}
+#nav-example-06 {width: 300px;}
+#nav-example-07 {width: 89px;}
+#nav-example-08 {width: 90px;}
 #nav-example-01 a:hover {background:url(../images/topnav.gif) 0px -47px no-repeat;}
 #nav-example-02 a:hover {background:url(../images/topnav.gif) -92px -47px no-repeat;}
 #nav-example-03 a:hover {background:url(../images/topnav.gif) -200px -47px no-repeat;}
 #nav-example-04 a:hover {background:url(../images/topnav.gif) -285px -47px no-repeat;}
 #nav-example-05 a:hover {background:url(../images/topnav.gif) -379px -47px no-repeat;}
 #nav-example-06 a:hover {background:url(../images/topnav.gif) -481px -47px no-repeat;}
-#nav-example-07 a:hover {background:url(../images/topnav.gif) -603px -47px no-repeat;}
-#nav-example-08 a:hover {background:url(../images/topnav.gif) -781px -47px no-repeat;}
-#nav-example-09 a:hover {background:url(../images/topnav.gif) -870px -47px no-repeat;}
+#nav-example-07 a:hover {background:url(../images/topnav.gif) -781px -47px no-repeat;}
+#nav-example-08 a:hover {background:url(../images/topnav.gif) -870px -47px no-repeat;}
+
 
 .homeselected {background:url(../images/topnav.gif) 0px -47px no-repeat;}
 .featuresselected {background:url(../images/topnav.gif) -92px -47px no-repeat;}
@@ -53,8 +54,8 @@ p.twitter{ padding-top:25px; padding-left:130px; color:#FFFFFF; text-align:left;
 .pricing {background:url(../images/topnav.gif) -285px -47px no-repeat;}
 .support {background:url(../images/topnav.gif) -379px -47px no-repeat;}
 .contactus {background:url(../images/topnav.gif) -481px -47px no-repeat;}
-.space {background:url(../images/topnav.gif) -603px -47px no-repeat;}
-.login {background:url(../images/topnav.gif) -781px -47px no-repeat;}
+.space {background:url(../images/topnav.gif) -781px -47px no-repeat;}
+.login {background:url(../images/topnav.gif) -870px -47px no-repeat;}
 .signup {background:url(../images/topnav.gif) -870px -47px no-repeat;}
 /*Top navigation ends*/
 
@@ -66,6 +67,11 @@ p.twitter{ padding-top:25px; padding-left:130px; color:#FFFFFF; text-align:left;
 #banner #signup #button:hover{width:288px; text-align:center; margin:0px auto; background:url(../images/post_job_buttonnew.png) 0 -65px no-repeat;  margin-top:25px;}
 
 #banner_innerpage{ margin:0px auto; width:960px; height:150px;}
+#banner_innerpage .title{width:600px; height:130px; float:left; padding:20px 0px 0px 0px;}
+#banner_innerpage #signupbut{width:288px;  text-align:center; margin:0px auto; background:url(../images/post_job_buttonnew.png) no-repeat; height:65px; cursor:pointer; margin:40px 0px 0px 50px; float:left;}
+#banner_innerpage #signupbut:hover{width:288px;  text-align:center; margin:0px auto; background:url(../images/post_job_buttonnew.png) 0 -65px no-repeat; height:65px; cursor:pointer;  margin:40px 0px 0px 50px; }
+
+
 /*Banner styles ends*/
 
 /*Content styles*/
@@ -128,3 +134,26 @@ blockquote {font:12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; marg
 .pricing_signup:hover{width:92px; height:40px; background:url(../images/pricing_signup_but_r.png) no-repeat; display:block; margin-top:415px; margin-left:8px; cursor:pointer;}
 .pricing_prosignup{width:92px; height:40px; background:url(../images/pricing_pro_but.png) no-repeat; display:block; margin-top:415px; margin-left:8px; cursor:pointer;}
 .pricing_prosignup:hover{width:92px; height:40px; background:url(../images/pricing_pro_but_r.png) no-repeat; display:block; margin-top:415px; margin-left:8px; cursor:pointer;}
+
+/* demo page */
+#frontend_demo{width:420px; float:left; text-align:center; border:5px solid #F1EDE0; background-color:#FCF9EF; margin-top:15px; padding:5px;}
+#frontend_demo img{ border:3px solid #F1EDE0;}
+#frontend_demo img:hover{ border:3px solid #E2D6B0;}
+
+#backend_demo{width:420px; float:left; text-align:center; border:5px solid #F1EDE0; margin-left:10px;background-color:#FCF9EF; margin-top:15px; padding:5px;}
+#backend_demo img{ border:3px solid #F1EDE0;}
+#backend_demo img:hover{ border:3px solid #E2D6B0;}
+/* login page */
+#login_bg{width:375px; height:473px; margin:0px auto; background:url(../images/loginpanel_bg.gif) no-repeat;font:bold 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#8D5C17; line-height:20px;}
+#login_base{ padding:70px 35px 35px 35px;font:bold 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#8D5C17; line-height:20px;}
+#login_base input{ border:none; }
+.button{width:157px; height:45px; background:url(../images/login_but_bg.png) no-repeat; cursor:pointer; font:bold 18px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#FFFFFF;text-decoration:none;}
+.button:hover{width:157px; height:45px; background:url(../images/login_but_bgr.png) no-repeat; cursor:pointer;font:bold 18px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#FFFFFF; text-decoration:none;}
+
+.textfield_login{ background-color:#FBF6EF; border:1px solid #D3C1A6; width:300px; padding:5px; }
+
+
+#404bg{width:355px; height:433px; margin:0px auto; background:url(../images/404_bg.gif) no-repeat;font:bold 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#8D5C17; line-height:20px; padding:20px 20px 20px 270px;}
+
+
+.helptext{font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#333333;}

@@ -24,7 +24,7 @@ p.twitter{ padding-top:25px; padding-left:130px; color:#FFFFFF; text-align:left;
 #wrapper{margin:0px auto; width:960px;}
 #header{ margin:0px auto; width:960px; height:90px; padding:25px 0px 0px 00px;}
 #headerregister{ margin:0px auto; width:960px; height:145px; padding:25px 0px 0px 00px;}
-
+#innerpage_content{width:960px; margin:0px auto; }
 /*Top navigation*/
 #top_navigation{ margin:0px auto; width:960px; height:47px; padding-top:1px;}
 #nav-example {background:url(../images/topnav.gif) top left;width:960px;height:47px;margin:0; padding:0px;}
@@ -173,6 +173,7 @@ legend{font:bold 18px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; colo
 
 .textfield_login{ background-color:#FBF6EF; border:1px solid #D3C1A6;padding:5px; width:300px;}
 
+#404bg{width:355px; height:433px; margin:0px auto; background:url(../images/404_bg.gif) no-repeat;font:bold 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#8D5C17; line-height:20px; padding:20px 20px 20px 270px;}
 
 
 .helptext{font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#333333;}
