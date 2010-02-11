@@ -9,7 +9,7 @@ from django.core.mail import send_mail
 from registration.models import RegistrationProfile
 
 class NewBoardForms(RegistrationForm):
-    subdomain = forms.CharField(max_length = 100, help_text="The subdomain you want. Eg, if you want nurses.jobboardhq.com enter nurses here.")
+    subdomain = forms.CharField(max_length = 100, help_text="The subdomain you want. Eg, if you want nurses.jobboardshq.com enter nurses here.")
     name = forms.CharField(max_length = 100, help_text="The name of your job board, eg The nurses job board.")
     description = forms.CharField(widget = forms.Textarea, help_text="Describe your jobboard. This is used at various places like meta keywords.")
     #email = forms.EmailField()

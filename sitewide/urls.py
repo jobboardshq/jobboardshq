@@ -14,6 +14,7 @@ urlpatterns = patterns('sitewide.views',
     url(r'^register/done/$', "register_board_done", {"template":"sitewide/register_done.html"}, \
         name='sitewide_register_board_done'),
     
+    url(r'^redirect-to-board/$', 'redirect_to_board', name='sitewide_redirect_to_board'),
 )
 
     

@@ -4,9 +4,12 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth.views import login
 from django.contrib.auth import authenticate
+from django.contrib.auth.decorators import login_required
+from django.conf import settings
 
 from sitewide.forms import NewBoardForms, ContactUsForm
 from registration.views import register
+from zobpress.models import Board
 
 def index(request):
     from zobpress.models import Job
@@ -58,3 +61,11 @@ def register_board_done(request, template):
     payload = {"board": board}
     return render_to_response(template, payload, RequestContext(request))
     
+
+@login_required
+def redirect_to_board(request):
+    user_boards = Board.objects.filter(owner=request.user)
+    if user_boards.count():
+        board = user_boards[0]
+        redirect_to = board.get_management_url()
+        return HttpResponseRedirect(redirect_to)

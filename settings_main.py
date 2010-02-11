@@ -88,6 +88,8 @@ INDEED_API_URL = "http://api.indeed.com/ads/apisearch"
 BASE_DOMAIN = 'foo.tld'
 INTERNAL_IPS = ('127.0.0.1',)
 
+LOGIN_REDIRECT_URL = "/redirect-to-board/" 
+
 from localsettings_main import *
 
 #if DEBUG:
