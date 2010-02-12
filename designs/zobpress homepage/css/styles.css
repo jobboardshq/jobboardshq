@@ -153,7 +153,13 @@ blockquote {font:12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; marg
 .textfield_login{ background-color:#FBF6EF; border:1px solid #D3C1A6; width:300px; padding:5px; }
 
 
-#404bg{width:355px; height:433px; margin:0px auto; background:url(../images/404_bg.gif) no-repeat;font:bold 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#8D5C17; line-height:20px; padding:20px 20px 20px 270px;}
+.errorbg{width:355px; height:433px; margin:0px auto;font:bold 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#8D5C17; line-height:20px; padding:20px 20px 20px 270px; background-image:url(../images/404_bg.gif);}
+.errorbg p{text-align:center; line-height:24px;}
+.errorbg p.404{text-align:center; line-height:16px; font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#000000;}
+
+.brown18{font:bold 18px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#8D5C17;color:#A20000;}
+.meroon32{font:bold 32px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#A20000;color:#664414;}
+
 
 
 .helptext{font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#333333;}

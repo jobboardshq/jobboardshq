@@ -1,67 +1,96 @@
-<title>Key Features of Job Boards</title>
 {% extends "sitewide/base_inner.html" %}
 
 	{% block title %}	
 		Features - {{ block.super }}
 	{% endblock title %}
 
+{% block extraheader %}
+<link rel="stylesheet" href="{{ MEDIA_URL }}sitewide/css/featuresslider.css"  type="text/css"/>
+<script type="text/javascript" src="{{ MEDIA_URL }}sitewide/js/jquery.min.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}sitewide/js/jquery.featureList-1.0.0.js"></script>
+<script language="javascript">
+		$(document).ready(function() {
+			$.featureList(
+				$("#tabs li a"),
+				$("#output li"), {
+					start_item	:	1
+				}
+			);
 
+			/*
+			
+			// Alternative
+
+			
+			$('#tabs li a').featureList({
+				output			:	'#output li',
+				start_item		:	1
+			});
+
+			*/
+
+		});
+	</script>
+{% endblock %}
 {% block content %}
 <div id="homecontent">
   <div id="innerpage_content">
-    <div id="pricingtable">
-      <h1>Key Features of JobBoardsHQ</h1>
-      <div class="features"><img src="{{ MEDIA_URL }}sitewide/images/time.png" alt="Seconds" width="52" height="52" />
-        <p><span class="features_title"> Job board in seconds</span> <br/>
-          Create your board in seconds and start adding jobs right away.</p>
+  <div id="content">
+        <div id="feature_list">
+          <ul id="tabs">
+            <li> <a href="javascript:;"> <img src="{{ MEDIA_URL }}/sitewide/images/time_small.png" width="32" height="32" />
+              <h5>Get your job board in seconds </h5>
+              </a> </li>
+            <li> <a href="javascript:;"> <img src="{{ MEDIA_URL }}/sitewide/images/downloads_small.png" width="32" height="32" />
+              <h5>Customizable job fields</h5>
+              </a> </li>
+            <li> <a href="javascript:;"> <img src="{{ MEDIA_URL }}/sitewide/images/cards_small.png" width="32" height="32" />
+              <h5>payment gateways</h5>
+              </a> </li>
+            <li> <a href="javascript:;"> <img src="{{ MEDIA_URL }}/sitewide/images/nodownloads_small.png" width="32" height="32"  />
+              <h5>Nothing to download and install </h5>
+              </a> </li>
+            <li> <a href="javascript:;"> <img src="{{ MEDIA_URL }}/sitewide/images/search_small.png" width="32" height="32"  />
+              <h5>Powerful job / Resume search</h5>
+              </a> </li>
+            <li> <a href="javascript:;"> <img src="{{ MEDIA_URL }}/sitewide/images/alerts_small.png" width="32" height="32"  />
+              <h5> New job and resume alerts</h5>
+              </a> </li>
+            <li> <a href="javascript:;"> <img src="{{ MEDIA_URL }}/sitewide/images/applications.png" width="32" height="32" />
+              <h5>Application tracking </h5>
+              </a> </li>
+            <li> <a href="javascript:;"> <img src="{{ MEDIA_URL }}/sitewide/images/programming.png" />
+              <h5>Best in class SEO </h5>
+              </a> </li>
+            <li> <a href="javascript:;"> <img src="{{ MEDIA_URL }}/sitewide/images/applications.png" />
+              <h5>Twitter integration </h5>
+              </a> </li>
+            <li> <a href="javascript:;"> <img src="{{ MEDIA_URL }}/sitewide/images/services.png" />
+              <h5>Google analytics integration. </h5>
+              </a> </li>
+            <li> <a href="javascript:;"> <img src="{{ MEDIA_URL }}/sitewide/images/programming.png" />
+              <h5>Integrated basic CMS </h5>
+              </a> </li>
+            <li> <a href="javascript:;"> <img src="{{ MEDIA_URL }}/sitewide/images/applications.png" />
+              <h5>No lock in </h5>
+              </a> </li>
+          </ul>
+          <ul id="output">
+            <li> <img src="{{ MEDIA_URL }}/sitewide/images/feature1.jpg" /> </li>
+            <li> <img src="{{ MEDIA_URL }}/sitewide/images/feature2.jpg" /> </li>
+            <li> <img src="{{ MEDIA_URL }}/sitewide/images/feature3.jpg" /> </li>
+            <li> <img src="{{ MEDIA_URL }}/sitewide/images/feature4.jpg" /> </li>
+            <li> <img src="{{ MEDIA_URL }}/sitewide/images/feature5.jpg" /> </li>
+            <li> <img src="{{ MEDIA_URL }}/sitewide/images/feature6.jpg" /> </li>
+            <li> <img src="{{ MEDIA_URL }}/sitewide/images/feature7.jpg" /> </li>
+            <li> <img src="{{ MEDIA_URL }}/sitewide/images/feature8.jpg" /> </li>
+            <li> <img src="{{ MEDIA_URL }}/sitewide/images/feature9.jpg" /> </li>
+            <li> <img src="{{ MEDIA_URL }}/sitewide/images/feature10.jpg" /> </li>
+            <li> <img src="{{ MEDIA_URL }}/sitewide/images/feature11.jpg" /> </li>
+            <li> <img src="{{ MEDIA_URL }}/sitewide/images/feature12.jpg" /> </li>
+          </ul>
+        </div>
       </div>
-      <div class="features"><img src="{{ MEDIA_URL }}sitewide/images/customize_icon.png" alt="Customize" width="52" height="52" />
-        <p><span class="features_title">Fully customizable job board</span> <br/>
-          Add any number of custom job fields. Customise Job form with our visual form builder. Change the job type and category.
-	  Add custom pages with our rich text editor. Change the template. Your job board is exactly the way you want it.</p>
-      </div>
-      <div class="features"><img src="{{ MEDIA_URL }}sitewide/images/paypal_icon.png" alt="Authorized Payment Gateways" width="52" height="52" />
-        <p><span class="features_title">PayPal payment gateways </span> <br/>
-          Charge for posting to the Job board, make it free or disable public completely. You are in control. </p>
-      </div>
-      <div class="features"><img src="{{ MEDIA_URL }}sitewide/images/nodownloads_icon.png" alt="No DOwnloads , No Installations" width="52" height="52" />
-        <p><span class="features_title"> Nothing to download and install</span> <br/>
-          Our job boards are fully-hosted so there's nothing for you to install. Server management headaches are so last century.</p>
-      </div>
-      <div class="features"><img src="{{ MEDIA_URL }}sitewide/images/search_icon.png" alt="Powerful Search" width="52" height="52" />
-        <p><span class="features_title"> Powerful search</span> <br/>
-          Quick, advanced, keyword or boolean. Perfect balance of power and simplicity.</p>
-      </div>
-      <div class="features"><img src="{{ MEDIA_URL }}sitewide/images/alerts_icon.png" alt="Job Alerts" width="52" height="52" />
-        <p><span class="features_title"> New job alerts</span> <br/>
-          Subscribe to recieve latest job listings. Manage your subscriber list form our powerful admin interface. </p>
-      </div>
-      <div class="features"><img src="{{ MEDIA_URL }}sitewide/images/tracking_icon.png" alt="Application Tracking" width="52" height="52" />
-        <p><span class="features_title"> Application tracking </span> <br/>
-          View, delete, accept or reject applications from job seekers. The perfect sourcing tool is now Live 24x7. </p>
-      </div>
-      <div class="features"><img src="{{ MEDIA_URL }}sitewide/images/tracking_icon.png" alt="Application Tracking" width="52" height="52" />
-        <p><span class="features_title">Best in class SEO</span> <br/>
-          SEO is built in, not bolted on.  Beautiful urls with the search engines love.
-	  Specify the keyworsd and meta tags. Populate the board with keyword rich content pages. Your Job board will rock the search engines.</p>
-      </div>
-      <div class="features"><img src="{{ MEDIA_URL }}sitewide/images/tracking_icon.png" alt="Application Tracking" width="52" height="52" />
-        <p> <span class="features_title">Twitter integration</span> <br/>
-          Post jobs automatically to twitter. Get a highly engaged audience. </p>
-      </div>
-      <div class="features"><img src="{{ MEDIA_URL }}sitewide/images/tracking_icon.png" alt="Application Tracking" width="52" height="52" />
-        <p> <span class="features_title">Google analytics integration. </span> <br/>
-          Add your analytics or similar code. Track you success. </p>
-      </div>
-      <div class="features"><img src="{{ MEDIA_URL }}sitewide/images/tracking_icon.png" alt="Application Tracking" width="52" height="52" />
-        <p> <span class="features_title">Integrated basic CMS</span> <br/>
-          Include any number of pages with your board. </p>
-      </div>
-      <div class="features"><img src="{{ MEDIA_URL }}sitewide/images/tracking_icon.png" alt="Application Tracking" width="52" height="52" />
-        <p> <span class="features_title">No lock in</span> <br/>
-          Download your data in the open CSV format. There is no lock in. </p>
-      </div>
-    </div>
   </div>
 </div>
 {% endblock content %}
