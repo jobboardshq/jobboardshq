@@ -24,14 +24,8 @@ urlpatterns = patterns('zobpress.views',
     url(r'^trash/$', 'trash', name='zobpress_trash'),
     url(r'^untrash/(?P<pk>\d+)/$', 'untrash', name='zobpress_untrash'),
     
-    
-    
     #Categories
     url(r'^categories/jobs/(?P<category_slug>[\w-]+)/$', 'category_jobs', name='zobpress_category_jobs'),
-    
-    
-    
-    
     
 )
 

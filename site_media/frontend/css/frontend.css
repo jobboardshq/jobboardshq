@@ -115,6 +115,7 @@ h6{font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000
 p.frontend{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; color:#191919; text-decoration:none;}
 p.description{font:12px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; color:#191919; text-decoration:none; line-height:18px; padding:5px 0px 5px 0px; }
 .apply{width:113px ; height:31px; border:none; background:url(../images/submit_button.png); cursor:pointer; color:#FFFFFF;font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif; text-align:center; display:block; float:right; line-height:30px;}
+.apply a {color:#FFFFFF;text-decoration:none;}
 .apply:hover{width:113px ; height:31px; border:none; background:url(../images/submit_button_r.png); cursor:pointer;  color:#FFFFFF;font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif;text-align:center;display:block; line-height:30px;}
 .frontend_jobdescription{ clear:both;font:500 14px "trebuchet MS", Arial, Helvetica, sans-serif; color:#191919; text-decoration:none; border-top:1px dashed #CDC199;border-bottom:1px dashed #CDC199; padding:5px 10px 5px 20px; vertical-align:middle;}
 
