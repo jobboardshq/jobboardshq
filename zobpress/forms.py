@@ -28,6 +28,22 @@ class BoardSettingsForm(forms.ModelForm):
         model = BoardSettings
         exclude = ('board', 'template')
         
+class BoardDomainForm(forms.ModelForm):
+    
+    def __init__(self, board, *args, **kwargs):
+        self.board = board
+        super(BoardDomainForm, self).__init__(*args, **kwargs)
+        
+    class Meta:
+        model = Board
+        fields = ('domain',)
+
+    def save(self, commit=True):
+        self.board.domain = self.cleaned_data['domain']
+        if commit:
+            self.board.save()
+        return self.board
+        
 class JobStaticForm(forms.ModelForm):    
     name = forms.CharField(widget = forms.TextInput(attrs={"class" : "textinput",  "size":"50"},))
     description = forms.CharField(widget = forms.Textarea(attrs={"class": "richtext", "cols" : 60, "rows":25}))

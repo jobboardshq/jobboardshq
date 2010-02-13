@@ -7,11 +7,7 @@
 <script src="{{ MEDIA_URL }}admin/js/jquery.tabs.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 $(function() {
-  {% ifequal display_tab 'password' %}
-	$('#container-1').tabs(3);
-  {% else %}
-	$('#container-1').tabs();
-  {% endifequal %}
+  $('#container-1').tabs({{ display_tab }});
 });
 </script>
 {% endblock %}
@@ -34,12 +30,14 @@ $(function() {
       <li><a href="#fragment-1"><span>General</span></a></li>
       <li><a href="#fragment-2"><span>Templates</span></a></li>
       <li><a href="#fragment-3"><span>Change Password</span></a></li>
+      <li><a href="#fragment-4"><span>Domain Settings</span></a></li>
     </ul>
 	
 	<!-- first tab begins -->
     <div id="fragment-1">
       <form action="." method="post" enctype="multipart/form-data">
 		{% csrf_token %}
+		<input type='hidden' name='form' value='general' />
         <table width="100%" border="0" cellspacing="0" cellpadding="2">
           {% for field in board_form.visible_fields %}
           {% if field.errors %}
@@ -86,8 +84,9 @@ $(function() {
 	
 	<!-- third tab begins -->
     <div id="fragment-3">
-	  <form action='{% url zobpress_password_change %}' method='post'>
+	  <form action='.' method='post'>
 		{% csrf_token %}
+		<input type='hidden' name='form' value='change_password' />
 		<table width="100%" border="0" cellspacing="0" cellpadding="2">
 		  {{ password_change_form }}
 		  <tr>
@@ -99,6 +98,22 @@ $(function() {
     </div>
 	<!-- third tab ends -->
   	
+	<!-- fourth tab begins -->
+    <div id="fragment-4">
+	  <form action='.' method='post'>
+		{% csrf_token %}
+		<input type='hidden' name='form' value='set_domain' />
+		<table width="100%" border="0" cellspacing="0" cellpadding="2">
+		  {{ domain_form }}
+		  <tr>
+			<td>&nbsp;</td>
+			<td><input type="submit" name="button" id="button" value="Save" /></td>
+		  </tr>
+		</table>
+	  </form>
+    </div>
+	<!-- fourth tab ends -->
+	
   </div>
 </div>
 {% endblock content %}

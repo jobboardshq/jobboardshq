@@ -1,3 +1,6 @@
+
+import re
+
 from django import forms
 from django.forms import ValidationError
 from django.conf import settings
@@ -22,8 +25,12 @@ class NewBoardForms(RegistrationForm):
     def clean_subdomain(self):
         if self.cleaned_data['subdomain'] in settings.UNALLOWED_SUBDOMAINS:
             raise ValidationError('This subdomain name is reserved. Please choose another.')
+        
+        if not re.match(r'^[a-z0-9-]+$', self.cleaned_data['subdomain'].lower()):
+            raise ValidationError('subdomain can have only a-z, 0-9, -')
+        
         try:
-            Board.objects.get(subdomain = self.cleaned_data['subdomain'])
+            Board.objects.get(subdomain__iexact = self.cleaned_data['subdomain'])
         except Board.DoesNotExist: #@UndefinedVariable
             return self.cleaned_data['subdomain']
         raise ValidationError('This subdomain is already taken. Please choose another.')

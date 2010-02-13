@@ -16,7 +16,7 @@ from zobpress.models import type_mapping, JobFormModel, JobFieldModel, Job, Boar
     JobType, DeletedEntities
 from zobpress.models import Category, Job, Page
 from zobpress.forms import get_job_form, JobStaticForm, PageForm, BoardSettingsForm, IndeedSearchForm, CategoryForm,\
-    JobFieldEditForm, JobContactForm, BoardEditForm, JobTypeForm
+    JobFieldEditForm, JobContactForm, BoardEditForm, JobTypeForm, BoardDomainForm
 from zobpress.decorators import ensure_has_board,\
     ensure_is_admin
 from sitewide import views as sitewide_views
@@ -155,37 +155,38 @@ def edit_category(request, category_pk):
 def settings(request):
     board_form = BoardEditForm(instance = request.board)
     form = BoardSettingsForm(instance=request.board.settings)
-    if request.method == 'POST':
-        board_form = BoardEditForm(instance = request.board, data = request.POST)
-        form = BoardSettingsForm(instance=request.board.settings, data = request.POST, files= request.FILES)
-        if board_form.is_valid() and form.is_valid():
-            board_form.save()
-            board_settings = form.save(commit=False)
-            board_settings.board = request.board
-            board_settings.save()
-            messages.add_message(request, messages.SUCCESS, "Your settings have been updated.")
-            HttpResponseRedirect(reverse('zobpress_settings'))
     password_change_form = PasswordChangeForm(user=request.user)
-    payload = {'form': form, "board_form": board_form, 'password_change_form': password_change_form}
+    domain_form = BoardDomainForm(request.board, instance=request.board)
+    display_tab = 1
+    if request.method == 'POST':
+        if request.POST['form'] == 'general':
+            board_form = BoardEditForm(instance = request.board, data = request.POST)
+            form = BoardSettingsForm(instance=request.board.settings, data = request.POST, files= request.FILES)
+            if board_form.is_valid() and form.is_valid():
+                board_form.save()
+                board_settings = form.save(commit=False)
+                board_settings.board = request.board
+                board_settings.save()
+                messages.add_message(request, messages.SUCCESS, "Your settings have been updated.")
+                HttpResponseRedirect(reverse('zobpress_settings'))
+        elif request.POST['form'] == 'change_password':
+            display_tab = 3
+            password_change_form = PasswordChangeForm(user=request.user, data=request.POST)
+            if password_change_form.is_valid():
+                password_change_form.save()
+                messages.add_message(request, messages.SUCCESS, 'Your Password is updated successfully.')
+                return HttpResponseRedirect(reverse('zobpress_settings'))
+        elif request.POST['form'] == 'set_domain':
+            display_tab = 4
+            domain_form = BoardDomainForm(board=request.board, data=request.POST)
+            if domain_form.is_valid():
+                domain_form.save()
+                messages.add_message(request, messages.SUCCESS, 'Domain name updated.')
+                return HttpResponseRedirect(reverse('zobpress_settings'))
+    payload = {'form': form, "board_form": board_form, 'password_change_form': password_change_form, 'domain_form': domain_form, 'display_tab': display_tab}
     return render_to_response('zobpress/settings.html', payload , RequestContext(request))
 
-@csrf_protect
-@ensure_is_admin
-@ensure_has_board
-def change_password(request):
-    if request.method == 'POST':
-        password_change_form = PasswordChangeForm(user=request.user, data=request.POST)
-        if password_change_form.is_valid():
-            password_change_form.save()
-            messages.add_message(request, messages.SUCCESS, 'Your Password is updated successfully.')
-            return HttpResponseRedirect(reverse('zobpress_settings'))
-    else:
-        password_change_form = PasswordChangeForm(user=request.user)
-    board_form = BoardEditForm(instance = request.board)
-    form = BoardSettingsForm(instance=request.board.settings)
-    payload = {'form': form, "board_form": board_form, 'password_change_form': password_change_form, 'display_tab': 'password'}
-    return render_to_response('zobpress/settings.html', payload , RequestContext(request))
-        
+
 @ensure_is_admin
 @ensure_has_board
 def indeed_jobs(request):
