@@ -1,0 +1,46 @@
+@charset "utf-8";
+/* CSS Document */
+body{font:12px Helvetica, Arial,sans-serif; }
+/*Main container*/
+#main{width:100%; margin:0px auto;}
+
+#header{width:960px; margin:0px auto;}
+
+#logo{ width:300px; float:left; height:70px; padding-top:30px; }
+#logo .companyname{font:bold 24px Helvetica, Arial,sans-serif; line-height:24px; color:#0099CC; text-decoration:none;}
+#logo .tagline{font:14px Helvetica, Arial,sans-serif; line-height:18px; color:#000000; text-decoration:none;}
+
+#topnav{ width:660px; float:left; height:70px; padding-top:30px; text-align:right; }
+#topnav a{ text-align:right; color:#000000; text-decoration:none; padding:5px; }
+#topnav a:hover{  text-align:right; color:#0099CC; text-decoration:underline; }
+
+#searchbar{ clear:both; width:960px; float:left; border-top:1px solid #0099CC; border-bottom:1px solid #0099CC;font:bold 18px Helvetica, Arial,sans-serif; line-height:100px; color:#666666;}
+#searchbar input{ padding:6px; border:1px solid #999999; width:300px;}
+
+#bodycontent{ width:960px; margin:0px auto; display:block;}
+
+#jobposts{width:740px; float:left;}
+#jobposts ul{ padding:0px; margin:0px;}
+#jobposts li{padding-left:10px;}
+.left_padding{padding-left:15px;}
+.top_padding{margin-top:10px;}
+.jobtext{ font:bold 14px  Helvetica, Arial,sans-serif; line-height:18px;color:#0099CC; text-decoration:none;}
+
+.jobtext:hover{  font:bold 14px  Helvetica, Arial,sans-serif; line-height:18px;color:#000000; text-decoration:underline;}
+.joblocation{ font:bold 14px  Helvetica, Arial,sans-serif; line-height:18px;color:#333333; text-decoration:none;}
+.company{ font:12px  "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; line-height:18px;color:#333333; text-decoration:none;}
+
+.apply_button{background:url(../images/apply_bg.png); width:52px; height:20px;font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none; text-align:center; line-height:20px; display:block;}
+.apply_button a{background:url(../images/apply_bg.png); width:52px; height:20px;font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none; text-align:center; line-height:20px; display:block;}
+.apply_button a:hover{background:url(../images/apply_bg_hover.png); width:52px; height:20px;font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#FFFFFF; text-decoration:none; text-align:center; line-height:20px;}
+.colorbg{background-color:#F0FBFF; font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;line-height:28px; color:#000000; text-decoration:none;}
+.whitebg{background-color:#FFFFFF; font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;line-height:28px; color:#000000; text-decoration:none;}
+
+
+#categorylist{width:200px; float:right; padding:5px; }
+
+
+#footer{ clear:both;width:960px; margin:0px auto;}
+
+
+.clear{clear:both;}
