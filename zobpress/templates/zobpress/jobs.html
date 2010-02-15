@@ -1,11 +1,8 @@
 {% extends "zobpress-admin/base.html" %}
 
-{% block toptab %}
+{% block title %} Job List - {{ board.name }} {% endblock title %}
 
-
-
-
-{% endblock %}
+{% block toptab %} {% endblock %}
 
 {% block extrascript %}
 <script type="text/javascript" src="{{ MEDIA_URL }}admin/js/jobs.js"></script>

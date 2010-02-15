@@ -99,7 +99,7 @@ def category_jobs(request, category_slug):
     "Show jobs from a specific category."
     category = get_object_or_404(Category, board = request.board, slug = category_slug)
     jobs = Job.objects.filter(category = category)
-    return object_list(request, queryset = jobs, template_name = 'zobpress/category_job_list.html', template_object_name = 'job')
+    return object_list(request, queryset = jobs, template_name = 'zobpress/category_job_list.html', template_object_name = 'job', extra_context={'category': category})
 
 @ensure_is_admin
 @ensure_has_board
