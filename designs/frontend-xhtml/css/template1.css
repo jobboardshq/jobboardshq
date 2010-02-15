@@ -2,33 +2,32 @@
 /* CSS Document */
 body{font:12px Helvetica, Arial,sans-serif; }
 /*Main container*/
-a:link {	color: #0099CC;}
+a:link {	color: #0099CC; text-decoration:underline;}
 a:visited {	color: #0099CC;}
 a:hover {	color: #000000;}
 a:active {	color: #0099CC;}
 
-.templateonebg{background:url(../images/template1_bg.gif) repeat-x; height:30px;}
-#main{width:100%; margin:0px auto;}
+#main{width:100%; margin:0px auto;background:url(../images/template1_bg.gif) repeat-x;}
 #header{width:960px; margin:0px auto;}
-#logo{ width:300px; float:left; height:70px; padding-top:30px; }
+#logo{ width:300px; float:left; height:70px; padding-top:60px; }
 #logo .companyname{font:bold 24px Helvetica, Arial,sans-serif; line-height:24px; color:#0099CC; text-decoration:none;}
 #logo .companyname a{font:bold 24px Helvetica, Arial,sans-serif; line-height:24px; color:#0099CC; text-decoration:none;}
 #logo .companyname a:hover{font:bold 24px Helvetica, Arial,sans-serif; line-height:24px; color:#000000; text-decoration:underline;}
 #logo .tagline{font:14px Helvetica, Arial,sans-serif; line-height:18px; color:#000000; text-decoration:none;}
-#topnav{ width:660px; float:left; height:70px; padding-top:30px; text-align:right; }
+#topnav{ width:660px; float:left; height:70px; padding-top:60px; text-align:right; }
 #topnav a{ text-align:right; color:#000000; text-decoration:none; padding:5px; }
 #topnav a:hover{  text-align:right; color:#0099CC; text-decoration:underline; }
 #searchbar{ clear:both; width:960px; float:left; border-top:1px solid #0099CC; border-bottom:1px solid #0099CC;font:bold 18px Helvetica, Arial,sans-serif; line-height:100px; color:#666666;}
 #searchbar input{ padding:6px; border:1px solid #999999; width:300px;}
 
-#bodycontent{ width:960px; margin:0px auto; display:block;}
+#bodycontent{ width:960px; margin:0px auto; display:block; }
 
 #jobposts{width:740px; float:left;}
 #jobposts ul{ padding:0px; margin:0px;}
 #jobposts li{padding-left:10px;}
 .left_padding{padding-left:15px;}
 .top_padding{margin-top:10px;}
-.jobtext{ font:13px  Helvetica, Arial,sans-serif; line-height:18px;color:#008BB9; text-decoration:none;}
+.jobtext{ font:13px  Helvetica, Arial,sans-serif; line-height:18px;color:#008BB9; text-decoration:underline;}
 .jobtext:hover{  font:13px  Helvetica, Arial,sans-serif; line-height:18px;color:#000000; text-decoration:underline;}
 .jobtype{ font:14px  Helvetica, Arial,sans-serif; line-height:18px;color:#333333; text-decoration:none;}
 .company{ font:12px  "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; line-height:18px;color:#333333; text-decoration:none;}
@@ -36,11 +35,11 @@ a:active {	color: #0099CC;}
 .apply_button{ width:52px; float:right; margin-top:5px; margin-right:5px;}
 .apply_button a{background:url(../images/apply_bg_temp1.png); width:52px; height:20px;font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none; text-align:center; line-height:20px; display:block;}
 .apply_button a:hover{background:url(../images/apply_bg_temp1_hover.png); width:52px; height:20px;font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#FFFFFF; text-decoration:none; text-align:center; line-height:20px;}
-.colorbg{background-color:#F0FBFF; font:11px Helvetica, Arial,sans-serif;line-height:32px; color:#000000; text-decoration:none;}
+.colorbg{background-color:#F2F6F8; font:11px Helvetica, Arial,sans-serif;line-height:32px; color:#000000; text-decoration:none;}
 .whitebg{background-color:#FFFFFF; font:11px Helvetica, Arial,sans-serif;line-height:32px; color:#000000; text-decoration:none;}
 
 
-#footer{ clear:both;width:960px; margin:0px auto; border-top:1px solid #0099CC; padding:30px 0px 30px 0px; text-align:center; }
+#footer{ clear:both;width:100%;  border-top:1px solid #0099CC; padding:30px 0px 30px 0px; margin-top:20px; text-align:center; }
 /* job type colours */
 .badge1{ font:11px Tahoma, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none; background-color:#BD0000; padding:5px; color:#FFFFFF;}
 .badge1:hover{  background-color:#000000; }
@@ -56,14 +55,14 @@ a:active {	color: #0099CC;}
 
 /*categories comtainer*/
 #categorylist{width:200px; float:right; padding:5px; }
-#categorylist #categories{width:200px;}
-#categorylist #categories .top{background:url(../images/categories_topbg.gif) top left; height:47px; font: bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;line-height:47px; padding-left:20px; color:#A10000;}
-#categorylist #categories .middle{border-left:1px solid #D8C7AF; border-right:1px solid #D8C7AF;}
-#categorylist #categories .middle ul{color:#000000;  }
-#categorylist #categories .middle li{background:url(../images/categories_listbg.gif) no-repeat; line-height:24px; padding-left:35px; color:#000000; text-decoration:none; }
-#categorylist #categories .middle li a{line-height:24px;  color:#000000; text-decoration:none;}
-#categorylist #categories .middle li a:hover {line-height:24px;  text-decoration:underline;color:#CC0000;  }
-#categorylist #categories .bottom{background:url(../images/categories_bottombg.gif) top left; height:12px;}
+#categorylist #categories{width:200px; border:1px solid #0099CC;}
+#categorylist #categories .top{height:47px; font: bold 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;line-height:47px; padding-left:20px; color:#0099CC;}
+#categorylist #categories .middle{}
+#categorylist #categories .middle ul{color:#000000; margin-bottom:15px;  }
+#categorylist #categories .middle li{  color:#000000; text-decoration:none; margin-left:20px;}
+#categorylist #categories .middle li a{background:url(../images/bluearrow.gif) no-repeat;line-height:24px;  color:#000000; text-decoration:none; padding-left:15px; padding-top:5px;}
+#categorylist #categories .middle li a:hover {background:url(../images/bluearrow.gif) no-repeat;line-height:24px;  text-decoration:underline;color:#00759C;  }
+#categorylist #categories .bottom{height:12px;}
 /*ends*/
 
 
