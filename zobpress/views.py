@@ -189,6 +189,14 @@ def settings(request):
 
 @ensure_is_admin
 @ensure_has_board
+def applicants(request, job_slug):
+    job = get_object_or_404(Job, board=request.board, job_slug=job_slug)
+    # job_applicants = job.applicant_set.all()
+    payload = {'job': job}
+    return render_to_response('zobpress/job_applicants.html', payload , RequestContext(request))
+
+@ensure_is_admin
+@ensure_has_board
 def indeed_jobs(request):
     q = request.GET.get('q', '')
     l = request.GET['l']

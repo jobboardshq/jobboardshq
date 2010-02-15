@@ -1,0 +1,18 @@
+{% extends "zobpress-admin/base.html" %}
+
+
+{% block content %}
+<div class="admin_heading">Applicants List</div>
+<div class="admin_subheading1">
+  <p class="admin">List of applicants, applied to {{ job.name }}. </p>
+</div>
+
+<ul>
+{% for applicant in job.applicant_set.all %}
+  <li>{{ applicant.name }} - {{ applicant.email }} - {{ applicant.response }}</li>
+{% endfor %}
+</ul>
+
+
+{% endblock %}
+

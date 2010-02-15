@@ -19,7 +19,8 @@
 </div>
 {% for job in jobs_list %}
     {% include 'zobpress/job_snippet_frag.html' %}
-  {% endfor %}
+{% endfor %}
+
 {% endblock %}
 
 {% block sidebar %}
@@ -29,12 +30,15 @@
 <li><a href="/jobs/?order=created_on">Sort by Date</a></li>
 <li> {% endblock %}
   
-  {% block pagination %}
-  
+{% block pagination %}
   {% if is_paginated %}
-  {% if has_previous %} <span class="pre">&laquo;<a href=".?page={{previous}}">Previous Post</a></span> {% endif %}
+    {% if has_previous %} 
+      <span class="pre">&laquo;<a href=".?page={{previous}}">Previous Post</a></span> 
+    {% endif %}
   
-  {% if has_next %} <span class="next"><a href=".?page={{next}}">Next Post</a>&raquo;</span> {% endif %}
+    {% if has_next %} 
+      <span class="next"><a href=".?page={{next}}">Next Post</a>&raquo;</span> 
+    {% endif %}
   {% endif %}
   <div class="clear2"></div>
-  {% endblock %}
+{% endblock %}

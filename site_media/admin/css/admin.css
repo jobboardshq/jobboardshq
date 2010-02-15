@@ -46,7 +46,9 @@ p.admin{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; c
 .parttime_badge{text-align:center; color:#FFFFFF; font:bold 11px  Tahoma, Arial, Helvetica, sans-serif; width:90px; display:block; float:left;  line-height:18px;background-color:#A10000;}
 .admin_heading{font:bold 14px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; line-height:30px; text-decoration:none; width:200px; float:left; }
 .admin_subheading1{ clear:both;font:500 14px "trebuchet MS", Arial, Helvetica, sans-serif; color:#191919; line-height:24px; text-decoration:none; border-top:1px dashed #CDC199;border-bottom:1px dashed #CDC199; padding:9px 0px 9px 0px; }
-
+.admin_subheading1 a { color:#8B1B00; text-decoration:none;}
+.admin_subheading1 a:visited { color:#8B1B00; text-decoration:none;}
+.admin_subheading1 a:hover { color:#8B1B00; text-decoration:underline;}
 .admin_subheading2{font:300 14px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; line-height:24px; text-decoration:none; }
 .jobblock{background-color:#FBF8ED; padding:10px; border-bottom:1px dashed #CDC199;}
 .staticfields{background-color:#CCCCCC; padding:10px;  filter:alpha(opacity=50);    -moz-opacity:.50;  opacity:.50; color:#000000; margin-top:5px; }

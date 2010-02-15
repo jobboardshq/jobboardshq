@@ -9,7 +9,9 @@
     <td align="left" valign="middle"> <p class="frontend">in <a href="{% url frontend_job_type_jobs  job.job_type.slug %}" class="redlink">{{ job.job_type.name }}</a> </p></td>
     <td align="center" valign="middle"><span class="apply">
     	<a href="{% url frontend_apply job.job_slug %}">Apply</a>
-	</span></td>
+	</span>
+    	<a href="{% url zobpress_applicants job.job_slug %}">List of applicants</a>
+	</td>
   </tr>
 </table>
 

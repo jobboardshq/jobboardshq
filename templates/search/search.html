@@ -19,11 +19,15 @@
         <div class='search_result_wrapper'>
         <ul>
         <li>
-            <a href="{{ result.object.get_absolute_url }}" class="blacklink">
-            {{ result.object.name }}
-            </a>
-            </li>
-            </ul>
+            <a href="{{ result.object.get_absolute_url }}">{{ result.object.name }}</a>
+            <p>in 
+                category: {{ result.object.category }}, 
+                job type: {{ result.object.job_type }},
+                posted on: {{ result.object.created_on|date }}
+            </p>
+            <p> {{ result.object.description|safe|truncatewords:15 }}</p>
+        </li>
+        </ul>
         </div>
     {% empty %}
         <p>No results found.</p>
