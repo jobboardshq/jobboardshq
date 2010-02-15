@@ -1,6 +1,11 @@
-
 {% extends 'frontend/base.html' %}
+
+{% block title %}
+  {{ job.name }} | {{ block.super }}
+{% endblock %}
+
 {% load zobpress_filters %}
+
 {% block content %}
 <div class="frontend_heading"> Details for <span class="blackboldtext">{{job.name}}</span></div>
 <div class="frontend_jobdescription">

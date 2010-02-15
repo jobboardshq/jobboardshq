@@ -1,5 +1,9 @@
 {% extends 'frontend/base.html' %}
 
+{% block title %}
+  pay now with paypal | {{ block.title }}
+{% endblock %}
+
 {% block content %}
 <div class="frontend_heading">You are making a payment for adding the Job : <span class="blackboldtext">{{ job.name }}</span></div>
 <div class="frontend_subheading1">

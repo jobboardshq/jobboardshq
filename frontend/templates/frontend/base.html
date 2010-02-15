@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="icon" type="image/vnd.microsoft.icon" href="{{ MEDIA_URL }}favicon.ico" />
-<title>{{ board.name }} - {{ board_settings.tag_line }}</title>
+<title>{% block title %} {{ board.name }} - {{ board_settings.tag_line }} {% endblock %}</title>
 <meta description="{{ board.description }}" />
 <meta keyword="{{ board_settings.keywords }}" />
 
