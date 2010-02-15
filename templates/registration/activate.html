@@ -1,10 +1,10 @@
-{% extends 'registration/base.html' %}
+{% extends "sitewide/base_register.html" %}
 
 {% block content %}
 
 {% if account %}
 <div id="leftpanel_innerpage">
-  <div id="login_bg">
+  <div id="pricingtable">
     <p> You have successfully activated your account. Next steps for you. </p>
     <ul>
       <li> <a href="{% url auth_login %}" class="meroonlink">Login</a> </li>
