@@ -44,7 +44,7 @@ class BoardManager(models.Manager):
 
 class Board(models.Model):
     subdomain = models.CharField(max_length = 100, unique = True)
-    domain = models.CharField(null = True, blank = True, max_length = 100, unique = True)
+    domain = models.CharField(null = True, blank = True, max_length = 100, unique = True, default = None)
     name = models.CharField(max_length = 100)        
     description = models.TextField()
     
@@ -61,6 +61,8 @@ class Board(models.Model):
         #The first time created would be True.
         #Everytime after that, it should be False
         created = not bool(self.pk)
+        if not self.domain.strip():
+            self.domain = None
         super(Board, self).save(*args, **kwargs)
         if created:
             initial_populate(Board, self, created)

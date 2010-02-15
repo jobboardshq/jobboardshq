@@ -42,9 +42,12 @@
 		<img src="{% thumbnail board_settings.logo 250x50 %}" alt="Zobpress" />
 	  {% else %}
 		{{ board.name }} 
-		<br/>
-		</a> 
-		<span class="tagline"> {{ board_settings.tag_line }} </span> {% endif %}</div>
+	  {% endif %}
+	  {% if not board_settings.logo %} 
+		<br/> <span class="tagline"> {{ board_settings.tag_line }} </span> 
+	  {% endif %}
+	</a> 
+  </div>
   <div id="admin_user">Welcome <span class="blacktext">{{ user.username }}</span> | <a href="{% url frontend_index %}">Visit Site</a> | <a href="{% url auth_logout %}">Log Out</a></div>
 </div>
 <div id="adminbody">

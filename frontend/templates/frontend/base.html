@@ -25,17 +25,34 @@
   <!-- ClickTale end of Top part -->
 {% endif %}
 
+{% load thumbnail %}
 <!--Wrapper-->
 <div id="frontend_wrapper">
   <!--Header Starts-->
   <div id="header_frontendcontainer">
-    <div id="header_frontend"> <a href="{% url frontend_index %}"> {% if board_settings.logo %} <img src="{{ board_settings.logo.url }}" alt="Job Boards Demo" /> {% else %}
-      
-      {{ board.name }}
-      
-      {% endif %} </a> {% if not board_settings.logo %}<br/>
-      <span class="tagline">{{ board_settings.tag_line }}</span> {% endif %} </div>
-    <div id="frontend_topnav"> <a href="{% url auth_login %}">Login</a> | <a href="{% url frontend_feeds_jobs %}">Subscribe to RSS </a><img src="{{ MEDIA_URL }}frontend/images/rss_icon.png" alt="RSS" width="23" height="24"  /> </div>
+    <div id="header_frontend"> 
+	  <a href="{% url frontend_index %}"> 
+		{% if board_settings.logo %} 
+		  <img src="{% thumbnail board_settings.logo 250x50 %}" alt="Job Boards Demo" /> 
+		{% else %}
+		  {{ board.name }}
+		{% endif %} 
+	  </a> 
+	  {% if not board_settings.logo %}<br/>
+		<span class="tagline">{{ board_settings.tag_line }}</span> 
+	  {% endif %} 
+	</div>
+	
+    <div id="frontend_topnav"> 
+	  {% if user.is_authenticated %}
+		Welcome <span class="blacktext">{{ user.username }}</span></span> | 
+		<a href="{% url auth_logout %}">Logout</a> | 
+	  {% else %}
+		<a href="{% url auth_login %}">Login</a> | 
+	  {% endif %}
+	  <a href="{% url frontend_feeds_jobs %}">Subscribe to RSS </a>
+	  <img src="{{ MEDIA_URL }}frontend/images/rss_icon.png" alt="RSS" width="23" height="24"  /> 
+	</div>
     <!--Header ends-->
     <!--Top Nav starts-->
     <div class="clear"></div>
