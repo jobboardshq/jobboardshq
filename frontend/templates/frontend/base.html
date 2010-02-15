@@ -50,8 +50,9 @@
 	  {% else %}
 		<a href="{% url auth_login %}">Login</a> | 
 	  {% endif %}
-	  <a href="{% url frontend_feeds_jobs %}">Subscribe to RSS </a>
-	  <img src="{{ MEDIA_URL }}frontend/images/rss_icon.png" alt="RSS" width="23" height="24"  /> 
+      <a href="#">Admin</a> | 
+	  <a href="{% url frontend_feeds_jobs %}">RSS </a>
+	   
 	</div>
     <!--Header ends-->
     <!--Top Nav starts-->
