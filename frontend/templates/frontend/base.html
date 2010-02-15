@@ -17,11 +17,13 @@
 
 </head>
 <body class="frontend">
-	<!-- ClickTale Top part -->
-<script type="text/javascript">
-var WRInitTime=(new Date()).getTime();
-</script>
-<!-- ClickTale end of Top part -->
+{% if not debug %}  
+  <!-- ClickTale Top part -->
+  <script type="text/javascript">
+  var WRInitTime=(new Date()).getTime();
+  </script>
+  <!-- ClickTale end of Top part -->
+{% endif %}
 
 <!--Wrapper-->
 <div id="frontend_wrapper">
@@ -128,7 +130,7 @@ var WRInitTime=(new Date()).getTime();
 	{% endif %}
 {% endblock analytics %}
  
-{% if debug %}
+{% if not debug %}
   <!-- ClickTale Bottom part -->
   <div id="ClickTaleDiv" style="display: none;"></div>
   <script type="text/javascript">

@@ -23,21 +23,28 @@
 </head>
 <body>
 	
-
-<!-- ClickTale Top part -->
-<script type="text/javascript">
-var WRInitTime=(new Date()).getTime();
-</script>
-<!-- ClickTale end of Top part -->
-
+{% if not debug %}
+  <!-- ClickTale Top part -->
+  <script type="text/javascript">
+	var WRInitTime=(new Date()).getTime();
+  </script>
+  <!-- ClickTale end of Top part -->
+{% endif %}
 	
 {% load zobpress_filters %}
+{% load thumbnail %}
+
 <body class="admin">
 <div id="adminheader">
-  <div class="logo"> <a href="{% url zobpress_index %}"> {% if board_settings.logo %} <img src="{{ board_settings.logo.url }}" alt="Zobpress" width="318" height="81" /> {% else %}
-    
-    {{ board.name }} <br/> </a> 
-    <span class="tagline"> {{ board_settings.tag_line }} </span> {% endif %}</div>
+  <div class="logo"> 
+	<a href="{% url zobpress_index %}"> 
+	  {% if board_settings.logo %} 
+		<img src="{% thumbnail board_settings.logo 250x50 %}" alt="Zobpress" />
+	  {% else %}
+		{{ board.name }} 
+		<br/>
+		</a> 
+		<span class="tagline"> {{ board_settings.tag_line }} </span> {% endif %}</div>
   <div id="admin_user">Welcome <span class="blacktext">{{ user.username }}</span> | <a href="{% url frontend_index %}">Visit Site</a> | <a href="{% url auth_logout %}">Log Out</a></div>
 </div>
 <div id="adminbody">
@@ -131,15 +138,15 @@ var WRInitTime=(new Date()).getTime();
 {% block extrascript %}{% endblock %}
 
 {% if not debug %}
-<!-- ClickTale Bottom part -->
-<div id="ClickTaleDiv" style="display: none;"></div>
-<script type="text/javascript">
-if(document.location.protocol!='https:')
-  document.write(unescape("%3Cscript src='http://s.clicktale.net/WRb5.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-if(typeof ClickTale=='function') ClickTale(36878,0.5,"www");
-</script>
+  <!-- ClickTale Bottom part -->
+  <div id="ClickTaleDiv" style="display: none;"></div>
+  <script type="text/javascript">
+  if(document.location.protocol!='https:')
+	document.write(unescape("%3Cscript src='http://s.clicktale.net/WRb5.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript">
+  if(typeof ClickTale=='function') ClickTale(36878,0.5,"www");
+  </script>
 <!-- ClickTale end of Bottom part -->
 {% endif %}
 

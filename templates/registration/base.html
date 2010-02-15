@@ -12,7 +12,7 @@
 <![endif]-->
 </head>
 <body class="login">
-{% if debug %}	
+{% if not debug %}	
 	<!-- ClickTale Top part -->
 	<script type="text/javascript">
 	var WRInitTime=(new Date()).getTime();
@@ -36,7 +36,7 @@
 <div class="clear"></div>
 {% include "sitewide/footer.html" %}
 
-{% if debug %}
+{% if not debug %}
 <!-- ClickTale Bottom part -->
 	<div id="ClickTaleDiv" style="display: none;"></div>
 	<script type="text/javascript">

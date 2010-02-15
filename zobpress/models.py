@@ -127,7 +127,7 @@ class BoardSettings(models.Model):
     keywords = models.TextField(null=True, blank=True, help_text="Keywords describing the board. This is used as part of Meta keywords.")
     tag_line = models.CharField(max_length = 250, null=True, blank=True, help_text="Tag line describing your board. Used as part of title.")
     template = models.CharField(max_length = 100, default='default', help_text="Template to use for the site")
-    logo = models.ImageField(upload_to = "board_logos", help_text = "Logo for the site.", null=True, blank=True)
+    logo = models.ImageField(upload_to = "board_logos", help_text = "Logo for the site, we recommend a image of size 250x50px to avoid any further resize of the image.", null=True, blank=True)
     
     def __unicode__(self):
         return self.board.name
@@ -425,8 +425,12 @@ class Applicant(BoardSpecificEntities):
     objects = BoardSpecificEntitiesManager()
     all_objects = models.Manager()
     
-    
-    
+
+"""
+class BoardPaypalAccount(models.Model):
+    board = models.ForeignKey(Board)
+    # other paypal related fields
+"""
     
 class Page(BoardSpecificEntities):
     #job_board = models.ForeignKey(Board)
