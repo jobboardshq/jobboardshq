@@ -117,15 +117,18 @@ def get_job_form(board, job = None, return_job_fields_also = False):
                 return job
     # setattr(JobForm, 'name', forms.CharField(max_length = 100))
     for field in job_fields:
-        setattr(JobForm, field.name.strip(), get_field_type(field.type, board))
+        setattr(JobForm, field.name.strip(), get_field_type(field, board))
     if return_job_fields_also:
         return type('JobForm', (forms.Form, ), dict(JobForm.__dict__)), job_fields
     else:
         return type('JobForm', (forms.Form, ), dict(JobForm.__dict__))
     
 
-def get_field_type(data_type, board):
+def get_field_type(field, board):
+    data_type = field.type
     field_class, kwargs = type_mapping.get(data_type, (forms.CharField, {}))
+    kwargs['required'] = field.required
+    kwargs['help_text'] = field.help_text
     if data_type == 'CategoryField':
         kwargs['queryset'] = Category.objects.filter(board = board)
     return field_class(**kwargs)

@@ -20,8 +20,8 @@ class AdvancedSearchForm(forms.Form):
     def __init__(self, board, *args, **kwargs):
         self.board = board
         super(AdvancedSearchForm, self).__init__(*args, ** kwargs)
-        self.fields['category'] = forms.ModelChoiceField(queryset=Category.objects.filter(board=self.board), required=False)
-        self.fields['job_type'] = forms.ModelChoiceField(queryset=JobType.objects.filter(board=self.board), required=False)
+        self.fields['category'] = forms.ModelChoiceField(queryset=Category.objects.filter(board=self.board), required=False, widget=forms.RadioSelect, empty_label=None)
+        self.fields['job_type'] = forms.ModelChoiceField(queryset=JobType.objects.filter(board=self.board), required=False, widget=forms.RadioSelect, empty_label=None)
         
     q = forms.CharField(label='Search for', max_length=80, required=False)
     

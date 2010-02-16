@@ -109,8 +109,9 @@ search = ensure_has_board(BoardSearch(form_class = SearchForm))
 def advanced_search(request):
     results = []
     search_performed = False
-    if request.method == 'POST':
-        form = AdvancedSearchForm(board=request.board, data=request.POST)
+    params = request.GET
+    if params.get('q', None) or params.get('category', None) or params.get('job_type', None):
+        form = AdvancedSearchForm(board=request.board, data=params)
         if form.is_valid():
             from frontend.adv_search import search
             results = search(form.cleaned_data, request)

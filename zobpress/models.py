@@ -477,7 +477,7 @@ initial_categories = [
                       ("Engineering", "engineering"),
                       ("Sales", "sales"),
                       ("Testing", "testing"),
-                      ("Finanace", "finanace")
+                      ("Finance", "finance")
                       ] 
     
 initial_job_types = [

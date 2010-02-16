@@ -4,7 +4,7 @@ from haystack.forms import SearchForm
 from zobpress.models import Job
 
 def get_haystack_results(request):
-    hs_form = SearchForm(request.POST)
+    hs_form = SearchForm(request.GET)
     if hs_form.is_valid():
         return hs_form.search()
     return []
