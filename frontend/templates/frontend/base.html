@@ -46,11 +46,13 @@
     <div id="frontend_topnav"> 
 	  {% if user.is_authenticated %}
 		Welcome <span class="blacktext">{{ user.username }}</span></span> | 
+		{% if is_board_admin %}
+		  <a href="{% url zobpress_index %}">Admin</a> | 
+		{% endif %}
 		<a href="{% url auth_logout %}">Logout</a> | 
 	  {% else %}
 		<a href="{% url auth_login %}">Login</a> | 
 	  {% endif %}
-      <a href="#">Admin</a> | 
 	  <a href="{% url frontend_feeds_jobs %}">RSS </a>
 	   
 	</div>

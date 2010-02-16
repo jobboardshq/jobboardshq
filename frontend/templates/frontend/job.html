@@ -15,7 +15,9 @@
     <td align="center" valign="middle"><span class="apply">
     	<a href="{% url frontend_apply job.job_slug %}">Apply</a>
 	</span>
+	{% if is_board_admin %}
     	<a href="{% url zobpress_applicants job.job_slug %}" class="meroonbold">List of applicants</a>
+	{% endif %}
 	</td>
   </tr>
 </table>

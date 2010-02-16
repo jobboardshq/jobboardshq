@@ -1,5 +1,8 @@
-from zobpress.models import Board, Category
+
 from django.conf import settings
+
+from zobpress.decorators import ensure_is_admin
+from zobpress.models import Board, Category
 
 def populate_board(request):
     "Populate the board in the template"
@@ -10,6 +13,6 @@ def populate_board(request):
     else:
         categories = []
         board_settings = None
-    return {'board':request.board, 'categories':categories, "board_settings": board_settings, 'current_url': request.META['PATH_INFO'], "base_domain": settings.BASE_DOMAIN, 'debug': settings.DEBUG}
+    return {'board':request.board, 'categories':categories, "board_settings": board_settings, 'current_url': request.META['PATH_INFO'], "base_domain": settings.BASE_DOMAIN, 'debug': settings.DEBUG, 'is_board_admin': ensure_is_admin(request)}
 
     
