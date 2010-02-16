@@ -10,7 +10,7 @@ from zobpress.forms import JobStaticForm, JobContactForm, get_job_form
 
 from haystack.views import SearchView
 from haystack.forms import SearchForm
-from frontend.forms import ApplyForm
+from frontend.forms import ApplyForm, AdvancedSearchForm
 from django.utils import feedgenerator
 
 @ensure_has_board
@@ -104,6 +104,20 @@ class BoardSearch(SearchView):
         return self.create_response()
     
 search = ensure_has_board(BoardSearch(form_class = SearchForm))
+
+@ensure_has_board
+def advanced_search(request):
+    results = []
+    search_performed = False
+    if request.method == 'POST':
+        form = AdvancedSearchForm(board=request.board, data=request.POST)
+        if form.is_valid():
+            from frontend.adv_search import search
+            results = search(form.cleaned_data, request)
+            search_performed = True
+    else:
+        form = AdvancedSearchForm(board=request.board)
+    return render_to_response('frontend/advanced_search.html', {'form': form, 'results': results, 'search_performed': search_performed}, RequestContext(request))
 
 @ensure_has_board
 def feeds_jobs(request):

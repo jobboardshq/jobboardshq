@@ -70,6 +70,19 @@ function generate_key(){
     }
     return key;
 }
+var MAX_ELEMENTS = 1000 
+handle_old_fields = function(){
+  {% if form_fields %}
+    {% for field in form_fields %}
+  	  key = {{forloop.counter0}};
+	  form_elements[key] = Array('{{ field.name|strip }}', '{{ field.type }}');
+	  $("#field_"+"{{ field.pk }}").attr("key", key);
+	{% endfor %}
+  {% endif %}	
+  make_editable();
+};
+handle_old_fields();
+
 </script>
 {% endblock %}
 
@@ -157,22 +170,5 @@ function generate_key(){
     </form>
   </table>
 </div>
-{% block footer_script %}
-<script>
-      	var MAX_ELEMENTS = 1000 
-		handle_old_fields = function(){
-			//{% if form_fields %}
-	          //{% for field in form_fields %}
-			    key = {{forloop.counter0}};
-	            form_elements[key] = Array('{{ field.name|strip }}', '{{ field.type }}');
-				$("#field_"+"{{ field.pk }}").attr("key", key);
-	          //{% endfor %}
-	        //{% endif %}	
-			make_editable();
-			
-		};
-        $(handle_old_fields);
-      </script>
-{% endblock %}
     
 {% endblock %} 

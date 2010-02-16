@@ -1,0 +1,61 @@
+{% extends "frontend/base.html" %}
+
+{% block title %}
+  Search | {{ block.super }}
+{% endblock %}
+
+{% load zobpress_filters %}
+
+{% block content %}
+
+<div class="frontend_heading">Search for jobs</div>
+
+<div class="frontend_subheading1">
+  <p class="frontend">Search for jobs by any search term or by category or by job type </p>
+</div>
+
+<div class="frontend_content">
+  <form action="." method="post" enctype="multipart/form-data">
+    <table width="500" border="0" cellspacing="2" cellpadding="0">
+      {{ form }}
+      <tr>
+        <td> &nbsp; </td>
+        <td><input type="submit" value="Search" id="submit_button"/></td>
+      </tr>
+    </table>
+  </form>
+  
+  {% if search_performed %}
+  <div id='search_results'>
+    <h4>Search Results</h4>
+    {% for job in results %}
+      <div class='search_result_wrapper'>
+      <ul>
+      <li>
+        <a href="{{ job.get_absolute_url }}">{{ job.name }}</a>
+        <p>in 
+          category: {{ job.category }}, 
+          job type: {{ job.job_type }},
+          posted on: {{ job.created_on|date }}
+        </p>
+        <p> {{ job.description|safe|truncatewords:15 }}</p>
+      </li>
+      </ul>
+      </div>
+    {% empty %}
+      <p> No jobs found.</p>
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>
+
+
+<!--  <h3> </h3>
+  <p> {% if contact.name %}
+    Name: {{  contact.name }}
+    {% endif %} </p>
+  <p> Email: {{ contact.email|mailhide }} </p>
+  <p> {% if contact.website %}
+    Name: <A href="{{ contact.website }}">{{  contact.website }}</A> {% endif %} </p>
+</div>-->
+{% endblock content %} 
