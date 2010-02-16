@@ -91,7 +91,10 @@ def get_job_form(board, job = None, return_job_fields_also = False):
                     job.jobdata_set.all().delete()
                 for field in self.cleaned_data.iterkeys():
                     data_type = rev_type_mapping[self.fields[field].__class__]
-                    job_data = JobData(job = job, name = field, value = self.cleaned_data[field])
+                    value = self.cleaned_data[field]
+                    if not value:
+                        continue
+                    job_data = JobData(job = job, name = field, value = value)
                     job_data.data_type = data_type
                     job_data.save()
                     if self.fields[field].__class__ == forms.ModelChoiceField:
