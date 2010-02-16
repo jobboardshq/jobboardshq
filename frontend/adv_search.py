@@ -22,8 +22,8 @@ def search(data, request):
         results = get_haystack_results(request)
         if not results:
             return None
-        results = Job.objects.filter(board=board)
-        hay_stack_objects = False
+        results = results.filter(board=board)
+        hay_stack_objects = True
     else:
         results = Job.objects.filter(board=board)
 
