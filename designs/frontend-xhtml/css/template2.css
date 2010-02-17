@@ -1,24 +1,24 @@
 @charset "utf-8";
 /* CSS Document */
-body{font:12px Helvetica, Arial,sans-serif; }
+body{font:12px Georgia, "Times New Roman", Times, serif; }
 /*Main container*/
-a:link {	color: #0099CC; text-decoration:underline;}
-a:visited {	color: #0099CC;}
+a:link {	color: #4C3524; text-decoration:underline;}
+a:visited {	color: #4C3524;}
 a:hover {	color: #000000;}
-a:active {	color: #0099CC;}
+a:active {	color: #4C3524;}
 
-#main{width:100%; margin:0px auto;background:url(../images/template1_bg.gif) repeat-x;}
+#main{width:100%; margin:0px auto;background:url(../images/template2_bg.gif) repeat-x; background-color:#E8E0D0;}
 #header{width:960px; margin:0px auto;}
 #logo{ width:300px; float:left; height:70px; padding-top:60px; }
-#logo .companyname{font:bold 24px Helvetica, Arial,sans-serif; line-height:24px; color:#0099CC; text-decoration:none;}
-#logo .companyname a{font:bold 24px Helvetica, Arial,sans-serif; line-height:24px; color:#0099CC; text-decoration:none;}
-#logo .companyname a:hover{font:bold 24px Helvetica, Arial,sans-serif; line-height:24px; color:#000000; text-decoration:underline;}
-#logo .tagline{font:14px Helvetica, Arial,sans-serif; line-height:18px; color:#000000; text-decoration:none;}
+#logo .companyname{font:bold 24px Helvetica, Arial,sans-serif; line-height:24px; color:#EAB137; text-decoration:none;}
+#logo .companyname a{font:bold 24px Helvetica, Arial,sans-serif; line-height:24px; color:#EAB137; text-decoration:none;}
+#logo .companyname a:hover{font:bold 24px Helvetica, Arial,sans-serif; line-height:24px; color:#FFFFFF; text-decoration:underline;}
+#logo .tagline{font:14px Helvetica, Arial,sans-serif; line-height:18px; color:#FFFFFF; text-decoration:none;}
 #topnav{ width:660px; float:left; height:70px; padding-top:60px; text-align:right; }
 #topnav a{ text-align:right; color:#000000; text-decoration:none; padding:5px; }
 #topnav a:hover{  text-align:right; color:#0099CC; text-decoration:underline; }
 
-#searcharea{ clear:both; width:960px; border-top:1px solid #0099CC; border-bottom:1px solid #0099CC;font:bold 18px Helvetica, Arial,sans-serif;color:#666666; padding:25px 0px 25px 0px; margin:0px auto;}
+#searcharea{ clear:both; width:960px; border-top:1px solid #EAB137; border-bottom:1px solid #EAB137;font:bold 18px Helvetica, Arial,sans-serif;color:#666666; padding:25px 0px 25px 0px; margin:0px auto; background-color:#EAB137;}
 #searcharea #search{width:450px; float:left;font:bold 18px Helvetica, Arial,sans-serif;color:#666666; line-height:42px; vertical-align:middle;}
 #searcharea #search input{width:250px; padding:6px; border:1px solid #999999;}
 #searcharea #search img{}
@@ -34,18 +34,18 @@ a:active {	color: #0099CC;}
 #jobposts li{padding-left:10px;}
 .left_padding{padding-left:15px;}
 .top_padding{margin-top:10px;}
-.jobtext{ font:14px  Helvetica, Arial,sans-serif; line-height:18px;color:#008BB9; text-decoration:underline; font-weight:600;}
-.jobtext:hover{  font:14px  Helvetica, Arial,sans-serif; line-height:18px;color:#000000; text-decoration:underline;font-weight:600;}
+.jobtext{ font:13px Arial, Helvetica, sans-serif; line-height:18px;color:#006666; text-decoration:underline; font-weight:bold;}
+.jobtext:hover{  font:13px  Arial, Helvetica, sans-serif; line-height:18px;color:#000000; text-decoration:underline;font-weight:bold;}
 .jobtype{ font:14px  Helvetica, Arial,sans-serif; line-height:18px;color:#333333; text-decoration:none;}
 .company{ font:12px  Helvetica, Arial,sans-serif; line-height:18px;color:#333333; text-decoration:none;}
 .date{padding-left:50px; color:#666666;}
 .apply_button{ width:52px; float:right; margin-top:5px; margin-right:5px;}
 .apply_button a{background:url(../images/apply_bg_temp1.png); width:52px; height:20px;font:11px Helvetica, Arial,sans-serif;color:#000000; text-decoration:none; text-align:center; line-height:20px; display:block;}
 .apply_button a:hover{background:url(../images/apply_bg_temp1_hover.png); width:52px; height:20px;font:11px Helvetica, Arial,sans-serif;color:#FFFFFF; text-decoration:none; text-align:center; line-height:20px;}
-.colorbg{background-color:#F2F6F8; font:11px Helvetica, Arial,sans-serif;line-height:32px; color:#000000; text-decoration:none;}
+.colorbg{background-color:#F7F3EC; font:11px Helvetica, Arial,sans-serif;line-height:32px; color:#000000; text-decoration:none;}
 .whitebg{background-color:#FFFFFF; font:11px Helvetica, Arial,sans-serif;line-height:32px; color:#000000; text-decoration:none;}
 
-#footer{ clear:both;width:100%;  border-top:1px solid #0099CC; padding:30px 0px 30px 0px; margin-top:20px; text-align:center; }
+#footer{ clear:both;width:100%;  border-top:1px solid #4C3524; padding:30px 0px 30px 0px; margin-top:20px; text-align:center; background-color:#4C3524;}
 
 /* job type colours */
 .badge1{ font:bold 11px Tahoma, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none; padding:5px; color:#555656;}
@@ -60,8 +60,8 @@ a:active {	color: #0099CC;}
 .badge5:hover{ }
 /* job type colours */
 
-/*categories comtainer*/
-#categorylist{width:190px; float:right; }
+/*categories comtainer Template1*/
+#categorylist{width:190px; float:right; display:none; }
 #categorylist #categories{width:190px;  background-color:#0099CC; padding:5px 0px 5px 0px;}
 #categorylist #categories .top{height:47px; font: bold 14px Helvetica, Arial,sans-serif;line-height:47px; padding-left:20px; color:#000000;}
 #categorylist #categories .middle{}
@@ -71,11 +71,19 @@ a:active {	color: #0099CC;}
 #categorylist #categories .middle li a:hover {background:url(../images/bluearrow.gif) no-repeat;  text-decoration:underline;color:#000000; font:13px Helvetica, Arial,sans-serif;line-height:24px; }
 #categorylist #categories .bottom{height:12px;}
 .clear{clear:both;}
-
 /*ends*/
 
 
 
+/*Template 2 horizntal menu*/
+#solidblockmenu{width:960px; padding-top:5px; margin:0px auto; height:38px;}
+.solidblockmenu{margin: 0;padding: 0;float: left;font: bold 13px Arial;width: 100%;overflow: hidden;margin-bottom: 1em;border: 1px solid #625e00;border-width: 1px 0;background:url(../images/blockdefault.gif) center center repeat-x;}
+.solidblockmenu li{display: inline;}
+.solidblockmenu li a{float: left;color: white;padding: 9px 11px;text-decoration: none;border-right: 1px solid white;}
+.solidblockmenu li a:visited{color: white;}
+.solidblockmenu li a:hover, .solidblockmenu li .current{color: white;background:url(../images/blockactive.gif) center center repeat-x;}
+.clear{clear:both;}
+/*Template 2 horizntal menu*/
 
 
 
