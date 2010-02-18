@@ -1,6 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
-body{font:12px Georgia, "Times New Roman", Times, serif; }
+body{ font:12px Arial, Helvetica, sans-serif; line-height:18px; }
 /*Main container*/
 a:link {	color: #4C3524; text-decoration:underline;}
 a:visited {	color: #4C3524;}
@@ -15,16 +15,16 @@ a:active {	color: #4C3524;}
 #logo .companyname a:hover{font:bold 24px Helvetica, Arial,sans-serif; line-height:24px; color:#FFFFFF; text-decoration:underline;}
 #logo .tagline{font:14px Helvetica, Arial,sans-serif; line-height:18px; color:#FFFFFF; text-decoration:none;}
 #topnav{ width:660px; float:left; height:70px; padding-top:60px; text-align:right; }
-#topnav a{ text-align:right; color:#000000; text-decoration:none; padding:5px; }
-#topnav a:hover{  text-align:right; color:#0099CC; text-decoration:underline; }
+#topnav a{ text-align:right; color:#CC9900; text-decoration:none; padding:5px; }
+#topnav a:hover{  text-align:right; color:#FFFFFF; text-decoration:underline; }
 
-#searcharea{ clear:both; width:960px; border-top:1px solid #EAB137; border-bottom:1px solid #EAB137;font:bold 18px Helvetica, Arial,sans-serif;color:#666666; padding:25px 0px 25px 0px; margin:0px auto; background-color:#EAB137;}
-#searcharea #search{width:450px; float:left;font:bold 18px Helvetica, Arial,sans-serif;color:#666666; line-height:42px; vertical-align:middle;}
+#searcharea{ clear:both; width:940px;font:bold 18px Helvetica, Arial,sans-serif;color:#4C3524;  margin:0px auto; background-image:url(../images/template2_searchbg.png); padding:25px 10px 25px 10px;}
+#searcharea #search{width:450px; float:left;font:bold 18px Helvetica, Arial,sans-serif;color:#4C3524; line-height:42px; vertical-align:middle;}
 #searcharea #search input{width:250px; padding:6px; border:1px solid #999999;}
 #searcharea #search img{}
 
 #searcharea #postjob{width:480px; float:right; font:14px; line-height:46px;}
-#searcharea #postjob p.text{width:270px; float:left;font:bold 14px Helvetica, Arial,sans-serif;color:#666666; line-height:46px; text-align:right;}
+#searcharea #postjob p.text{width:270px; float:left;font:bold 14px Helvetica, Arial,sans-serif;color:#4C3524; line-height:46px; text-align:right;}
 #searcharea #postjob #button{width:193px; float:right;line-height:46px; background:url(../images/postjob_template1.gif) no-repeat; height:46px; cursor:pointer;}
 #searcharea #postjob #button:hover{width:193px; float:right;line-height:46px; background:url(../images/postjob_template1_r.gif) no-repeat;height:46px;cursor:pointer;}
 
@@ -40,12 +40,15 @@ a:active {	color: #4C3524;}
 .company{ font:12px  Helvetica, Arial,sans-serif; line-height:18px;color:#333333; text-decoration:none;}
 .date{padding-left:50px; color:#666666;}
 .apply_button{ width:52px; float:right; margin-top:5px; margin-right:5px;}
-.apply_button a{background:url(../images/apply_bg_temp1.png); width:52px; height:20px;font:11px Helvetica, Arial,sans-serif;color:#000000; text-decoration:none; text-align:center; line-height:20px; display:block;}
-.apply_button a:hover{background:url(../images/apply_bg_temp1_hover.png); width:52px; height:20px;font:11px Helvetica, Arial,sans-serif;color:#FFFFFF; text-decoration:none; text-align:center; line-height:20px;}
+.apply_button a{background:url(../images/apply_bg_temp2.png); width:52px; height:20px;font:11px Helvetica, Arial,sans-serif;color:#000000; text-decoration:none; text-align:center; line-height:20px; display:block;}
+.apply_button a:hover{background:url(../images/apply_bg_temp2_hover.png); width:52px; height:20px;font:11px Helvetica, Arial,sans-serif;color:#FFFFFF; text-decoration:none; text-align:center; line-height:20px;}
 .colorbg{background-color:#F7F3EC; font:11px Helvetica, Arial,sans-serif;line-height:32px; color:#000000; text-decoration:none;}
 .whitebg{background-color:#FFFFFF; font:11px Helvetica, Arial,sans-serif;line-height:32px; color:#000000; text-decoration:none;}
 
-#footer{ clear:both;width:100%;  border-top:1px solid #4C3524; padding:30px 0px 30px 0px; margin-top:20px; text-align:center; background-color:#4C3524;}
+#footer{ clear:both;width:100%;  border-top:1px solid #4C3524; padding:30px 0px 30px 0px; margin-top:20px; text-align:center; background-color:#4C3524; color:#AB7349;}
+#footer a{ color:#FFFFFF; text-decoration:underline;}
+#footer a:hover{ color:#FFCC00; text-decoration:underline;}
+
 
 /* job type colours */
 .badge1{ font:bold 11px Tahoma, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none; padding:5px; color:#555656;}
