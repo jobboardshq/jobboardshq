@@ -61,7 +61,7 @@ class Board(models.Model):
         #The first time created would be True.
         #Everytime after that, it should be False
         created = not bool(self.pk)
-        if not self.domain.strip():
+        if self.domain and not self.domain.strip():
             self.domain = None
         super(Board, self).save(*args, **kwargs)
         if created:

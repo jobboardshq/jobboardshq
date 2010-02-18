@@ -160,6 +160,10 @@ class CategoryForm(forms.ModelForm):
             return data["name"]
         
 class JobTypeForm(forms.ModelForm):
+    def __init__(self, board, *args, **kwargs):
+        super(JobTypeForm, self).__init__(*args, **kwargs)
+        self.board = board
+        
     class Meta:
         model = JobType
         fields = ["name"]

@@ -54,6 +54,10 @@ def add_job(request):
             contact.job = job
             contact.board = request.board
             contact.save()
+            # since the job is added from admin, marking it as 
+            # active by default
+            job.is_active = True
+            job.save()
             request.user.message_set.create(message="The job has been added.")
             return HttpResponseRedirect(reverse('zobpress_index'))
     payload = {'form':form, 'job_static_form': job_static_form, "job_contact_form": job_contact_form}
@@ -122,9 +126,9 @@ def categories(request):
 @ensure_has_board
 def job_types(request):
     job_types = JobType.objects.all()
-    form = JobTypeForm()
+    form = JobTypeForm(board=request.board)
     if request.method == "POST":
-        form = JobTypeForm(data = request.POST)
+        form = JobTypeForm(board=request.board, data = request.POST)
         if form.is_valid():
             job_type = form.save(commit = False)
             job_type.board = request.board
@@ -147,9 +151,21 @@ def edit_category(request, category_pk):
         return HttpResponseRedirect(".")
     payload = dict(category=category, form=form)
     return render_to_response("zobpress/edit_category.html", payload, RequestContext(request))
+ 
+@ensure_is_admin
+@ensure_has_board
+def edit_job_type(request, job_type_pk):
+    job_type = get_object_or_404(JobType, board = request.board, pk = job_type_pk)
+    form = JobTypeForm(instance = job_type, board = request.board)
+    if request.method == "POST":
+        form = JobTypeForm(instance = job_type, data = request.POST, board = request.board)
+        if form.is_valid():
+            form.save()
+        return HttpResponseRedirect(".")
+    payload = dict(job_type=job_type, form=form)
+    return render_to_response("zobpress/edit_job_type.html", payload, RequestContext(request))
     
-    
-@csrf_protect
+
 @ensure_is_admin
 @ensure_has_board
 def settings(request):
@@ -329,8 +345,8 @@ def delete_category(request, category_id):
 
 @ensure_is_admin
 @ensure_has_board    
-def delete_job_type(request, job_id):
-    job_type = get_object_or_404(JobType, pk = job_id)
+def delete_job_type(request, job_type_id):
+    job_type = get_object_or_404(JobType, pk = job_type_id)
     job_type.delete()
     payload = {"name": job_type.name, "pk": job_type.pk}
     return HttpResponse(simplejson.dumps(payload))

@@ -2,6 +2,10 @@
 
 {% block title %} List of Job Types - {{ block.super }} {% endblock %}
 
+{% block extrascript %}
+<script type="text/javascript" src="{{ MEDIA_URL }}admin/js/categories.js"></script>
+{% endblock extrascript %}
+
 {% block content %}
 <div class="admin_heading">Create a new job type. </div>
 
@@ -17,16 +21,36 @@
 	</tr>
   </form>
 </table>
-	
-<table>
+
+<div class="admin_subheading1">
   <p class="admin">Or Edit exisiting job types.</p>
+</div>
+
+<table bgcolor="#FBF8ED" width="100%">
+
   {% for job_type in job_types %}
-	<tr>
-	  <td><a href="{% url zobpress_jobs_job_type job_type.slug %}">{{ job_type.name }}</a></td>
-	  <td><a href="">Edit</a></td>
-	  <td><a href="">Delete</a></td>
-	</tr>
+  <tr id="category_{{ job_type.pk }}">
+    <td width="190" align="left" valign="middle">
+	  <a href="{% url zobpress_jobs_job_type job_type.slug %}" class="redtext">{{ job_type.name }}:</a> 
+	</td>
+    <td width="70" align="left" valign="middle"> 
+	  {{ job_type.job_set.count }} Jobs
+	</td>
+    <td width="70" align="left" valign="middle">
+	  <a href="{% url zobpress_edit_job_type job_type.pk %}"  class="blacklink"> 
+		<img src="{{ MEDIA_URL }}admin/images/edit_icon.gif" alt="Edit the Job" width="32" height="36" />
+	  </a> 
+	</td>
+    <td width="70" align="left" valign="middle">
+	  <a href="{% url zobpress_delete_job_type job_type.pk %}" class="blacklink delete_link"> 
+		<img src="{{ MEDIA_URL }}admin/images/delete_icon.gif" alt="Delete the Job" width="35" height="35" />
+	  </a> 
+	</td>
+  <tr/>
+  {% empty %}
+  <p>Please add a job type</p>
   {% endfor %}
 </table>
+
 	
 {% endblock content %}

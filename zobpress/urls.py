@@ -10,6 +10,7 @@ urlpatterns = patterns('zobpress.views',
     url(r'^category/edit/(?P<category_pk>\d+)/$', 'edit_category', name='zobpress_edit_category'),
     
     url(r'^job_types/$', 'job_types', name='zobpress_job_types'),
+    url(r'^job_type/edit/(?P<job_type_pk>\d+)/$', 'edit_job_type', name='zobpress_edit_job_type'),
     #url(r'^job_types/$', 'job_types', name='zobpress_categories'),
     
     url(r'^jobs/$', 'jobs', name='zobpress_jobs'),
@@ -31,13 +32,12 @@ urlpatterns = patterns('zobpress.views',
 )
 
 urlpatterns += patterns('zobpress.views',
-        url(r'^ajax/delete/(?P<job_id>\d+)/$', 'delete_job', name='zobpress_delete_job'),
-        url(r'^ajax/category-delete/(?P<category_id>\d+)/$', 'delete_category', name='zobpress_delete_category'),
-        url(r'^ajax/type-delete/(?P<job_type_id>\d+)/$', 'delete_category', name='zobpress_delete_job_type'),
+    url(r'^ajax/delete/(?P<job_id>\d+)/$', 'delete_job', name='zobpress_delete_job'),
+    url(r'^ajax/category-delete/(?P<category_id>\d+)/$', 'delete_category', name='zobpress_delete_category'),
+    url(r'^ajax/type-delete/(?P<job_type_id>\d+)/$', 'delete_job_type', name='zobpress_delete_job_type'),
 )                        
 
 urlpatterns += patterns('zobpress.views',
-    
     url(r'^edit/(?P<page_slug>.*)/$', 'edit_page', name='zobpress_job_board_page'),
     url(r'^create-page/$', 'create_page', name='zobpress_create_page'),
     url(r'^settings/$', 'settings', name='zobpress_settings'),
