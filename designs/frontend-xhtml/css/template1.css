@@ -14,7 +14,7 @@ a:active {	color: #0099CC;}
 #logo .companyname a{font:bold 24px Helvetica, Arial,sans-serif; line-height:24px; color:#0099CC; text-decoration:none;}
 #logo .companyname a:hover{font:bold 24px Helvetica, Arial,sans-serif; line-height:24px; color:#000000; text-decoration:underline;}
 #logo .tagline{font:14px Helvetica, Arial,sans-serif; line-height:18px; color:#000000; text-decoration:none;}
-#topnav{ width:660px; float:left; height:70px; padding-top:60px; text-align:right; }
+#topnav{ width:660px; float:left; height:30px; padding-top:20px; text-align:right; }
 #topnav a{ text-align:right; color:#000000; text-decoration:none; padding:5px; }
 #topnav a:hover{  text-align:right; color:#0099CC; text-decoration:underline; }
 
@@ -29,7 +29,7 @@ a:active {	color: #0099CC;}
 #searcharea #postjob #button:hover{width:193px; float:right;line-height:46px; background:url(../images/postjob_template1_r.gif) no-repeat;height:46px;cursor:pointer;}
 
 #bodycontent{ width:960px; margin:0px auto; display:block; }
-#jobposts{width:740px; float:left;}
+#jobposts{width:760px; float:left;}
 #jobposts ul{ padding:0px; margin:0px;}
 #jobposts li{padding-left:10px;}
 .left_padding{padding-left:15px;}
@@ -74,7 +74,10 @@ a:active {	color: #0099CC;}
 
 /*ends*/
 #blockmenu{display:none;}
-
+#jobboard_pages{display:none;}
+.adminlinks{ text-align:right; font:bold 12px Arial, Helvetica, sans-serif; color:#000000; text-decoration:none;  width:660px; float:left; height:30px; padding-top:40px; text-align:right;}
+.adminlinks a{ text-align:right; font:bold 12px Arial, Helvetica, sans-serif; color:#000000; text-decoration:none; }
+.adminlinks a:hover{text-align:right; font:bold 12px Arial, Helvetica, sans-serif; color:#0099FF; text-decoration:underline;}
 
 
 
