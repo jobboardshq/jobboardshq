@@ -25,8 +25,8 @@ a:active {	color: #4C3524;}
 
 #searcharea #postjob{width:480px; float:right; font:14px; line-height:46px;}
 #searcharea #postjob p.text{width:270px; float:left;font:bold 14px Helvetica, Arial,sans-serif;color:#4C3524; line-height:46px; text-align:right;}
-#searcharea #postjob #button{width:193px; float:right;line-height:46px; background:url(../images/postjob_template1.gif) no-repeat; height:46px; cursor:pointer;}
-#searcharea #postjob #button:hover{width:193px; float:right;line-height:46px; background:url(../images/postjob_template1_r.gif) no-repeat;height:46px;cursor:pointer;}
+#searcharea #postjob #button{width:193px; float:right;line-height:46px; background:url(../images/postjob_template2.png) no-repeat; height:46px; cursor:pointer;}
+#searcharea #postjob #button:hover{width:193px; float:right;line-height:46px; background:url(../images/postjob_template2_hover.png) no-repeat;height:46px;cursor:pointer;}
 
 #bodycontent{ width:960px; margin:0px auto; display:block; }
 #jobposts{width:740px; float:left;}
@@ -42,8 +42,8 @@ a:active {	color: #4C3524;}
 .apply_button{ width:52px; float:right; margin-top:5px; margin-right:5px;}
 .apply_button a{background:url(../images/apply_bg_temp2.png); width:52px; height:20px;font:11px Helvetica, Arial,sans-serif;color:#000000; text-decoration:none; text-align:center; line-height:20px; display:block;}
 .apply_button a:hover{background:url(../images/apply_bg_temp2_hover.png); width:52px; height:20px;font:11px Helvetica, Arial,sans-serif;color:#FFFFFF; text-decoration:none; text-align:center; line-height:20px;}
-.colorbg{background-color:#F7F3EC; font:11px Helvetica, Arial,sans-serif;line-height:32px; color:#000000; text-decoration:none;}
-.whitebg{background-color:#FFFFFF; font:11px Helvetica, Arial,sans-serif;line-height:32px; color:#000000; text-decoration:none;}
+.colorbg{background-color:#F7F3EC; font:11px Helvetica, Arial,sans-serif;line-height:32px; color:#000000; text-decoration:none; padding:5px; 0px 5px 0px;}
+.whitebg{background-color:#FFFFFF; font:11px Helvetica, Arial,sans-serif;line-height:32px; color:#000000; text-decoration:none; padding:5px; 0px 5px 0px;}
 
 #footer{ clear:both;width:100%;  border-top:1px solid #4C3524; padding:30px 0px 30px 0px; margin-top:20px; text-align:center; background-color:#4C3524; color:#AB7349;}
 #footer a{ color:#FFFFFF; text-decoration:underline;}
