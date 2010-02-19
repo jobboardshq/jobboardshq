@@ -1,0 +1,145 @@
+@charset "utf-8";
+/* CSS Document */
+body.frontend{background:url(../images/header_frontend_bg.gif) repeat-x; font-family:"trebuchet MS",Verdana, Arial, Helvetica, sans-serif; font-size:11px; line-height:18px;}
+
+#frontend_wrapper{width:100%; margin:0px auto;}
+#header_frontend{ margin:0px auto; width:960px; height:90px; padding-top:25px;}
+#frontend_topnav{ margin:0px auto; width:960px; height:48px; text-align:right;}
+#frontend_topnav a{  text-align:right; color:#FFFFFF; font:bold 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; line-height:48px; text-decoration:none; }
+#frontend_topnav a:hover{  text-align:right; color:#000000; text-decoration:underline;}
+#frontend_topnav #rssicon{  width:50px; height:48px; float:right;}
+
+#frontend_searchbar{ clear:both; margin:0px auto; width:960px; height:83px;}
+#frontend_searchbar .searchjobs{ width:106px; height:83px; float:left;font: 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;line-height:83px; color:#682C00;}
+
+#frontend_searchbar .searchfield{width:230px; height:56px; float:left; padding-top:27px;}
+#frontend_searchbar .textfield{border:1px solid #C8AC84; padding:5px;}
+#frontend_searchbar .searchbutton{width:110px; height:58px; float:left; padding-top:25px;}
+#frontend_searchbar .advancedsearch{width:176px; height:83px; float:left;}
+.searchlink{font: bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;line-height:83px; color:#A10000; text-decoration:none;}
+.searchlink:hover{font: bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;line-height:83px; color:#000000; text-decoration:underline;}
+#frontend_searchbar .postjob{width:234px; height:51px; float:right; margin-top:15px; position:relative; background:url(../images/post_job_buttonnew.png) no-repeat; cursor:pointer;}
+#frontend_searchbar .postjob:hover{width:234px; height:51px; float:right; margin-top:15px; position:relative; background:url(../images/post_job_buttonnew.png) no-repeat 0 -51px;}
+
+#frontend_content{width:960px; margin:0px auto; }
+#frontend_content #leftpanel{width:200px; float:left; margin:10px 0px 0px 0px;}
+/*categories comtainer*/
+#frontend_content #leftpanel #categories{width:200px;}
+#frontend_content #leftpanel #categories .top{background:url(../images/categories_topbg.gif) top left; height:47px; font: bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;line-height:47px; padding-left:20px; color:#A10000;}
+#frontend_content #leftpanel #categories .middle{border-left:1px solid #D8C7AF; border-right:1px solid #D8C7AF;}
+#frontend_content #leftpanel #categories .middle ul{color:#000000;  }
+#frontend_content #leftpanel #categories .middle li{background:url(../images/categories_listbg.gif) no-repeat; line-height:24px; padding-left:35px; color:#000000; text-decoration:none; }
+#frontend_content #leftpanel #categories .middle li a{line-height:24px;  color:#000000; text-decoration:none;}
+#frontend_content #leftpanel #categories .middle li a:hover {line-height:24px;  text-decoration:underline;color:#CC0000;  }
+#frontend_content #leftpanel #categories .bottom{background:url(../images/categories_bottombg.gif) top left; height:12px;}
+/*ends*/
+/*explore comtainer*/
+#frontend_content #leftpanel #explore{width:200px; margin-top:10px;}
+#frontend_content #leftpanel #explore .top{background:url(../images/categories_topbg.gif) top left; height:47px; font: bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;line-height:47px; padding-left:20px; color:#A10000; }
+#frontend_content #leftpanel #explore .middle{border-left:1px solid #D8C7AF; border-right:1px solid #D8C7AF;}
+#frontend_content #leftpanel #explore .middle ul{color:#000000;  }
+#frontend_content #leftpanel #explore .middle li{background:url(../images/categories_listbg.gif) no-repeat; line-height:24px; padding-left:35px; color:#000000; text-decoration:none; }
+#frontend_content #leftpanel #explore .middle li a{line-height:24px;  color:#000000; text-decoration:none;}
+#frontend_content #leftpanel #explore .middle li a:hover {line-height:24px;  text-decoration:underline;color:#CC0000;  }
+#frontend_content #leftpanel #explore .bottom{background:url(../images/categories_bottombg.gif) top left; height:12px;}
+/*ends*/
+#frontend_content #leftpanel #newsletter{width:150px; margin:10px 0px 0px 0px; height:83px; background:url(../images/email_bg.png) no-repeat; padding:110px 25px 0px 25px; text-align:center;}
+.newsletter_textfield{margin-bottom:5px; border:1px solid #630000; padding:3px;}
+
+#frontend_content #rightpanel{width:740px; float:left; margin:10px 0px 0px 20px;}
+#frontend_footer{background-color:#000000; width:100%; margin:0px auto;  color:#FFFFFF; text-align:center; padding-top:20px; margin-top:15px; padding-bottom:20px;}
+
+#frontend_content #rightpanel .top{width:726px; background:url(../images/body_top.gif) no-repeat; height:14px; }
+#frontend_content #rightpanel .middle{width:726px; ;background:url(../images/body_middlebg.gif) repeat-y; }
+#frontend_content #rightpanel .bottom{width:726px;background:url(../images/body_bottom.gif) no-repeat; height:14px;}
+#frontend_content #rightpanel .title{ font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#A10000; text-decoration:none; padding:3px 0px 11px 0px;}
+#frontend_content #rightpanel .border{ border-top:1px dashed #D9C6AC; height:1px;}
+.colorbg{background-color:#F9F5EF; font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;line-height:28px; color:#000000; text-decoration:none;}
+.whitebg{background-color:#FFFFFF; font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;line-height:28px; color:#000000; text-decoration:none;}
+.redtext{ font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#A10000; text-decoration:none;}
+.redtext:hover{ font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#000000; text-decoration:underline;}
+.apply_button{background:url(../images/apply_bg.png); width:52px; height:20px;font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none; text-align:center; line-height:20px; display:block;}
+.apply_button a{background:url(../images/apply_bg.png); width:52px; height:20px;font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none; text-align:center; line-height:20px; display:block;}
+.apply_button a:hover{background:url(../images/apply_bg_hover.png); width:52px; height:20px;font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#FFFFFF; text-decoration:none; text-align:center; line-height:20px;}
+
+#pagenation{font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#FFFFFF; text-decoration:none; text-align:right; padding:15px 60px 0px 0px; }
+#pagenation a{font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#FFFFFF; text-decoration:none; background-color:#A10000; padding:2px 4px 2px 4px;}
+#pagenation a:hover{font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#FFFFFF; text-decoration:none; background-color:#000000;padding:2px 4px 2px 4px;}
+
+/* Bubble pop-up */
+.bubbleInfo {position: relative;top: 150px;left: 100px;width: 500px;}
+.trigger {position: absolute;}
+.popup {position: absolute;display: none;z-index: 50;border-collapse: collapse;}
+.popup td.corner {height: 15px;width: 19px;}
+.popup td#topleft {	background-image: url(images/bubble-1.png);}
+.popup td.top {	background-image:url(images/bubble-2.png);}
+.popup td#topright {background-image:url(images/bubble-3.png);}
+.popup td.left {background-image: url(images/bubble-4.png);}
+.popup td.right {background-image:url(images/bubble-5.png);}
+.popup td#bottomleft {background-image:url(images/bubble-6.png);}
+.popup td.bottom {background-image:url(images/bubble-7.png);text-align: center;}
+.popup td.bottom img {display: block;margin: 0 auto;}
+.popup td#bottomright {background-image:url(images/bubble-8.png);}
+.popup table.popup-contents {font-size: 12px;line-height: 1.2em;background-color: #fff;color: #666;	font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;}
+table.popup-contents th {text-align: right;text-transform: lowercase;}
+table.popup-contents td {text-align: left;}
+tr#release-notes th {text-align: left;text-indent: -9999px;	background: url(http://jqueryfordesigners.com/demo/images/coda/starburst.gif) no-repeat top right;height: 17px;}
+tr#release-notes td a {color: #333;}
+/*bubble popu ends*/
+.clear{clear:both;}
+.left_padding{padding-left:15px;}
+.top_padding{margin-top:10px;}
+
+
+
+
+	/* Menu Body */
+	ul#menu {
+
+		list-style:none;
+		margin:0;
+		padding:0;
+
+	}
+	
+	/* Float LI Elements - horizontal display */
+	ul#menu li {
+		float:left;
+	}
+	
+	/* Link - common attributes */
+	ul#menu li a {
+		background:url(../images/post_job_buttonnew.png) no-repeat ;
+		display:block;
+		height:51px;
+		position:relative;
+	}
+	
+	/* Specify width and background position attributes specifically for the class: "home" */
+	ul#menu li a.home {
+		width:234px;
+	}
+	
+	
+	/* Span (on hover) - common attributes */
+	ul#menu li a span {
+		background:url(../images/post_job_buttonnew.png) no-repeat;
+		display:block;
+		position:absolute;
+		top:0;
+		left:0;
+		height:51px;
+		width:234px;
+		z-index:100;
+	}
+	
+	/* Span (on hover) - display pointer */
+	ul#menu li a span:hover {
+		cursor:pointer;
+	}
+	
+	/* Shift background position on hover for the class: "home" */
+	ul#menu li a.home span {
+		background-position:0px -51px;
+	}
+	

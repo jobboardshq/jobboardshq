@@ -1,0 +1,88 @@
+@charset "utf-8";
+/* CSS Document */
+body{font:12px Helvetica, Arial,sans-serif; }
+/*Main container*/
+a:link {	color: #0099CC; text-decoration:underline;}
+a:visited {	color: #0099CC;}
+a:hover {	color: #000000;}
+a:active {	color: #0099CC;}
+
+#main{width:100%; margin:0px auto;background:url(../images/template1_bg.gif) repeat-x;}
+#header{width:960px; margin:0px auto;}
+#logo{ width:300px; float:left; height:70px; padding-top:60px; }
+#logo .companyname{font:bold 24px Helvetica, Arial,sans-serif; line-height:24px; color:#0099CC; text-decoration:none;}
+#logo .companyname a{font:bold 24px Helvetica, Arial,sans-serif; line-height:24px; color:#0099CC; text-decoration:none;}
+#logo .companyname a:hover{font:bold 24px Helvetica, Arial,sans-serif; line-height:24px; color:#000000; text-decoration:underline;}
+#logo .tagline{font:14px Helvetica, Arial,sans-serif; line-height:18px; color:#000000; text-decoration:none;}
+#topnav{ width:660px; float:left; height:30px; padding-top:20px; text-align:right; }
+#topnav a{ text-align:right; color:#000000; text-decoration:none; padding:5px; }
+#topnav a:hover{  text-align:right; color:#0099CC; text-decoration:underline; }
+
+#searcharea{ clear:both; width:960px; border-top:1px solid #0099CC; border-bottom:1px solid #0099CC;font:bold 18px Helvetica, Arial,sans-serif;color:#666666; padding:25px 0px 25px 0px; margin:0px auto;}
+#searcharea #search{width:450px; float:left;font:bold 18px Helvetica, Arial,sans-serif;color:#666666; line-height:42px; vertical-align:middle;}
+#searcharea #search input{width:250px; padding:6px; border:1px solid #999999;}
+#searcharea #search img{}
+
+#searcharea #postjob{width:480px; float:right; font:14px; line-height:46px;}
+#searcharea #postjob p.text{width:270px; float:left;font:bold 14px Helvetica, Arial,sans-serif;color:#666666; line-height:46px; text-align:right;}
+#searcharea #postjob #button{width:193px; float:right;line-height:46px; background:url(../images/postjob_template1.gif) no-repeat; height:46px; cursor:pointer;}
+#searcharea #postjob #button:hover{width:193px; float:right;line-height:46px; background:url(../images/postjob_template1_r.gif) no-repeat;height:46px;cursor:pointer;}
+
+#bodycontent{ width:960px; margin:0px auto; display:block; }
+#jobposts{width:760px; float:left;}
+#jobposts ul{ padding:0px; margin:0px;}
+#jobposts li{padding-left:10px;}
+.left_padding{padding-left:15px;}
+.top_padding{margin-top:10px;}
+.jobtext{ font:14px  Helvetica, Arial,sans-serif; line-height:18px;color:#008BB9; text-decoration:underline; font-weight:600;}
+.jobtext:hover{  font:14px  Helvetica, Arial,sans-serif; line-height:18px;color:#000000; text-decoration:underline;font-weight:600;}
+.jobtype{ font:14px  Helvetica, Arial,sans-serif; line-height:18px;color:#333333; text-decoration:none;}
+.company{ font:12px  Helvetica, Arial,sans-serif; line-height:18px;color:#333333; text-decoration:none;}
+.date{padding-left:50px; color:#666666;}
+.apply_button{ width:52px; float:right; margin-top:5px; margin-right:5px;}
+.apply_button a{background:url(../images/apply_bg_temp1.png); width:52px; height:20px;font:11px Helvetica, Arial,sans-serif;color:#000000; text-decoration:none; text-align:center; line-height:20px; display:block;}
+.apply_button a:hover{background:url(../images/apply_bg_temp1_hover.png); width:52px; height:20px;font:11px Helvetica, Arial,sans-serif;color:#FFFFFF; text-decoration:none; text-align:center; line-height:20px;}
+.colorbg{background-color:#F2F6F8; font:11px Helvetica, Arial,sans-serif;line-height:32px; color:#000000; text-decoration:none;padding:5px; 0px 5px 0px;}
+.whitebg{background-color:#FFFFFF; font:11px Helvetica, Arial,sans-serif;line-height:32px; color:#000000; text-decoration:none;padding:5px; 0px 5px 0px;}
+
+#footer{ clear:both;width:100%;  border-top:1px solid #0099CC; padding:30px 0px 30px 0px; margin-top:20px; text-align:center; }
+
+/* job type colours */
+.badge1{ font:bold 11px Tahoma, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none; padding:5px; color:#555656;}
+.badge1:hover{  }
+.badge2{ font:bold  11px Tahoma, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none;  padding:5px; color:#555656; }
+.badge2:hover{   }
+.badge3{ font:bold  11px Tahoma, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none;  padding:5px; color:#555656; }
+.badge3:hover{  }
+.badge4{ font:bold  11px Tahoma, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none; padding:5px; color:#555656; }
+.badge4:hover{   }
+.badge5{ font:bold 11px Tahoma, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none; padding:5px; color:#555656; }
+.badge5:hover{ }
+/* job type colours */
+
+/*categories comtainer*/
+#categorylist{width:190px; float:right; }
+#categorylist #categories{width:190px;  background-color:#0099CC; padding:5px 0px 5px 0px;}
+#categorylist #categories .top{height:47px; font: bold 14px Helvetica, Arial,sans-serif;line-height:47px; padding-left:20px; color:#000000;}
+#categorylist #categories .middle{}
+#categorylist #categories .middle ul{color:#000000; margin-bottom:15px;  }
+#categorylist #categories .middle li{  color:#FFFFFF; text-decoration:none; margin-left:20px;}
+#categorylist #categories .middle li a{background:url(../images/bluearrow.gif) no-repeat;  color:#FFFFFF; text-decoration:none; padding-left:15px; padding-top:5px;font: 13px Helvetica, Arial,sans-serif;line-height:24px;}
+#categorylist #categories .middle li a:hover {background:url(../images/bluearrow.gif) no-repeat;  text-decoration:underline;color:#000000; font:13px Helvetica, Arial,sans-serif;line-height:24px; }
+#categorylist #categories .bottom{height:12px;}
+.clear{clear:both;}
+
+/*ends*/
+#blockmenu{display:none;}
+#jobboard_pages{display:none;}
+.adminlinks{ text-align:right; font:bold 12px Arial, Helvetica, sans-serif; color:#000000; text-decoration:none;  width:660px; float:left; height:30px; padding-top:40px; text-align:right;}
+.adminlinks a{ text-align:right; font:bold 12px Arial, Helvetica, sans-serif; color:#000000; text-decoration:none; }
+.adminlinks a:hover{text-align:right; font:bold 12px Arial, Helvetica, sans-serif; color:#0099FF; text-decoration:underline;}
+#solidblockmenu{display:none;}
+
+.gobutton{ width:32px; height:32px; background:url(../images/go_button.gif); cursor:pointer;}
+
+
+
+
+

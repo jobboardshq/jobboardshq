@@ -1,0 +1,109 @@
+@charset "utf-8";
+/* CSS Document */
+body{ font:12px Arial, Helvetica, sans-serif; line-height:18px; }
+/*Main container*/
+a:link {	color: #4C3524; text-decoration:underline;}
+a:visited {	color: #4C3524;}
+a:hover {	color: #000000;}
+a:active {	color: #4C3524;}
+
+#main{width:100%; margin:0px auto;background:url(../images/template2_bg.gif) repeat-x; background-color:#E8E0D0;}
+#header{width:960px; margin:0px auto;}
+#logo{ width:300px; float:left; height:70px; padding-top:60px; }
+#logo .companyname{font:bold 24px Helvetica, Arial,sans-serif; line-height:24px; color:#EAB137; text-decoration:none;}
+#logo .companyname a{font:bold 24px Helvetica, Arial,sans-serif; line-height:24px; color:#EAB137; text-decoration:none;}
+#logo .companyname a:hover{font:bold 24px Helvetica, Arial,sans-serif; line-height:24px; color:#FFFFFF; text-decoration:underline;}
+#logo .tagline{font:14px Helvetica, Arial,sans-serif; line-height:18px; color:#FFFFFF; text-decoration:none;}
+#topnav{ width:660px; float:left; height:30px; padding-top:20px; text-align:right; display:none; }
+#topnav a{ text-align:right; color:#CC9900; text-decoration:none; padding:5px; }
+#topnav a:hover{  text-align:right; color:#FFFFFF; text-decoration:underline; }
+
+#searcharea{ clear:both; width:940px;font:bold 18px Helvetica, Arial,sans-serif;color:#4C3524;  margin:0px auto; background-image:url(../images/template2_searchbg.png); padding:25px 10px 25px 10px;}
+#searcharea #search{width:450px; float:left;font:bold 18px Helvetica, Arial,sans-serif;color:#4C3524; line-height:42px; vertical-align:middle;}
+#searcharea #search input{width:250px; padding:6px; border:1px solid #999999;}
+#searcharea #search img{}
+
+#searcharea #postjob{width:480px; float:right; font:14px; line-height:46px;}
+#searcharea #postjob p.text{width:270px; float:left;font:bold 14px Helvetica, Arial,sans-serif;color:#4C3524; line-height:46px; text-align:right;}
+#searcharea #postjob #button{width:193px; float:right;line-height:46px; background:url(../images/postjob_template2.png) no-repeat; height:46px; cursor:pointer;}
+#searcharea #postjob #button:hover{width:193px; float:right;line-height:46px; background:url(../images/postjob_template2_hover.png) no-repeat;height:46px;cursor:pointer;}
+
+#bodycontent{ width:960px; margin:0px auto; display:block; }
+#jobposts{width:760px; float:left;}
+#jobposts ul{ padding:0px; margin:0px;}
+#jobposts li{padding-left:10px;}
+.left_padding{padding-left:15px;}
+.top_padding{margin-top:10px;}
+.jobtext{ font:13px Arial, Helvetica, sans-serif; line-height:18px;color:#006666; text-decoration:underline; font-weight:bold;}
+.jobtext:hover{  font:13px  Arial, Helvetica, sans-serif; line-height:18px;color:#000000; text-decoration:underline;font-weight:bold;}
+.jobtype{ font:14px  Helvetica, Arial,sans-serif; line-height:18px;color:#333333; text-decoration:none;}
+.company{ font:12px  Helvetica, Arial,sans-serif; line-height:18px;color:#333333; text-decoration:none;}
+.date{padding-left:50px; color:#666666;}
+.apply_button{ width:52px; float:right; margin-top:5px; margin-right:5px;}
+.apply_button a{background:url(../images/apply_bg_temp2.png); width:52px; height:20px;font:11px Helvetica, Arial,sans-serif;color:#000000; text-decoration:none; text-align:center; line-height:20px; display:block;}
+.apply_button a:hover{background:url(../images/apply_bg_temp2_hover.png); width:52px; height:20px;font:11px Helvetica, Arial,sans-serif;color:#FFFFFF; text-decoration:none; text-align:center; line-height:20px;}
+.colorbg{background-color:#FAF7F2; font:11px Helvetica, Arial,sans-serif;line-height:32px; color:#000000; text-decoration:none; padding:5px; 0px 5px 0px;}
+.whitebg{background-color:#FFFFFF; font:11px Helvetica, Arial,sans-serif;line-height:32px; color:#000000; text-decoration:none; padding:5px; 0px 5px 0px;}
+
+#footer{ clear:both;width:100%;  border-top:1px solid #4C3524; padding:30px 0px 30px 0px; margin-top:20px; text-align:center; background-color:#4C3524; color:#AB7349;}
+#footer a{ color:#FFFFFF; text-decoration:underline;}
+#footer a:hover{ color:#FFCC00; text-decoration:underline;}
+
+
+/* job type colours */
+.badge1{ font:bold 11px Tahoma, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none; padding:5px; color:#555656;}
+.badge1:hover{  }
+.badge2{ font:bold  11px Tahoma, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none;  padding:5px; color:#555656; }
+.badge2:hover{   }
+.badge3{ font:bold  11px Tahoma, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none;  padding:5px; color:#555656; }
+.badge3:hover{  }
+.badge4{ font:bold  11px Tahoma, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none; padding:5px; color:#555656; }
+.badge4:hover{   }
+.badge5{ font:bold 11px Tahoma, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none; padding:5px; color:#555656; }
+.badge5:hover{ }
+/* job type colours */
+
+/*categories comtainer Template1*/
+#categorylist{width:190px; float:right; display:none; }
+#categorylist #categories{width:190px;  background-color:#0099CC; padding:5px 0px 5px 0px;}
+#categorylist #categories .top{height:47px; font: bold 14px Helvetica, Arial,sans-serif;line-height:47px; padding-left:20px; color:#000000;}
+#categorylist #categories .middle{}
+#categorylist #categories .middle ul{color:#000000; margin-bottom:15px;  }
+#categorylist #categories .middle li{  color:#FFFFFF; text-decoration:none; margin-left:20px;}
+#categorylist #categories .middle li a{background:url(../images/bluearrow.gif) no-repeat;  color:#FFFFFF; text-decoration:none; padding-left:15px; padding-top:5px;font: 13px Helvetica, Arial,sans-serif;line-height:24px;}
+#categorylist #categories .middle li a:hover {background:url(../images/bluearrow.gif) no-repeat;  text-decoration:underline;color:#000000; font:13px Helvetica, Arial,sans-serif;line-height:24px; }
+#categorylist #categories .bottom{height:12px;}
+.clear{clear:both;}
+/*ends*/
+
+
+
+/*Template 2 horizntal menu*/
+#solidblockmenu{width:960px; padding-top:5px; margin:0px auto; height:38px;}
+.solidblockmenu{margin: 0;padding: 0;float: left;font: bold 13px Arial;width: 100%;overflow: hidden;margin-bottom: 1em;border: 1px solid #625e00;border-width: 1px 0;background:url(../images/blockdefault.gif) center center repeat-x;}
+.solidblockmenu li{display: inline;}
+.solidblockmenu li a{float: left;color: white;padding: 9px 11px;text-decoration: none;border-right: 1px solid white;}
+.solidblockmenu li a:visited{color: white;}
+.solidblockmenu li a:hover, .solidblockmenu li .current{color: white;background:url(../images/blockactive.gif) center center repeat-x;}
+.clear{clear:both;}
+/*Template 2 horizntal menu*/
+
+/*categories comtainer*/
+#jobboard_pages{width:190px; float:right; }
+#jobboard_pages #pages{width:190px;  background-color:#3B2E24; padding:5px 0px 5px 0px;}
+#jobboard_pages #pages .top{height:47px; font: bold 14px Helvetica, Arial,sans-serif;line-height:47px; padding-left:20px; color:#FFFFFF;}
+#jobboard_pages #pages .middle{}
+#jobboard_pages #pages .middle ul{color:#000000; margin-bottom:15px;  }
+#jobboard_pages #pages .middle li{  color:#FFFFFF; text-decoration:none; margin-left:20px;}
+#jobboard_pages #pages .middle li a{background:url(../images/brownarrow.gif) no-repeat;  color:#FFFFFF; text-decoration:none; padding-left:15px; padding-top:5px;font: 13px Helvetica, Arial,sans-serif;line-height:24px;}
+#jobboard_pages #pages .middle li a:hover {background:url(../images/brownarrow.gif) no-repeat;  text-decoration:underline;color:#EAB717; font:13px Helvetica, Arial,sans-serif;line-height:24px; }
+#jobboard_pages #pages .bottom{height:12px;}
+.clear{clear:both;}
+
+.adminlinks{ text-align:right; font:bold 12px Arial, Helvetica, sans-serif; color:#FFFFFF; text-decoration:none;  width:660px; float:left; height:30px; padding-top:40px; text-align:right;}
+.adminlinks a{ text-align:right; font:bold 12px Arial, Helvetica, sans-serif; color:#FFFFFF; text-decoration:none; }
+.adminlinks a:hover{text-align:right; font:bold 12px Arial, Helvetica, sans-serif; color:#FFCC00; text-decoration:underline;}
+.gobutton{ width:32px; height:32px; background:url(../images/go_button_template2.png); cursor:pointer;}
+
+
+
