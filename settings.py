@@ -112,17 +112,17 @@ LOGIN_REDIRECT_URL = "/manage/"
 
 from localsettings import *
 
-#if DEBUG:
-#    try:
-#        INSTALLED_APPS = list(INSTALLED_APPS)
-#        INSTALLED_APPS.append('debug_toolbar')
-#        # INSTALLED_APPS.append('django_extensions')
-#        INSTALLED_APPS = tuple(INSTALLED_APPS)
-#        
-#        MIDDLEWARE_CLASSES = list(MIDDLEWARE_CLASSES)
-#        MIDDLEWARE_CLASSES.append('debug_toolbar.middleware.DebugToolbarMiddleware')
-#        MIDDLEWARE_CLASSES = tuple(MIDDLEWARE_CLASSES)
-#        
-#        DEBUG_TOOLBAR_CONFIG = {'INTERCEPT_REDIRECTS': False}   
-#    except:
-#        raise
+if DEBUG:
+    try:
+        INSTALLED_APPS = list(INSTALLED_APPS)
+        #INSTALLED_APPS.append('debug_toolbar')
+        INSTALLED_APPS.append('django_extensions')
+        INSTALLED_APPS = tuple(INSTALLED_APPS)
+        
+        #MIDDLEWARE_CLASSES = list(MIDDLEWARE_CLASSES)
+        #MIDDLEWARE_CLASSES.append('debug_toolbar.middleware.DebugToolbarMiddleware')
+        #MIDDLEWARE_CLASSES = tuple(MIDDLEWARE_CLASSES)
+        
+        DEBUG_TOOLBAR_CONFIG = {'INTERCEPT_REDIRECTS': False}   
+    except:
+        raise

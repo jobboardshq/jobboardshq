@@ -1,25 +1,31 @@
 {% load compress %}
+{% load thumbnail %}
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="icon" type="image/vnd.microsoft.icon" href="{{ MEDIA_URL }}favicon.ico" />
-<title>{% block title %} {{ board.name }} - {{ board_settings.tag_line }} {% endblock %}</title>
-<meta description="{{ board.description }}" />
-<meta keyword="{{ board_settings.keywords }}" />
 
-<link rel="alternate" type="application/rss+xml" title="{{ board.name }}" href="{% url frontend_feeds_jobs %}" />
-<link href="{{ MEDIA_URL }}frontend/css/reset.css" rel="stylesheet" type="text/css" />
-{% compress css %}
-<link href=<link href="css/template1.css" rel="stylesheet" type="text/css" />
-<link href="css/reset.css" rel="stylesheet" type="text/css" />
-{% endcompress %}
-<!--[if lt IE 7]>
-        <script type="text/javascript" src="{{ MEDIA_URL }}js/unitpngfix.js"></script>
-<![endif]-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="icon" type="image/vnd.microsoft.icon" href="{{ MEDIA_URL }}favicon.ico" />
+  <title>{% block title %} {{ board.name }} - {{ board_settings.tag_line }} {% endblock %}</title>
+  <meta description="{{ board.description }}" />
+  <meta keyword="{{ board_settings.keywords }}" />
+  
+  <link rel="alternate" type="application/rss+xml" title="{{ board.name }}" href="{% url frontend_feeds_jobs %}" />
+  
+  {% compress css %}
+  <link href="{{ MEDIA_URL }}frontend/css/template1.css" rel="stylesheet" type="text/css" />
+  <link href="{{ MEDIA_URL }}frontend/css/reset.css" rel="stylesheet" type="text/css" />
+  {% endcompress %}
+  
+  <!--[if lt IE 7]>
+		  <script type="text/javascript" src="{{ MEDIA_URL }}js/unitpngfix.js"></script>
+  <![endif]-->
 
 </head>
+
 <body>
+
 {% if not debug %}  
   <!-- ClickTale Top part -->
   <script type="text/javascript">
@@ -28,13 +34,12 @@
   <!-- ClickTale end of Top part -->
 {% endif %}
 
-{% load thumbnail %}
-<!--Wrapper-->
-<div id="frontend_wrapper">
+<!--Main container starts--> 
+<div id="main">
   <!--Header Starts-->
   <div id="header">
     <div id="logo"> 
-<span class="companyname">
+	  <span class="companyname">
 	  <a href="{% url frontend_index %}"> 
 		{% if board_settings.logo %} 
 		  <img src="{% thumbnail board_settings.logo 250x50 %}" alt="Job Boards Demo" /> 
@@ -42,16 +47,17 @@
 		  {{ board.name }}
 		{% endif %} 
 	  </a>
-</span><br/>
+	  </span>
+	  <br/>
  
 	  {% if not board_settings.logo %}<br/>
 		<span class="tagline">{{ board_settings.tag_line }}</span> 
 	  {% endif %} 
 	</div>
 	
-    <div id="frontend_topnav"> 
+    <div class="adminlinks"> 
 	  {% if user.is_authenticated %}
-		Welcome <span class="blacktext">{{ user.username }}</span></span> | 
+		Welcome <span class="blacktext">{% firstof user.get_full_name user.username %}</span></span> | 
 		{% if is_board_admin %}
 		  <a href="{% url zobpress_index %}">Admin</a> | 
 		{% endif %}
@@ -60,46 +66,62 @@
 		<a href="{% url auth_login %}">Login</a> | 
 	  {% endif %}
 	  <a href="{% url frontend_feeds_jobs %}">RSS </a>
-	   
 	</div>
+	   
+	<div id="topnav"> <a href="#">About Template1</a> | <a href="#">Why web based</a> | <a href="#">Contact Us</a></div>
+    </div>
     <!--Header ends-->
-    <!--Top Nav starts-->
-    <div class="clear"></div>
-  </div>
-  <!--Top Nav ends-->
+
   <!--Search bar starts-->
-  <div id="frontend_searchbar">
-    <div class="searchjobs">Search All Jobs :</div>
+  <div id="searcharea">
+	<div id="search">
     <form action="{% url frontend_search %}">
-      <div class="searchfield">
-        <input name="q" type="text" class="textfield"  id="textfield" value="Type your designation, skills" size="30" />
-      </div>
-      <div class="searchbutton">
-        <input type="submit" value="" class="searchinputbutton" />
-        </div>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td align="left" valign="middle">Search Jobs :</td>
+          <td width="270" align="left" valign="middle"><input name="q" class="textfield" value="Type your designation, skills" type="text" name="textfield" id="textfield" /></td>
+          <td align="left" valign="middle">
+            <input type="submit" value="" class="gobutton"></div>
+		  </td>
+        </tr>
+      </table>
     </form>
-    <div class="advancedsearch">| <a href="{% url frontend_advanced_search %}" class="searchlink">Advanced Search</a> </div>
+    </div>
+	
+	<div id="postjob"> 
+      <p class="text">Jobs are $300 for 30 days.</p> 
+      <div id="button"></div> 
+    </div> 
+    <div class="clear"></div> 
+    </div> 
+
+    <div class="advancedsearch">| <a href="{% url frontend_advanced_search %}" class="searchlink">Advanced Search</a>
+	</div>
     <a href="{% url frontend_addjob %}" >
     <div class="postjob"> </div>
-    </a> </div>
+    </a> 
+  </div>
   <!--Search bar ends-->
-  <!--content starts-->
-  <div id="frontend_content">
-    <!--left side panel starts here-->
+
+  <!--Template 2 categories starts-->
+  <div id="solidblockmenu">
+    <ul class="solidblockmenu">
+	  {% for category in categories %}
+	  <li> <a href="{% url frontend_category_jobs category.slug %}">{{ category }} ( {{ category.get_public_jobs.count }})</a> </li>
+	  {% endfor %}
+    </ul>
+    <br style="clear: left" />
+  </div>
+  <!--Template 2 categories ends-->
+<!--Header ends-->
+
+
+<!--Body starts-->
+  <div id="body_content">
+
+  <!--left side panel starts here-->
+
     <div id="leftpanel">
-      <!--categories panel starts here-->
-      <div id="categories">
-        <div class="top">Jobs by Category</div>
-        <div class="middle">
-          <ul>
-            {% for category in categories %}
-            <li> <a href="{% url frontend_category_jobs category.slug %}">{{ category }} ( {{ category.get_public_jobs.count }})</a> </li>
-            {% endfor %}
-          </ul>
-        </div>
-        <div class="bottom"></div>
-      </div>
-      <!--categories panel ends here-->
       <div id="explore">
         <div class="top">Explore</div>
         <div class="middle">
