@@ -11,12 +11,15 @@
 <link rel="alternate" type="application/rss+xml" title="{{ board.name }}" href="{% url frontend_feeds_jobs %}" />
 <link href="{{ MEDIA_URL }}frontend/css/reset.css" rel="stylesheet" type="text/css" />
 {% compress css %}
-<link href="{{ MEDIA_URL }}frontend/css/frontend.css" rel="stylesheet" type="text/css" />
+<link href=<link href="css/template1.css" rel="stylesheet" type="text/css" />
+<link href="css/reset.css" rel="stylesheet" type="text/css" />
 {% endcompress %}
-
+<!--[if lt IE 7]>
+        <script type="text/javascript" src="{{ MEDIA_URL }}js/unitpngfix.js"></script>
+<![endif]-->
 
 </head>
-<body class="frontend">
+<body>
 {% if not debug %}  
   <!-- ClickTale Top part -->
   <script type="text/javascript">
@@ -29,15 +32,18 @@
 <!--Wrapper-->
 <div id="frontend_wrapper">
   <!--Header Starts-->
-  <div id="header_frontendcontainer">
-    <div id="header_frontend"> 
+  <div id="header">
+    <div id="logo"> 
+<span class="companyname">
 	  <a href="{% url frontend_index %}"> 
 		{% if board_settings.logo %} 
 		  <img src="{% thumbnail board_settings.logo 250x50 %}" alt="Job Boards Demo" /> 
 		{% else %}
 		  {{ board.name }}
 		{% endif %} 
-	  </a> 
+	  </a>
+</span><br/>
+ 
 	  {% if not board_settings.logo %}<br/>
 		<span class="tagline">{{ board_settings.tag_line }}</span> 
 	  {% endif %} 

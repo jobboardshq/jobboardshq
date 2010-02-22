@@ -11,7 +11,7 @@ body{ font:12px Arial, Helvetica, sans-serif; line-height:18px; background:url(.
 #logo .companyname a{font:bold 24px Helvetica, Arial,sans-serif; line-height:24px; color:#EAB137; text-decoration:none;}
 #logo .companyname a:hover{font:bold 24px Helvetica, Arial,sans-serif; line-height:24px; color:#FFFFFF; text-decoration:underline;}
 #logo .tagline{font:14px Helvetica, Arial,sans-serif; line-height:18px; color:#FFFFFF; text-decoration:none;}
-#topnav{ width:660px; float:left; height:30px; padding-top:20px; text-align:right; }
+#topnav{ width:660px; float:left; height:30px; padding-top:20px; text-align:right; display:none; }
 #topnav a{ text-align:right; color:#FFFFFF; text-decoration:none; padding:5px; }
 #topnav a:hover{  text-align:right; color:#CC9900; text-decoration:underline; }
 
@@ -61,7 +61,7 @@ body{ font:12px Arial, Helvetica, sans-serif; line-height:18px; background:url(.
 /* job type colours */
 
 /*categories comtainer Template1*/
-#categorylist{width:200px; float:left;background:url(../images/categories_bottombg.gif);  padding-bottom:13px;}
+#categorylist{width:200px; float:left;background:url(../images/categories_bottombg.gif) bottom left;  padding-bottom:12px;}
 #frontend_content{width:960px; margin:0px auto; }
 #frontend_content #leftpanel{width:180px; float:left; margin:10px 0px 0px 0px;}
 /*categories comtainer*/
@@ -73,6 +73,21 @@ body{ font:12px Arial, Helvetica, sans-serif; line-height:18px; background:url(.
 #categories .middle li a{line-height:24px;  color:#000000; text-decoration:none;}
 #categories .middle li a:hover {line-height:24px;  text-decoration:underline;color:#CC0000;  }
 #categories .bottom{background:url(../images/categories_bottombg.gif) top left; height:12px;}
+/*ends*/
+
+/*categories comtainer Template1*/
+#pages{width:200px; float:left;background:url(../images/categories_bottombg.gif) bottom left;  padding-bottom:12px; margin-top:15px;}
+#frontend_content{width:960px; margin:0px auto; }
+#frontend_content #leftpanel{width:180px; float:left; margin:10px 0px 0px 0px;}
+/*categories comtainer*/
+#pages{width:200px;}
+#pages .top{ height:47px; font: bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;line-height:47px; padding-left:20px; color:#A10000; background:url(../images/categories_topbg.gif);}
+#pages .middle{ clear:both; }
+#pages .middle ul{color:#000000;  }
+#pages .middle li{background:url(../images/template3_list.gif) no-repeat; line-height:24px; padding-left:35px; color:#000000; text-decoration:none; }
+#pages .middle li a{line-height:24px;  color:#000000; text-decoration:none;}
+#pages .middle li a:hover {line-height:24px;  text-decoration:underline;color:#CC0000;  }
+#pages .bottom{background:url(../images/categories_bottombg.gif) top left; height:12px;}
 /*ends*/
 
 
@@ -106,3 +121,8 @@ body{ font:12px Arial, Helvetica, sans-serif; line-height:18px; background:url(.
 .bold{font-weight:bold;}
 #frontend_content #leftpanel #newsletter{width:150px; margin:10px 0px 0px 0px; height:83px; background:url(../images/email_bg.png) no-repeat; padding:110px 25px 0px 25px; text-align:center;}
 .newsletter_textfield{margin-bottom:5px; border:1px solid #630000; padding:3px;}
+
+#pagenation{font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#FFFFFF; text-decoration:none; text-align:right; padding:15px 0px 0px 0px; }
+#pagenation a{font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#FFFFFF; text-decoration:none; background-color:#A10000; padding:2px 4px 2px 4px;}
+#pagenation a:hover{font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#FFFFFF; text-decoration:none; background-color:#000000;padding:2px 4px 2px 4px;}
+.panelleft{width:200px; float:left;}
