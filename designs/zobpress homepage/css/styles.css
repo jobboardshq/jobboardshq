@@ -163,3 +163,38 @@ blockquote {font:12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; marg
 
 
 .helptext{font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#333333;}
+
+
+/*Banner styles ends*/
+
+#landingpage
+{
+width:960px;
+margin:0px auto;
+padding-top:20px;
+}
+#landingpage #left
+{
+width:486px;
+height:532px;
+float:left;
+background:url(../images/landingpage_features.gif) no-repeat;
+}
+#landingpage #right
+{
+width:446px;
+height:532px;
+float:left;
+margin-left:25px;
+background:url(../images/landing_register_top.gif) no-repeat;
+}
+.middle{
+background-color:#FFFFFF;
+margin-top:68px;
+height:430px;
+}
+
+.bottom{
+background:url(../images/landing_registerbottom.gif) no-repeat;
+height:21px;
+}
