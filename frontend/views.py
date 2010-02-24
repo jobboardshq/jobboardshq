@@ -19,11 +19,17 @@ def index(request, category_slug = None, job_type_slug = None):
     category = board.category_set.all()
     pages = board.page_set.all()
     jobs = board.job_set.all().filter(is_active=True, is_deleted=False)
+    job_types = board.jobtype_set.filter(is_deleted=False)
     if category_slug:
         jobs = jobs.filter(category__slug = category_slug)
     if job_type_slug:
         jobs = jobs.filter(job_type__slug = job_type_slug)
-    return render_to_response("frontend/index.html", {"category":category, "pages": pages, "jobs": jobs}, RequestContext(request))
+    return render_to_response("frontend/index.html", 
+                              {"category":category,
+                               "pages": pages,
+                               "jobs": jobs,
+                               'job_types':job_types},
+                              RequestContext(request))
 
 @ensure_has_board
 def addjob(request):

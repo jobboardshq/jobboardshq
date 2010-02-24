@@ -4,8 +4,8 @@
 
 
 {% block content %}
-
 <!--job posts starts here-->
+
 <div id="jobposts">
   <ul>
   {% for job in jobs %}
@@ -26,9 +26,10 @@
 	<div class="clear"></div> 
 	<div id="pagenation"> {% paginate %} </div>
 </div> 
-<!--job posts ends here--> 
-  
-  
+
+<!--job posts ends here-->  
+{% endblock %}
+
 
 	
 	
@@ -37,7 +38,6 @@
 	
 	
 {% comment %}
-	
 <div class="middle">
           {% for job in jobs %}
           <tr class="{% cycle 'colorbg' 'whitebg' %}">
@@ -56,9 +56,6 @@
   <div id="pagenation"> {% paginate %} </div>
 </div>
 {% endcomment %}
-
-{% endblock %}
-
 
 
 

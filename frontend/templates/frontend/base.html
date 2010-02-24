@@ -56,7 +56,7 @@
 	
     <div class="adminlinks"> 
 	  {% if user.is_authenticated %}
-		Welcome <span class="blacktext">{% firstof user.get_full_name user.username %}</span></span> | 
+		Welcome <span class="blacktext">{% firstof user.get_full_name user.username %}</span> | 
 		{% if is_board_admin %}
 		  <a href="{% url zobpress_index %}">Admin</a> | 
 		{% endif %}
@@ -76,50 +76,45 @@
 	</div>
     
   </div>
-  <!--Header ends-->
 
-  <!--Search bar starts-->
-  <div id="searcharea">
-	<div id="frontend_searchbar">
-	<div class="searchjobs">Search All Jobs :</div>
-    <form action="{% url frontend_search %}">
-		<div class="searchfield">
-		  <input name="q" class="textfield" value="Type your designation, skills" type="text" name="textfield" id="textfield" />
+	<!--Search bar starts-->
+	<div id="searcharea">
+		<div id="frontend_searchbar">
+	  		<div class="searchjobs">Search All Jobs :</div>
+	  		<form action="{% url frontend_search %}">
+		  		<div class="searchfield">
+					<input name="q" class="textfield" value="Type your designation, skills" type="text" name="textfield" id="textfield" size=30/>
+		  		</div>
+			  	<img src="{{MEDIA_URL}}frontend/images/search_but.png" value="" class="searchbutton" />
+	  		</form>
+		  <div class="advancedsearch">| <a href="{% url frontend_advanced_search %}" class="searchlink">Advanced Search</a>
+		  </div>
+		  <a href="{% url frontend_addjob %}">
+	       <div class="postjob"></div>
+		  </a>
 		</div>
-            <img src="{{MEDIA_URL}}frontend/images/search_button.gif" value="" class="gobutton"></div>
-		  </td>
-        </tr>
-      </table>
-    </form>
-    </div>
-	
-	<div id="postjob"> 
-      <p class="text">Jobs are $300 for 30 days.</p> 
-      <div id="button"></div> 
-    </div> 
-    <div class="clear"></div> 
-    </div> 
+  	</div>
+  	<!--Search bar ends-->
 
-    <div class="advancedsearch">| <a href="{% url frontend_advanced_search %}" class="searchlink">Advanced Search</a>
-	</div>
-    <a href="{% url frontend_addjob %}" >
-    <div class="postjob"> </div>
-    </a> 
-  </div>
-  <!--Search bar ends-->
+	  <div id="postjob"> 
+	      <p class="text">Jobs are $300 for 30 days.</p> 
+	      <div id="button"></div> 
+		  <div class="clear"></div>
+	  </div> 
 
   <!--Template 2 categories starts-->
+  <!-- Job types here-->
   <div id="solidblockmenu">
     <ul class="solidblockmenu">
-	  {% for category in categories %}
-	  <li> <a href="{% url frontend_category_jobs category.slug %}">{{ category }} ( {{ category.get_public_jobs.count }})</a> </li>
+	  {% for category in job_types %}
+	  <li> <a href="{% url frontend_job_type_jobs category.slug %}">{{ category }} </a> </li>
 	  {% endfor %}
     </ul>
     <br style="clear: left" />
   </div>
+  <!--Job types here-->
   <!--Template 2 categories ends-->
 <!--Header ends-->
-
 
 <!--Body starts-->
   <div id="body_content">
@@ -127,6 +122,41 @@
 	{% block content %}
 	{% endblock %}
 	
+	<div class="panelleft">
+    	
+	<!--categories here-->
+	<div id="categorylist">
+      <div id="categories">
+	        <div class="middle">
+	          <div class="top">CATEGORIES</div>
+	          <ul>
+	          	{% for category in categories %}
+	            <li><a href="{% url frontend_category_jobs category.slug %}">{{ category }}( {{ category.get_public_jobs.count }})</a></li>
+				{% endfor %}
+	          </ul>
+	        </div>
+	      </div>
+	</div>
+	<!--categories end here-->
+		
+	<br/>
+    <br/>
+    <div class="clear"></div>
+    <br/>
+  
+			
+    <!--newsletter-->
+    <div id="newsletterpanel">
+      <div>
+        <input name="textfield2" type="text" class="newsletter_textfield" id="textfield2" />
+      </div>
+      <div>
+      	<form method="post" action="">
+      	<img src="{{MEDIA_URL}}frontend/images/submit_btn.png" alt="Submit" width="81" height="28" /></a></div>
+		</form>
+    </div>
+    <!--newsletter-->
+	</div>
 	{% include "frontend/footer.html" %}
   </div>
 
