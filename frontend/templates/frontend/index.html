@@ -11,11 +11,15 @@
   {% for job in jobs %}
 	<li class="whitebg">
 	  <a href="{{ job.get_absolute_url }}" class="jobtext">{{ job.name }}</a>
-	  {% if job.company %}
-	  at <span class="company">{{job.company}}</span>
-	  {% else %}
-	  <a href="{% url frontend_job_type_jobs job.job_type.slug %}" class="badge1">{{ job.job_type }} </a>
+
+	  {% if job.company or job.location %}
+	  at <span class="company">{% firstof job.company job.location %}</span>
 	  {% endif %}
+	  
+	  {% comment %}	
+	  <a href="{% url frontend_job_type_jobs job.job_type.slug %}" class="badge1">{{ job.job_type }} </a>
+	  {% endcomment %}
+	  
 	  <span class="apply_button"><a href="#">Apply</a></span></li>
 	{% empty %}
 	<li>

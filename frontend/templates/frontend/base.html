@@ -14,8 +14,8 @@
   <link rel="alternate" type="application/rss+xml" title="{{ board.name }}" href="{% url frontend_feeds_jobs %}" />
   
   {% compress css %}
-  <link href="{{ MEDIA_URL }}frontend/css/template1.css" rel="stylesheet" type="text/css" />
   <link href="{{ MEDIA_URL }}frontend/css/reset.css" rel="stylesheet" type="text/css" />
+  <link href="{{ MEDIA_URL }}frontend/css/template2.css" rel="stylesheet" type="text/css" />
   {% endcompress %}
   
   <!--[if lt IE 7]>
@@ -83,25 +83,25 @@
 	  		<div class="searchjobs">Search All Jobs :</div>
 	  		<form action="{% url frontend_search %}">
 		  		<div class="searchfield">
-					<input name="q" class="textfield" value="Type your designation, skills" type="text" name="textfield" id="textfield" size=30/>
+					<input name="q" class="textfield" value="Type your designation, skills" type="text" name="textfield" id="textfield" size=30 />
 		  		</div>
 			  	<img src="{{MEDIA_URL}}frontend/images/search_but.png" value="" class="searchbutton" />
 	  		</form>
 		  <div class="advancedsearch">| <a href="{% url frontend_advanced_search %}" class="searchlink">Advanced Search</a>
 		  </div>
 		  <a href="{% url frontend_addjob %}">
-	       <div class="postjob"></div>
+	       <div class="postjob">$300 for 30 days</div>
 		  </a>
 		</div>
   	</div>
   	<!--Search bar ends-->
 
 	  <div id="postjob"> 
-	      <p class="text">Jobs are $300 for 30 days.</p> 
 	      <div id="button"></div> 
 		  <div class="clear"></div>
 	  </div> 
-
+</div>
+  
   <!--Template 2 categories starts-->
   <!-- Job types here-->
   <div id="solidblockmenu">
@@ -117,7 +117,7 @@
 <!--Header ends-->
 
 <!--Body starts-->
-  <div id="body_content">
+  <div id="bodycontent">
   
 	{% block content %}
 	{% endblock %}
@@ -145,7 +145,7 @@
     <br/>
   
 			
-    <!--newsletter-->
+    <!--newsletter start-->
     <div id="newsletterpanel">
       <div>
         <input name="textfield2" type="text" class="newsletter_textfield" id="textfield2" />
@@ -155,8 +155,12 @@
       	<img src="{{MEDIA_URL}}frontend/images/submit_btn.png" alt="Submit" width="81" height="28" /></a></div>
 		</form>
     </div>
-    <!--newsletter-->
 	</div>
+    <!--newsletter end-->
+	
+	
+	</div>
+	<!--left panel ends here-->
 	{% include "frontend/footer.html" %}
   </div>
 
