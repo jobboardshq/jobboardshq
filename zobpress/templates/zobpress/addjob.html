@@ -22,9 +22,9 @@
 <div class="post"> <br />
   <form action="." method="post" enctype="multipart/form-data">
     <div class="form">
-	  <fieldset>
+	  <fieldset class="addjob">
 	  <legend class="legendfront">Job Details</legend>
-      <table border="0" cellpadding="0" cellspacing="0" >
+      <table border="0" cellpadding="0" cellspacing="5" >
         {% for field in  job_static_form.visible_fields %}
         
         {% if field.errors %}
@@ -38,14 +38,14 @@
         </tr>
         <tr>
           <td width="250" align="left" valign="middle"> {{ field.label_tag }} :</td>
-          <td align="left" valign="top"> {{ field }}
-            {% if field.help_text %}<span class="help">{{ field.help_text }} :</span>{% endif %} </td>
+          <td align="left" valign="top" class="textfield"> {{ field }}
+            <br/>{% if field.help_text %}<span class="help">{{ field.help_text }} :</span>{% endif %} </td>
         </tr>
         {% endfor %}
         {% for field in form %}
         <tr>
           <td width="200" align="left" valign="middle"> {{ field.label_tag }} : </td>
-          <td align="left" valign="top"> {{field}}        {% if field.errors %} <span class="errorlist"> {% for error in field.errors %}
+          <td align="left" valign="top" class="textfield"> {{field}}      <br/>   {% if field.errors %} <span class="errorlist"> {% for error in field.errors %}
             {{ error }}
             {% endfor %} </span> {% endif %} 
             {% if field.help_text %}<span class="help">{{ field.help_text }}</span>{% endif %} </td>
@@ -55,13 +55,13 @@
 	  </table>
 	  </fieldset>
         
-	  <fieldset>
+	  <fieldset class="addjob">
 	  <legend class="legendfront">Contact Details</legend>
-	  <table>
+	  <table cellspacing="5">
         {% for field in job_contact_form %}
         <tr>
-          <td width="200" align="left" valign="middle"> {{ field.label_tag }} : </td>
-          <td align="left" valign="top"> {{field}}        {% if field.errors %} <span class="errorlist"> {% for error in field.errors %}
+          <td width="150" align="left" valign="middle"> {{ field.label_tag }} : </td>
+          <td align="left" valign="top" class="textfield"> {{field}}        {% if field.errors %} <span class="errorlist"> {% for error in field.errors %}
             {{ error }}
             {% endfor %} </span> {% endif %} 
             
@@ -70,7 +70,7 @@
         <div class="clear"></div>
         {% endfor %}
       </table>
-	  </fieldset>
+	  </fieldset >
       <div align="center"  style="width:350px; padding-top:10px;">
         <input type="submit" value="Submit" name="submit" class="apply" />
       </div>

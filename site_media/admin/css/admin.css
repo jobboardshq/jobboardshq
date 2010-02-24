@@ -106,3 +106,5 @@ p.admin{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; c
 .tagline{ font:14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#FFFFFF; text-decoration:none;}
 .redbutton{width:113px ; height:31px; border:none; background:url(../images/submit_button.png); cursor:pointer; color:#FFFFFF;font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif; text-align:center; display:block; line-height:30px;}
 .redbutton:hover{width:113px ; height:31px; border:none; background:url(../images/submit_button_r.png); cursor:pointer;  color:#FFFFFF;font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif;text-align:center;display:block; line-height:30px;}
+fieldset{border:1px solid #E9D4B7;}
+fieldset.addjob input{border:none;}
