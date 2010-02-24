@@ -63,7 +63,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "zobpress.context_processor.populate_board",
     )
 
-HAYSTACK_SITECONF = 'uswaretech_zobpress.search_sites'
+HAYSTACK_SITECONF = 'search_sites'
 HAYSTACK_SEARCH_ENGINE = 'whoosh'
 HAYSTACK_WHOOSH_PATH = (os.path.join(os.path.dirname(__file__), 'search_index/'))
 
