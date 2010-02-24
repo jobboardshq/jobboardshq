@@ -18,12 +18,12 @@ a:active {	color: #0099CC;}
 #topnav a{ text-align:right; color:#000000; text-decoration:none; padding:5px; }
 #topnav a:hover{  text-align:right; color:#0099CC; text-decoration:underline; }
 
-#searcharea{ clear:both; width:960px; border-top:1px solid #0099CC; border-bottom:1px solid #0099CC;font:bold 18px Helvetica, Arial,sans-serif;color:#666666; padding:25px 0px 25px 0px; margin:0px auto;}
-#searcharea #search{width:450px; float:left;font:bold 18px Helvetica, Arial,sans-serif;color:#666666; line-height:42px; vertical-align:middle;}
+#searcharea{ clear:both; width:960px; border-top:1px solid #0099CC; border-bottom:1px solid #0099CC;font:bold 18px Helvetica, Arial,sans-serif;color:#666666; padding:5px 0px 5px 0px; margin:0px auto;}
+#searcharea #search{width:650px; float:left;font:bold 18px Helvetica, Arial,sans-serif;color:#666666; line-height:42px; vertical-align:middle;}
 #searcharea #search input{width:250px; padding:6px; border:1px solid #999999;}
 #searcharea #search img{}
 
-#searcharea #postjob{width:480px; float:right; font:14px; line-height:46px;}
+#searcharea #postjob{width:280px; float:right; font:14px; line-height:46px;}
 #searcharea #postjob p.text{width:270px; float:left;font:bold 14px Helvetica, Arial,sans-serif;color:#666666; line-height:46px; text-align:right;}
 #searcharea #postjob #button{width:193px; float:right;line-height:46px; background:url(../images/postjob_template1.gif) no-repeat; height:46px; cursor:pointer;}
 #searcharea #postjob #button:hover{width:193px; float:right;line-height:46px; background:url(../images/postjob_template1_r.gif) no-repeat;height:46px;cursor:pointer;}
@@ -98,4 +98,21 @@ a:active {	color: #0099CC;}
 #pages .middle li a:hover {line-height:24px;  text-decoration:underline;color:#CC0000;  }
 #pages .bottom{background:url(../images/categories_bottombg.gif) top left; height:12px;}
 
+#newsletterpanel{width:190px; height:85px; float:right; background-image:url(../images/email_bg.png); background-repeat:no-repeat;padding:110px 0px 0px 0px; text-align:center;}
 
+.advanced{font: bold 12px Arial, Helvetica, sans-serif; color:#0066FF; text-decoration:none;}
+.advanced:hover{font: bold 12px Arial, Helvetica, sans-serif; color:#000000; text-decoration:underline;}
+
+#frontend_searchbar{ clear:both; margin:0px auto; width:960px; height:83px;}
+#frontend_searchbar .searchjobs{ width:106px; height:83px; float:left;font: 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;line-height:83px; color:#682C00;}
+
+#frontend_searchbar .searchfield{width:230px; height:56px; float:left; padding-top:27px;}
+#frontend_searchbar .textfield{border:1px solid #C8AC84; padding:5px;}
+#frontend_searchbar .searchbutton{width:103px; height:35px; float:left; margin-top:25px; background-image:url(../images/search_but.png); background-repeat:no-repeat; cursor:pointer; margin-right:10px;}
+#frontend_searchbar .searchbutton:hover{width:103px; height:35px; float:left; margin-top:25px; background-image:url(../images/search_but.png); background-repeat:no-repeat;cursor:pointer; margin-right:10px;}
+
+#frontend_searchbar .advancedsearch{width:176px; height:83px; float:left;}
+.searchlink{font: bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;line-height:83px; color:#A10000; text-decoration:none;}
+.searchlink:hover{font: bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;line-height:83px; color:#000000; text-decoration:underline;}
+#frontend_searchbar .postjob{width:234px; height:51px; float:right; margin-top:15px; position:relative; background:url(../images/post_job_buttonnew.png) no-repeat; cursor:pointer;}
+#frontend_searchbar .postjob:hover{width:234px; height:51px; float:right; margin-top:15px; position:relative; background:url(../images/post_job_buttonnew.png) no-repeat 0 -51px;}
