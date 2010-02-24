@@ -38,21 +38,20 @@
 <div id="main">
   <!--Header Starts-->
   <div id="header">
+    
     <div id="logo"> 
-	  <span class="companyname">
-	  <a href="{% url frontend_index %}"> 
 		{% if board_settings.logo %} 
+		  <a href="{% url frontend_index %}">
 		  <img src="{% thumbnail board_settings.logo 250x50 %}" alt="Job Boards Demo" /> 
+		  </a>
 		{% else %}
+		<span class="companyname">
+		  <a href="{% url frontend_index %}">
 		  {{ board.name }}
-		{% endif %} 
-	  </a>
-	  </span>
-	  <br/>
- 
-	  {% if not board_settings.logo %}<br/>
+		  </a>
+	    </span><br/>
 		<span class="tagline">{{ board_settings.tag_line }}</span> 
-	  {% endif %} 
+		{% endif %} 
 	</div>
 	
     <div class="adminlinks"> 
@@ -68,20 +67,26 @@
 	  <a href="{% url frontend_feeds_jobs %}">RSS </a>
 	</div>
 	   
-	<div id="topnav"> <a href="#">About Template1</a> | <a href="#">Why web based</a> | <a href="#">Contact Us</a></div>
-    </div>
-    <!--Header ends-->
+	<div id="topnav"> 
+  	  {% for page in pages %}
+		<a href="{{ page.get_absolute_url }}">{{ page }}</a> |
+	  {% empty %}
+		<p>No pages</p>
+	  {% endfor %}
+	</div>
+    
+  </div>
+  <!--Header ends-->
 
   <!--Search bar starts-->
   <div id="searcharea">
-	<div id="search">
+	<div id="frontend_searchbar">
+	<div class="searchjobs">Search All Jobs :</div>
     <form action="{% url frontend_search %}">
-      <table width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-          <td align="left" valign="middle">Search Jobs :</td>
-          <td width="270" align="left" valign="middle"><input name="q" class="textfield" value="Type your designation, skills" type="text" name="textfield" id="textfield" /></td>
-          <td align="left" valign="middle">
-            <input type="submit" value="" class="gobutton"></div>
+		<div class="searchfield">
+		  <input name="q" class="textfield" value="Type your designation, skills" type="text" name="textfield" id="textfield" />
+		</div>
+            <img src="{{MEDIA_URL}}frontend/images/search_button.gif" value="" class="gobutton"></div>
 		  </td>
         </tr>
       </table>
@@ -118,48 +123,12 @@
 
 <!--Body starts-->
   <div id="body_content">
-
-  <!--left side panel starts here-->
-
-    <div id="leftpanel">
-      <div id="explore">
-        <div class="top">Explore</div>
-        <div class="middle">
-          <ul>
-            {% for page in pages %}
-            <li> <a href="{{ page.get_absolute_url }}">{{ page }}</a> </li>
-            {% empty %}
-            <li>
-              <p>No pages</p>
-            </li>
-            {% endfor %}
-          </ul>
-        </div>
-        <div class="bottom"></div>
-      </div>
-      <div id="newsletter">
-        <form action="{% url emailsubs_index %}" method="post">
-          <div>
-            <input name="email" type="text" class="newsletter_textfield" id="textfield2" />
-          </div>
-          <div> <a href="#">
-            <input type="submit" value="" class="subscribebutton" />
-            </a></div>
-        </form>
-      </div>
-    </div>
-    <!--left side panel starts here-->
-    <!--Job Posts stats here-->
-    <div id="rightpanel">
-      <div class="top"></div>
-      <div class="middle">{% block content %}{% endblock %} </div>
-      <div class="bottom"></div>
-    </div>
-    <!--job posts ends here-->
+  
+	{% block content %}
+	{% endblock %}
+	
+	{% include "frontend/footer.html" %}
   </div>
-  <div class="clear"></div>
-  <!--content ends-->
-  {% include "frontend/footer.html" %} </div>
 
 
 {% compress js %}

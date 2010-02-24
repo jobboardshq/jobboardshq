@@ -1,25 +1,44 @@
 {% extends "frontend/base.html" %}
 {% load pagination_tags %}
-{% autopaginate jobs 2 %}
+{% autopaginate jobs 10 %}
+
+
 {% block content %}
+
+<!--job posts starts here-->
+<div id="jobposts">
+  <ul>
+  {% for job in jobs %}
+	<li class="whitebg">
+	  <a href="{{ job.get_absolute_url }}" class="jobtext">{{ job.name }}</a>
+	  {% if job.company %}
+	  at <span class="company">{{job.company}}</span>
+	  {% else %}
+	  <a href="{% url frontend_job_type_jobs job.job_type.slug %}" class="badge1">{{ job.job_type }} </a>
+	  {% endif %}
+	  <span class="apply_button"><a href="#">Apply</a></span></li>
+	{% empty %}
+	<li>
+	  <p>No active jobs as of now.</p>
+	</li>
+  {% endfor %}
+  </ul>
+	<div class="clear"></div> 
+	<div id="pagenation"> {% paginate %} </div>
+</div> 
+<!--job posts ends here--> 
+  
+  
+
+	
+	
+	
+	
+	
+	
+{% comment %}
+	
 <div class="middle">
-  <table width="100%" border="0" cellspacing="0" cellpadding="0">
-    <tr>
-      <td><table width="723" border="0" align="center" cellpadding="3" cellspacing="0">
-          <tr>
-            <td width="140" align="left" class="title"><span class="left_padding">Type</span></td>
-            <td width="304" align="left" class="title">Most Recent Job Offers</td>
-            <td width="130" align="left" class="title">Category</td>
-            <td width="80" align="left" class="title">Posted On</td>
-            <td align="left">&nbsp;</td>
-          </tr>
-        </table></td>
-    </tr>
-    <tr>
-      <td class="border"></td>
-    </tr>
-    <tr>
-      <td><table width="723" border="0" align="center" cellpadding="3" cellspacing="0">
           {% for job in jobs %}
           <tr class="{% cycle 'colorbg' 'whitebg' %}">
             <td width="130" align="left" ><span class="left_padding"> <a href="{% url frontend_job_type_jobs job.job_type.slug %}" class="badge1">{{ job.job_type }} </a></span> </td>
@@ -36,4 +55,16 @@
   </table>
   <div id="pagenation"> {% paginate %} </div>
 </div>
+{% endcomment %}
+
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
