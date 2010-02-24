@@ -1,0 +1,128 @@
+@charset "utf-8";
+/* CSS Document */
+body{ font:12px Arial, Helvetica, sans-serif; line-height:18px; background:url(../images/template3_bg.gif) repeat-x; }
+/*Main container*/
+
+
+#main{width:100%; margin:0px auto;background-color:#FFFFFF; background:url(../images/template3_bg.gif) repeat-x;}
+#header{width:960px; margin:0px auto; height:160px;}
+#logo{ width:300px; float:left; height:70px; padding-top:30px; }
+#logo .companyname{font:bold 24px Helvetica, Arial,sans-serif; line-height:24px; color:#EAB137; text-decoration:none;}
+#logo .companyname a{font:bold 24px Helvetica, Arial,sans-serif; line-height:24px; color:#EAB137; text-decoration:none;}
+#logo .companyname a:hover{font:bold 24px Helvetica, Arial,sans-serif; line-height:24px; color:#FFFFFF; text-decoration:underline;}
+#logo .tagline{font:14px Helvetica, Arial,sans-serif; line-height:18px; color:#FFFFFF; text-decoration:none;}
+#topnav{ width:660px; float:left; height:30px; padding-top:20px; text-align:right; display:none; }
+#topnav a{ text-align:right; color:#FFFFFF; text-decoration:none; padding:5px; }
+#topnav a:hover{  text-align:right; color:#CC9900; text-decoration:underline; }
+
+#searcharea{ clear:both; width:940px;font:bold 18px Helvetica, Arial,sans-serif;color:#4C3524;  margin:0px auto;; padding:25px 10px 25px 10px;}
+#searcharea #search{width:450px; float:left;font:bold 18px Helvetica, Arial,sans-serif;color:#A10000; line-height:42px; vertical-align:middle;}
+#searcharea #search input{width:250px; padding:6px; border:1px solid #999999;}
+#searcharea #search img{}
+
+#searcharea #postjob{width:480px; float:right; font:14px; line-height:46px;}
+#searcharea #postjob p.text{width:270px; float:left;font:bold 14px Helvetica, Arial,sans-serif;color:#4C3524; line-height:46px; text-align:right;}
+#searcharea #postjob #button{width:193px; float:right;line-height:46px; background:url(../images/postjob_template3.png) no-repeat; height:46px; cursor:pointer;}
+#searcharea #postjob #button:hover{width:193px; float:right;line-height:46px; background:url(../images/postjob_template3_r.png) no-repeat;height:46px;cursor:pointer;}
+
+#bodycontent{ width:960px; margin:0px auto; display:block; }
+#jobposts{width:750px; float:right;}
+#jobposts ul{ padding:0px; margin:0px;}
+#jobposts li{padding-left:10px;}
+.left_padding{padding-left:15px;}
+.top_padding{margin-top:10px;}
+.jobtext{ font:bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; line-height:18px;color:#A10000; text-decoration:none; font-weight:bold;}
+.jobtext:hover{   font:bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; line-height:18px;color:#000000; text-decoration:underline;font-weight:bold;}
+.jobtype{ font:14px  Helvetica, Arial,sans-serif; line-height:18px;color:#333333; text-decoration:none;}
+.company{ font:12px  Helvetica, Arial,sans-serif; line-height:18px;color:#333333; text-decoration:none;}
+.date{padding-left:50px; color:#666666;}
+.apply_button{ width:52px; float:right; margin-top:5px; margin-right:5px;}
+.apply_button a{background:url(../images/apply_bg.png); width:52px; height:20px;font:11px Helvetica, Arial,sans-serif;color:#000000; text-decoration:none; text-align:center; line-height:20px; display:block;}
+.apply_button a:hover{background:url(../images/apply_bg_temp2_hover.png); width:52px; height:20px;font:11px Helvetica, Arial,sans-serif;color:#FFFFFF; text-decoration:none; text-align:center; line-height:20px;}
+.colorbg{background-color:#FAF7F2; font:11px Helvetica, Arial,sans-serif;line-height:32px; color:#000000; text-decoration:none; padding:5px; 0px 5px 0px;}
+.whitebg{background-color:#FFFFFF; font:11px Helvetica, Arial,sans-serif;line-height:32px; color:#000000; text-decoration:none; padding:5px; 0px 5px 0px;}
+
+#footer{ clear:both;width:100%;  border-top:1px solid #4C3524; padding:30px 0px 30px 0px; margin-top:20px; text-align:center; background-color:#000000; color:#FFFFFF;}
+#footer a{ color:#FFFFFF; text-decoration:underline;}
+#footer a:hover{ color:#FFCC00; text-decoration:underline;}
+
+
+/* job type colours */
+.badge1{ font:bold 11px Tahoma, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none; padding:5px; color:#555656;}
+.badge1:hover{  }
+.badge2{ font:bold  11px Tahoma, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none;  padding:5px; color:#555656; }
+.badge2:hover{   }
+.badge3{ font:bold  11px Tahoma, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none;  padding:5px; color:#555656; }
+.badge3:hover{  }
+.badge4{ font:bold  11px Tahoma, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none; padding:5px; color:#555656; }
+.badge4:hover{   }
+.badge5{ font:bold 11px Tahoma, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none; padding:5px; color:#555656; }
+.badge5:hover{ }
+/* job type colours */
+
+/*categories comtainer Template1*/
+#categorylist{width:200px; float:left;background:url(../images/categories_bottombg.gif) bottom left;  padding-bottom:12px;}
+#frontend_content{width:960px; margin:0px auto; }
+#frontend_content #leftpanel{width:180px; float:left; margin:10px 0px 0px 0px;}
+/*categories comtainer*/
+#categories{width:200px;}
+#categories .top{ height:47px; font: bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;line-height:47px; padding-left:20px; color:#A10000; background:url(../images/categories_topbg.gif);}
+#categories .middle{ clear:both; }
+#categories .middle ul{color:#000000;  }
+#categories .middle li{background:url(../images/template3_list.gif) no-repeat; line-height:24px; padding-left:35px; color:#000000; text-decoration:none; }
+#categories .middle li a{line-height:24px;  color:#000000; text-decoration:none;}
+#categories .middle li a:hover {line-height:24px;  text-decoration:underline;color:#CC0000;  }
+#categories .bottom{background:url(../images/categories_bottombg.gif) top left; height:12px;}
+/*ends*/
+
+/*categories comtainer Template1*/
+#pages{width:200px; float:left;background:url(../images/categories_bottombg.gif) bottom left;  padding-bottom:12px; margin-top:15px;}
+#frontend_content{width:960px; margin:0px auto; }
+#frontend_content #leftpanel{width:180px; float:left; margin:10px 0px 0px 0px;}
+/*categories comtainer*/
+#pages{width:200px;}
+#pages .top{ height:47px; font: bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;line-height:47px; padding-left:20px; color:#A10000; background:url(../images/categories_topbg.gif);}
+#pages .middle{ clear:both; }
+#pages .middle ul{color:#000000;  }
+#pages .middle li{background:url(../images/template3_list.gif) no-repeat; line-height:24px; padding-left:35px; color:#000000; text-decoration:none; }
+#pages .middle li a{line-height:24px;  color:#000000; text-decoration:none;}
+#pages .middle li a:hover {line-height:24px;  text-decoration:underline;color:#CC0000;  }
+#pages .bottom{background:url(../images/categories_bottombg.gif) top left; height:12px;}
+/*ends*/
+
+
+
+/*Template 2 horizntal menu*/
+#solidblockmenu{width:960px; padding-top:5px; margin:0px auto; height:38px; display:none;}
+.solidblockmenu{margin: 0;padding: 0;float: left;font: bold 13px Arial;width: 100%;overflow: hidden;margin-bottom: 1em;border: 1px solid #625e00;border-width: 1px 0;background:url(../images/blockdefault.gif) center center repeat-x;}
+.solidblockmenu li{display: inline;}
+.solidblockmenu li a{float: left;color: white;padding: 9px 11px;text-decoration: none;border-right: 1px solid white;}
+.solidblockmenu li a:visited{color: white;}
+.solidblockmenu li a:hover, .solidblockmenu li .current{color: white;background:url(../images/blockactive.gif) center center repeat-x;}
+.clear{clear:both;}
+/*Template 2 horizntal menu*/
+
+/*categories comtainer*/
+#jobboard_pages{width:190px; float:right; display:none;}
+#jobboard_pages #pages{width:190px;  background-color:#3B2E24; padding:5px 0px 5px 0px;}
+#jobboard_pages #pages .top{height:47px; font: bold 14px Helvetica, Arial,sans-serif;line-height:47px; padding-left:20px; color:#FFFFFF;}
+#jobboard_pages #pages .middle{}
+#jobboard_pages #pages .middle ul{color:#000000; margin-bottom:15px;  }
+#jobboard_pages #pages .middle li{  color:#FFFFFF; text-decoration:none; margin-left:20px;}
+#jobboard_pages #pages .middle li a{background:url(../images/brownarrow.gif) no-repeat;  color:#FFFFFF; text-decoration:none; padding-left:15px; padding-top:5px;font: 13px Helvetica, Arial,sans-serif;line-height:24px;}
+#jobboard_pages #pages .middle li a:hover {background:url(../images/brownarrow.gif) no-repeat;  text-decoration:underline;color:#EAB717; font:13px Helvetica, Arial,sans-serif;line-height:24px; }
+#jobboard_pages #pages .bottom{height:12px;}
+.clear{clear:both;}
+
+.adminlinks{ text-align:right; font:bold 12px Arial, Helvetica, sans-serif; color:#FFFFFF; text-decoration:none;  width:660px; float:left; height:30px; padding-top:40px; text-align:right;}
+.adminlinks a{ text-align:right; font:bold 12px Arial, Helvetica, sans-serif; color:#FFFFFF; text-decoration:none; }
+.adminlinks a:hover{text-align:right; font:bold 12px Arial, Helvetica, sans-serif; color:#FFCC00; text-decoration:underline;}
+.gobutton{ width:31px; height:31px; background:url(../images/go_template3.png); cursor:pointer;}
+.bold{font-weight:bold;}
+#frontend_content #leftpanel #newsletter{width:150px; margin:10px 0px 0px 0px; height:83px; background:url(../images/email_bg.png) no-repeat; padding:110px 25px 0px 25px; text-align:center;}
+.newsletter_textfield{margin-bottom:5px; border:1px solid #630000; padding:3px;}
+
+#pagenation{font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#FFFFFF; text-decoration:none; text-align:right; padding:15px 0px 0px 0px; }
+#pagenation a{font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#FFFFFF; text-decoration:none; background-color:#A10000; padding:2px 4px 2px 4px;}
+#pagenation a:hover{font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#FFFFFF; text-decoration:none; background-color:#000000;padding:2px 4px 2px 4px;}
+.panelleft{width:200px; float:left;}
