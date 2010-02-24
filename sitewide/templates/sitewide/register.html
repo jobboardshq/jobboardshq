@@ -19,7 +19,7 @@
                 <legend>Registration Details</legend>
                 <table width="100%" border="0" cellspacing="2" cellpadding="0">
                   <tr>
-                    <td width="100" align="left" valign="middle" class="contactlabel">{{ new_board_form.username.label }} :</td>
+                    <td width="80" align="left" valign="middle" class="contactlabel">{{ new_board_form.username.label }} :</td>
                     <td align="left" valign="middle" class="contact">{{ new_board_form.username }}</td>
                   </tr>
                   <tr>
@@ -58,7 +58,7 @@
                 <legend>Job Board Details</legend>
                 <table width="100%" border="0" cellspacing="2" cellpadding="0">
                   <tr>
-                    <td width="100" align="left" valign="middle" >{{ new_board_form.subdomain.label }} :</td>
+                    <td width="80" align="left" valign="middle" >{{ new_board_form.subdomain.label }} :</td>
                     <td>http:// {{ new_board_form.subdomain }} .jobboardshq.com</td>
                   </tr>
                   <tr>
@@ -92,79 +92,6 @@
       </tr>
     </table>
     </form>
-    <!--<table width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td align="left" valign="top"><form action="." method="post">
-            <table width="600" border="0" cellspacing="2" cellpadding="0">
-              <tr>
-                <td colspan="2"><h1>Register with us</h1></td>
-                <td>&nbsp;</td>
-                
-              <tr > 
-                <table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-   <td width="150">{{ new_board_form.username.label }} </td>
-                <td width="200">{{ new_board_form.username }}</td>
-                <td width="150">{{ new_board_form.username.help_text }}{{ new_board_form.username.errors }}</td>
-              </tr>
-              <tr>
-                <td>{{ new_board_form.email.label }} </td>
-                <td>{{ new_board_form.email }}</td>
-                                 <td>{{ new_board_form.username.help_text }}{{ new_board_form.username.errors }}</td>
-
-
-              </tr>
-              <tr>
-                <td>{{ new_board_form.password1.label }} </td>
-                <td>{{ new_board_form.password1 }}</td>
-                                 <td>{{ new_board_form.username.help_text }}{{ new_board_form.username.errors }}</td>
-
-
-              </tr>
-              <tr>
-                <td>{{ new_board_form.password2.label }} </td>
-                <td>{{ new_board_form.password2 }}</td>
-                                 <td>{{ new_board_form.username.help_text }}{{ new_board_form.username.errors }}</td>
-  </tr>
-</table>
-
-
-
-              </tr>
-              <tr>
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-                    <td>{{ new_board_form.subdomain.label }} </td>
-                <td>{{ new_board_form.subdomain }}</td>
-                                 <td>{{ new_board_form.username.help_text }}{{ new_board_form.username.errors }}</td>
-
-
-              </tr>
-              <tr>
-                <td>{{ new_board_form.name.label }} </td>
-                <td>{{ new_board_form.name }}</td>
-                                 <td>{{ new_board_form.username.help_text }}{{ new_board_form.username.errors }}</td>
-
-
-              </tr>
-              <tr>
-                <td>{{ new_board_form.description.label }} </td>
-                <td>{{ new_board_form.description }}</td>
-                                 <td>{{ new_board_form.username.help_text }}{{ new_board_form.username.errors }}</td>
-
-  </tr>
-</table>
-
-
-              </tr>  
-            <td align="center"><input type="submit" name="Register" value="Register"  class="contactsubmit"/></td>
-              </tr>
-            </table>
-          </form></td>
-        <td align="left" valign="top"><img src="{{ MEDIA_URL }}/sitewide/images/thankyounote.gif" alt="Thank you" width="300" height="315" /></td>
-        <td>&nbsp; </td>
-      </tr>
-    </table>-->
   </div>
 </div>
 {% endblock %}

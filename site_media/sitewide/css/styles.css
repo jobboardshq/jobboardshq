@@ -191,5 +191,19 @@ fieldset legend {	font-weight:bold; font:13px "trebuchet MS";}
 fieldset ul, fieldset li{	border:0; margin:0; padding:0; list-style:none;}
 fieldset li{	clear:both;	list-style:none;	padding:10px;}
 fieldset label{	width:140px;float:left;}
-fieldset button{border:0; margin:0; padding:0;clear:both;width:125px;height:31px;background:#666666 url(img/button.png) no-repeat;	text-align:center;	line-height:31px;color:#FFFFFF;
-		font-size:11px;font-weight:bold;}
+fieldset button{border:0; margin:0; padding:0;clear:both;width:125px;height:31px;background:#666666 url(img/button.png) no-repeat;	text-align:center;	line-height:31px;color:#FFFFFF;font-size:11px;font-weight:bold;}
+/*landingpage ends*/
+
+#landingpage{width:960px;margin:0px auto;padding-top:20px;}
+#landingpage #left{width:486px;height:532px;float:left;background:url(../images/landingpage_features.gif) no-repeat;}
+#landingpage #right{width:446px;height:532px;float:left;margin-left:25px;background:url(../images/landing_register_top.gif) no-repeat;}
+#landingpage #right fieldset{border:1px solid #E9D4B7; margin-top:5px;}
+#landingpage #right .contact{width:150px; background-color:#FBF8ED; border:1px solid #D8C7AF; }
+#landingpage #right .contact input{width:150px; background-color:#FBF8ED; border:0px solid #D8C7AF; padding:3px;}
+#landingpage #right .contactdetails input{width:150px; background-color:#FBF8ED; border:1px solid #D8C7AF; padding:3px;}
+#landingpage #right .subdomain{width:70px;}
+#landingpage #right .subdomain input{width:70px; background-color:#FBF8ED; border:1px solid #D8C7AF; padding:3px;}
+#landingpage #right .subdomainfield{width:150px; background-color:#FBF8ED; border:1px solid #D8C7AF; }
+#landingpage #right .subdomainfield input{ border:0px; }
+.middle{background-color:#FFFFFF;margin-top:68px;height:440px; display:block;}
+.bottom{background:url(../images/landing_registerbottom.gif) no-repeat;height:21px;}

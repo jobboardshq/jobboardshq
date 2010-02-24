@@ -1,4 +1,4 @@
-{% extends "sitewide/base_register.html" %}
+{% extends "sitewide/base_landing.html" %}
 
 	{% block title %}	
 		 Register - {{ block.super }}
@@ -6,5 +6,94 @@
 
 
 {% block content %}
-<h1>Landing page</h1>
+<div id="landingpage">
+  <div id="left"></div>
+  <div id="right">
+    <div class="middle">
+      <!--form starts-->
+      <form action="." method="post">
+        <table width="90%" border="0" cellspacing="0" cellpadding="0" align="center">
+          <tr>
+            <td><fieldset>
+              <legend>Registration Details</legend>
+              <table width="100%" border="0" cellspacing="2" cellpadding="0">
+                <tr>
+                  <td width="70" align="left" valign="middle" class="contactlabel">{{ new_board_form.username.label }} :</td>
+                  <td align="left" valign="middle" class="contact">{{ new_board_form.username }}</td>
+                </tr>
+                <tr>
+                  <td width="70" height="6" align="left" valign="middle"></td>
+                  <td align="left" valign="middle" height="6">{{ new_board_form.username.help_text }}{{ new_board_form.username.errors }}</td>
+                </tr>
+                <tr>
+                  <td width="70" align="left" valign="middle" class="contactlabel">{{ new_board_form.email.label }} :</td>
+                  <td align="left" valign="middle" class="contact">{{ new_board_form.email }}</td>
+                </tr>
+                <tr>
+                  <td width="70" height="6" align="left" valign="middle"></td>
+                  <td align="left" valign="middle" height="6">{{ new_board_form.email.help_text }}{{ new_board_form.email.errors }}</td>
+                </tr>
+                <tr>
+                  <td width="70" align="left" valign="middle" class="contactlabel">{{ new_board_form.password1.label }} :</td>
+                  <td align="left" valign="middle" class="contact">{{ new_board_form.password1 }}</td>
+                </tr>
+                <tr>
+                  <td width="70" height="6" align="left" valign="middle"></td>
+                  <td align="left" valign="middle" height="6">{{ new_board_form.password1.help_text }}{{ new_board_form.password1.username.errors }}</td>
+                </tr>
+                <tr>
+                  <td width="70" align="left" valign="middle" class="contactlabel">{{ new_board_form.password2.label }} :</td>
+                  <td align="left" valign="middle" class="contact">{{ new_board_form.password2 }}</td>
+                </tr>
+                <tr>
+                  <td align="left" valign="middle" height="6"></td>
+                  <td align="left" valign="middle" height="6">{{ new_board_form.password2.help_text }}{{ new_board_form.password2.errors }}</td>
+                </tr>
+              </table>
+              </fieldset></td>
+          </tr>
+          <tr>
+            <td><fieldset>
+              <legend>Job Board Details</legend>
+              <table width="100%" border="0" cellspacing="2" cellpadding="0">
+                <tr>
+                  <td width="70" align="left" valign="middle" class="contactlabel" >{{ new_board_form.subdomain.label }} :</td>
+                  <td>http:// {{ new_board_form.subdomain }} .jobboardshq.com</td>
+                </tr>
+                <tr>
+                  <td width="70" height="6" align="left" valign="middle"></td>
+                  <td align="left" valign="middle" height="6">{{ new_board_form.subdomain.help_text }}{{ new_board_form.subdomain.errors }}</td>
+                </tr>
+                <tr>
+                  <td width="70" align="left" valign="middle" class="contactlabel">{{ new_board_form.name.label }} :</td>
+                  <td align="left" valign="middle" class="contact">{{ new_board_form.name }}</td>
+                </tr>
+                <tr>
+                  <td width="70" height="6" align="left" valign="middle"></td>
+                  <td align="left" valign="middle" height="6">{{ new_board_form.name.help_text }}{{ new_board_form.name.errors }}</td>
+                </tr>
+                <tr>
+                  <td width="70" align="left" valign="middle" class="contactlabel">{{ new_board_form.description.label }} :</td>
+                  <td align="left" valign="middle" class="contact">{{ new_board_form.description }}</td>
+                </tr>
+                <tr>
+                  <td width="70" height="6" align="left" valign="middle"></td>
+                  <td align="left" valign="middle" height="6">{{ new_board_form.description.help_text }}{{ new_board_form.description.errors }}</td>
+                </tr>
+              </table>
+              </fieldset></td>
+          </tr>
+          <tr>
+            <td align="center">&nbsp;</td>
+          </tr>
+          <tr>
+            <td align="center"><input type="submit" name="Register" value="Register"  class="contactsubmit"/></td>
+          </tr>
+        </table>
+      </form>
+      <!--form ends-->
+    </div>
+    <div class="bottom"></div>
+  </div>
+</div>
 {% endblock %}
