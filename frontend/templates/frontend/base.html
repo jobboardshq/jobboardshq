@@ -169,9 +169,7 @@
 
 {% block extrajs %}
 {% endblock extrajs %}
-<!--[if lt IE 7]>
-        <script type="text/javascript" src="{{ MEDIA_URL }}frontend/js/unitpngfix.js"></script>
-<![endif]-->
+
 {% block analytics %}  
 	{% if board_settings.analytics_code %}
 		{{ board_settings.analytics_code }}
@@ -193,4 +191,3 @@
 
 </body>
 </html>
-{% load compress %}
