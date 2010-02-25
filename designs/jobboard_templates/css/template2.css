@@ -131,12 +131,12 @@ a:active {	color: #4C3524;}
 #frontend_searchbar .searchjobs{ width:106px; height:83px; float:left;font: 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;line-height:83px; color:#682C00;}
 
 #frontend_searchbar .searchfield{width:230px; height:56px; float:left; padding-top:27px;}
-#frontend_searchbar .textfield{border:1px solid #C8AC84; padding:5px;}
-#frontend_searchbar .searchbutton{width:103px; height:35px; float:left; margin-top:25px; background-image:url(../images/search_but.png); background-repeat:no-repeat; cursor:pointer; margin-right:10px;}
-#frontend_searchbar .searchbutton:hover{width:103px; height:35px; float:left; margin-top:25px; background-image:url(../images/search_but.png); background-repeat:no-repeat;cursor:pointer; margin-right:10px;}
+#frontend_searchbar .textfield{border:1px solid #C8AC84; padding:6px;}
+#frontend_searchbar .searchbutton{width:103px; height:35px; float:left; margin-top:25px; background-image:url(../images/search_temp2.png); background-repeat:no-repeat; cursor:pointer; margin-right:10px;}
+#frontend_searchbar .searchbutton:hover{width:103px; height:35px; float:left; margin-top:25px; background-image:url(../images/search_temp2.png); background-repeat:no-repeat;cursor:pointer; margin-right:10px;}
 
 #frontend_searchbar .advancedsearch{width:176px; height:83px; float:left;}
 .searchlink{font: bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;line-height:83px; color:#A10000; text-decoration:none;}
 .searchlink:hover{font: bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;line-height:83px; color:#000000; text-decoration:underline;}
-#frontend_searchbar .postjob{width:234px; height:51px; float:right; margin-top:15px; position:relative; background:url(../images/post_job_buttonnew.png) no-repeat; cursor:pointer;}
-#frontend_searchbar .postjob:hover{width:234px; height:51px; float:right; margin-top:15px; position:relative; background:url(../images/post_job_buttonnew.png) no-repeat 0 -51px;}
+#frontend_searchbar .postjob{width:234px; height:51px; float:right; margin-top:15px; position:relative; background:url(../images/post_job_temp2.png) no-repeat; cursor:pointer;}
+#frontend_searchbar .postjob:hover{width:234px; height:51px; float:right; margin-top:15px; position:relative; background:url(../images/post_job_temp2.png) no-repeat 0 -51px;}
