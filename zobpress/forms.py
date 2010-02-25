@@ -18,11 +18,20 @@ class PageForm(forms.ModelForm):
         exclude = ('board',)
 
 class TemplateForm(forms.Form):
-    template_choices = (('frontend/css/template1.css','Template1'),
-                        ('frontend/css/template2.css','Template2'),
-                        ('frontend/css/template3.css','Template3'),
+    template_choices = ({'css':'frontend/css/template1.css',
+                         'image':'frontend/images/blue_theme.gif',
+                         'name':'Theme Water'
+                         },
+                        {'css':'frontend/css/template2.css',
+                         'image':'frontend/images/brown_theme.gif',
+                         'name': 'Theme Earth'
+                         },
+                        {'css':'frontend/css/template3.css',
+                         'image':'frontend/images/classic_theme.gif',
+                         'name':'Theme Fire'}
                         )
-    template = forms.ChoiceField(choices=template_choices,widget=forms.RadioSelect)
+    widget_choices = [(el['css'],el['name']) for el in template_choices]
+    template = forms.ChoiceField(choices=widget_choices,widget=forms.RadioSelect)
     
     def save(self,board):
         board.template = self.cleaned_data['template']
