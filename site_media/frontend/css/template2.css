@@ -534,11 +534,13 @@ a:active {
 	width:190px;
 	height:85px;
 	float:right;
-	background-image:url(../images/email_bg.png);
+	background-image:url(../images/email_temp1bg.png);
 	background-repeat:no-repeat;
 	padding:110px 0px 0px 0px;
 	text-align:center;
 }
+#newsletterpanel input{width:140px; border:1px solid #000000; padding:3px; margin-bottom:5px;}
+
 .advanced {
 	font: bold 12px Arial, Helvetica, sans-serif;
 	color:#0066FF;

@@ -580,6 +580,8 @@ body {
 	text-align:center;
 	margin-top:10px;
 }
+#newsletterpanel input{width:140px; border:1px solid #000000; padding:3px; margin-bottom:5px;}
+
 .advanced {
 	font: bold 12px Arial, Helvetica, sans-serif;
 	color:#A10000;
