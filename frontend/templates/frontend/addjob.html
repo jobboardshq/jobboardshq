@@ -8,68 +8,66 @@
 
 {% block extrajs %}
 	{% compress js %}
-		<script type="text/javascript" src="{{ MEDIA_URL }}tiny_mce/jquery.tinymce.js"></script>
-	{% endcompress %}
+<script type="text/javascript" src="{{ MEDIA_URL }}tiny_mce/jquery.tinymce.js"></script>
+{% endcompress %}
 {% endblock extrajs %}
 
 
 {% block content %}
-<div class="frontend_heading">Add New Job</div>
+<div class="frontend_heading">Add Job</div>
+
 <div class="frontend_subheading1">
-  <p class="frontend"> Enter Your details. Enter as much information as possible. Every one likes to know more, before they take a job! </p>
+  <p class="frontend">You can start adding job now. </p>
 </div>
+
 <div class="frontend_content">
-  <form action="." method="post" enctype="multipart/form-data">
-    <fieldset>
-    <legend class="legendfront">Job Details</legend>
-    <table border="0" cellpadding="0" cellspacing="2" class="leftalign">
-      {% for field in job_static_form.visible_fields %}
-      <tr>
-        <td width="150"> {{ field.label_tag }} : </td>
-        <td class="jobname">{{ field }}</td>
-        {{ field.help_text }} </tr>
-      <tr> {% if field.errors %}
-        <td>&nbsp;</td>
-        <td> {{ field.errors }} </td>
-        {% endif %} </tr>
-      {% endfor %}
-    </table>
 
-
-    <table border="0" cellpadding="0" cellspacing="2" class="leftalign">
-      {% for field in job_form.visible_fields %}
-      <tr>
-        <td width="150">{{ field.label_tag}} :</td>
-        <td class="jobdetails">{{ field }}</td>
-        {{ field.help_text }} </tr>
-      <tr> {% if field.errors %}
-        <td>&nbsp;</td>
-        <td>{{ field.errors }}</td>
-        {% endif %} </tr>
-      {% endfor %}
-    </table>
-    </fieldset>
-    <fieldset>
-    <legend class="legendfront">Contact Details</legend>
-    
-    <table border="0" cellpadding="0" cellspacing="2" class="leftalign">
-      {% for field in job_contact_form.visible_fields %}
-      <tr>
-        <td width="150">{{ field.label_tag}} :</td>
-        <td class="contactdetails">{{ field }}</td>
-        {{ field.hep_text}} </tr>
-      <tr> {% if field.errors %}
-        <td>&nbsp;</td>
-        <td>{{ field.errors }}</td>
-        {% endif %} </tr>
-      {% endfor %}
-
-    </table>
-    </fieldset>
-
-    <div align="center" style="padding-top:10px;">
-    <input type="submit" name="create-job" value="Submit"  class="wymupdate" id="submit_button" />
-  </form>
+<form action="." method="post" enctype="multipart/form-data">
+  <fieldset>
+  <legend class="legendfront">Job Details</legend>
+  <table border="0" cellpadding="0" cellspacing="2" class="leftalign">
+    {% for field in job_static_form.visible_fields %}
+    <tr>
+      <td width="150"> {{ field.label_tag }} : </td>
+      <td class="jobname">{{ field }}</td>
+      {{ field.help_text }} </tr>
+    <tr> {% if field.errors %}
+      <td>&nbsp;</td>
+      <td> {{ field.errors }} </td>
+      {% endif %} </tr>
+    {% endfor %}
+  </table>
+  <table border="0" cellpadding="0" cellspacing="2" class="leftalign">
+    {% for field in job_form.visible_fields %}
+    <tr>
+      <td width="150">{{ field.label_tag}} :</td>
+      <td class="jobdetails">{{ field }}</td>
+      {{ field.help_text }} </tr>
+    <tr> {% if field.errors %}
+      <td>&nbsp;</td>
+      <td>{{ field.errors }}</td>
+      {% endif %} </tr>
+    {% endfor %}
+  </table>
+  </fieldset>
+  <fieldset>
+  <legend class="legendfront">Contact Details</legend>
+  <table border="0" cellpadding="0" cellspacing="2" class="leftalign">
+    {% for field in job_contact_form.visible_fields %}
+    <tr>
+      <td width="150">{{ field.label_tag}} :</td>
+      <td class="contactdetails">{{ field }}</td>
+      {{ field.hep_text}} </tr>
+    <tr> {% if field.errors %}
+      <td>&nbsp;</td>
+      <td>{{ field.errors }}</td>
+      {% endif %} </tr>
+    {% endfor %}
+  </table>
+  </fieldset>
+  <div align="center" style="padding-top:10px;">
+  <input type="submit" name="create-job" value="Submit"  class="wymupdate" id="submit_button" />
+</form>
 </div>
-</div>
+
 {% endblock %}

@@ -135,8 +135,8 @@ a:active {
 	display:block;
 }
 #jobposts {
-	width:760px;
-	float:left;
+	width:720px;
+	float:right;
 }
 #jobposts ul {
 	padding:0px;
@@ -458,7 +458,7 @@ a:active {
 	clear:both;
 	margin:0px auto;
 	width:960px;
-	height:83px;
+	height:100px;
 }
 #frontend_searchbar .searchjobs {
 	width:106px;
@@ -518,7 +518,7 @@ a:active {
 	text-decoration:underline;
 }
 #frontend_searchbar .posttext {
-	width:310px;
+	width:234px;
 	float:left;
 	text-align:center;
 	margin:0px auto;
@@ -527,6 +527,7 @@ a:active {
 	color:#990000;
 	float:right;
 }
+
 #frontend_searchbar .postjob {
 	width:234px;
 	height:51px;
@@ -544,3 +545,18 @@ a:active {
 	position:relative;
 	background:url(../images/post_job_temp1.png) no-repeat 0 -51px;
 }
+
+<!--right panel-->
+#innerrightpanel{width:740px; float:right; margin:10px 0px 0px 20px;}
+#innerrightpanel .top{width:726px; background:url(../images/body_top.gif) no-repeat; height:14px; }
+#innerrightpanel .middle{width:726px; ;background:url(../images/body_middlebg.gif) repeat-y; }
+#innerrightpanel .bottom{width:726px;background:url(../images/body_bottom.gif) no-repeat; height:14px;}
+#innerrightpanel .title{ font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#A10000; text-decoration:none; padding:3px 0px 11px 0px;}
+#innerrightpanel .border{ border-top:1px dashed #D9C6AC; height:1px;}
+
+#innerrightpanel{width:710px; float:right; margin:1px 0px 0px 20px; padding:10px;  -webkit-border-radius:10px; -moz-border-radius:10px; border:1px solid #D8E3E9;}
+
+.frontend_heading{font:bold 14px "trebuchet MS",Arial, Helvetica, sans-serif; line-height:24px; border-bottom:1px solid #D8C7AF; color:#A10000; padding-bottom:8px;}
+.frontend_subheading1{font:12px "trebuchet MS",Arial, Helvetica, sans-serif; line-height:30px; border-bottom:1px solid #D8C7AF; color:#333333;}
+fieldset{border:1px solid  #D8C7AF; margin-top:10px;}
+legend{font:12px "trebuchet MS",Arial, Helvetica, sans-serif; color:#A10000;}

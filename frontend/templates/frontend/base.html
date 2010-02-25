@@ -11,7 +11,7 @@
 <link rel="alternate" type="application/rss+xml" title="{{ board.name }}" href="{% url frontend_feeds_jobs %}" />
 {% compress css %}
 <link href="{{ MEDIA_URL }}frontend/css/reset.css" rel="stylesheet" type="text/css" />
-<link href="{{ MEDIA_URL }}frontend/css/template3.css" rel="stylesheet" type="text/css" />
+<link href="{{ MEDIA_URL }}frontend/css/template2.css" rel="stylesheet" type="text/css" />
 {% endcompress %}
 <!--[if lt IE 7]>
 		  <script type="text/javascript" src="{{ MEDIA_URL }}js/unitpngfix.js"></script>
@@ -50,12 +50,10 @@
         <div class="searchfield">
           <input name="q" class="textfield" value="Type your designation, skills" type="text" name="textfield" id="textfield" size=30 />
         </div>
-        
         <input type="submit" name="button2" id="button2" value="" class="searchbutton" />
       </form>
       <div class="advancedsearch">| <a href="{% url frontend_advanced_search %}" class="searchlink">Advanced Search</a> </div>
-      <div class="posttext">$ 50 for each job posting 
-        <a href="{% url frontend_addjob %}">
+      <div class="posttext">$ 50 for each job posting <a href="{% url frontend_addjob %}">
         <div class="postjob"></div>
         </a> </div>
     </div>
@@ -80,8 +78,7 @@
 <!--Template 2 categories ends-->
 <!--Header ends-->
 <!--Body starts-->
-<div id="bodycontent"> {% block content %}
-  {% endblock %}
+<div id="bodycontent">
   <div class="panelleft">
     <!--categories here-->
     <div id="categorylist">
@@ -113,11 +110,18 @@
       </form>
     </div>
   </div>
+  <!--right panel-->
+<div id="innerrightpanel">
+ {% block content %}
+    {% endblock %} 
+</div>
+  <!--right panel ends-->
   <!--newsletter end-->
 </div>
 <!--left panel ends here-->
-{% include "frontend/footer.html" %}
+
 </div>
+{% include "frontend/footer.html" %}
 {% compress js %}
 <script src="{{ MEDIA_URL }}frontend/js/jquery-1.4.js" type="text/javascript"></script>
 <script src="{{ MEDIA_URL }}frontend/js/frontend.js" type="text/javascript"></script>

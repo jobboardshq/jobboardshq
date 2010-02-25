@@ -88,10 +88,11 @@ body {
 #searcharea #search input {
 	width:250px;
 	padding:6px;
-	border:1px solid #999999;
+	border:1px solid #999999;	
 }
-#searcharea #search img {
-}
+
+#searcharea #search img {}
+
 #searcharea #postjob {
 	width:280px;
 	float:right;
@@ -128,7 +129,7 @@ body {
 	display:block;
 }
 #jobposts {
-	width:750px;
+	width:720px;
 	float:right;
 }
 #jobposts ul {
@@ -565,6 +566,10 @@ body {
 	width:200px;
 	float:left;
 }
+.panelright {
+	width:500px;
+	float:right;
+}
 #newsletterpanel {
 	width:200px;
 	height:85px;
@@ -620,6 +625,7 @@ body {
 	background-repeat:no-repeat;
 	cursor:pointer;
 	margin-right:10px;
+	border:0px;
 }
 #frontend_searchbar .searchbutton:hover {
 	width:103px;
@@ -649,7 +655,7 @@ body {
 	text-decoration:underline;
 }
 #frontend_searchbar .posttext {
-	width:310px;
+	width:234px;
 	float:left;
 	text-align:center;
 	margin:0px auto;
@@ -664,12 +670,20 @@ body {
 	position:relative;
 	background:url(../images/post_job_buttonnew.png) no-repeat;
 	cursor:pointer;
-	margin:0px auto;
+	float:right;
 }
 #frontend_searchbar .postjob:hover {
 	width:234px;
 	height:51px;
 	position:relative;
 	background:url(../images/post_job_buttonnew.png) no-repeat 0 -51px;
-	margin:0px auto;
+	float:right;
 }
+
+
+#innerrightpanel{width:710px; float:right; margin:1px 0px 0px 20px; padding:10px;  -webkit-border-radius:10px; -moz-border-radius:10px; border:1px solid #D8C7AF;}
+
+.frontend_heading{font:bold 14px "trebuchet MS",Arial, Helvetica, sans-serif; line-height:24px; border-bottom:1px solid #D8C7AF; color:#A10000; padding-bottom:8px;}
+.frontend_subheading1{font:12px "trebuchet MS",Arial, Helvetica, sans-serif; line-height:30px; border-bottom:1px solid #D8C7AF; color:#333333;}
+fieldset{border:1px solid  #D8C7AF; margin-top:10px;}
+legend{font:12px "trebuchet MS",Arial, Helvetica, sans-serif; color:#A10000;}
