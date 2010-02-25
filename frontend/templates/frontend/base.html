@@ -1,173 +1,126 @@
 {% load compress %}
 {% load thumbnail %}
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <link rel="icon" type="image/vnd.microsoft.icon" href="{{ MEDIA_URL }}favicon.ico" />
-  <title>{% block title %} {{ board.name }} - {{ board_settings.tag_line }} {% endblock %}</title>
-  <meta description="{{ board.description }}" />
-  <meta keyword="{{ board_settings.keywords }}" />
-  
-  <link rel="alternate" type="application/rss+xml" title="{{ board.name }}" href="{% url frontend_feeds_jobs %}" />
-  
-  {% compress css %}
-  <link href="{{ MEDIA_URL }}frontend/css/reset.css" rel="stylesheet" type="text/css" />
-  <link href="{{ MEDIA_URL }}frontend/css/template2.css" rel="stylesheet" type="text/css" />
-  {% endcompress %}
-  
-  <!--[if lt IE 7]>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="icon" type="image/vnd.microsoft.icon" href="{{ MEDIA_URL }}favicon.ico" />
+<title>{% block title %} {{ board.name }} - {{ board_settings.tag_line }} {% endblock %}</title>
+<meta description="{{ board.description }}" />
+<meta keyword="{{ board_settings.keywords }}" />
+<link rel="alternate" type="application/rss+xml" title="{{ board.name }}" href="{% url frontend_feeds_jobs %}" />
+{% compress css %}
+<link href="{{ MEDIA_URL }}frontend/css/reset.css" rel="stylesheet" type="text/css" />
+<link href="{{ MEDIA_URL }}frontend/css/template1.css" rel="stylesheet" type="text/css" />
+{% endcompress %}
+<!--[if lt IE 7]>
 		  <script type="text/javascript" src="{{ MEDIA_URL }}js/unitpngfix.js"></script>
   <![endif]-->
-
 </head>
-
 <body>
-
-{% if not debug %}  
-  <!-- ClickTale Top part -->
-  <script type="text/javascript">
+{% if not debug %}
+<!-- ClickTale Top part -->
+<script type="text/javascript">
   var WRInitTime=(new Date()).getTime();
   </script>
-  <!-- ClickTale end of Top part -->
+<!-- ClickTale end of Top part -->
 {% endif %}
-
-<!--Main container starts--> 
+<!--Main container starts-->
 <div id="main">
   <!--Header Starts-->
   <div id="header">
-    
-    <div id="logo"> 
-		{% if board_settings.logo %} 
-		  <a href="{% url frontend_index %}">
-		  <img src="{% thumbnail board_settings.logo 250x50 %}" alt="Job Boards Demo" /> 
-		  </a>
-		{% else %}
-		<span class="companyname">
-		  <a href="{% url frontend_index %}">
-		  {{ board.name }}
-		  </a>
-	    </span><br/>
-		<span class="tagline">{{ board_settings.tag_line }}</span> 
-		{% endif %} 
-	</div>
-	
-    <div class="adminlinks"> 
-	  {% if user.is_authenticated %}
-		Welcome <span class="blacktext">{% firstof user.get_full_name user.username %}</span> | 
-		{% if is_board_admin %}
-		  <a href="{% url zobpress_index %}">Admin</a> | 
-		{% endif %}
-		<a href="{% url auth_logout %}">Logout</a> | 
-	  {% else %}
-		<a href="{% url auth_login %}">Login</a> | 
-	  {% endif %}
-	  <a href="{% url frontend_feeds_jobs %}">RSS </a>
-	</div>
-	   
-	<div id="topnav"> 
-  	  {% for page in pages %}
-		<a href="{{ page.get_absolute_url }}">{{ page }}</a> |
-	  {% empty %}
-		<p>No pages</p>
-	  {% endfor %}
-	</div>
-    
+    <div id="logo"> {% if board_settings.logo %} <a href="{% url frontend_index %}"> <img src="{% thumbnail board_settings.logo 250x50 %}" alt="Job Boards Demo" /> </a> {% else %} <span class="companyname"> <a href="{% url frontend_index %}"> {{ board.name }} </a> </span><br/>
+      <span class="tagline">{{ board_settings.tag_line }}</span> {% endif %} </div>
+    <div class="adminlinks"> {% if user.is_authenticated %}
+      Welcome <span class="blacktext">{% firstof user.get_full_name user.username %}</span> | 
+      {% if is_board_admin %} <a href="{% url zobpress_index %}">Admin</a> | 
+      {% endif %} <a href="{% url auth_logout %}">Logout</a> | 
+      {% else %} <a href="{% url auth_login %}">Login</a> | 
+      {% endif %} <a href="{% url frontend_feeds_jobs %}">RSS </a> </div>
+    <div id="topnav"> {% for page in pages %} <a href="{{ page.get_absolute_url }}">{{ page }}</a> |
+      {% empty %}
+      <p>No pages</p>
+      {% endfor %} </div>
   </div>
-
-	<!--Search bar starts-->
-	<div id="searcharea">
-		<div id="frontend_searchbar">
-	  		<div class="searchjobs">Search All Jobs :</div>
-	  		<form action="{% url frontend_search %}">
-		  		<div class="searchfield">
-					<input name="q" class="textfield" value="Type your designation, skills" type="text" name="textfield" id="textfield" size=30 />
-		  		</div>
-			  	<img src="{{MEDIA_URL}}frontend/images/search_but.png" value="" class="searchbutton" />
-	  		</form>
-		  <div class="advancedsearch">| <a href="{% url frontend_advanced_search %}" class="searchlink">Advanced Search</a>
-		  </div>
-		  <a href="{% url frontend_addjob %}">
-	       <div class="postjob">$300 for 30 days</div>
-		  </a>
-		</div>
-  	</div>
-  	<!--Search bar ends-->
-
-	  <div id="postjob"> 
-	      <div id="button"></div> 
-		  <div class="clear"></div>
-	  </div> 
+  <!--Search bar starts-->
+  <div id="searcharea">
+    <div id="frontend_searchbar">
+      <div class="searchjobs">Search All Jobs :</div>
+      <form action="{% url frontend_search %}">
+        <div class="searchfield">
+          <input name="q" class="textfield" value="Type your designation, skills" type="text" name="textfield" id="textfield" size=30 />
+        </div>
+        
+        <input type="submit" name="button2" id="button2" value="" class="searchbutton" />
+      </form>
+      <div class="advancedsearch">| <a href="{% url frontend_advanced_search %}" class="searchlink">Advanced Search</a> </div>
+      <div class="posttext">$ 50 for each job posting 
+        <a href="{% url frontend_addjob %}">
+        <div class="postjob"></div>
+        </a> </div>
+    </div>
+  </div>
+  <!--Search bar ends-->
+  <div id="postjob">
+    <div id="button"></div>
+    <div class="clear"></div>
+  </div>
 </div>
-  
-  <!--Template 2 categories starts-->
-  <!-- Job types here-->
-  <div id="solidblockmenu">
-    <ul class="solidblockmenu">
-	  {% for category in job_types %}
-	  <li> <a href="{% url frontend_job_type_jobs category.slug %}">{{ category }} </a> </li>
-	  {% endfor %}
-    </ul>
-    <br style="clear: left" />
-  </div>
-  <!--Job types here-->
-  <!--Template 2 categories ends-->
+<!--Template 2 categories starts-->
+<!-- Job types here-->
+<div id="solidblockmenu">
+  <ul class="solidblockmenu">
+    {% for category in job_types %}
+    <li> <a href="{% url frontend_job_type_jobs category.slug %}">{{ category }} </a> </li>
+    {% endfor %}
+  </ul>
+  <br style="clear: left" />
+</div>
+<!--Job types here-->
+<!--Template 2 categories ends-->
 <!--Header ends-->
-
 <!--Body starts-->
-  <div id="bodycontent">
-  
-	{% block content %}
-	{% endblock %}
-	
-	<div class="panelleft">
-    	
-	<!--categories here-->
-	<div id="categorylist">
+<div id="bodycontent"> {% block content %}
+  {% endblock %}
+  <div class="panelleft">
+    <!--categories here-->
+    <div id="categorylist">
       <div id="categories">
-	        <div class="middle">
-	          <div class="top">CATEGORIES</div>
-	          <ul>
-	          	{% for category in categories %}
-	            <li><a href="{% url frontend_category_jobs category.slug %}">{{ category }}( {{ category.get_public_jobs.count }})</a></li>
-				{% endfor %}
-	          </ul>
-	        </div>
-	      </div>
-	</div>
-	<!--categories end here-->
-		
-	<br/>
+        <div class="middle">
+          <div class="top">CATEGORIES</div>
+          <ul>
+            {% for category in categories %}
+            <li><a href="{% url frontend_category_jobs category.slug %}">{{ category }}( {{ category.get_public_jobs.count }})</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!--categories end here-->
+    <br/>
     <br/>
     <div class="clear"></div>
     <br/>
-  
-			
     <!--newsletter start-->
     <div id="newsletterpanel">
       <div>
         <input name="textfield2" type="text" class="newsletter_textfield" id="textfield2" />
       </div>
       <div>
-      	<form method="post" action="">
-      	<img src="{{MEDIA_URL}}frontend/images/submit_btn.png" alt="Submit" width="81" height="28" /></a></div>
-		</form>
+      <form method="post" action="">
+        <img src="{{MEDIA_URL}}frontend/images/submit_btn.png" alt="Submit" width="81" height="28" /></a>
+        </div>
+      </form>
     </div>
-	</div>
-    <!--newsletter end-->
-	
-	
-	</div>
-	<!--left panel ends here-->
-	{% include "frontend/footer.html" %}
   </div>
-
-
+  <!--newsletter end-->
+</div>
+<!--left panel ends here-->
+{% include "frontend/footer.html" %}
+</div>
 {% compress js %}
-	<script src="{{ MEDIA_URL }}frontend/js/jquery-1.4.js" type="text/javascript"></script>
-	<script src="{{ MEDIA_URL }}frontend/js/frontend.js" type="text/javascript"></script>
+<script src="{{ MEDIA_URL }}frontend/js/jquery-1.4.js" type="text/javascript"></script>
+<script src="{{ MEDIA_URL }}frontend/js/frontend.js" type="text/javascript"></script>
 {% endcompress %}
 
 {% block extrajs %}
@@ -180,17 +133,16 @@
 {% endblock analytics %}
  
 {% if not debug %}
-  <!-- ClickTale Bottom part -->
-  <div id="ClickTaleDiv" style="display: none;"></div>
-  <script type="text/javascript">
+<!-- ClickTale Bottom part -->
+<div id="ClickTaleDiv" style="display: none;"></div>
+<script type="text/javascript">
   if(document.location.protocol!='https:')
 	document.write(unescape("%3Cscript src='http://s.clicktale.net/WRb5.js' type='text/javascript'%3E%3C/script%3E"));
   </script>
-  <script type="text/javascript">
+<script type="text/javascript">
   if(typeof ClickTale=='function') ClickTale(36878,0.5,"www");
   </script>
-  <!-- ClickTale end of Bottom part -->
+<!-- ClickTale end of Bottom part -->
 {% endif %}
-
 </body>
 </html>
