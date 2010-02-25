@@ -1,30 +1,29 @@
 @charset "utf-8";
 /* CSS Document */
 
-body{font:11px "trebuchet MS", Arial, Helvetica, sans-serif;  color:#191919; text-decoration:none; line-height:18px; }
+body{font: 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#1D1D1D;}
 
 body.homepage{background:url(../images/site_bg.gif) repeat-x; font:11px "trebuchet MS", Arial, Helvetica, sans-serif;  color:#191919; text-decoration:none; line-height:18px;}
 body.innerpage{background:url(../images/site_bginner.gif) repeat-x; font:11px "trebuchet MS", Arial, Helvetica, sans-serif;  color:#191919; text-decoration:none; line-height:18px;}
 body.login{background:url(../images/site_bginner.gif) repeat-x; background-color:#EFE8DE;font:11px "trebuchet MS", Arial, Helvetica, sans-serif;  color:#191919; text-decoration:none; line-height:18px;}
-body.register{background:url(../images/site_bg2.gif) repeat-x; background-color:#FFFFFF;font:11px "trebuchet MS", Arial, Helvetica, sans-serif;  color:#191919; text-decoration:none; line-height:18px;}
 
 /*Headings*/
-h1{font:bold 18px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000; text-decoration:none; line-height:24px;  padding-bottom:8px; padding-top:10px;}
+h1{font:bold 18px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000; text-decoration:none; line-height:24px; letter-spacing:-1px; padding-bottom:8px;}
 h2{font:bold 16px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000; text-decoration:none; line-height:20px;}
 h3{font:bold 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000; text-decoration:none; line-height:18px;}
 h4{font:bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000; text-decoration:none; line-height:18px;}
 h5{font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000; text-decoration:none; line-height:18px;}
 h6{font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000; text-decoration:none; line-height:18px;}
+
 p{font:12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; text-decoration:none; color:#1D1D1D; line-height:18px; margin:0px 0px 8px 0px;}
 p.aboutus{font:12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; text-decoration:none; color:#1D1D1D; line-height:18px; padding:0px 0px 15px 0px;}
 p.email{ padding-top:25px; padding-left:130px; color:#FFFFFF; text-align:left; }
 p.twitter{ padding-top:25px; padding-left:130px; color:#FFFFFF; text-align:left; }
-
 /*Wrapper*/
 #wrapper{margin:0px auto; width:960px;}
 #header{ margin:0px auto; width:960px; height:90px; padding:25px 0px 0px 00px;}
-#headerregister{ margin:0px auto; width:960px; height:145px; padding:25px 0px 0px 00px;}
 #innerpage_content{width:960px; margin:0px auto; }
+
 /*Top navigation*/
 #top_navigation{ margin:0px auto; width:960px; height:47px; padding-top:1px;}
 #nav-example {background:url(../images/topnav.gif) top left;width:960px;height:47px;margin:0; padding:0px;}
@@ -53,7 +52,12 @@ p.twitter{ padding-top:25px; padding-left:130px; color:#FFFFFF; text-align:left;
 .featuresselected {background:url(../images/topnav.gif) -92px -47px no-repeat;}
 .demo {background:url(../images/topnav.gif) -200px -47px no-repeat;}
 .pricing {background:url(../images/topnav.gif) -285px -47px no-repeat;}
-.support {background:url(../images/topnav.gif) -379px -47px no-repeat;}
+#support {}
+#support .screen1 { width:190px; float:left; }
+#support .screen2 { width:190px; float:left; margin-left:10px;}
+#support .screen3 { width:190px; float:left;}
+#support .screen4 { width:190px; float:left;margin-left:10px; }
+
 .contactus {background:url(../images/topnav.gif) -481px -47px no-repeat;}
 .space {background:url(../images/topnav.gif) -781px -47px no-repeat;}
 .login {background:url(../images/topnav.gif) -870px -47px no-repeat;}
@@ -64,11 +68,11 @@ p.twitter{ padding-top:25px; padding-left:130px; color:#FFFFFF; text-align:left;
 #banner{ margin:0px auto; width:960px; height:325px;}
 #banner #screencast{ width:550px; height:315px; float:left; padding-top:10px;}
 #banner #signup{width:410px; height:280px; float:left;  padding-top:45px; text-align:center; }
-#banner #signup #button{width:288px; text-align:center; margin:0px auto; background:url(../images/post_job_buttonnew.png) no-repeat; height:65px; cursor:pointer; margin-top:25px; }
+#banner #signup #button{width:288px;  text-align:center; margin:0px auto; background:url(../images/post_job_buttonnew.png) no-repeat; height:65px; cursor:pointer; margin-top:25px; }
 #banner #signup #button:hover{width:288px; text-align:center; margin:0px auto; background:url(../images/post_job_buttonnew.png) 0 -65px no-repeat;  margin-top:25px;}
+
 #banner_innerpage{ margin:0px auto; width:960px; height:150px;}
-#banner_innerpage{ margin:0px auto; width:960px; height:150px;}
-#banner_innerpage .title{width:570px; height:130px; float:left; padding:20px 0px 0px 30px;}
+#banner_innerpage .title{width:600px; height:130px; float:left; padding:20px 0px 0px 0px;}
 #banner_innerpage #signupbut{width:288px;  text-align:center; margin:0px auto; background:url(../images/post_job_buttonnew.png) no-repeat; height:65px; cursor:pointer; margin:40px 0px 0px 50px; float:left;}
 #banner_innerpage #signupbut:hover{width:288px;  text-align:center; margin:0px auto; background:url(../images/post_job_buttonnew.png) 0 -65px no-repeat; height:65px; cursor:pointer;  margin:40px 0px 0px 50px; }
 
@@ -81,15 +85,19 @@ p.twitter{ padding-top:25px; padding-left:130px; color:#FFFFFF; text-align:left;
 #homecontent #leftpanel .features{width:480px; padding:10px 5px 10px 0px; border-bottom:1px dashed #D9C6AC; }
 #homecontent #leftpanel .features img{ float:left; display:block; margin:0px 15px 0px 0px;  }
 .features_title{font:bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000; text-decoration:none; }
+
 #homecontent #leftpanel_innerpage{width:960px; margin:0px auto; }
 #homecontent #leftpanel_innerpage .features{width:940px; padding:10px 5px 10px 0px; border-bottom:1px dashed #D9C6AC; }
 #homecontent #leftpanel_innerpage .features img{ float:left; display:block; margin:0px 15px 0px 0px;  }
 .features_title{font:bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000; text-decoration:none; }
+
+
 #homecontent #rightpanel{width:430px; float:left; padding-top:20px; padding-left:20px; }
-#homecontent #rightpanel #support{width:390px; float:left; padding:15px 20px 20px 20px;background:url(../images/book_icon.png) no-repeat bottom right; background-color:#F9F3E9;  }
+#homecontent #rightpanel #support{width:390px; float:left; padding:15px 20px 20px 20px; background-color:#F9F3E9;  }
 #homecontent #rightpanel #support li{ font:12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; padding-left:10px; text-decoration:none; line-height:18px;  }
 #homecontent #rightpanel #support li a{ background:url(../images/arrow.png) no-repeat; padding-left:15px; text-decoration:none; color:#000000; }
 #homecontent #rightpanel #support li a:hover{ text-decoration:underline; color:#A10000; }
+
 #homecontent #testimonials{ clear:both;width:960px;  padding-top:20px; }
 blockquote {font:12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; margin:10px 0px;  color:#2A2A2A; padding: 5px 30px; background: url(../images/quote.gif) no-repeat 0 0;}
 .speaker{font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000; text-decoration:none; line-height:18px; float:right;}
@@ -104,10 +112,6 @@ blockquote {font:12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; marg
 #footerlinks a{ color:#FFFFFF; text-decoration:none; line-height:40px; padding:5px 20px 10px 0px; }
 #footerlinks a:hover{  text-decoration:underline; color:#CC0000;padding:5px 20px 10px 0px; line-height:40px; }
 #copyrights{ width:100%; margin:0px auto; font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#FFFFFF; text-decoration:none; line-height:50px; border-top:1px solid #282828; text-align:center;}
-#copyrights a{ font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#FFFFFF; text-decoration:underline; text-align:center;}
-#copyrights a:hover{text-align:center; color:#CC3300; text-decoration:underline;}
-
-
 .onepixelborder{ border-bottom:1px solid #282828; height:1px;}
 
 /*Others styles*/
@@ -124,86 +128,78 @@ blockquote {font:12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; marg
 #pricingtable #bottom{width:898px; background: url(../images/pricing_table_bottom.gif) no-repeat; height:25px}
 #pricingtable #column1{width:306px; float:left; display:block; margin-top:63px;border-top:1px solid #EEDABC;}
 #pricingtable #column1 li{font:14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#482B00; text-decoration:none; padding-left:20px; line-height:29px; border-bottom:1px solid #EEDABC;}
+
 #pricingtable #column2{width:107px; height:472px; float:left; display:block; margin-right:9px; background:url(../images/free_pricing.png) no-repeat;}
 #pricingtable #column3{width:107px; height:472px;float:left; display:block; margin-right:9px;background:url(../images/starter_pricing.png) no-repeat;}
 #pricingtable #column4{width:107px; height:472px;float:left; display:block; margin-right:9px;background:url(../images/pro_pricing.png) no-repeat;}
 #pricingtable #column5{width:107px; height:472px;float:left; display:block; margin-right:9px;background:url(../images/elite_pricing.png) no-repeat;}
 #pricingtable #column6{width:107px; height:472px;float:left; display:block; margin-right:9px;background:url(../images/unlimited_pricing.png) no-repeat;}
+
 .pricing_signup{width:92px; height:40px; background:url(../images/pricing_signup_but.png) no-repeat; display:block; margin-top:415px; margin-left:8px; cursor:pointer;}
-.pricing_signup:hover{ background:url(../images/pricing_signup_but_r.png) no-repeat; display:block; }
+.pricing_signup:hover{width:92px; height:40px; background:url(../images/pricing_signup_but_r.png) no-repeat; display:block; margin-top:415px; margin-left:8px; cursor:pointer;}
 .pricing_prosignup{width:92px; height:40px; background:url(../images/pricing_pro_but.png) no-repeat; display:block; margin-top:415px; margin-left:8px; cursor:pointer;}
 .pricing_prosignup:hover{width:92px; height:40px; background:url(../images/pricing_pro_but_r.png) no-repeat; display:block; margin-top:415px; margin-left:8px; cursor:pointer;}
-
-/* form elements */
-fieldset{border:1px solid #E9D4B7; margin-top:5px;}
-.contact{width:300px; background-color:#FBF8ED; border:1px solid #D8C7AF; }
-.contact input{width:300px; background-color:#FBF8ED; border:0px solid #D8C7AF; padding:3px;}
-.contactdetails input{width:300px; background-color:#FBF8ED; border:1px solid #D8C7AF; padding:3px;}
-.subdomainfield{width:150px; background-color:#FBF8ED; border:1px solid #D8C7AF; }
-.subdomainfield input{ border:0px; }
-
-#submit_button{width:113px ; height:31px; border:none; background:url(../images/submit_button.png); cursor:pointer; display:block; color:#FFFFFF;font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif;}
-#submit_button:hover{width:113px ; height:31px; border:none; background:url(../images/submit_button_r.png); cursor:pointer; display:block; color:#FFFFFF;font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif;}
-.contactlabel{font:12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#482B00; text-decoration:none; line-height:22px; }
-
-
-.contactsubmit{width:113px ; height:31px; border:none; background:url(../images/applybut_bg.png); cursor:pointer; color:#FFFFFF;font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif; text-align:center; display:block;  line-height:30px;}
-.contactsubmit:hover{width:113px ; height:31px; border:none; background:url(../images/applybut_bg_r.png); cursor:pointer;  color:#FFFFFF;font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif;text-align:center;display:block; line-height:30px;}
-legend{font:bold 18px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000; text-decoration:none; line-height:24px;  padding-bottom:8px; padding-top:10px;}
-.login_fieldset{width:420px; margin:0px auto; font:12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#482B00; text-decoration:none; line-height:22px;}
-/*form elements*/
-
-.errortext{font:10px Arial, Helvetica, sans-serif; color:#FF0000;}
-.errorlist{font:10px Arial, Helvetica, sans-serif; color:#FF0000;}
-
 
 /* demo page */
 #frontend_demo{width:420px; float:left; text-align:center; border:5px solid #F1EDE0; background-color:#FCF9EF; margin-top:15px; padding:5px;}
 #frontend_demo img{ border:3px solid #F1EDE0;}
-#frontend_demo img:hover{ border:3px solid #D4C490;}
+#frontend_demo img:hover{ border:3px solid #E2D6B0;}
 
 #backend_demo{width:420px; float:left; text-align:center; border:5px solid #F1EDE0; margin-left:10px;background-color:#FCF9EF; margin-top:15px; padding:5px;}
 #backend_demo img{ border:3px solid #F1EDE0;}
-#backend_demo img:hover{ border:3px solid #D4C490;}
+#backend_demo img:hover{ border:3px solid #E2D6B0;}
 /* login page */
-#login_bg{width:305px; height:375px; margin:0px auto; background:url(../images/loginpanel_bg.gif) no-repeat; padding:73px 35px 25px 35px;font:12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#000000; line-height:23px;}
-#login_bg input{ border:0px;}
-
-#login_base{ font:bold 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#000000; line-height:30px;}
-#login_base input{border:0px; background-color:#FBF6EF; width:285px;}
-.button{width:157px; height:45px; background:url(../images/login_but_bg.png) no-repeat; cursor:pointer; font:bold 18px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#FFFFFF;text-decoration:none; display:block;}
+#login_bg{width:375px; height:473px; margin:0px auto; background:url(../images/loginpanel_bg.gif) no-repeat;font:bold 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#8D5C17; line-height:20px;}
+#login_base{ padding:70px 35px 35px 35px;font:bold 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#8D5C17; line-height:20px;}
+#login_base input{ border:none; }
+.button{width:157px; height:45px; background:url(../images/login_but_bg.png) no-repeat; cursor:pointer; font:bold 18px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#FFFFFF;text-decoration:none;}
 .button:hover{width:157px; height:45px; background:url(../images/login_but_bgr.png) no-repeat; cursor:pointer;font:bold 18px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#FFFFFF; text-decoration:none;}
 
-.textfield_login{ background-color:#FBF6EF; border:1px solid #D3C1A6;padding:5px; width:300px;}
-/* 404 page */
+.textfield_login{ background-color:#FBF6EF; border:1px solid #D3C1A6; width:300px; padding:5px; }
+
+
 .errorbg{width:355px; height:433px; margin:0px auto;font:bold 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#8D5C17; line-height:20px; padding:20px 20px 20px 270px; background-image:url(../images/404_bg.gif);}
 .errorbg p{text-align:center; line-height:24px;}
 .errorbg p.404{text-align:center; line-height:16px; font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#000000;}
 
-.brown18{font:bold 18px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#8D5C17;}
-.meroon32{font:bold 32px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#A20000;}
+.brown18{font:bold 18px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#8D5C17;color:#A20000;}
+.meroon32{font:bold 32px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#A20000;color:#664414;}
+
 
 
 .helptext{font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#333333;}
-/* Register page page */
-fieldset{	border:solid 1px #DEDEDE;}
-fieldset legend {	font-weight:bold; font:13px "trebuchet MS";}
-fieldset ul, fieldset li{	border:0; margin:0; padding:0; list-style:none;}
-fieldset li{	clear:both;	list-style:none;	padding:10px;}
-fieldset label{	width:140px;float:left;}
-fieldset button{border:0; margin:0; padding:0;clear:both;width:125px;height:31px;background:#666666 url(img/button.png) no-repeat;	text-align:center;	line-height:31px;color:#FFFFFF;font-size:11px;font-weight:bold;}
+
+
 /*landingpage ends*/
 
-#landingpage{width:960px;margin:0px auto;padding-top:20px;}
-#landingpage #left{width:486px;height:532px;float:left;background:url(../images/landingpage_features.gif) no-repeat;}
-#landingpage #right{width:446px;height:532px;float:left;margin-left:25px;background:url(../images/landing_register_top.gif) no-repeat;}
-#landingpage #right fieldset{border:1px solid #E9D4B7; margin-top:5px;}
-#landingpage #right .contact{width:150px; background-color:#FBF8ED; border:1px solid #D8C7AF; }
-#landingpage #right .contact input{width:150px; background-color:#FBF8ED; border:0px solid #D8C7AF; padding:3px;}
-#landingpage #right .contactdetails input{width:150px; background-color:#FBF8ED; border:1px solid #D8C7AF; padding:3px;}
-#landingpage #right .subdomain{width:70px;}
-#landingpage #right .subdomain input{width:70px; background-color:#FBF8ED; border:1px solid #D8C7AF; padding:3px;}
-#landingpage #right .subdomainfield{width:150px; background-color:#FBF8ED; border:1px solid #D8C7AF; }
-#landingpage #right .subdomainfield input{ border:0px; }
-.middle{background-color:#FFFFFF;margin-top:68px;height:440px; display:block;}
-.bottom{background:url(../images/landing_registerbottom.gif) no-repeat;height:21px;}
+#landingpage
+{
+width:960px;
+margin:0px auto;
+padding-top:20px;
+}
+#landingpage #left
+{
+width:486px;
+height:532px;
+float:left;
+background:url(../images/landingpage_features.gif) no-repeat;
+}
+#landingpage #right
+{
+width:446px;
+height:532px;
+float:left;
+margin-left:25px;
+background:url(../images/landing_register_top.gif) no-repeat;
+}
+.middle{
+background-color:#FFFFFF;
+margin-top:68px;
+height:430px;
+}
+
+.bottom{
+background:url(../images/landing_registerbottom.gif) no-repeat;
+height:21px;
+}
