@@ -1,8 +1,12 @@
 """
 This module populates an arbitrary board with sample data
 """
+from django.core.management import setup_environ
+import settings
+setup_environ(settings)
+
 from zobpress.models import *
-board = Board.objects.get(subdomain='ee')
+board = Board.objects.get(subdomain='board1')
 
 cats = ['Accounting111',
         'Admin-Clerical111',

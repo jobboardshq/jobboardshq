@@ -49,7 +49,8 @@
       </p>
     </div>
     <br/>
-    <div id="support">
+    <!--support-->
+    <div>
       <h1>Support</h1>
       <p>We're always ready to provide our clients with all necessary help and information they need. <br/>
         <br/>
@@ -64,6 +65,7 @@
       </ul>
       </p>
     </div>
+    <!--support-->
   </div>
   
   {% if latestjob %}
@@ -71,10 +73,10 @@
     <h1>Latest posted job</h1>
     <blockquote>
       <p>{{ latestjob.name }}</p>
-      {{ latestjob.description|truncatewords_html:50|safe }}
-      <br/>
+      <p>{{ latestjob.description|truncatewords_html:50|safe }}</p>
+      
       <span class="speaker">
-        <a href="{{ latestjob.board.get_absolute_url }}{{ latestjob.get_absolute_url }}">Visit site</a></span></blockquote>
+        <a href="{{ latestjob.board.get_absolute_url }}{{ latestjob.get_absolute_url }}" class="meroonlink">Visit site</a></span></blockquote>
   </div>
   {% endif %}
 </div>
