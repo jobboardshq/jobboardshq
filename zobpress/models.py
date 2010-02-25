@@ -52,6 +52,7 @@ class Board(models.Model):
     "For listings value  of 0 means it never expires. For cost 0 means listing is free."
     job_listing_expires = models.PositiveIntegerField(default = 0)#Number of days a job should show up before being removed.
     cost_per_job_listing = models.PositiveIntegerField(default = 0)#Amount in USD which a user needs to pay to activate their listing.
+    template = models.TextField(max_length=128,default='frontend/css/template1.css')
     
     owner = models.ForeignKey(User)
     

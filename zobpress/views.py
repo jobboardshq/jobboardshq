@@ -15,8 +15,8 @@ from zobpress import models
 from zobpress.models import type_mapping, JobFormModel, JobFieldModel, Job, BoardPayments,\
     JobType, DeletedEntities
 from zobpress.models import Category, Job, Page
-from zobpress.forms import get_job_form, JobStaticForm, PageForm, BoardSettingsForm, IndeedSearchForm, CategoryForm,\
-    JobFieldEditForm, JobContactForm, BoardEditForm, JobTypeForm, BoardDomainForm
+from zobpress.forms import get_job_form, JobStaticForm, PageForm, BoardSettingsForm, IndeedSearchForm, CategoryForm
+from zobpress.forms import JobFieldEditForm, JobContactForm, BoardEditForm, JobTypeForm, BoardDomainForm, TemplateForm
 from zobpress.decorators import ensure_has_board,\
     ensure_is_admin
 from sitewide import views as sitewide_views
@@ -173,6 +173,7 @@ def settings(request):
     form = BoardSettingsForm(instance=request.board.settings)
     password_change_form = PasswordChangeForm(user=request.user)
     domain_form = BoardDomainForm(request.board, instance=request.board)
+    template_form = TemplateForm()
     display_tab = 1
     if request.method == 'POST':
         if request.POST['form'] == 'general':
@@ -185,6 +186,13 @@ def settings(request):
                 board_settings.save()
                 messages.add_message(request, messages.SUCCESS, "Your settings have been updated.")
                 HttpResponseRedirect(reverse('zobpress_settings'))
+        elif request.POST['form'] == 'template':
+            display_tab = 2
+            template_form = TemplateForm(data=request.POST)
+            if template_form.is_valid():
+                template_form.save(request.board)
+                messages.add_message(request, messages.SUCCESS, 'Your template has been changed successfully.')
+                return HttpResponseRedirect(reverse('zobpress_settings'))
         elif request.POST['form'] == 'change_password':
             display_tab = 3
             password_change_form = PasswordChangeForm(user=request.user, data=request.POST)
@@ -199,7 +207,12 @@ def settings(request):
                 domain_form.save()
                 messages.add_message(request, messages.SUCCESS, 'Domain name updated.')
                 return HttpResponseRedirect(reverse('zobpress_settings'))
-    payload = {'form': form, "board_form": board_form, 'password_change_form': password_change_form, 'domain_form': domain_form, 'display_tab': display_tab}
+    payload = {'form': form,
+               "board_form": board_form,
+               'password_change_form': password_change_form,
+               'template_form': template_form,
+               'domain_form': domain_form, 
+               'display_tab': display_tab}
     return render_to_response('zobpress/settings.html', payload , RequestContext(request))
 
 

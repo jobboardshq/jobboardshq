@@ -16,7 +16,22 @@ class PageForm(forms.ModelForm):
     class Meta:
         model = Page
         exclude = ('board',)
+
+class TemplateForm(forms.Form):
+    template_choices = (('frontend/css/template1.css','Template1'),
+                        ('frontend/css/template2.css','Template2'),
+                        ('frontend/css/template3.css','Template3'),
+                        )
+    template = forms.ChoiceField(choices=template_choices,widget=forms.RadioSelect)
     
+    def save(self,board):
+        board.template = self.cleaned_data['template']
+        board.save()
+        
+
+        
+        
+        
 class BoardEditForm(forms.ModelForm):
     class Meta:
         model = Board

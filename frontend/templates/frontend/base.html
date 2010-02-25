@@ -11,7 +11,7 @@
 <link rel="alternate" type="application/rss+xml" title="{{ board.name }}" href="{% url frontend_feeds_jobs %}" />
 {% compress css %}
 <link href="{{ MEDIA_URL }}frontend/css/reset.css" rel="stylesheet" type="text/css" />
-<link href="{{ MEDIA_URL }}frontend/css/template3.css" rel="stylesheet" type="text/css" />
+<link href="{{ MEDIA_URL }}{{ board.template }}" rel="stylesheet" type="text/css" />
 {% endcompress %}
 <!--[if lt IE 7]>
 		  <script type="text/javascript" src="{{ MEDIA_URL }}js/unitpngfix.js"></script>

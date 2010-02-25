@@ -79,7 +79,17 @@ $(function() {
 	
 	<!-- second tab begins -->
     <div id="fragment-2">
-      <p>coming soon...</p>
+	  <form action='.' method='post'>
+		{% csrf_token %}
+		<input type='hidden' name='form' value='template' />
+		<table width="100%" border="0" cellspacing="0" cellpadding="2">
+		  {{ template_form }}
+		  <tr>
+			<td>&nbsp;</td>
+			<td><input type="submit" name="button" id="button" value="Edit template" /></td>
+		  </tr>
+		</table>
+	  </form>
     </div>
 	<!-- second tab ends -->
 	
