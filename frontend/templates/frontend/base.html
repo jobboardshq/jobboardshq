@@ -56,6 +56,7 @@
         <input type="submit" name="button2" id="button2" value="" class="searchbutton" />
       </form>
       <div class="advancedsearch">| <a href="{% url frontend_advanced_search %}" class="searchlink">Advanced Search</a> </div>
+
       <div class="posttext">$ 50 for each job posting <a href="{% url frontend_addjob %}">
         <div class="postjob"></div>
         </a> </div>
@@ -104,11 +105,11 @@
     <!--newsletter start-->
     <div id="newsletterpanel">
       <div>
-        <input name="textfield2" type="text" class="newsletter_textfield" id="textfield2" />
+        <input name="email" type="text" class="newsletter_textfield" id="id_email" />
       </div>
       <div>
-      <form method="post" action="">
-        <img src="{{MEDIA_URL}}frontend/images/submit_btn.png" alt="Submit" width="81" height="28" /></a>
+      <form method="post" action="{% url emailsubs_index %}">
+        <input type="image" src="{{MEDIA_URL}}frontend/images/submit_btn.png" alt="Submit" width="81" height="28" border="0"/></a>
         </div>
       </form>
     </div>

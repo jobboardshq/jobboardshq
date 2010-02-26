@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect, Http404, HttpResponseForbidden
 from django.views.generic.list_detail import object_list, object_detail
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
 from django.utils import feedgenerator
@@ -168,13 +168,13 @@ def edit_job_type(request, job_type_pk):
 
 @ensure_is_admin
 @ensure_has_board
-def settings(request):
+def settings(request,display_tab=None):
     board_form = BoardEditForm(instance = request.board)
     form = BoardSettingsForm(instance=request.board.settings)
     password_change_form = PasswordChangeForm(user=request.user)
     domain_form = BoardDomainForm(request.board, instance=request.board)
     template_form = TemplateForm()
-    display_tab = 1
+    display_tab = display_tab or 1
     if request.method == 'POST':
         if request.POST['form'] == 'general':
             board_form = BoardEditForm(instance = request.board, data = request.POST)
@@ -192,21 +192,24 @@ def settings(request):
             if template_form.is_valid():
                 template_form.save(request.board)
                 messages.add_message(request, messages.SUCCESS, 'Your template has been changed successfully.')
-                return HttpResponseRedirect(reverse('zobpress_settings'))
+                request.method = 'GET'
+                return settings(request,display_tab)
         elif request.POST['form'] == 'change_password':
             display_tab = 3
             password_change_form = PasswordChangeForm(user=request.user, data=request.POST)
             if password_change_form.is_valid():
                 password_change_form.save()
                 messages.add_message(request, messages.SUCCESS, 'Your Password is updated successfully.')
-                return HttpResponseRedirect(reverse('zobpress_settings'))
+                request.method = 'GET'
+                return settings(request,display_tab)
         elif request.POST['form'] == 'set_domain':
             display_tab = 4
             domain_form = BoardDomainForm(board=request.board, data=request.POST)
             if domain_form.is_valid():
                 domain_form.save()
                 messages.add_message(request, messages.SUCCESS, 'Domain name updated.')
-                return HttpResponseRedirect(reverse('zobpress_settings'))
+                request.method = 'GET'
+                return settings(request,display_tab)
     payload = {'form': form,
                "board_form": board_form,
                'password_change_form': password_change_form,

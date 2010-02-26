@@ -20,7 +20,7 @@
 	  <a href="{% url frontend_job_type_jobs job.job_type.slug %}" class="badge1">{{ job.job_type }} </a>
 	  {% endcomment %}
 	  
-	  <span class="apply_button"><a href="#">Apply</a></span></li>
+	  <span class="apply_button"><a href="{% url frontend_apply job.job_slug %}">Apply</a></span></li>
 	{% empty %}
 	<li>
 	  <p>No active jobs as of now.</p>

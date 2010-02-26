@@ -32,20 +32,24 @@
     </table>
   </form>
   <table width="500" border="0" cellspacing="0" cellpadding="0">
+    {% if contact.name or contact.email or contact.website %}    
     <tr>
       <td colspan="2"><h3>Or contact directly at :</h3></td>
     </tr>
-    <tr>{% if contact.name %}
+    {% endif %}
+    {% if contact.name %}
+    <tr>
       <td>Name: </td>
       <td>{{  contact.name }}</td>
-      {% endif %}
     </tr>
-    
+    {% endif %}
+    {% if contact.email %}
     <tr>
       <td> Email:</td>
-      <td class="redlink">{{ contact.email|mailhide }}</td>
+      <td class="redlink">{{ contact.email }}</td>
     </tr>
     <tr>
+    {% endif %}
     {% if contact.website %}
       <td> Name:</td>
       <td><A href="{{ contact.website }}" class="redlink">{{  contact.website }}</A></td>
