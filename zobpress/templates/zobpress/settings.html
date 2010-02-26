@@ -82,25 +82,24 @@ $(function() {
 	  <form action='.' method='post'>
 		{% csrf_token %}
 		<input type='hidden' name='form' value='template' />
-		<table width="100%" valign="center">
-		{% for choice in template_form.template_choices %}
-		  <tr {% ifequal choice.css board.template %}style="background:Gainsboro"{% endifequal %}>
-			<td>
-			<input type="radio" id="id_template_{{forloop.counter}}" value="{{choice.css}}" name="template" {% ifequal choice.css board.template %}checked{% endifequal %}/>
-			</td><td>
-				<img src="{{MEDIA_URL}}{{choice.image}}"/><br/>
-				<h3>{{ choice.name }}</h3>
-			</td>
-			<td>
-			  Preview
-			</td>
-		  </tr>
-		{% endfor %}
-		  <tr>
-			<td>&nbsp;</td>
-			<td><input type="submit" name="button" id="button" value="Select this theme" /></td>
-		  </tr>
-		</table>
+        <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+        {% for choice in template_form.template_choices %}
+  <tr {% ifequal choice.css board.template %}style="background:Gainsboro"{% endifequal %}>
+    <td width="100" align="left" valign="middle"><input type="radio" id="id_template_{{forloop.counter}}" value="{{choice.css}}" name="template" {% ifequal choice.css board.template %}checked{% endifequal %}/></td>
+    <td width="350" align="center" valign="middle"><img src="{{MEDIA_URL}}{{choice.image}}"/><br/>
+			<h3>{{ choice.name }}</h3></td>
+    <td align="left" valign="middle"> Preview</td>
+  </tr>
+  {% endfor %}
+  <tr>
+    <td align="left" valign="middle">&nbsp;</td>
+    <td height="30" align="center" valign="middle"><input type="submit" name="button" id="button" value="Select this theme" /></td>
+    <td align="left" valign="middle">&nbsp;</td>
+  </tr>
+
+</table>
+
+		
 	  </form>
     </div>
 	<!-- second tab ends -->
