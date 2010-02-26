@@ -54,10 +54,10 @@ p.twitter{ padding-top:25px; padding-left:130px; color:#FFFFFF; text-align:left;
 .demo {background:url('../images/topnav.gif') -200px -47px no-repeat;}
 .pricing {background:url('../images/topnav.gif') -285px -47px no-repeat;}
 #support {}
-#support .screen1 { width:190px; float:left; margin-top:10px; }
-#support .screen2 { width:190px; float:left; margin-left:10px;margin-top:10px;}
-#support .screen3 { width:190px; float:left;margin-top:10px;}
-#support .screen4 { width:190px; float:left;margin-left:10px;margin-top:10px; }
+#support .screen1 { width:190px; float:left; margin-top:5px; margin-bottom:10px; }
+#support .screen2 { width:190px; float:left; margin-left:10px;margin-top:5px; margin-bottom:10px;}
+#support .screen3 { width:190px; float:left;margin-top:5px; margin-bottom:10px;}
+#support .screen4 { width:190px; float:left;margin-left:10px;margin-top:5px; margin-bottom:10px;}
 
 .contactus {background:url('../images/topnav.gif') -481px -47px no-repeat;}
 .space {background:url('../images/topnav.gif') -781px -47px no-repeat;}
