@@ -18,6 +18,8 @@ class PageForm(forms.ModelForm):
         exclude = ('board',)
 
 class TemplateForm(forms.Form):
+    
+    #To add a new template just update a new dictionary under.
     template_choices = ({'css':'frontend/css/template1.css',
                          'image':'frontend/images/blue_theme.gif',
                          'name':'Theme Water'

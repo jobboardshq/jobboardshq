@@ -12,7 +12,7 @@
 {% compress css %}
 <link href="{{ MEDIA_URL }}frontend/css/reset.css" rel="stylesheet" type="text/css" />
 
-<link href="{{ MEDIA_URL }}{{board.template}}" rel="stylesheet" type="text/css" />
+<link href="{{ MEDIA_URL }}{% firstof override_template_name board.template %}" rel="stylesheet" type="text/css" />
 
 
 {% endcompress %}

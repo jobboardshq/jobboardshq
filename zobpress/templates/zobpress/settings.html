@@ -84,9 +84,9 @@ $(function() {
 		<input type='hidden' name='form' value='template' />
 		<table width="100%" valign="center">
 		{% for choice in template_form.template_choices %}
-		  <tr valign="center">
+		  <tr {% ifequal choice.css board.template %}style="background:Gainsboro"{% endifequal %}>
 			<td>
-			<input type="radio" id="id_template_{{forloop.counter}}" value="{{choice.css}}" name="template" />
+			<input type="radio" id="id_template_{{forloop.counter}}" value="{{choice.css}}" name="template" {% ifequal choice.css board.template %}checked{% endifequal %}/>
 			</td><td>
 				<img src="{{MEDIA_URL}}{{choice.image}}"/><br/>
 				<h3>{{ choice.name }}</h3>
@@ -98,7 +98,7 @@ $(function() {
 		{% endfor %}
 		  <tr>
 			<td>&nbsp;</td>
-			<td><input type="submit" name="button" id="button" value="Edit template" /></td>
+			<td><input type="submit" name="button" id="button" value="Select this theme" /></td>
 		  </tr>
 		</table>
 	  </form>

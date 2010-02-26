@@ -14,7 +14,7 @@ from frontend.forms import ApplyForm, AdvancedSearchForm
 from django.utils import feedgenerator
 
 @ensure_has_board
-def index(request, category_slug = None, job_type_slug = None):
+def index(request, category_slug = None, job_type_slug = None,extra_context=None):
     board = request.board
     category = board.category_set.all()
     pages = board.page_set.all()
@@ -24,11 +24,14 @@ def index(request, category_slug = None, job_type_slug = None):
         jobs = jobs.filter(category__slug = category_slug)
     if job_type_slug:
         jobs = jobs.filter(job_type__slug = job_type_slug)
+    payload = {"category":category,
+               "pages": pages,
+               "jobs": jobs,
+               'job_types':job_types}
+    if request.GET.get('override-css'):
+        payload.update({})
     return render_to_response("frontend/index.html", 
-                              {"category":category,
-                               "pages": pages,
-                               "jobs": jobs,
-                               'job_types':job_types},
+                              payload,
                               RequestContext(request))
 
 @ensure_has_board

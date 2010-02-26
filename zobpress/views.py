@@ -215,7 +215,6 @@ def settings(request):
                'display_tab': display_tab}
     return render_to_response('zobpress/settings.html', payload , RequestContext(request))
 
-
 @ensure_is_admin
 @ensure_has_board
 def applicants(request, job_slug):
