@@ -29,7 +29,7 @@ def index(request, category_slug = None, job_type_slug = None,extra_context=None
                "jobs": jobs,
                'job_types':job_types}
     if request.GET.get('override-css'):
-        payload.update({})
+        payload.update({'override_template_name'})
     return render_to_response("frontend/index.html", 
                               payload,
                               RequestContext(request))
