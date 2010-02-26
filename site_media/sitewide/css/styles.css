@@ -1,7 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
 
-body{font:11px "trebuchet MS", Arial, Helvetica, sans-serif;  color:#191919; text-decoration:none; line-height:18px; }
+body{font:12px "trebuchet MS", Arial, Helvetica, sans-serif;  color:#191919; text-decoration:none; line-height:18px; }
 
 body.homepage{background:url('../images/site_bg.gif') repeat-x; font:11px "trebuchet MS", Arial, Helvetica, sans-serif;  color:#191919; text-decoration:none; line-height:18px;}
 body.innerpage{background:url('../images/site_bginner.gif') repeat-x; font:11px "trebuchet MS", Arial, Helvetica, sans-serif;  color:#191919; text-decoration:none; line-height:18px;}
@@ -179,11 +179,11 @@ legend{font:bold 18px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; colo
 
 
 /* demo page */
-#frontend_demo{width:420px; float:left; text-align:center; border:5px solid #F1EDE0; background-color:#FCF9EF; margin-top:15px; padding:5px;}
+#frontend_demo{width:420px; float:left; text-align:center; border:5px solid #F1EDE0; background-color:#FFFFFF; margin-top:15px; padding:5px;padding-bottom:15px;}
 #frontend_demo img{ border:3px solid #F1EDE0;}
 #frontend_demo img:hover{ border:3px solid #D4C490;}
 
-#backend_demo{width:420px; float:left; text-align:center; border:5px solid #F1EDE0; margin-left:10px;background-color:#FCF9EF; margin-top:15px; padding:5px;}
+#backend_demo{width:420px; float:left; text-align:center; border:5px solid #F1EDE0; margin-left:10px;background-color:#FFFFFF; margin-top:15px; padding:5px; padding-bottom:15px;}
 #backend_demo img{ border:3px solid #F1EDE0;}
 #backend_demo img:hover{ border:3px solid #D4C490;}
 /* login page */
