@@ -1,9 +1,42 @@
-{% extends "sitewide/base_inner.html" %}
-
-{% block title %}Pricing - {{ block.super }}{% endblock %}
-
-{% block content %}
-      <div id="innerpage_content">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Zobpress - Get your Job Board live with in minutes</title>
+<link href="css/reset.css" rel="stylesheet" type="text/css" />
+<link href="css/styles.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="innerpage">
+<div id="wrapper">
+  <!--Header starts-->
+  <div id="header"><a href="index.html"><img src="images/zobpress_logo.gif" alt="Zob Press Logo" width="315" height="67" /></a></div>
+  <!--Header Ends-->
+  <!--Top Navigation Starts-->
+  <div id="top_navigation">
+    <ul id="nav-example">
+      <li  id="nav-example-01" ><a href="index.html" ><span>Home</span></a></li>
+      <li id="nav-example-02"><a href="features.html"><span>About Us</span></a></li>
+      <li id="nav-example-03"><a href="demo.html" ><span>Products</span></a></li>
+      <li id="nav-example-04"><a href="pricing.html" class="pricing"><span>Ambassadors</span></a></li>
+      <li id="nav-example-05"><a href="support.html"><span>Loyalty Program</span></a></li>
+      <li id="nav-example-06"><a href="contactus.html"><span>Terms and Conditions</span></a></li>
+      <li id="nav-example-07"><a href="#"><span>Contact Us</span></a></li>
+      <li id="nav-example-08"><a href="#"><span>Terms and Conditions</span></a></li>
+      <li id="nav-example-09"><a href="#"><span>Contact Us</span></a></li>
+    </ul>
+  </div>
+  <!--Top Navigation ends-->
+  <!--Banner starts-->
+  <div id="banner_innerpage">
+    <div class="title"><img src="images/innerbanner_title.png" alt="Create your own in seconds - No Downloads and No Installations" width="587" height="115" /></div>
+    <a href="register.html" >
+    <div id="signupbut"></div>
+    </a>
+    <div class="clear"></div>
+  </div>
+  <!--Banner ends-->
+  <!--content starts-->
+  <div id="innerpage_content">
     <div id="pricingtable">
       <div>
         <h1 align="center">Free until 1st June. <br/>
@@ -112,9 +145,27 @@
           <div class="pricing_signup"></div>
           </a> </div>
         <div class="clear"></div>
-        <div id="bottom"></div>
-        </div>
-        </div>
-
-
-{% endblock content %}
+      </div>
+      <div id="bottom"></div>
+    </div>
+  </div>
+  <div class="clear"></div>
+</div>
+<div id="footer">
+  <div id="footerlinks"><a href="{% url sitewide_index %}">Home</a> <a href="{% url sitewide_features %}">Features</a> <a href="{% url sitewide_demo %}">Demo</a> <a href="{% url sitewide_pricing %}">Pricing</a> <a href="{% url sitewide_support %}">Support</a> <a href="{% url sitewide_contact %}">Contact Us</a>
+    <div class="onepixelborder"></div>
+    <div id="footericons">
+      <div id="email">
+        <p class="email">Contact us at :<br/>
+          <a href="mailto:support@jobboardshq.com" class="redlink">hello@jobboardshq.com</a></p>
+      </div>
+      <div id="twitter">
+        <p class="twitter">Follow us on Twitter<br/>
+          <a href="http://twitter.com/ZobPress" target="_blank" class="redlink">http://twitter.com/jobboardshq</a></p>
+      </div>
+    </div>
+    <div id="copyrights">&copy; Copyright 2010 Job Boards.com. All Rights Reserved</div>
+  </div>
+</div>
+</body>
+</html>

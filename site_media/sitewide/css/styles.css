@@ -128,16 +128,32 @@ blockquote {font:12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; marg
 #pricingtable #middle{width:896px; border-left:1px solid #EEDABC; border-right:1px solid #EEDABC; background-color:#FDF9F3;}
 #pricingtable #bottom{width:898px; background: url('../images/pricing_table_bottom.gif') no-repeat; height:25px}
 #pricingtable #column1{width:306px; float:left; display:block; margin-top:63px;border-top:1px solid #EEDABC;}
-#pricingtable #column1 li{font:14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#482B00; text-decoration:none; padding-left:20px; line-height:29px; border-bottom:1px solid #EEDABC;}
+#pricingtable #column1 li{font:bold 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#A10000; text-decoration:none; padding-left:20px; line-height:29px; border-bottom:1px solid #EEDABC;}
 #pricingtable #column2{width:107px; height:472px; float:left; display:block; margin-right:9px; background:url('../images/free_pricing.png') no-repeat;}
+#pricingtable #column2 ul{margin-top:65px; text-align:center;}
+#pricingtable #column2 li{font:14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#A10000; text-decoration:none; line-height:29px; border-bottom:1px solid #EEDABC;}
+
 #pricingtable #column3{width:107px; height:472px;float:left; display:block; margin-right:9px;background:url('../images/starter_pricing.png') no-repeat;}
+#pricingtable #column3 ul{margin-top:65px; text-align:center;}
+#pricingtable #column3 li{font:14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#A10000; text-decoration:none; line-height:29px; border-bottom:1px solid #EEDABC;}
+
 #pricingtable #column4{width:107px; height:472px;float:left; display:block; margin-right:9px;background:url('../images/pro_pricing.png') no-repeat;}
+#pricingtable #column4 ul{margin-top:65px; text-align:center;}
+#pricingtable #column4 li{font:14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#FFFFFF; text-decoration:none;  line-height:29px; border-bottom:1px solid #EEDABC;}
+
 #pricingtable #column5{width:107px; height:472px;float:left; display:block; margin-right:9px;background:url('../images/elite_pricing.png') no-repeat;}
+#pricingtable #column5 ul{margin-top:65px; text-align:center;}
+#pricingtable #column5 li{font:14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#A10000; text-decoration:none;line-height:29px; border-bottom:1px solid #EEDABC;}
+
 #pricingtable #column6{width:107px; height:472px;float:left; display:block; margin-right:9px;background:url('../images/unlimited_pricing.png') no-repeat;}
-.pricing_signup{width:92px; height:40px; background:url('../images/pricing_signup_but.png') no-repeat; display:block; margin-top:415px; margin-left:8px; cursor:pointer;}
+#pricingtable #column6 ul{margin-top:65px; text-align:center;}
+
+#pricingtable #column6 li{font:14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#A10000; text-decoration:none;  line-height:29px; border-bottom:1px solid #EEDABC;}
+
+.pricing_signup{ width:92px; height:40px; background:url('../images/pricing_signup_but.png') no-repeat; display:block; margin-top:15px; margin-left:8px; cursor:pointer;}
 .pricing_signup:hover{ background:url('../images/pricing_signup_but_r.png') no-repeat; display:block; }
-.pricing_prosignup{width:92px; height:40px; background:url('../images/pricing_pro_but.png') no-repeat; display:block; margin-top:415px; margin-left:8px; cursor:pointer;}
-.pricing_prosignup:hover{width:92px; height:40px; background:url('../images/pricing_pro_but_r.png') no-repeat; display:block; margin-top:415px; margin-left:8px; cursor:pointer;}
+.pricing_prosignup{width:92px; height:40px; background:url('../images/pricing_pro_but.png') no-repeat; display:block; margin-top:15px; margin-left:8px; cursor:pointer;}
+.pricing_prosignup:hover{width:92px; height:40px; background:url('../images/pricing_pro_but_r.png') no-repeat; display:block; margin-top:15px; margin-left:8px; cursor:pointer;}
 
 /* form elements */
 fieldset{border:1px solid #E9D4B7; margin-top:5px;}
