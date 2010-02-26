@@ -9,7 +9,7 @@ body.login{background:url('../images/site_bginner.gif') repeat-x; background-col
 body.register{background:url('../images/site_bg2.gif') repeat-x; background-color:#FFFFFF;font:11px "trebuchet MS", Arial, Helvetica, sans-serif;  color:#191919; text-decoration:none; line-height:18px;}
 
 /*Headings*/
-h1{font:bold 18px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000; text-decoration:none; line-height:24px;  padding-bottom:8px; padding-top:10px;}
+h1{font:bold 18px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000; text-decoration:none; line-height:24px;  padding-bottom:8px; padding-top:5px;}
 h2{font:bold 16px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000; text-decoration:none; line-height:20px;}
 h3{font:bold 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000; text-decoration:none; line-height:18px;}
 h4{font:bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000; text-decoration:none; line-height:18px;}
@@ -53,7 +53,12 @@ p.twitter{ padding-top:25px; padding-left:130px; color:#FFFFFF; text-align:left;
 .featuresselected {background:url('../images/topnav.gif') -92px -47px no-repeat;}
 .demo {background:url('../images/topnav.gif') -200px -47px no-repeat;}
 .pricing {background:url('../images/topnav.gif') -285px -47px no-repeat;}
-.support {background:url('../images/topnav.gif') -379px -47px no-repeat;}
+#support {}
+#support .screen1 { width:190px; float:left; margin-top:10px; }
+#support .screen2 { width:190px; float:left; margin-left:10px;margin-top:10px;}
+#support .screen3 { width:190px; float:left;margin-top:10px;}
+#support .screen4 { width:190px; float:left;margin-left:10px;margin-top:10px; }
+
 .contactus {background:url('../images/topnav.gif') -481px -47px no-repeat;}
 .space {background:url('../images/topnav.gif') -781px -47px no-repeat;}
 .login {background:url('../images/topnav.gif') -870px -47px no-repeat;}
@@ -78,7 +83,7 @@ p.twitter{ padding-top:25px; padding-left:130px; color:#FFFFFF; text-align:left;
 /*Content styles*/
 #homecontent{ margin:0px auto; width:960px;}
 #homecontent #leftpanel{width:509px; float:left; margin-top:20px; border-right:1px solid #D9C6AC;}
-#homecontent #leftpanel .features{width:480px; padding:10px 5px 10px 0px; border-bottom:1px dashed #D9C6AC; }
+#homecontent #leftpanel .features{width:480px; padding:18px 5px 18px 0px; border-bottom:1px dashed #D9C6AC; }
 #homecontent #leftpanel .features img{ float:left; display:block; margin:0px 15px 0px 0px;  }
 .features_title{font:bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000; text-decoration:none; }
 #homecontent #leftpanel_innerpage{width:960px; margin:0px auto; }
@@ -86,7 +91,7 @@ p.twitter{ padding-top:25px; padding-left:130px; color:#FFFFFF; text-align:left;
 #homecontent #leftpanel_innerpage .features img{ float:left; display:block; margin:0px 15px 0px 0px;  }
 .features_title{font:bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000; text-decoration:none; }
 #homecontent #rightpanel{width:430px; float:left; padding-top:20px; padding-left:20px; }
-#homecontent #rightpanel #support{width:390px; float:left; padding:15px 20px 20px 20px;background:url('../images/book_icon.png') no-repeat bottom right; background-color:#F9F3E9;  }
+#homecontent #rightpanel #support{width:390px; float:left; padding:15px 20px 20px 20px; background-color:#F9F3E9;  }
 #homecontent #rightpanel #support li{ font:12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; padding-left:10px; text-decoration:none; line-height:18px;  }
 #homecontent #rightpanel #support li a{ background:url('../images/arrow.png') no-repeat; padding-left:15px; text-decoration:none; color:#000000; }
 #homecontent #rightpanel #support li a:hover{ text-decoration:underline; color:#A10000; }
