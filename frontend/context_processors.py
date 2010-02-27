@@ -6,8 +6,9 @@ def board_categories(request):
         category = board.category_set.all()
         pages = board.page_set.all()
         job_types = board.jobtype_set.filter(is_deleted=False)
-        return {'board':board,
+        return {'pages':pages,
                 'category':category,
-                'job_types':job_types}
+                'job_types':job_types,
+                }
     return {}
     
