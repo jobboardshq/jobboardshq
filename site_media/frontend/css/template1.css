@@ -4,19 +4,7 @@ body {
 	font:12px Helvetica, Arial, sans-serif;
 }
 /*Main container*/
-a:link {
-	color: #0099CC;
-	text-decoration:underline;
-}
-a:visited {
-	color: #0099CC;
-}
-a:hover {
-	color: #000000;
-}
-a:active {
-	color: #0099CC;
-}
+
 #main {
 	width:100%;
 	margin:0px auto;
@@ -234,6 +222,15 @@ a:active {
 	margin-top:20px;
 	text-align:center;
 }
+#footer a {
+	color:#000000;
+	text-decoration:underline;
+}
+#footer a:hover {
+	color:#0099FF;
+	text-decoration:underline;
+}
+
 /* job type colours */
 .badge1 {
 	font:bold 11px Tahoma, Arial, Helvetica, sans-serif;
@@ -606,3 +603,6 @@ h6{font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#0099CC
 .button:hover{border:none;cursor:pointer; color:#FFFFFF;font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif; text-align:center; display:block;  line-height:20px;-moz-border-radius:10px;  -webkit-border-radius:10px; border:1px solid #0099CC; background-color:#0099CC; padding:3px 10px 3px 10px;}
 
 .newstextfield{width:180px; border:0px; padding:3px;}
+
+.newblacklink{ font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none;}
+.newblacklink:hover{ font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#A10000; text-decoration:underline;}

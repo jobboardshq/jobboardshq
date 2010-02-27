@@ -704,6 +704,10 @@ legend{font:12px "trebuchet MS",Arial, Helvetica, sans-serif; color:#A10000;}
 .blacklink{ font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#000000; text-decoration:underline;}
 .blacklink:hover{ font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#A10000; text-decoration:underline;}
 
+.newblacklink{ font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none;}
+.newblacklink:hover{ font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#A10000; text-decoration:underline;}
+
+
 .meroonbold{ font:bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#A10000; text-decoration:underline; line-height:28px;}
 .meroonbold:hover{ font:bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#000000; text-decoration:underline; line-height:28px;}
 

@@ -390,7 +390,7 @@ a:active {
 }
 .solidblockmenu li a:hover, .solidblockmenu li .current {
 	color: white;
-	background:url(../images/blockactive.gif) center center repeat-x;
+	background-color:#EABB02;
 }
 .clear {
 	clear:both;
@@ -710,3 +710,6 @@ h6{font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#4B392C
 .button a {border:none;cursor:pointer; color:#FFFFFF;font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif; text-align:center; display:block;  line-height:20px;-moz-border-radius:10px;  -webkit-border-radius:10px; border:1px solid #4B392C; background-color:#4B392C; padding:3px 10px 3px 10px;}
 .button:hover{border:none;cursor:pointer; color:#FFFFFF;font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif; text-align:center; display:block;  line-height:20px;-moz-border-radius:10px;  -webkit-border-radius:10px; border:1px solid #4B392C; background-color:#4B392C; padding:3px 10px 3px 10px;}
 .newstextfield{width:180px; border:0px; padding:3px;}
+
+.newblacklink{ font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none;}
+.newblacklink:hover{ font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#A10000; text-decoration:underline;}
