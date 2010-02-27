@@ -487,7 +487,7 @@ a:active {
 	font:bold 11px "trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
 	color:#FFFFFF;
 	text-decoration:none;
-	background-color:#A10000;
+	background-color:#4C3524;
 	padding:2px 4px 2px 4px;
 }
 #pagenation a:hover {
@@ -510,7 +510,7 @@ a:active {
 	font: bold 12px "trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
 	line-height:47px;
 	padding-left:20px;
-	color:#A10000;
+	color:#4C3524;
 	background:url(../images/categories_topbg.gif);
 }
 #pages .middle {
@@ -618,7 +618,7 @@ margin-bottom:10px;
 .searchlink {
 	font: bold 12px "trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
 	line-height:83px;
-	color:#A10000;
+	color:#4C3524;
 	text-decoration:none;
 }
 .searchlink:hover {
@@ -670,7 +670,7 @@ margin-bottom:10px;
 .frontend_heading{font:bold 14px "trebuchet MS",Arial, Helvetica, sans-serif; line-height:24px; border-bottom:1px solid #D8C7AF; color:#463121; padding-bottom:8px;}
 .frontend_subheading1{font:12px "trebuchet MS",Arial, Helvetica, sans-serif; line-height:30px; border-bottom:1px solid #D8C7AF; color:#463121;}
 fieldset{border:1px solid  #D8C7AF; margin-top:10px;}
-legend{font:12px "trebuchet MS",Arial, Helvetica, sans-serif; color:#A10000;}
+legend{font:12px "trebuchet MS",Arial, Helvetica, sans-serif; color:#4C3524;}
 .errortext{font:11px Arial, Helvetica, sans-serif; color:#FF0000;}
 .errorlist{font:11px Arial, Helvetica, sans-serif; color:#FF0000;}
 .apply{width:113px ; height:31px; border:none;cursor:pointer; color:#FFFFFF;font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif; text-align:center; display:block; float:right; line-height:30px; -moz-border-radius:10px;  -webkit-border-radius:10px; border:1px solid #513622; background-color:#513622;}
@@ -679,19 +679,19 @@ legend{font:12px "trebuchet MS",Arial, Helvetica, sans-serif; color:#A10000;}
 .redtext { font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#423123; text-decoration:underline;}
 .redtext:hover{ font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#000000; text-decoration:underline;}
 
-.redlink{ font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#A10000; text-decoration:underline;}
+.redlink{ font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#4C3524; text-decoration:underline;}
 .redlink:hover{ font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#000000; text-decoration:underline;}
 
 .blacklink{ font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#000000; text-decoration:underline;}
-.blacklink:hover{ font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#A10000; text-decoration:underline;}
+.blacklink:hover{ font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#4C3524; text-decoration:underline;}
 
-.meroonbold{ font:bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#A10000; text-decoration:underline; line-height:28px;}
+.meroonbold{ font:bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#4C3524; text-decoration:underline; line-height:28px;}
 .meroonbold:hover{ font:bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#000000; text-decoration:underline; line-height:28px;}
 
 
 .tagline{ font: 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#FFFFFF; text-decoration:none;}
 .blackboldtext{ font:bold 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none;}
-.redboldtext{ font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#A10000; text-decoration:none;}
+.redboldtext{ font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#4C3524; text-decoration:none;}
 
 .left_padding{padding-left:20px; padding-right:20px;}
 p.frontend{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; color:#191919; text-decoration:none; line-height:24px;}
@@ -712,4 +712,4 @@ h6{font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#4B392C
 .newstextfield{width:180px; border:0px; padding:3px;}
 
 .newblacklink{ font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none;}
-.newblacklink:hover{ font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#A10000; text-decoration:underline;}
+.newblacklink:hover{ font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#4C3524; text-decoration:underline;}
