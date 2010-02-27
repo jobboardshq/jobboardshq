@@ -1,6 +1,6 @@
 {% extends "frontend/base.html" %}
 {% load pagination_tags %}
-{% autopaginate jobs 10 %}
+{% autopaginate jobs 2 %}
 
 
 {% block content %}
@@ -24,76 +24,25 @@
           </tr>
           <tr>
             <td><table width="723" border="0" align="center" cellpadding="0" cellspacing="0">
+		    {% for job in jobs %}
             <tr>
-                  <td width="100" align="left" valign="top" class="colorbg"><span class="left_padding">Fulltime</span></td>
-                  <td width="300" align="left" valign="top" class="colorbg"><span class="redtext">Django Developer</span> at Applab </td>
-                  <td width="120" align="left" valign="top" class="colorbg">Web Developer</td>
-                  <td width="100" align="left" valign="top" class="colorbg">22-01-2010 </td>
-                  <td align="left" valign="top" class="colorbg"><span class="apply_button"><a href="#">Apply</a></span></td>
+                  <td width="100" align="left" valign="top" class="{% cycle colorbg whitebg %}"><span class="left_padding">{{job.job_type}}</span></td>
+                  <td width="300" align="left" valign="top" class="{% cycle colorbg whitebg %}"><span class="redtext"><a href="{{ job.get_absolute_url }}" class="jobtext">{{ job.name }}</a>
+				  {% if job.company or job.location %}
+				  at <span class="company">{% firstof job.company job.location %}</span>
+				  {% endif %}</td>
+                  <td width="120" align="left" valign="top" class="{% cycle colorbg whitebg %}">{{ job.category }}</td>
+                  <td width="100" align="left" valign="top" class="{% cycle colorbg whitebg %}">{{ job.created_on|date }}</td>
+                  <td align="left" valign="top" class="{% cycle colorbg whitebg %}"><span class="apply_button"><a href="{% url frontend_apply job.job_slug %}">Apply</a></span></td>
               </tr>
-                <tr>
-                  <td width="100" align="left" valign="top" class="whitebg"><span class="left_padding">Freelance</span></td>
-                  <td width="300" align="left" valign="top" class="whitebg"><span class="redtext">Business Development</span> at Applab </td>
-                  <td width="120" align="left" valign="top" class="whitebg">Marketing </td>
-                  <td width="100" align="left" valign="top" class="whitebg">22-01-2010 </td>
-                  <td align="left" valign="top" class="whitebg"><span class="apply_button"><a href="#">Apply</a></span></td>
-              </tr>
-                <tr>
-                  <td width="100" align="left" valign="top" class="colorbg"><span class="left_padding">Partime</span></td>
-                  <td width="300" align="left" valign="top" class="colorbg"><span class="redtext">Web Designer </span> at Applab </td>
-                  <td width="120" align="left" valign="top" class="colorbg">Web Designer</td>
-                  <td width="100" align="left" valign="top" class="colorbg">22-01-2010 </td>
-                  <td align="left" valign="top" class="colorbg"><span class="apply_button"><a href="#">Apply</a></span></td>
-              </tr>
-                <tr>
-                  <td width="100" align="left" valign="top" class="whitebg"><span class="left_padding">Fulltime</span></td>
-                  <td width="300" align="left" valign="top" class="whitebg"><span class="redtext">Django Developer</span> at Applab </td>
-                  <td width="120" align="left" valign="top" class="whitebg">Web Developer</td>
-                  <td width="100" align="left" valign="top" class="whitebg">22-01-2010 </td>
-                  <td align="left" valign="top" class="whitebg"><span class="apply_button"><a href="#">Apply</a></span></td>
-              </tr>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-            </table></td>
+	  	{% empty %}
+			<tr>
+			  <p>No active jobs as of now.</p>
+			</tr>
+		{% endfor %}
+			</table></td>
           </tr>
         </table>
-  <ul>
-  {% for job in jobs %}
-	<li class="whitebg">
-	  <a href="{{ job.get_absolute_url }}" class="jobtext">{{ job.name }}</a>
-
-	  {% if job.company or job.location %}
-	  at <span class="company">{% firstof job.company job.location %}</span>
-	  {% endif %}
-	  
-	  {% comment %}	
-	  <a href="{% url frontend_job_type_jobs job.job_type.slug %}" class="badge1">{{ job.job_type }} </a>
-	  {% endcomment %}
-	  
-	  <span class="apply_button"><a href="{% url frontend_apply job.job_slug %}">Apply</a></span></li>
-	{% empty %}
-	<li>
-	  <p>No active jobs as of now.</p>
-	</li>
-  {% endfor %}
-  </ul>
 	<div class="clear"></div> 
 	<div id="pagenation"> {% paginate %} </div>
 </div> 
