@@ -558,7 +558,7 @@ margin-bottom:10px;
 #innerrightpanel .top{width:726px; background:url(../images/body_top.gif) no-repeat; height:14px; }
 #innerrightpanel .middle{width:726px; ;background:url(../images/body_middlebg.gif) repeat-y; }
 #innerrightpanel .bottom{width:726px;background:url(../images/body_bottom.gif) no-repeat; height:14px;}
-#innerrightpanel .title{ font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#A10000; text-decoration:none; padding:3px 0px 11px 0px;}
+#innerrightpanel .title{ font:bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#038FBE; text-decoration:none; padding:3px 0px 11px 0px;}
 #innerrightpanel .border{ border-top:1px dashed #D9C6AC; height:1px;}
 
 #innerrightpanel{width:710px; float:right; margin:10px 0px 0px 20px; padding:10px;  -webkit-border-radius:10px; -moz-border-radius:10px; border:1px solid #D8E3E9;}
@@ -573,7 +573,7 @@ legend{font:12px "trebuchet MS",Arial, Helvetica, sans-serif; color:#A10000;}
 .apply{width:113px ; height:31px; border:none;cursor:pointer; color:#FFFFFF;font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif; text-align:center; display:block; float:right; line-height:30px; -moz-border-radius:10px;  -webkit-border-radius:10px; border:1px solid #0099CC; background-color:#0099CC;}
 .apply a {color:#FFFFFF;height:31px; text-decoration:none;-moz-border-radius:10px;  -webkit-border-radius:10px; border:1px solid #0099CC; background-color:#0099CC;}
 .apply:hover{color:#FFFFFF;height:31px; text-decoration:none;-moz-border-radius:10px;  -webkit-border-radius:10px; border:1px solid #0099CC; background-color:#0099CC; }
-.redtext { font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#A10000; text-decoration:underline;}
+.redtext { font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#038FBE; text-decoration:underline;}
 .redtext:hover{ font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#000000; text-decoration:underline;}
 
 .redlink{ font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#0099CC; text-decoration:underline;}
