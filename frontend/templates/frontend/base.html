@@ -104,11 +104,11 @@
     <br/>
     <!--newsletter start-->
     <div id="newsletterpanel">
+      <form method="post" action="{% url emailsubs_index %}">
       <div>
         <input name="email" type="text" class="newsletter_textfield" id="id_email" />
       </div>
       <div>
-      <form method="post" action="{% url emailsubs_index %}">
         <input type="image" src="{{MEDIA_URL}}frontend/images/submit_btn.png" alt="Submit" width="81" height="28" border="0"/></a>
         </div>
       </form>

@@ -1,9 +1,9 @@
 {% extends "frontend/base.html" %}
 {% load pagination_tags %}
-{% autopaginate jobs 2 %}
-
 
 {% block content %}
+{% autopaginate jobs %}
+
 <!--job posts starts here-->
 
 <div id="jobposts">
@@ -49,39 +49,3 @@
 
 <!--job posts ends here-->  
 {% endblock %}
-
-
-	
-	
-	
-	
-	
-	
-{% comment %}
-<div class="middle">
-          {% for job in jobs %}
-          <tr class="{% cycle 'colorbg' 'whitebg' %}">
-            <td width="130" align="left" ><span class="left_padding"> <a href="{% url frontend_job_type_jobs job.job_type.slug %}" class="badge1">{{ job.job_type }} </a></span> </td>
-            <td width="300" align="left"><span class="redtext"> <a href="{{ job.get_absolute_url }}" class="redtext">{{ job.name }}</a></span> {% if job.company %}
-              at {{ job.company }}
-              {% endif %} </td>
-            <td width="124" align="left"><a href="{% url frontend_category_jobs job.category.slug  %}" class="blacklink">{{ job.category.name }}</a> </td>
-            <td width="80" align="left"> {{ job.created_on|date }} </td>
-            <td align="left"><span class="apply_button"><a href="{% url frontend_apply job.job_slug %}">Apply</a></span></td>
-          </tr>
-          {% endfor %}
-        </table></td>
-    </tr>
-  </table>
-  <div id="pagenation"> {% paginate %} </div>
-</div>
-{% endcomment %}
-
-
-
-
-
-
-
-
-

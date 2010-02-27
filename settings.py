@@ -45,10 +45,10 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.doc.XViewMiddleware',
     'django.middleware.transaction.TransactionMiddleware',
     # 'django.middleware.csrf.CsrfViewMiddleware',
-    'pagination.middleware.PaginationMiddleware',
     'zobpress.middleware.GetSubdomainMiddleware',
     'zobpress.middleware.ThreadLocals',
     'zobpress.middleware.RedirectOnInvalidSubdomain',
+    'pagination.middleware.PaginationMiddleware',
     
 )
 
@@ -61,6 +61,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.request",
     'django.contrib.messages.context_processors.messages',
     "zobpress.context_processor.populate_board",
+    "frontend.context_processors.board_categories",
     )
 
 HAYSTACK_SITECONF = 'search_sites'

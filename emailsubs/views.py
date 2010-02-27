@@ -8,9 +8,12 @@ from django.utils import feedgenerator
 from emailsubs.forms import EmailCaptureForm
 from emailsubs.models import EmailSubscription
 
+
+
 def index(request):
     email_form = EmailCaptureForm(board = request.board)
     if request.method == "POST":
+        print request.POST
         email_form = EmailCaptureForm(board = request.board, data = request.POST)
         if email_form.is_valid():
             email_form.save()

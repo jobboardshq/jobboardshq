@@ -80,6 +80,7 @@ class AutoPaginateNode(template.Node):
         self.context_var = context_var
 
     def render(self, context):
+
         key = self.queryset_var.var
         value = self.queryset_var.resolve(context)
         if isinstance(self.paginate_by, int):
