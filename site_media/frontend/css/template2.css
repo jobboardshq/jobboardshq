@@ -303,6 +303,7 @@ a:active {
 	float:right;
 	 -moz-border-radius:10px; border:1px solid #D8C7AF;
 	 	background-color:#3B2E24;
+		margin-top:10px;
 
 }
 #categorylist #categories {
@@ -656,7 +657,7 @@ margin-bottom:10px;
 }
 
 <!--right panel-->
-#innerrightpanel{width:740px; float:left;}
+
 #innerrightpanel .top{width:726px; background:url(../images/body_top.gif) no-repeat; height:14px; }
 #innerrightpanel .middle{width:726px; ;background:url(../images/body_middlebg.gif) repeat-y; }
 #innerrightpanel .bottom{width:726px;background:url(../images/body_bottom.gif) no-repeat; height:14px;}
@@ -664,11 +665,48 @@ margin-bottom:10px;
 #innerrightpanel .border{ border-top:1px dashed #D9C6AC; height:1px;}
 
 
-#innerrightpanel{width:710px; float:right; margin:1px 20px 0px 0px; padding:10px;  -webkit-border-radius:10px; -moz-border-radius:10px; border:1px solid #D8C7AF;}
+#innerrightpanel{width:720px; float:right; margin:10px 10px 0px 0px; padding:10px;  -webkit-border-radius:10px; -moz-border-radius:10px; border:1px solid #D8C7AF; float:left;}
 
-.frontend_heading{font:bold 14px "trebuchet MS",Arial, Helvetica, sans-serif; line-height:24px; border-bottom:1px solid #D8C7AF; color:#A10000; padding-bottom:8px;}
-.frontend_subheading1{font:12px "trebuchet MS",Arial, Helvetica, sans-serif; line-height:30px; border-bottom:1px solid #D8C7AF; color:#333333;}
+.frontend_heading{font:bold 14px "trebuchet MS",Arial, Helvetica, sans-serif; line-height:24px; border-bottom:1px solid #D8C7AF; color:#463121; padding-bottom:8px;}
+.frontend_subheading1{font:12px "trebuchet MS",Arial, Helvetica, sans-serif; line-height:30px; border-bottom:1px solid #D8C7AF; color:#463121;}
 fieldset{border:1px solid  #D8C7AF; margin-top:10px;}
 legend{font:12px "trebuchet MS",Arial, Helvetica, sans-serif; color:#A10000;}
 .errortext{font:11px Arial, Helvetica, sans-serif; color:#FF0000;}
 .errorlist{font:11px Arial, Helvetica, sans-serif; color:#FF0000;}
+.apply{width:113px ; height:31px; border:none;cursor:pointer; color:#FFFFFF;font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif; text-align:center; display:block; float:right; line-height:30px; -moz-border-radius:10px;  -webkit-border-radius:10px; border:1px solid #513622; background-color:#513622;}
+.apply a {color:#FFFFFF;height:31px; text-decoration:none;-moz-border-radius:10px;  -webkit-border-radius:10px; border:1px solid #513622; background-color:#513622;}
+.apply:hover{color:#FFFFFF;height:31px; text-decoration:none;-moz-border-radius:10px;  -webkit-border-radius:10px; border:1px solid #513622; background-color:#513622; }
+.redtext { font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#A10000; text-decoration:underline;}
+.redtext:hover{ font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#000000; text-decoration:underline;}
+
+.redlink{ font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#A10000; text-decoration:underline;}
+.redlink:hover{ font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#000000; text-decoration:underline;}
+
+.blacklink{ font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#000000; text-decoration:underline;}
+.blacklink:hover{ font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#A10000; text-decoration:underline;}
+
+.meroonbold{ font:bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#A10000; text-decoration:underline; line-height:28px;}
+.meroonbold:hover{ font:bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#000000; text-decoration:underline; line-height:28px;}
+
+
+.tagline{ font: 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#FFFFFF; text-decoration:none;}
+.blackboldtext{ font:bold 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#000000; text-decoration:none;}
+.redboldtext{ font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#A10000; text-decoration:none;}
+
+.left_padding{padding-left:20px; padding-right:20px;}
+p.frontend{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; color:#191919; text-decoration:none; line-height:24px;}
+p.description{font:12px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; color:#191919; text-decoration:none; line-height:18px; padding:5px 0px 5px 0px; }
+.frontend_jobdescription{ clear:both;font:500 14px "trebuchet MS", Arial, Helvetica, sans-serif; color:#191919; text-decoration:none;border-bottom:1px solid #CDC199; padding:5px 10px 5px 20px; vertical-align:middle;}
+
+/*Headings*/
+h1{font:bold 18px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#4B392C; text-decoration:none; line-height:24px; letter-spacing:-1px; padding-bottom:8px;}
+h2{font:bold 16px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#4B392C; text-decoration:none; line-height:20px;}
+h3{font:bold 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#4B392C; text-decoration:none; line-height:20px;}
+h4{font:bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#4B392C; text-decoration:none; line-height:24px;}
+h5{font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#4B392C; text-decoration:none; line-height:18px;}
+h6{font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#4B392C; text-decoration:none; line-height:18px;}
+
+.button{border:none;cursor:pointer; color:#FFFFFF;font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif; text-align:center; display:block; line-height:30px; -moz-border-radius:10px;  -webkit-border-radius:10px; border:1px solid #4B392C; background-color:#4B392C; padding:5px 10px 5px 10px;}
+.button a {border:none;cursor:pointer; color:#FFFFFF;font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif; text-align:center; display:block; line-height:30px; -moz-border-radius:10px;  -webkit-border-radius:10px; border:1px solid #4B392C; background-color:#4B392C; padding:5px 10px 5px 10px;}
+.button:hover{border:none;cursor:pointer; color:#FFFFFF;font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif; text-align:center; display:block; line-height:30px; -moz-border-radius:10px;  -webkit-border-radius:10px; border:1px solid #4B392C; background-color:#4B392C; padding:5px 10px 5px 10px;}
+.newstextfield{width:180px; border:0px; padding:3px;}

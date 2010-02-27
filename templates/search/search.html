@@ -1,14 +1,18 @@
 {% extends 'frontend/base.html' %}
 
 {% block content %}
-<div class="left_padding">
-<h4>Search</h4>                                            
+<div class="frontend_heading">Search Jobs</div>
+<div class="frontend_subheading1">
+  <p class="frontend">Search jobs based on keywords, Job types. </p>
+</div>
+<div class="frontend_content">
+                                           
 <form method="get" action=".">                             
     <table>                                                
         {{ form.as_table }}                                
         <tr>                                               
             <td>&nbsp;</td>                                
-            <td><input type="submit" value="Search"></td>  
+            <td><input type="submit" value="Search" class="button"></td>  
         </tr>                                              
     </table>                                               
 </form>                                               

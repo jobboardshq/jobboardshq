@@ -2,19 +2,20 @@
 
 {% block content %}
 <form action="." method="post">
+<div class="frontend_heading">Subscribe to recieve an email each day with new jobs.</div>
   <table width="400" border="0" cellspacing="0" cellpadding="0"  class="left_padding">
     <tr>
-      <td colspan="3"><h4>Subscribe to recieve an email each day with new jobs.</h4></td>
+      <td colspan="3">&nbsp;</td>
     </tr>
     <tr>
-      <td> {{ email_form.email.label }}</td>
-      <td> {{ email_form.email }}</td>
-      <td><input type="submit" name="Register" value="Subscribe" /></td>
+      <td align="left" valign="top"> {{ email_form.email.label }}</td>
+      <td align="left" valign="top"> {{ email_form.email }}</td>
+      <td align="left" valign="top"><input type="submit" name="Register" value="Subscribe" class="button" /></td>
     </tr>
     <tr>
-      <td>&nbsp;</td>
-      <td class="errortext">{{ email_form.email.errors }}</td>
-      <td>&nbsp;</td>
+      <td align="left" valign="top">&nbsp;</td>
+      <td align="left" valign="top" class="errortext">{{ email_form.email.errors }}</td>
+      <td align="left" valign="top">&nbsp;</td>
     </tr>
   </table>
 </form>
