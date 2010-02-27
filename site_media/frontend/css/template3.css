@@ -729,3 +729,5 @@ h6{font:11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000
 .button:hover{border:none;cursor:pointer; color:#FFFFFF;font:bold 12px "trebuchet MS", Arial, Helvetica, sans-serif; text-align:center; display:block;  line-height:20px;-moz-border-radius:10px;  -webkit-border-radius:10px; border:1px solid #A10000; background-color:#A10000; padding:3px 10px 3px 10px;}
 
 .newstextfield{width:180px; border:0px; padding:3px;}
+
+.title{ font:bold 12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#A10000; text-decoration:none; padding:3px 0px 11px 0px;}
