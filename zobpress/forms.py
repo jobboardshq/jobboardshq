@@ -47,8 +47,13 @@ class BoardEditForm(forms.ModelForm):
     class Meta:
         model = Board
         fields = ("name", "description")
-    
+
+from form_utils.fields import ClearableFileField
+from form_utils.widgets import ImageWidget
+        
 class BoardSettingsForm(forms.ModelForm):
+    
+    logo = ClearableFileField(file_field=forms.ImageField(widget=ImageWidget,required=False))
     
     class Meta:
         model = BoardSettings

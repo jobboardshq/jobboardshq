@@ -164,7 +164,8 @@ def edit_job_type(request, job_type_pk):
         return HttpResponseRedirect(".")
     payload = dict(job_type=job_type, form=form)
     return render_to_response("zobpress/edit_job_type.html", payload, RequestContext(request))
-    
+
+import logging
 
 @ensure_is_admin
 @ensure_has_board
@@ -185,7 +186,7 @@ def settings(request,display_tab=None):
                 board_settings.board = request.board
                 board_settings.save()
                 messages.add_message(request, messages.SUCCESS, "Your settings have been updated.")
-                HttpResponseRedirect(reverse('zobpress_settings'))
+                return redirect(settings)
         elif request.POST['form'] == 'template':
             display_tab = 2
             template_form = TemplateForm(data=request.POST)
