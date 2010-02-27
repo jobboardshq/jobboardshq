@@ -285,7 +285,7 @@ a:active {
 /*categories comtainer*/
 #categorylist {
 	width:190px;
-	float:right;
+	float:left;
 }
 #categorylist #categories {
 	width:190px;
@@ -443,8 +443,13 @@ a:active {
 	background-repeat:no-repeat;
 	padding:110px 0px 0px 0px;
 	text-align:center;
+	float:left;
 }
-#newsletterpanel input{width:140px; border:1px solid #000000; padding:3px; margin-bottom:5px;}
+#newsletterpanel input {
+border:0px;
+margin-bottom:10px;
+}
+
 .advanced {
 	font: bold 12px Arial, Helvetica, sans-serif;
 	color:#0066FF;
@@ -489,7 +494,7 @@ a:active {
 	background-repeat:no-repeat;
 	cursor:pointer;
 	margin-right:10px;
-	border:none;
+	border:0;
 }
 #frontend_searchbar .searchbutton:hover {
 	width:103px;
@@ -500,6 +505,7 @@ a:active {
 	background-repeat:no-repeat;
 	cursor:pointer;
 	margin-right:10px;
+	border:0;
 }
 #frontend_searchbar .advancedsearch {
 	width:176px;
@@ -557,7 +563,9 @@ a:active {
 
 #innerrightpanel{width:710px; float:right; margin:1px 0px 0px 20px; padding:10px;  -webkit-border-radius:10px; -moz-border-radius:10px; border:1px solid #D8E3E9;}
 
-.frontend_heading{font:bold 14px "trebuchet MS",Arial, Helvetica, sans-serif; line-height:24px; border-bottom:1px solid #D8C7AF; color:#A10000; padding-bottom:8px;}
-.frontend_subheading1{font:12px "trebuchet MS",Arial, Helvetica, sans-serif; line-height:30px; border-bottom:1px solid #D8C7AF; color:#333333;}
+.frontend_heading{font:bold 14px "trebuchet MS",Arial, Helvetica, sans-serif; line-height:24px; border-bottom:1px solid #CCCCCC; color:#0099CC; padding-bottom:8px;}
+.frontend_subheading1{font:12px "trebuchet MS",Arial, Helvetica, sans-serif; line-height:30px; border-bottom:1px solid #CCCCCC; color:#333333;}
 fieldset{border:1px solid  #D8C7AF; margin-top:10px;}
 legend{font:12px "trebuchet MS",Arial, Helvetica, sans-serif; color:#A10000;}
+.errortext{font:11px Arial, Helvetica, sans-serif; color:#FF0000;}
+.errorlist{font:11px Arial, Helvetica, sans-serif; color:#FF0000;}

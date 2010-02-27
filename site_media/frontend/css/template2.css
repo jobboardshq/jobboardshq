@@ -22,7 +22,7 @@ a:active {
 	width:100%;
 	margin:0px auto;
 	background:url(../images/template2_bg.gif) repeat-x;
-	background-color:#E8E0D0;
+	
 }
 #header {
 	width:960px;
@@ -64,7 +64,6 @@ a:active {
 	height:30px;
 	padding-top:20px;
 	text-align:right;
-	display:none;
 }
 #topnav a {
 	text-align:right;
@@ -83,8 +82,12 @@ a:active {
 	font:bold 18px Helvetica, Arial, sans-serif;
 	color:#4C3524;
 	margin:0px auto;
-	background-image:url(../images/template2_searchbg.png);
+	background-color:#EABB02;
 	padding:5px 10px 5px 10px;
+			 -moz-border-radius:10px;
+			  -webkit-border-radius:10px;
+			   border:1px solid #EABB02;
+
 }
 #searcharea #search {
 	width:650px;
@@ -138,7 +141,7 @@ a:active {
 }
 #jobposts {
 	width:720px;
-	float:right;
+	float:left;
 }
 #jobposts ul {
 	padding:0px;
@@ -298,11 +301,14 @@ a:active {
 #categorylist {
 	width:190px;
 	float:right;
+	 -moz-border-radius:10px; border:1px solid #D8C7AF;
+	 	background-color:#3B2E24;
+
 }
 #categorylist #categories {
 	width:190px;
-	background-color:#3B2E24;
 	padding:5px 0px 5px 0px;
+	
 }
 #categorylist #categories .top {
 	height:47px;
@@ -316,11 +322,12 @@ a:active {
 #categorylist #categories .middle ul {
 	color:#000000;
 	margin-bottom:15px;
+	
 }
 #categorylist #categories .middle li {
 	color:#FFFFFF;
 	text-decoration:none;
-	margin-left:20px;
+	margin-left:5px;
 }
 #categorylist #categories .middle li a {
 	color:#FFFFFF;
@@ -348,10 +355,15 @@ a:active {
 
 /*Template 2 horizntal menu*/
 #solidblockmenu {
-	width:960px;
+	width:950px;
 	padding-top:5px;
 	margin:0px auto;
+	margin-top:10px;
 	height:38px;
+		 -moz-border-radius:10px; border:1px solid #3B2E24;
+	 	background-color:#3B2E24;
+		padding-left:10px;
+
 }
 .solidblockmenu {
 	margin: 0;
@@ -361,9 +373,7 @@ a:active {
 	width: 100%;
 	overflow: hidden;
 	margin-bottom: 1em;
-	border: 1px solid #625e00;
-	border-width: 1px 0;
-	background:url(../images/blockdefault.gif) center center repeat-x;
+	
 }
 .solidblockmenu li {
 	display: inline;
@@ -373,7 +383,6 @@ a:active {
 	color: white;
 	padding: 9px 11px;
 	text-decoration: none;
-	border-right: 1px solid white;
 }
 .solidblockmenu li a:visited {
 	color: white;
@@ -539,7 +548,10 @@ a:active {
 	padding:110px 0px 0px 0px;
 	text-align:center;
 }
-#newsletterpanel input{width:140px; border:1px solid #000000; padding:3px; margin-bottom:5px;}
+#newsletterpanel input {
+border:0px;
+margin-bottom:10px;
+}
 
 .advanced {
 	font: bold 12px Arial, Helvetica, sans-serif;
@@ -555,7 +567,7 @@ a:active {
 	clear:both;
 	margin:0px auto;
 	width:920px;
-	height:100px;
+	height:90px;
 }
 #frontend_searchbar .searchjobs {
 	width:106px;
@@ -563,7 +575,7 @@ a:active {
 	float:left;
 	font: 14px "trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
 	line-height:83px;
-	color:#682C00;
+	color:#4C3524;
 }
 #frontend_searchbar .searchfield {
 	width:230px;
@@ -585,7 +597,7 @@ a:active {
 	background-repeat:no-repeat;
 	cursor:pointer;
 	margin-right:10px;
-	border:none;
+	border:0;
 }
 #frontend_searchbar .searchbutton:hover {
 	width:103px;
@@ -621,7 +633,7 @@ a:active {
 	margin:0px auto;
 	padding-top:5px;
 	font:bold 14px "trebuchet MS";
-	color:#990000;
+	color:#463121;
 	float:right;
 }
 
@@ -644,7 +656,7 @@ a:active {
 }
 
 <!--right panel-->
-#innerrightpanel{width:740px; float:right; margin:10px 0px 0px 20px;}
+#innerrightpanel{width:740px; float:left;}
 #innerrightpanel .top{width:726px; background:url(../images/body_top.gif) no-repeat; height:14px; }
 #innerrightpanel .middle{width:726px; ;background:url(../images/body_middlebg.gif) repeat-y; }
 #innerrightpanel .bottom{width:726px;background:url(../images/body_bottom.gif) no-repeat; height:14px;}
@@ -658,3 +670,5 @@ a:active {
 .frontend_subheading1{font:12px "trebuchet MS",Arial, Helvetica, sans-serif; line-height:30px; border-bottom:1px solid #D8C7AF; color:#333333;}
 fieldset{border:1px solid  #D8C7AF; margin-top:10px;}
 legend{font:12px "trebuchet MS",Arial, Helvetica, sans-serif; color:#A10000;}
+.errortext{font:11px Arial, Helvetica, sans-serif; color:#FF0000;}
+.errorlist{font:11px Arial, Helvetica, sans-serif; color:#FF0000;}

@@ -580,7 +580,6 @@ body {
 	text-align:center;
 	margin-top:10px;
 }
-#newsletterpanel input{width:140px; border:1px solid #000000; padding:3px; margin-bottom:5px;}
 
 .advanced {
 	font: bold 12px Arial, Helvetica, sans-serif;
@@ -673,6 +672,7 @@ body {
 	background:url(../images/post_job_buttonnew.png) no-repeat;
 	cursor:pointer;
 	float:right;
+	margin-top:5px;
 }
 #frontend_searchbar .postjob:hover {
 	width:234px;
@@ -689,3 +689,5 @@ body {
 .frontend_subheading1{font:12px "trebuchet MS",Arial, Helvetica, sans-serif; line-height:30px; border-bottom:1px solid #D8C7AF; color:#333333;}
 fieldset{border:1px solid  #D8C7AF; margin-top:10px;}
 legend{font:12px "trebuchet MS",Arial, Helvetica, sans-serif; color:#A10000;}
+.errortext{font:11px Arial, Helvetica, sans-serif; color:#FF0000;}
+.errorlist{font:11px Arial, Helvetica, sans-serif; color:#FF0000;}
