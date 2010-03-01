@@ -90,9 +90,7 @@ handle_old_fields();
 <style>
 .dropbox{
     width: 620px;
-
-    background-color: #F1EAD3;
-}
+    background-color: #F1EAD3;}
 </style>
 {% endblock %}
 
@@ -138,13 +136,13 @@ handle_old_fields();
       </tr>
     </table>
   </div>
-  <table width="1Ghijkl00%" border="0" cellspacing="0" cellpadding="0">
+  <table width="l00%" border="0" cellspacing="0" cellpadding="0">
     <tr>
       <td height="250" align="left" valign="top" class="designform"><div class="span-12">
           <div class="dropbox" style='min-height:250px;'>
             <h2>Drop here </h2>
-            {{ editable_form_data|safe }}
-        </div></td>
+        {{ editable_form_data|safe }}        </div></td>
+      <td align="left" valign="top" class="designform"><img src="{{ MEDIA_URL }}images/dragndrop.gif" /></td>
     </tr>
   </table>
 </div>
