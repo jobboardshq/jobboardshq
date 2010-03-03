@@ -13,7 +13,7 @@ from StringIO import StringIO
 
 from zobpress import models
 from zobpress.models import type_mapping, JobFormModel, JobFieldModel, Job, BoardPayments,\
-    JobType, DeletedEntities
+    JobType, DeletedEntities, Applicant
 from zobpress.models import Category, Job, Page
 from zobpress.forms import get_job_form, JobStaticForm, PageForm, BoardSettingsForm, IndeedSearchForm, CategoryForm
 from zobpress.forms import JobFieldEditForm, JobContactForm, BoardEditForm, JobTypeForm, BoardDomainForm, TemplateForm
@@ -221,10 +221,17 @@ def settings(request,display_tab=None):
 
 @ensure_is_admin
 @ensure_has_board
-def applicants(request, job_slug):
-    job = get_object_or_404(Job, board=request.board, job_slug=job_slug)
-    # job_applicants = job.applicant_set.all()
-    payload = {'job': job}
+def applicants(request, job_slug=None):
+
+    applicants_list = Applicant.objects.filter(board=request.board)
+    job = get_object_or_404(Job, board=request.board, job_slug=job_slug) if job_slug else None
+    
+    if job_slug:
+        applicants_list = applicants_list.filter(job=job)
+        
+    payload = {'job': job,
+               'applicants':applicants_list}
+    
     return render_to_response('zobpress/job_applicants.html', payload , RequestContext(request))
 
 @ensure_is_admin

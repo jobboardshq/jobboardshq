@@ -48,7 +48,7 @@
 	  {% endif %}
 	</a> 
   </div>
-  <div id="admin_user">Welcome <span class="blacktext">{{ user.username }}</span> | <a href="{% url frontend_index %}">Visit Site</a> | <a href="{% url auth_logout %}">Log Out</a></div>
+  <div id="admin_user">Welcome <span class="blacktext">{{ user.username }}</span> | <a href="{% url frontend_index %}">Visit Site</a> | <a href="{% url zobpress_applicants %}">Applicants</a> | <a href="{% url auth_logout %}">Log Out</a></div>
 </div>
 <div id="adminbody">
 <div id="loading_message"> {% if messages %}
