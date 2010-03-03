@@ -204,3 +204,6 @@ def job_paypal_approved(request, id):
     payload['pages'] = board.page_set.all()
     return render_to_response('frontend/job_paypal_approved.html', payload, RequestContext(request))
 
+
+def handler500(request,template_name='500.html'):
+    return render_to_response('500.html',{},RequestContext(request))

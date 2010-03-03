@@ -1,6 +1,7 @@
 from django.conf.urls.defaults import *
 from django.views.generic.simple import direct_to_template
-
+handler500 = 'frontend.views.handler500'
+#handler404 = 'frontend.views.handler404' #Doesnt seem to be required; seems to work fine in prod
 
 urlpatterns = patterns('zobpress.views',
     url(r'^$', 'index', name='zobpress_index'),
