@@ -1,0 +1,153 @@
+{%  load compress %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="icon" type="image/vnd.microsoft.icon" href="{{ MEDIA_URL }}favicon.ico" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{% block title %} {{ board.name }} {% endblock %}</title>
+{% block feed %}
+<link rel="alternate" type="application/rss+xml" title="{{ board.name }}" href="{% url frontend_feeds_jobs %}" />
+{% endblock %}
+
+{% block css %}
+  {% compress css %}
+<link href="{{ MEDIA_URL }}admin/css/reset.css" rel="stylesheet" type="text/css" />
+<link href="{{ MEDIA_URL }}admin/css/admin.css" rel="stylesheet" type="text/css" />
+{% endcompress %}
+
+{% endblock %}
+
+{% block extracss %}{% endblock %}
+
+
+</head>
+<body>
+	
+{% if not debug %}
+  <!-- ClickTale Top part -->
+  <script type="text/javascript">
+	var WRInitTime=(new Date()).getTime();
+  </script>
+  <!-- ClickTale end of Top part -->
+{% endif %}
+	
+{% load zobpress_filters %}
+{% load thumbnail %}
+
+<body class="admin">
+<div id="adminheader">
+  <div class="logo"> 
+	<a href="{% url zobpress_index %}"> 
+	  {% if board_settings.logo %} 
+		<img src="{% thumbnail board_settings.logo 250x50 %}" alt="Zobpress" />
+	  {% else %}
+		{{ board.name }} 
+	  {% endif %}
+	  {% if not board_settings.logo %} 
+		<br/> <span class="tagline"> {{ board_settings.tag_line }} </span> 
+	  {% endif %}
+	</a> 
+  </div>
+  <div id="admin_user">Welcome <span class="blacktext">{{ user.username }}</span> | <a href="{% url frontend_index %}">Visit Site</a> | <a href="{% url zobpress_applicants %}">Applicants</a> | <a href="{% url auth_logout %}">Log Out</a></div>
+</div>
+<div id="adminbody">
+<div id="loading_message"> {% if messages %}
+  <ul>
+    {% for message in messages %}
+    <li> {{ message }} </li>
+    {% endfor %}
+  </ul>
+  {% endif %} </div>
+<div id="admincontainer">
+<div id="top"><img src="/site_media/theme_1/images/admin_bg_top.gif" alt="aa" /></div>
+<!-- middle begins -->
+<div id="middle">
+<!-- leftblock begins -->
+<div id="leftblock">
+<ul class="vert-one">
+  <li>
+	<a href="{% url zobpress_jobs %}" title="All Jobs" {% ifequal current_url '/manage/jobs/' %} class="current" {% endifequal %}>Jobs</a>
+  </li>
+  <li>
+	<a href="{% url zobpress_add_job %}" title="Add New Job" {% ifequal current_url '/manage/addjob/' %} class="current" {% endifequal %}>Add New Job </a>
+  </li>
+  <li>
+	<a href="{% url zobpress_categories %}" title="Add New Category" {% ifequal current_url '/manage/categories/' %} class="current" {% endifequal %}>Categories</a>
+  </li>
+  <li>
+	<a href="{% url zobpress_job_types %}" title="Add New jobtype" {% ifequal current_url '/manage/job_types/' %} class="current" {% endifequal %}>Job types</a>
+  </li>
+  <li>
+	<a href="{% url zobpress_list_subscriptions %}" title="See current subscriptions" {% ifequal current_url '/manage/subscriptions/' %} class="current" {% endifequal %}>See current subscriptions</a>
+  </li>
+  <li>
+	<a href="{% url zobpress_settings %}" title="Settings" {% ifequal current_url '/manage/settings/' %} class="current" {% endifequal %}>Settings </a>
+  </li>
+  <li>
+	<a href="{% url zobpress_trash %}" title="Trash"  {% ifequal current_url '/manage/trash/' %} class="current" {% endifequal %}>Trash </a>
+  </li>
+<li><a href="{% url widgets_index %}" title="Widgets" {% ifequal current_url '/widgets/' %} class="current" {% endifequal %}>Widgets</a></li>
+
+<ul>
+  Manage
+  <li>
+    <a href="{% url manage_create_job_form %}" title="Create Job Form" {% ifequal current_url '/manage/create/jobform/' %} class="current" {% endifequal %}>Create/Edit Job Form </a>
+  </li>
+  <li>
+	<a href="{% url zobpress_create_job_form_advanced %}" title="Advanced Job Form Edit" {% ifequal current_url '/manage/jobform/advanced/' %} class="current" {% endifequal %}>Advanced Job Form Edit</a>
+  </li>
+</ul>
+
+<ul>
+  Feeds
+  <li><a href="{% url frontend_feeds_jobs %}" title="Jobs Feed"  >Jobs Feed </a></li>
+</ul>
+
+<ul>
+  Job Board Pages
+  <li><a href="{% url zobpress_create_page %}">Add a new page</a></li>
+  {% for p in board|get_job_board_pages %}
+	<li><a href="{% url zobpress_job_board_page p.page_slug %}"> {{ p.title }}</a></li>
+  {% endfor %}
+</ul>
+</div>
+<!-- leftblock ends -->
+<!-- rightblock begins -->
+<div id="rightblock"> {% block content %} {% endblock %} </div>
+<!-- rightblock ends -->
+<div class="clear"></div>
+</div>
+<!-- middle ends -->
+<div><img src="{{ MEDIA_URL }}admin/images/admin_bg_bottom.gif" alt="aa" width="938" height="24" /></div>
+</div>
+</div>
+</div>
+<div id="copyright"> &copy; Copyright 2009-2010 <a href="http://www.jobboardshq.com/">JobBoardsHQ.com</a>. All Rights Reserved | An <a href="http://uswaretech.com/">Usware Technologies</a> application. </div>
+{% block script %}
+	{% compress js %}
+	<script type="text/javascript" src="{{ MEDIA_URL }}admin/js/jquery.js"></script>
+	<script type="text/javascript" src="{{ MEDIA_URL }}admin/js/ui.core.js"></script>
+	<script type="text/javascript" src="{{ MEDIA_URL }}admin/js/json2.js"></script>
+	<script type="text/javascript" src="{{ MEDIA_URL }}admin/js/admin.js"></script>
+
+
+	{% endcompress %}
+{% endblock %}
+
+{% block extrascript %}{% endblock %}
+
+{% if not debug %}
+  <!-- ClickTale Bottom part -->
+  <div id="ClickTaleDiv" style="display: none;"></div>
+  <script type="text/javascript">
+  if(document.location.protocol!='https:')
+	document.write(unescape("%3Cscript src='http://s.clicktale.net/WRb5.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript">
+  if(typeof ClickTale=='function') ClickTale(36878,0.5,"www");
+  </script>
+<!-- ClickTale end of Bottom part -->
+{% endif %}
+
+</body>
+</html>
