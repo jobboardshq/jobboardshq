@@ -11,6 +11,9 @@
 <ul>
 {% for applicant in job.applicant_set.all %}
   <li>{{ applicant.name }} - {{ applicant.email }} - {{ applicant.response }}</li>
+{% empty %}
+<br /><br /><br />
+Doh! Nobody has applied to this job, yet!
 {% endfor %}
 </ul>
 

@@ -6,7 +6,7 @@
       <td rowspan="2" align="center" valign="middle">{{ job.created_on }}</td>
       <td width="50" rowspan="2" align="center" valign="bottom"><a href="{{ job.edit_link }}"><img src="{{ MEDIA_URL }}admin/images/edit_icon.gif" alt="Edit the Job" width="32" height="36" /></a></td>
       <td width="50" rowspan="2" align="center" valign="bottom"><a href="{% url zobpress_delete_job job.pk %}" class="delete_link"><img src="{{ MEDIA_URL }}admin/images/delete_icon.gif" alt="Delete the Job" width="35" height="35" /></a></td>
-      <td width="100" rowspan="2" align="center" valign="bottom"><img src="{{ MEDIA_URL }}admin/images/applicants_icon.gif" alt="List of Applicants" width="89" height="35" /></td>
+      <td width="100" rowspan="2" align="center" valign="bottom"><a href="{% url zobpress_applicants job.job_slug %}"><img src="{{ MEDIA_URL }}admin/images/applicants_icon.gif" alt="List of Applicants" width="89" height="35" /></a></td>
     </tr>
     <tr>
       <td align="left" valign="middle"><span class="badge1">{{ job.job_type }}</span><span class="viewed"> Viewed {{ job.times_viewed }} times</span></td>
