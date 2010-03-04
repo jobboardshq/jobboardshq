@@ -449,7 +449,7 @@ class Page(BoardSpecificEntities):
     content = models.TextField()
     
     objects = BoardSpecificEntitiesManager()
-    all_objects = models.Manager()
+    all_objects = models.Manager()    
     
     def __unicode__(self):
         return self.title
@@ -467,6 +467,10 @@ class Page(BoardSpecificEntities):
         
     class Meta:
         unique_together = ("board", "page_slug")
+        
+    #Replace with thrashing than deleting
+    #def delete(self):
+        #model_delete(self)
         
 #Signals
 def populate_job_board_form_initial(sender, instance, created, **kwargs):

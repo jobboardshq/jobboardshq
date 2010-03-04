@@ -296,11 +296,16 @@ def edit_page(request, page_slug):
     page = get_object_or_404(Page, page_slug = page_slug)
     form = PageForm(instance = page)
     if request.method == 'POST':
-        form = PageForm(data = request.POST, instance = page)
-        if form.is_valid():
-            form.save()
-            request.user.message_set.create(message = "Page %s has been edited." % page.title)
-            return HttpResponseRedirect(reverse("zobpress_job_board_page", args =[page.page_slug]))
+        if request.POST.get('delete',''):
+            page.delete()
+            messages.success(request,'%s page has been permanently deleted'%page)
+            return redirect(create_page)
+        else:
+            form = PageForm(data = request.POST, instance = page)
+            if form.is_valid():
+                form.save()
+                request.user.message_set.create(message = "Page %s has been edited." % page.title)
+                return HttpResponseRedirect(reverse("zobpress_job_board_page", args =[page.page_slug]))
     payload = {"form": form}
     return render_to_response("zobpress/edit_page.html", payload, RequestContext(request))
     
