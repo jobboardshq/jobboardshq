@@ -91,7 +91,7 @@
           <div class="top">CATEGORIES</div>
           <ul>
             {% for category in categories %}
-            <li><a href="{% url frontend_category_jobs category.slug %}">{{ category }}( {{ category.get_public_jobs.count }})</a></li>
+            <li><a href="{% url frontend_category_jobs category.slug %}">{{ category }}({{ category.get_public_jobs.count }})</a></li>
             {% endfor %}
           </ul>
         </div>

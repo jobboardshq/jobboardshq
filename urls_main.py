@@ -19,6 +19,7 @@ urlpatterns = patterns('',
     ('^admin/(.*)', admin.site.root),
     ('^boardadmin/(.*)', board_admin.root),
     ('^404$', 'django.views.generic.simple.direct_to_template', {'template': 'tempaltes/404.html'}),
+    ('^reg/$', 'django.views.generic.simple.direct_to_template', {'template': 'sitewide/landingpage.html'}),
     #(r'^search/', include('haystack.urls')),
 )
 
