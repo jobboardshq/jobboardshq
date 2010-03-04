@@ -29,7 +29,20 @@ class TestBoard(TestCase):
         self.assertNotEqual(board.jobtype_set.count(), initial_job_type_count)
         
         
+class JobTypeSlugPopulate(TestCase):
     
+    def setup(self):
+        user = get_test_user()
+        board = Board.objects.register_new_board("box123", "The box", "Box industry", user)
+        c = self.client
+        #c.login()
+    
+    def create_a_job_type(self):
+        from zobpress.forms import JobTypeForm
+        form = JobTypeForm(board=board,data={'name':'job complex type_this'})
+        assert form.is_valid()
+        assert form.save()
+        
         
         
 def get_test_user():

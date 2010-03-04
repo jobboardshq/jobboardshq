@@ -50,20 +50,22 @@ body {
 	text-decoration:none;
 }
 #topnav {
+	font:12px "Trebuchet MS", Arial, Helvetica, sans-serif;
 	width:660px;
 	float:left;
 	height:30px;
 	padding-top:60px;
 	text-align:right;
-
 }
 #topnav a {
+	font:bold 12px "Trebuchet MS", Arial, Helvetica, sans-serif;
 	text-align:right;
 	color:#FFFFFF;
 	text-decoration:none;
 	padding:5px;
 }
 #topnav a:hover {
+	font:bold 12px "Trebuchet MS", Arial, Helvetica, sans-serif;
 	text-align:right;
 	color:#CC9900;
 	text-decoration:underline;
@@ -314,29 +316,28 @@ body {
 	color:#A10000;
 	background:url(../images/categories_topbg.gif);
 }
-#categories .middle {
-	clear:both;
-}
-#categories .middle ul {
-	color:#000000;
-}
+
 #categories .middle li {
-	background:url(../images/template3_list.gif) no-repeat;
+	font:bold 11px "Trebuchet MS", Arial, Helvetica, sans-serif;
+	background:url('http://media.jobboardshq.com/site_media/frontend/images/template3_list.gif') no-repeat;
 	line-height:24px;
 	padding-left:35px;
-	color:#000000;
+	color:#A10000;
 	text-decoration:none;
 }
 #categories .middle li a {
+	font:bold 11px "Trebuchet MS", Arial, Helvetica, sans-serif;
 	line-height:24px;
-	color:#000000;
+	color:#A10000;
 	text-decoration:none;
 }
 #categories .middle li a:hover {
+	font:bold 11px "Trebuchet MS", Arial, Helvetica, sans-serif;
 	line-height:24px;
 	text-decoration:underline;
-	color:#CC0000;
+	color:#000000;
 }
+
 #categories .bottom {
 	background:url(../images/categories_bottombg.gif) top left;
 	height:12px;

@@ -225,13 +225,13 @@ class JobType(BoardSpecificEntities):
     all_objects = models.Manager()
     
     def save(self, *args, **kwargs):
-        if not self.count:
-            self.count = JobType.objects.filter(board = self.board).count()
         if not self.slug:
             self.slug = slugify(self.name) 
             slug_count = JobType.objects.filter(board = self.board, slug__icontains = self.slug).count()
             if slug_count:
                 self.slug += str(slug_count + 1)
+        if not self.count:
+            self.count = JobType.objects.filter(board = self.board).count()
             
         super(JobType, self).save(*args, **kwargs)
         
