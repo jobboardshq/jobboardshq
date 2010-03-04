@@ -4,7 +4,7 @@
 <head>
 <link rel="icon" type="image/vnd.microsoft.icon" href="{{ MEDIA_URL }}favicon.ico" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>{% block title %} {{ board.name }} {% endblock %}</title>
+<title>{% block title %} Manage {{ board.name }} {% endblock %}</title>
 {% block feed %}
 <link rel="alternate" type="application/rss+xml" title="{{ board.name }}" href="{% url frontend_feeds_jobs %}" />
 {% endblock %}
@@ -41,7 +41,7 @@
 	  {% if board_settings.logo %} 
 		<img src="{% thumbnail board_settings.logo 250x50 %}" alt="Zobpress" />
 	  {% else %}
-		{{ board.name }} 
+		Manage {{ board.name }} 
 	  {% endif %}
 	  {% if not board_settings.logo %} 
 		<br/> <span class="tagline"> {{ board_settings.tag_line }} </span> 
