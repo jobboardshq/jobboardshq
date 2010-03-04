@@ -8,7 +8,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 from django.template.defaultfilters import slugify
 
-from libs.fields import AutoSlugField
+from autoslug import AutoSlugField
 
 from datetime import date, datetime, timedelta
 from django.core.urlresolvers import reverse
@@ -216,7 +216,7 @@ class Category(BoardSpecificEntities):
 class JobType(BoardSpecificEntities):
     #board = models.ForeignKey(Board)
     name = models.CharField(max_length = 100)
-    slug = models.SlugField(max_length = 100)
+    slug = AutoSlugField(max_length = 100,unique=True)
     count = models.SmallIntegerField(default = 0)
     
     is_deleted = models.BooleanField(default = False)
@@ -225,11 +225,6 @@ class JobType(BoardSpecificEntities):
     all_objects = models.Manager()
     
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.name) 
-            slug_count = JobType.objects.filter(board = self.board, slug__icontains = self.slug).count()
-            if slug_count:
-                self.slug += str(slug_count + 1)
         if not self.count:
             self.count = JobType.objects.filter(board = self.board).count()
             

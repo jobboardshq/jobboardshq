@@ -1,2 +1,3 @@
 django-form-utils
+hg+https://becomingguru@bitbucket.org/neithere/django-autoslug/#egg=autoslug
 
