@@ -148,7 +148,8 @@ def edit_category(request, category_pk):
         form = CategoryForm(instance = category, data = request.POST, board = request.board)
         if form.is_valid():
             form.save()
-        return HttpResponseRedirect(".")
+            messages.success(request,'The category has been successfully renamed')
+        return redirect(categories)
     payload = dict(category=category, form=form)
     return render_to_response("zobpress/edit_category.html", payload, RequestContext(request))
  
@@ -161,7 +162,8 @@ def edit_job_type(request, job_type_pk):
         form = JobTypeForm(instance = job_type, data = request.POST, board = request.board)
         if form.is_valid():
             form.save()
-        return HttpResponseRedirect(".")
+            messages.success(request,'The job type has been successfully renamed')
+            return redirect(job_types)
     payload = dict(job_type=job_type, form=form)
     return render_to_response("zobpress/edit_job_type.html", payload, RequestContext(request))
 
@@ -272,6 +274,7 @@ def create_job_form_advanced(request):
         forms = job_field_formset(queryset = queryset, data = request.POST)
         if forms.is_valid():
             forms.save()
+            messages.success(request,'Your form preferences have been saved')
             return HttpResponseRedirect(".")
     payload = {"job_field_formset": forms}
     return render_to_response("zobpress/create_job_form_advanced.html", payload, RequestContext(request))

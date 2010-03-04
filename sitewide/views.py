@@ -69,3 +69,10 @@ def redirect_to_board(request):
         board = user_boards[0]
         redirect_to = board.get_management_url()
         return HttpResponseRedirect(redirect_to)
+        
+    
+def landingpage(request):
+    new_board_form =  NewBoardForms()
+    return render_to_response('sitewide/landingpage.html',
+                              {'new_board_form':new_board_form},
+                              RequestContext(request))

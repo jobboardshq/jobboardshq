@@ -123,7 +123,10 @@ class DeletedEntities(models.Model):
         except klass.DoesNotExist:
             pass
         
-    
+    class Meta:
+        ordering = ['-deleted_on']
+        
+        
 class BoardSettings(models.Model):
     board = models.OneToOneField(Board, related_name='settings')
     
