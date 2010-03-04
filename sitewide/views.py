@@ -25,7 +25,7 @@ def contact(request):
     if request.method == "POST":
         form = ContactUsForm(data = request.POST)
         if form.is_valid():
-            form.save()
+            form.save(request)
             return HttpResponseRedirect(reverse("sitewide_contact_done"))
     payload = {"form": form}
     return render_to_response('sitewide/contact.html', payload, RequestContext(request))

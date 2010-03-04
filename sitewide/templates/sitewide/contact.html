@@ -11,8 +11,16 @@
       <tr>
         <td align="left" valign="top"><table width="500" border="0" cellspacing="2" cellpadding="0">
             <tr>
-              <td colspan="2"  align="left" valign="top"><h1>Contact Us</h1></td>
-            </tr>
+              <td colspan="2"  align="left" valign="top"><h1>Contact Us</h1>
+              {% if form.errors %}
+              {% if form.non_field_errors %}
+              <h4><b>{{form.non_field_errors|escape }}</b></h4>
+              {% else %}
+              <h4>Please correct the errors below!</h4>
+              {% endif %}         
+              {% endif %}
+              </td>
+              </tr>
             {% for field in form.visible_fields %}
             <tr>
               <td width="260" align="left" valign="top" class="contactlabel">{{ field.label_tag }} :</td>

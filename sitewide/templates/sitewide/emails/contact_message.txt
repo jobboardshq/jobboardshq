@@ -1,1 +1,17 @@
-Someone has contacted you from jobboardshq.com with the following message.
+{{name}} {{email}} has contacted you from the contact page of http://www.jobboardshq.com/ with the following query:
+
+{{query}}
+
+
+{% if user.is_authenticated %}
+User details: {{user.get_full_name}} {{user.email}} {{user.username}}
+{% endif %}
+{% if board %}
+board: {{board}}
+{% endif %}
+{% if referer %}
+Referer: {{referer}}
+{% endif %}
+{% if ip_address %}
+IP: {{ip_address}}
+{% endif %}

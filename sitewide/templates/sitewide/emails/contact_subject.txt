@@ -1,1 +1,1 @@
-New contact on jobboardshq
+Contact on jobboardshq from {% firstof name email REMOTE_ADDR %}

@@ -52,16 +52,34 @@ class NewBoardForms(RegistrationForm):
         
         
 from sitewide.models import ContactedPeople
-
+from django.template import RequestContext
 
 
 
 class ContactUsForm(forms.ModelForm):
-    def save(self, *args, **kwargs):
+    
+    def clean(self):
+        if not (self.cleaned_data['email'] or self.cleaned_data['phone_number']):
+            raise forms.ValidationError('Let us know at least one of your email or phone number as your contact information!')
+        return self.cleaned_data
+    
+    def save(self, request, *args, **kwargs):
         super(ContactUsForm, self).save(*args, **kwargs)
-        #Email now.
-        subject = render_to_string("sitewide/emails/contact_subject.txt")
-        message = render_to_string("sitewide/emails/contact_message.txt")
+
+        
+        payload = self.cleaned_data
+        
+        extra_context = {'ip_address':request.META['REMOTE_ADDR'],
+                         'referer':request.META['HTTP_REFERER']}
+        
+        payload.update(self.cleaned_data)
+        
+        subject = render_to_string("sitewide/emails/contact_subject.txt",
+                                   payload,
+                                   RequestContext(request))
+        message = render_to_string("sitewide/emails/contact_message.txt",
+                                   payload,
+                                   RequestContext(request))
         from_email = settings.FROM_EMAIL
         recipient_list = [el[1] for el in settings.ADMINS]
         send_mail(subject, message, from_email, recipient_list, fail_silently =False)
