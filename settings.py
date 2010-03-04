@@ -116,10 +116,10 @@ from localsettings import *
 
 if DEBUG:
     try:
-        INSTALLED_APPS = list(INSTALLED_APPS)
+        #INSTALLED_APPS = list(INSTALLED_APPS)
         #INSTALLED_APPS.append('debug_toolbar')
-        INSTALLED_APPS.append('django_extensions')
-        INSTALLED_APPS = tuple(INSTALLED_APPS)
+        #INSTALLED_APPS.append('django_extensions')
+        #INSTALLED_APPS = tuple(INSTALLED_APPS)
         
         #MIDDLEWARE_CLASSES = list(MIDDLEWARE_CLASSES)
         #MIDDLEWARE_CLASSES.append('debug_toolbar.middleware.DebugToolbarMiddleware')

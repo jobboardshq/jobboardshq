@@ -6,7 +6,7 @@ import settings
 setup_environ(settings)
 
 from zobpress.models import *
-board = Board.objects.get(subdomain='board1')
+board = Board.objects.get(subdomain='aa')
 
 cats = ['Accounting111',
         'Admin-Clerical111',
