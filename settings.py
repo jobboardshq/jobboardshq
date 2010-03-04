@@ -1,9 +1,10 @@
 # Django settings for job_board project.\
 import os
-from localsettings import *
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+
+FROM_EMAIL = 'messenger@jobboardshq.com'
 
 ADMINS = (
     ("shabda@uswaretech.com", "shabda@uswaretech.com"),

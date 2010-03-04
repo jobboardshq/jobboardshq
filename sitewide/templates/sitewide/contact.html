@@ -16,7 +16,7 @@
             {% for field in form.visible_fields %}
             <tr>
               <td width="260" align="left" valign="top" class="contactlabel">{{ field.label_tag }} :</td>
-              <td align="left" valign="top" class="contact">{{ field }}</td>
+              <td align="left" valign="top"><div class="contact">{{ field }}</div><p>{{field.help_text}}</p></td>
             </tr>
             <tr> {% if field.errors %}
               <td align="left" valign="top">&nbsp;</td>
