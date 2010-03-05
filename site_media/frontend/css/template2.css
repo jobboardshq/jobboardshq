@@ -4,6 +4,8 @@ body {
 	font:12px Arial, Helvetica, sans-serif;
 	line-height:18px;
 }
+p{	font:12px Arial, Helvetica, sans-serif; color:#000; line-height:18px; text-decoration:none;}
+
 /*Main container*/
 a:link {
 	color: #4C3524;
@@ -698,7 +700,7 @@ p.frontend{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900
 p.description{font:12px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; color:#191919; text-decoration:none; line-height:18px; padding:5px 0px 5px 0px; }
 .frontend_jobdescription{ clear:both;font:500 14px "trebuchet MS", Arial, Helvetica, sans-serif; color:#191919; text-decoration:none;border-bottom:1px solid #CDC199; padding:5px 10px 5px 20px; vertical-align:middle;}
 
-/*Headings*/
+
 h1{font:bold 18px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#4B392C; text-decoration:none; line-height:24px; letter-spacing:-1px; padding-bottom:8px;}
 h2{font:bold 16px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#4B392C; text-decoration:none; line-height:20px;}
 h3{font:bold 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#4B392C; text-decoration:none; line-height:20px;}

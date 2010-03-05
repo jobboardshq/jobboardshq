@@ -19,7 +19,7 @@
     <table width="500" border="0" cellspacing="2" cellpadding="0">
       {{ form }}
       <tr>
-        <td>&nbsp;  </td>
+        <td class="searchheading">&nbsp;  </td>
         <td><input type="submit" value="Search" id="submit_button" class="button"/></td>
       </tr>
     </table>
@@ -32,7 +32,7 @@
       <div class='search_result_wrapper'>
       <ul>
       <li>
-        <a href="{{ job.get_absolute_url }}">{{ job.name }}</a>
+        <h5><a href="{{ job.get_absolute_url }}">{{ job.name }}</a></h5>
         <p>in 
           category: {{ job.category }}, 
           job type: {{ job.job_type }},

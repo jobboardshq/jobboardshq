@@ -4,6 +4,7 @@ body {
 	font:12px Helvetica, Arial, sans-serif;
 }
 /*Main container*/
+p{	font:12px Arial, Helvetica, sans-serif; color:#000; line-height:18px; text-decoration:none;}
 
 #main {
 	width:100%;
