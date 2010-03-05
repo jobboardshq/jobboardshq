@@ -63,3 +63,4 @@ p.admin{font:11px "trebuchet MS", Arial, Helvetica, sans-serif; color:#881900; c
 .calcel_but{width:118px; height:35px; background-image:url(../images/cancel_button.gif)}
 .formbutton{color:#FFFFFF;font-weight:bold;background-image:url(../images/save_button.gif);width:118px; height:35px; border:0px; cursor:pointer;}
 /* Admin pages styles ends here    */
+#stage_indicator{ width:898px; margin:0px auto; display:block; text-align:center; background-color:#FFF;  -moz-border-radius: 15px; -webkit-border-radius: 15px; border:3px solid #f1ede0; padding: 20px;}

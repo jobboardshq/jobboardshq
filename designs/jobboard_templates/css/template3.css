@@ -125,6 +125,7 @@ body{ font:12px Arial, Helvetica, sans-serif; line-height:18px; background:url(.
 #pagenation{font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#FFFFFF; text-decoration:none; text-align:right; padding:15px 0px 0px 0px; }
 #pagenation a{font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#FFFFFF; text-decoration:none; background-color:#A10000; padding:2px 4px 2px 4px;}
 #pagenation a:hover{font:bold 11px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;color:#FFFFFF; text-decoration:none; background-color:#000000;padding:2px 4px 2px 4px;}
+
 .panelleft{width:200px; float:left;}
 
 #newsletterpanel{width:200px; height:85px; float:left; background-image:url(../images/email_bg.png); background-repeat:no-repeat;padding:110px 0px 0px 0px; text-align:center; margin-top:10px;}
