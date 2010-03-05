@@ -478,14 +478,14 @@ a:active {
 }
 #pagenation {
 	font:bold 11px "trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
-	color:#FFFFFF;
+	color:#00000;
 	text-decoration:none;
 	text-align:right;
 	padding:15px 0px 0px 0px;
 }
 #pagenation a {
 	font:bold 11px "trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
-	color:#FFFFFF;
+	color:#000000;
 	text-decoration:none;
 	background-color:#4C3524;
 	padding:2px 4px 2px 4px;
