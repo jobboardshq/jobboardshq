@@ -8,6 +8,3 @@ class ContactedPeople(models.Model):
     url = models.URLField(blank=True,null=True,help_text='Not really required. But let us know more about you.')
     query = models.TextField(blank=True,null=True,help_text='How can we help you?')
     
-    
-    
-

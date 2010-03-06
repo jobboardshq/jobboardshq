@@ -69,8 +69,8 @@ class ContactUsForm(forms.ModelForm):
         
         payload = self.cleaned_data
         
-        extra_context = {'ip_address':request.META['REMOTE_ADDR'],
-                         'referer':request.META['HTTP_REFERER']}
+        extra_context = {'ip_address':request.META.get('REMOTE_ADDR',''),
+                         'referer':request.META.get('HTTP_REFERER','')}
         
         payload.update(self.cleaned_data)
         
