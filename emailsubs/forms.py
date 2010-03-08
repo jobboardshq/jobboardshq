@@ -38,4 +38,4 @@ class EmailCaptureForm(forms.Form):
 def get_site_root(board):
     from django.contrib.sites.models import Site
     site = Site.objects.get_current()
-    return 'http://%s.%s' % (board.subdomain, site.domain)#TODO
+    return 'http://%s.%s/' % (board.subdomain, site.domain)#TODO

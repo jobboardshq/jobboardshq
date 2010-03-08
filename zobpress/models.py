@@ -70,8 +70,10 @@ class Board(models.Model):
             initial_populate(Board, self, created)
     
     def get_absolute_url(self):
+        if self.domain:
+            return 'http://%s'%self.domain
         current_site = Site.objects.get_current()
-        return 'http://%s.%s/' % (self.subdomain, current_site.domain)
+        return 'http://%s.%s' % (self.subdomain, current_site.domain)
     
     def get_management_url(self):
         return "%s/%s/" % (self.get_absolute_url(), 'manage')
@@ -364,6 +366,9 @@ class Job(BoardSpecificEntities):
     @permalink
     def get_absolute_url(self):
         return ('frontend.views.job', [str(self.job_slug)])
+    
+    def get_full_url(self):
+        return '%s%s'%(self.board.get_absolute_url(),self.get_absolute_url())
     
     @permalink
     def edit_link(self):

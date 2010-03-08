@@ -3,5 +3,6 @@ Here are the new Job's listings created for {{ board.name }}
 {% for job in jobs %}
 
 {{ job.as_clob }}
+Visit: {{job.get_full_url}}
 
 {% endfor %}
