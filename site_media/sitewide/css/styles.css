@@ -121,11 +121,11 @@ blockquote {font:12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; marg
 .clear{clear:both;}
  
 /* pricing page */
-#pricingtable{width:898px; margin:0px auto;}
+#pricingtable{width:898px; margin:0px auto; }
 #pricingtable #top{width:898px; background: url('../images/pricing_table_top.gif') no-repeat; height:25px;}
 #pricingtable #middle{width:896px; border-left:1px solid #EEDABC; border-right:1px solid #EEDABC; background-color:#FDF9F3;}
 #pricingtable #bottom{width:898px; background: url('../images/pricing_table_bottom.gif') no-repeat; height:25px}
-#pricingtable #column1{width:306px; float:left; display:block; margin-top:63px;border-top:1px solid #EEDABC;}
+#pricingtable #column1{width:406px; float:left; display:block; margin-top:63px;border-top:1px solid #EEDABC; }
 #pricingtable #column1 li{font:bold 14px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#A10000; text-decoration:none; padding-left:20px; line-height:29px; border-bottom:1px solid #EEDABC;}
 #pricingtable #column2{width:107px; height:472px; float:left; display:block; margin-right:9px; background:url('../images/free_pricing.png') no-repeat;}
 #pricingtable #column2 ul{margin-top:65px; text-align:center;}
