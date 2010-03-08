@@ -71,7 +71,7 @@ class Board(models.Model):
     
     def get_absolute_url(self):
         current_site = Site.objects.get_current()
-        return 'http://%s.%s' % (self.subdomain, current_site.domain)
+        return 'http://%s.%s/' % (self.subdomain, current_site.domain)
     
     def get_management_url(self):
         return "%s/%s/" % (self.get_absolute_url(), 'manage')
@@ -556,7 +556,8 @@ def create_initial_jobs(board):
                        board = board,
                        category = category,
                        job_type = job_type,
-                       is_default = True
+                       is_default = True,
+                       is_active = True
                        )
         for name, value in job_details.items():
             if not name in ["name", "description"]:
