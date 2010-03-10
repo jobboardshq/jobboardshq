@@ -33,6 +33,18 @@ class TestBoard(TestCase):
     def test_initial_job_is_active(self):
         self.assertEquals(self.board.job_set.filter(is_active=True).count(),1)
         
+    def test_auto_slug(self):
+        JobType.objects.create(name='jobtype',board=self.board)
+        new_board = Board.objects.register_new_board("asdfgh", "The box", "Box industry", self.user)
+        jobtype1 = JobType.objects.create(name='jobtype',board=new_board)
+        self.assertEquals(jobtype1.slug,'jobtype')
+        jobtype2 = JobType.objects.create(name='jobtype',board=new_board)
+        self.assertEquals(jobtype2.slug,'jobtype-2')
+        
+        
+        
+        
+        
 class JobTypeSlugPopulate(TestCase):
     
     def setup(self):
