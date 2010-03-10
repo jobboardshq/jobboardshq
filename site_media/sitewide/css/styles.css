@@ -220,3 +220,20 @@ fieldset{border:1px solid #E9D4B7; margin-top:5px;}
 .contactdetails input{width:120px; background-color:#FBF8ED; border:1px solid #D8C7AF; padding:3px;}
 .contactlabel{font:12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#482B00; text-decoration:none; line-height:22px; }
 legend{font:bold 18px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif; color:#9C0000; text-decoration:none; line-height:24px;  padding-bottom:8px; padding-top:10px;}
+
+/* pricing css sprites */
+#image1{background:url(../images/features_sprite.jpg); width:550px; height:550px;}
+#image2{background:url(../images/features_sprite.jpg); background-position:0px -550px; width:550px; height:550px;}
+#image3{background:url(../images/features_sprite.jpg); background-position:0px -1100px; width:550px; height:550px;}
+#image4{background:url(../images/features_sprite.jpg); background-position:0px -1650px; width:550px; height:550px;}
+#image5{background:url(../images/features_sprite.jpg); background-position:0px -2200px; width:550px; height:550px;}
+#image6{background:url(../images/features_sprite.jpg); background-position:0px -2750px; width:550px; height:550px;}
+#image7{background:url(../images/features_sprite.jpg); background-position:0px -3300px; width:550px; height:550px;}
+#image8{background:url(../images/features_sprite.jpg); background-position:0px -3850px; width:550px; height:550px;}
+#image9{background:url(../images/features_sprite.jpg); background-position:0px -4400px; width:550px; height:550px;}
+#image10{background:url(../images/features_sprite.jpg); background-position:0px -4950px; width:550px; height:550px;}
+#image11{background:url(../images/features_sprite.jpg); background-position:0px -5500px; width:550px; height:550px;}
+#image12{background:url(../images/features_sprite.jpg); background-position:0px -6050px; width:550px; height:550px;}
+
+
+
