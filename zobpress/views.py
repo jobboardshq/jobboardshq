@@ -88,7 +88,9 @@ def edit_job(request, id):
     JobForm = get_job_form(request.board, job = job)
     if request.method == 'POST':
         form = JobForm(request.POST, files = request.FILES)
-        if form.is_valid():
+        job_static_form = JobStaticForm(board=request.board, instance=job, data=request.POST)
+        if form.is_valid() and job_static_form.is_valid():
+            job_static_form.save()
             job = form.save()
             return HttpResponseRedirect(job.get_absolute_url())
     elif request.method == 'GET':
