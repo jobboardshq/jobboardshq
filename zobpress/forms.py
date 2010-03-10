@@ -1,10 +1,13 @@
-from django import forms
-from django.conf import settings
 
 #import random
 #from copy import copy
 from os.path import join
 import os
+
+from django import forms
+from django.conf import settings
+
+from marcofucci_utils import fields as marcofucci_fields
 
 from zobpress.models import BoardSettings, type_mapping, rev_type_mapping,\
     JobContactDetail, Board
@@ -98,7 +101,7 @@ class JobStaticForm(forms.ModelForm):
         model = Job
         fields = ('name', 'description', 'category', 'job_type')
     
-def get_job_form(board, job = None, return_job_fields_also = False):
+def get_job_form(board, job = None, return_job_fields_also = False, captcha_required=True):
     """Return the Job form for a specific Board."""
     job_form = JobFormModel.objects.get(board = board)
     job_fields = JobFieldModel.objects.filter(job_form = job_form).order_by('order')
@@ -152,6 +155,11 @@ def get_job_form(board, job = None, return_job_fields_also = False):
     # setattr(JobForm, 'name', forms.CharField(max_length = 100))
     for field in job_fields:
         setattr(JobForm, field.name.strip(), get_field_type(field, board))
+    
+    if captcha_required:
+        # recaptcha field
+        setattr(JobForm, 'recaptcha', marcofucci_fields.ReCaptchaField())
+    
     if return_job_fields_also:
         return type('JobForm', (forms.Form, ), dict(JobForm.__dict__)), job_fields
     else:

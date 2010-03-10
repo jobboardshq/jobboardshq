@@ -109,6 +109,9 @@ EMAIL_THUMBNAILS = "email"
 
 LOGIN_REDIRECT_URL = "/manage/" 
 
+RECAPTCHA_PUBLIC_KEY = '6LcduwsAAAAAANVWknJgRHyqRthPXIZD5bHg-dtn'
+RECAPTCHA_PRIVATE_KEY = '6LcduwsAAAAAADgaVqtm6Y5r80v6v8wRWNMfUKyb'
+
 from localsettings import *
 
 if locals().get('LOCAL_APPS',''):

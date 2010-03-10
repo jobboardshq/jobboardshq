@@ -46,7 +46,7 @@ def add_job(request):
         job_contact_form = JobContactForm(data = request.POST, prefix = "job_contact_form")
         if form.is_valid() and job_static_form.is_valid() and job_contact_form.is_valid():
             job = job_static_form.save()
-            Form = get_job_form(request.board, job = job)
+            Form = get_job_form(request.board, job=job, captcha_required=False)
             form = Form(data = request.POST, files = request.FILES, prefix = "form")
             assert form.is_valid()
             form.save()
