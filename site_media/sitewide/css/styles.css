@@ -5,6 +5,8 @@ body{font:12px "trebuchet MS", Arial, Helvetica, sans-serif;  color:#191919; tex
  
 body.homepage{background:url('../images/site_bg.gif') repeat-x; font:11px "trebuchet MS", Arial, Helvetica, sans-serif;  color:#191919; text-decoration:none; line-height:18px;}
 body.innerpage{background:url('../images/site_bginner.gif') repeat-x; font:11px "trebuchet MS", Arial, Helvetica, sans-serif;  color:#191919; text-decoration:none; line-height:18px;}
+body.landingpage{background:url('../images/site_bginner.gif') repeat-x; font:11px "trebuchet MS", Arial, Helvetica, sans-serif;  color:#191919; text-decoration:none; line-height:18px; background-color: #efe8de;}
+
 body.login{background:url('../images/site_bginner.gif') repeat-x; background-color:#EFE8DE;font:11px "trebuchet MS", Arial, Helvetica, sans-serif;  color:#191919; text-decoration:none; line-height:18px;}
 body.register{background:url('../images/site_bg2.gif') repeat-x; background-color:#FFFFFF;font:11px "trebuchet MS", Arial, Helvetica, sans-serif;  color:#191919; text-decoration:none; line-height:18px;}
  

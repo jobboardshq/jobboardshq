@@ -1,4 +1,4 @@
-{% extends "sitewide/base_basic.html" %}
+{% extends "sitewide/base_landing.html" %}
 
 	{% block title %}	
 		 Register - {{ block.super }}
@@ -6,6 +6,7 @@
 
 
 {% block content %}
+<body class="landingpage">
 <div id="landingpage">
 <br/><br/><br/><br/>
 <table width="960" border="0" cellspacing="0" cellpadding="0">
@@ -17,7 +18,7 @@
         <td align="left" valign="top"><img src="{{MEDIA_URL}}sitewide/images/register_top.jpg" width="446" height="68" alt="Register" /></td>
       </tr>
       <tr>
-        <td height="444" align="left" valign="top">
+        <td height="444" align="left" valign="top" bgcolor="#FFFFFF">
               <!--form starts-->
       <form action="." method="post">
         <table width="400" border="0" cellspacing="0" cellpadding="0" align="center">
@@ -110,4 +111,5 @@
   </tr>
 </table>
 </div>
+</body>
 {% endblock %}
