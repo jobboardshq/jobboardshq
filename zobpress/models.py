@@ -118,6 +118,8 @@ class DeletedEntities(models.Model):
     
     content_object = generic.GenericForeignKey()
     
+    objects = BoardSpecificEntitiesManager()
+    
     def get_content_object(self):
         klass = self.content_type.model_class()
         try:
