@@ -269,13 +269,17 @@ def create_job_form_advanced1(request):
 @ensure_has_board
 def create_job_form_advanced(request):
     "Create a job form for a board."
+    job_form, created = JobFormModel.objects.get_or_create(board = request.board) 
     job_field_formset = modelformset_factory(JobFieldModel, fields=["name", "type", "required"])
     queryset = JobFieldModel.objects.filter(job_form__board = request.board)
     forms = job_field_formset(queryset = queryset)
     if request.method == "POST":
         forms = job_field_formset(queryset = queryset, data = request.POST)
         if forms.is_valid():
-            forms.save()
+            instances = forms.save(commit=False)
+            for inst in instances:
+                inst.job_form = job_form
+                inst.save()
             messages.success(request,'Your form preferences have been saved')
             return HttpResponseRedirect(".")
     payload = {"job_field_formset": forms}
