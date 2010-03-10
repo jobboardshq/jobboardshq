@@ -7,6 +7,9 @@ type_template_mapping = {
                 'BooleanField':"zobpress/editable_checkbox_frag.html",
                 'FileField':"zobpress/editable_filefield_frag.html",
                 'RTEField':"zobpress/editable_textfield_frag.html",
+                'URLField':"zobpress/editable_charfield_frag.html",
+                'EmailField':"zobpress/editable_charfield_frag.html",
+                'CategoryField':"zobpress/editable_selectfield_frag.html",
                 }
 
 def create_inital_form(board):
@@ -33,7 +36,8 @@ def get_editable_form(board):
     final_template = ""
     for field in form_fields:
         template = type_template_mapping[field.type]
-        final_template+=render_to_string(template, {"field_name": field.name, "field": field})
+        print field, field.name, field.type
+        final_template += render_to_string(template, {"field_name": field.name, "field": field})
     return final_template
         
     
