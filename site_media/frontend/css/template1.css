@@ -16,10 +16,10 @@ p{	font:12px Arial, Helvetica, sans-serif; color:#000; line-height:18px; text-de
 	margin:0px auto;
 }
 #logo {
-	width:300px;
+	width:460px;
 	float:left;
 	height:70px;
-	padding-top:60px;
+	padding-top:50px;
 }
 #logo .companyname {
 	font:bold 24px Helvetica, Arial, sans-serif;
@@ -46,8 +46,8 @@ p{	font:12px Arial, Helvetica, sans-serif; color:#000; line-height:18px; text-de
 	text-decoration:none;
 }
 #topnav {
-	width:660px;
-	float:left;
+	width:500px;
+	float:right;
 	height:30px;
 	padding-top:20px;
 	text-align:right;
@@ -342,8 +342,8 @@ p{	font:12px Arial, Helvetica, sans-serif; color:#000; line-height:18px; text-de
 	font:bold 12px Arial, Helvetica, sans-serif;
 	color:#000000;
 	text-decoration:none;
-	width:660px;
-	float:left;
+	width:460px;
+	float:right;
 	height:30px;
 	padding-top:40px;
 	text-align:right;

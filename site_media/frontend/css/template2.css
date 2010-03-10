@@ -31,7 +31,7 @@ a:active {
 	margin:0px auto;
 }
 #logo {
-	width:300px;
+	width:460px;
 	float:left;
 	height:70px;
 	padding-top:60px;
@@ -61,7 +61,7 @@ a:active {
 	text-decoration:none;
 }
 #topnav {
-	width:660px;
+	width:500px;
 	float:left;
 	height:30px;
 	padding-top:20px;
@@ -454,7 +454,7 @@ a:active {
 	font:bold 12px Arial, Helvetica, sans-serif;
 	color:#FFFFFF;
 	text-decoration:none;
-	width:660px;
+	width:460px
 	float:left;
 	height:30px;
 	padding-top:40px;
