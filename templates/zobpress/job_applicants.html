@@ -20,7 +20,7 @@ List of all Applicants to board: {{board}}
 </div>
 
 <ul>
-{% for applicant in job.applicant_set.all %}
+{% for applicant in applicants %}
   <li>{{ applicant.name }} - {{ applicant.email }} - {{ applicant.response }}</li>
 {% empty %}
 <br /><br /><br />
