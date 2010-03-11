@@ -38,7 +38,7 @@ def add_job(request):
     "Add a job, via the backend."
     job_static_form = JobStaticForm(board = request.board, prefix = "job_static_form")
     job_contact_form = JobContactForm(prefix = "job_contact_form")
-    Form = get_job_form(request.board,)
+    Form = get_job_form(request.board, captcha_required=False)
     form = Form( prefix = "form")
     if request.method == 'POST':
         form = Form(data = request.POST, files = request.FILES, prefix = "form")
