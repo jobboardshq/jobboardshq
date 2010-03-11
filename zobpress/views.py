@@ -85,7 +85,7 @@ def edit_job(request, id):
     "Edit job with given id."
     job = get_object_or_404(Job, board=request.board, id = id)
     job_static_form = JobStaticForm(board = request.board, instance = job)
-    JobForm = get_job_form(request.board, job = job)
+    JobForm = get_job_form(request.board, job = job, captcha_required=False)
     if request.method == 'POST':
         form = JobForm(request.POST, files = request.FILES)
         job_static_form = JobStaticForm(board=request.board, instance=job, data=request.POST)
