@@ -46,6 +46,7 @@ p{	font:12px Arial, Helvetica, sans-serif; color:#000; line-height:18px; text-de
 	text-decoration:none;
 }
 #topnav {
+	font:12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;
 	width:500px;
 	float:right;
 	height:30px;
@@ -53,12 +54,14 @@ p{	font:12px Arial, Helvetica, sans-serif; color:#000; line-height:18px; text-de
 	text-align:right;
 }
 #topnav a {
+	font:12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;
 	text-align:right;
 	color:#000000;
 	text-decoration:none;
 	padding:5px;
 }
 #topnav a:hover {
+	font:12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;
 	text-align:right;
 	color:#0099CC;
 	text-decoration:underline;
@@ -216,6 +219,7 @@ p{	font:12px Arial, Helvetica, sans-serif; color:#000; line-height:18px; text-de
 0px 5px 0px;
 }
 #footer {
+	font:12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;
 	clear:both;
 	width:100%;
 	border-top:1px solid #0099CC;
@@ -224,10 +228,12 @@ p{	font:12px Arial, Helvetica, sans-serif; color:#000; line-height:18px; text-de
 	text-align:center;
 }
 #footer a {
+	font:12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;
 	color:#000000;
 	text-decoration:underline;
 }
 #footer a:hover {
+	font:12px "trebuchet MS",Verdana, Arial, Helvetica, sans-serif;
 	color:#0099FF;
 	text-decoration:underline;
 }
