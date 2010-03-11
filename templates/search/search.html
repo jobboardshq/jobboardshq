@@ -6,36 +6,34 @@
   <p class="frontend">Search jobs based on keywords, Job types. </p>
 </div>
 <div class="frontend_content">
-                                           
-<form method="get" action=".">                             
-    <table>                                                
-        {{ form.as_table }}                                
-        <tr>                                               
-            <td>&nbsp;</td>                                
-            <td><input type="submit" value="Search" class="button"></td>  
-        </tr>                                              
-    </table>                                               
-</form>                                               
-
-<div id='search_results'>
+  <form method="get" action=".">
+    <table>
+      {{ form.as_table }}
+      <tr>
+        <td>&nbsp;</td>
+        <td><input type="submit" value="Search" class="button"></td>
+      </tr>
+    </table>
+  </form>
+  <div id='search_results'>
     <h4>Search Results for: {{ query }}</h4>
     {% for result in page.object_list %}
-        <div class='search_result_wrapper'>
-        <ul>
-        <li>
-            <a href="{{ result.object.get_absolute_url }}">{{ result.object.name }}</a>
-            <p>in 
-                category: {{ result.object.category }}, 
-                job type: {{ result.object.job_type }},
-                posted on: {{ result.object.created_on|date }}
-            </p>
-            <p> {{ result.object.description|safe|truncatewords:15 }}</p>
+    <div class='search_result_wrapper'>
+      <ul>
+        <li> <a href="{{ result.object.get_absolute_url }}">{{ result.object.name }}</a>
+          <p>in 
+            category: {{ result.object.category }}, 
+            job type: {{ result.object.job_type }},
+            posted on: {{ result.object.created_on|date }} </p>
+          <p> {{ result.object.description|safe|truncatewords:15 }}</p>
         </li>
-        </ul>
-        </div>
+      </ul>
+    </div>
     {% empty %}
-        <p>No results found.</p>
-    {% endfor %}
+    <p>No results found.</p>
+    {% endfor %} </div>
 </div>
 </div>
-{% endblock content %}
+</div>
+<div class="clear"></div>
+{% endblock content %} 
