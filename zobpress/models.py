@@ -113,6 +113,8 @@ class DeletedEntities(models.Model):
     board = models.ForeignKey(Board)
     deleted_on = models.DateTimeField(default = datetime.now)
     
+    objects = BoardSpecificEntitiesManager()
+
     object_id = models.PositiveIntegerField()
     content_type = models.ForeignKey(ContentType)
     

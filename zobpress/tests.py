@@ -43,8 +43,6 @@ class TestBoard(TestCase):
         
         
         
-        
-        
 class JobTypeSlugPopulate(TestCase):
     
     def setup(self):

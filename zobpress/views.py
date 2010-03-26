@@ -339,7 +339,7 @@ def create_page(request):
 @ensure_is_admin
 @ensure_has_board
 def trash(request):
-    deleted = DeletedEntities.objects.all()
+    deleted = DeletedEntities.objects.filter(board=request.board)
     deleted_objects =  [el.get_content_object() for el in deleted]
     payload = {"deleted": deleted, "deleted_objects":deleted_objects}
     return render_to_response('zobpress/trash.html', payload, RequestContext(request))
