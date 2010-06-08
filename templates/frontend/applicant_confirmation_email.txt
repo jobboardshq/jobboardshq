@@ -1,0 +1,1 @@
+We have received your application for {{ applicant.job }}, and would repond to it soon.

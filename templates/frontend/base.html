@@ -35,10 +35,10 @@
     <div id="logo"> {% if board_settings.logo %} <a href="{% url frontend_index %}"> <img src="{% thumbnail board_settings.logo 250x50 %}" alt="Job Boards Demo" /> </a> {% else %} <span class="companyname"> <a href="{% url frontend_index %}"> {{ board.name }} </a> </span><br/>
       <span class="tagline">{{ board_settings.tag_line }}</span> {% endif %} </div>
     <div class="adminlinks"> {% if user.is_authenticated %}
-      Welcome <span class="blacktext">{% firstof user.get_full_name user.username %}</span> | 
-      {% if is_board_admin %} <a href="{% url zobpress_index %}">Admin</a> | 
-      {% endif %} <a href="{% url auth_logout %}">Logout</a> | 
-      {% else %} <a href="{% url auth_login %}">Login</a> | 
+      Welcome <span class="blacktext">{% firstof user.get_full_name user.username %}</span> |
+      {% if is_board_admin %} <a href="{% url zobpress_index %}">Admin</a> |
+      {% endif %} <a href="{% url auth_logout %}">Logout</a> |
+      {% else %} <a href="{% url auth_login %}">Login</a> |
       {% endif %} <a href="{% url frontend_feeds_jobs %}">RSS </a> </div>
     <div id="topnav"> {% for page in pages %} <a href="{{ page.get_absolute_url }}">{{ page }}</a> |
       {% empty %}
@@ -56,10 +56,12 @@
         <input type="submit" name="button2" id="button2" value="" class="searchbutton" />
       </form>
       <div class="advancedsearch">| <a href="{% url frontend_advanced_search %}" class="searchlink">Advanced Search</a> </div>
+      {% if board_settings.allow_public_posting %}
       <a href="{% url frontend_addjob %}"><div class="postjob"></div></a>
-
 	  <div class="posttext">({% if board.cost_per_job_listing %} ${{board.cost_per_job_listing}} per job posting {% else %}Job posting free{% endif %})
         </div>
+
+      {% endif %}
     </div>
   </div>
   <!--Search bar ends-->
@@ -117,7 +119,7 @@
   <!--right panel-->
 <div id="innerrightpanel">
  {% block content %}
-    {% endblock %} 
+    {% endblock %}
 </div>
   <!--right panel ends-->
   <!--newsletter end-->
@@ -135,12 +137,12 @@
 {% block extrajs %}
 {% endblock extrajs %}
 
-{% block analytics %}  
+{% block analytics %}
 	{% if board_settings.analytics_code %}
 		{{ board_settings.analytics_code|safe }}
 	{% endif %}
 {% endblock analytics %}
- 
+
 {% if not debug %}
 <!-- ClickTale Bottom part -->
 <div id="ClickTaleDiv" style="display: none;"></div>

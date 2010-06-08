@@ -50,7 +50,7 @@ MIDDLEWARE_CLASSES = (
     'zobpress.middleware.ThreadLocals',
     'zobpress.middleware.RedirectOnInvalidSubdomain',
     'pagination.middleware.PaginationMiddleware',
-    
+
 )
 
 
@@ -92,6 +92,7 @@ INSTALLED_APPS = (
     'south',
     'haystack',
     "pagination",
+    "mailer",
 )
 
 AUTH_PROFILE_MODULE = 'profiles.UserProfile'
@@ -107,10 +108,12 @@ INTERNAL_IPS = ('127.0.0.1',)
 
 EMAIL_THUMBNAILS = "email"
 
-LOGIN_REDIRECT_URL = "/manage/" 
+LOGIN_REDIRECT_URL = "/manage/"
 
 RECAPTCHA_PUBLIC_KEY = '6LcduwsAAAAAANVWknJgRHyqRthPXIZD5bHg-dtn'
 RECAPTCHA_PRIVATE_KEY = '6LcduwsAAAAAADgaVqtm6Y5r80v6v8wRWNMfUKyb'
+
+EMAIL_BACKEND = 'mailer.backend.DbBackend'
 
 from localsettings import *
 

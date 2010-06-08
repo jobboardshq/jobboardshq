@@ -2,6 +2,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
 from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
+from django.template.loader import render_to_string
 
 from libs import paypal
 from zobpress.decorators import ensure_has_board
@@ -28,7 +29,7 @@ def index(request, category_slug = None, job_type_slug = None,extra_context=None
                "pages": pages,
                "jobs": jobs,
                'job_types':job_types}
-    return render_to_response("frontend/index.html", 
+    return render_to_response("frontend/index.html",
                               payload,
                               RequestContext(request))
 
@@ -62,7 +63,7 @@ def addjob(request):
                 return HttpResponseRedirect(reverse("frontend_job", args=[job.job_slug]))
             else:
                 return HttpResponseRedirect(reverse("frontend_job_paypal", args=[job.pk]))
-            
+
     pages = board.page_set.all()
     payload = {"job_static_form": job_static_form, "job_contact_form": job_contact_form, "job_form": form, "pages": pages}
     return render_to_response("frontend/addjob.html", payload, RequestContext(request))
@@ -91,25 +92,41 @@ def apply(request, job_slug):
             applicant.board = request.board
             applicant.job = job
             applicant.save()
+            send_application_emails(applicant)
             return HttpResponseRedirect(reverse("frontend_apply_thanks",))
-    
-    pages = board.page_set.all() 
+
+    pages = board.page_set.all()
     payload = {"form": form, "contact":contact, "pages": pages}
     return render_to_response("frontend/apply.html", payload, RequestContext(request))
 
+from django.core.mail import send_mail
+def send_application_emails(applicant):
+    """
+    After a person applies, emails should be sent to,
+    1. Mail to site Admin and Job poster that someone applied, with details.
+    2. Mail a confimation to poster that he has applied.
+    """
+    job = applicant.job
+    job_poster_email =  render_to_string("frontend/job_poster_email.txt", {"applicant":applicant})
+    job_poster_email_subject =  render_to_string("frontend/job_poster_email_subject.txt", {"applicant":applicant})
+    send_mail(job_poster_email_subject, job_poster_email, None, [job.primary_contact_email, job.board.owner.email])
+
+    confirmation_email =  render_to_string("frontend/applicant_confirmation_email.txt", {"applicant":applicant})
+    confirmation_email_subject =  render_to_string("frontend/applicant_confirmation_email_subject.txt", {"applicant":applicant})
+    send_mail(confirmation_email_subject, confirmation_email, None, [job.primary_contact_email])
 
 class BoardSearch(SearchView):
     def __call__(self, request):
         self.request = request
-        
+
         self.form = self.build_form()
         self.query = self.get_query()
         results = super(BoardSearch, self).get_results()
         if results:
             self.results = results.filter(board = request.board)
-        
+
         return self.create_response()
-    
+
 search = ensure_has_board(BoardSearch(form_class = SearchForm))
 
 @ensure_has_board

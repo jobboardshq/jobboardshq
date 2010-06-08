@@ -14,17 +14,17 @@ from datetime import date, datetime, timedelta
 from django.core.urlresolvers import reverse
 
 type_mapping = {
-                'CharField':(forms.CharField, dict(max_length = 100)), 'TextField': (forms.CharField, dict(widget = forms.Textarea)), 
+                'CharField':(forms.CharField, dict(max_length = 100)), 'TextField': (forms.CharField, dict(widget = forms.Textarea)),
                 'BooleanField':(forms.BooleanField, dict(required = False)), 'RTEField':(forms.CharField, dict(widget = forms.Textarea(attrs={"class":"rich_text"}))),
                 'URLField': (forms.URLField, dict()), 'EmailField': (forms.EmailField, dict()),
-                'CategoryField': (forms.ModelChoiceField, dict()), 'FileField':(forms.FileField, dict()), 
+                'CategoryField': (forms.ModelChoiceField, dict()), 'FileField':(forms.FileField, dict()),
                 }
 rev_type_mapping_list  = [(v[0], k) for k,v in type_mapping.iteritems()]
 type_mapping_list  = [(k, k) for k,v in type_mapping.iteritems()]
 rev_type_mapping = {}
 for el in rev_type_mapping_list:
     rev_type_mapping[el[0]] = el[1]
-    
+
 class BoardManager(models.Manager):
     "Manager for a board."
     def register_new_board(self, subdomain, name, description, user):
@@ -45,20 +45,20 @@ class BoardManager(models.Manager):
 class Board(models.Model):
     subdomain = models.CharField(max_length = 100, unique = True)
     domain = models.CharField(null = True, blank = True, max_length = 100, unique = True, default = None)
-    name = models.CharField(max_length = 100)        
+    name = models.CharField(max_length = 100)
     description = models.TextField()
-    
+
     #Settings for Board
     "For listings value  of 0 means it never expires. For cost 0 means listing is free."
     job_listing_expires = models.PositiveIntegerField(default = 0)#Number of days a job should show up before being removed.
     cost_per_job_listing = models.PositiveIntegerField(default = 0)#Amount in USD which a user needs to pay to activate their listing.
     #This should be removed and board settings template must be used instead.
     template = models.TextField(max_length=128,default='frontend/css/template2.css')
-    
+
     owner = models.ForeignKey(User)
-    
+
     objects = BoardManager()
-        
+
     def save(self, *args, **kwargs):
         #The first time created would be True.
         #Everytime after that, it should be False
@@ -68,16 +68,16 @@ class Board(models.Model):
         super(Board, self).save(*args, **kwargs)
         if created:
             initial_populate(Board, self, created)
-    
+
     def get_absolute_url(self):
         if self.domain:
             return 'http://%s'%self.domain
         current_site = Site.objects.get_current()
         return 'http://%s.%s' % (self.subdomain, current_site.domain)
-    
+
     def get_management_url(self):
         return "%s/%s/" % (self.get_absolute_url(), 'manage')
-    
+
     def __unicode__(self):
         return self.name
 
@@ -92,70 +92,72 @@ class BoardSpecificEntitiesManager(models.Manager):
         if "is_deleted" in field_names:
             qs = qs.filter(is_deleted = False)
         return qs
-    
-    
-    
+
+
+
 class BoardSpecificEntities(models.Model):
     board = models.ForeignKey(Board)
-    
+
     objects = BoardSpecificEntitiesManager()
-    
+
     def save(self, *args, **kwargs):
         if not self.board:
             from zobpress.middleware import get_current_board
             self.board = get_current_board()
         super(BoardSpecificEntities, self).save(*args, **kwargs)
-    
+
     class Meta:
         abstract = True
-        
+
 class DeletedEntities(models.Model):
     board = models.ForeignKey(Board)
     deleted_on = models.DateTimeField(default = datetime.now)
-    
+
     objects = BoardSpecificEntitiesManager()
 
     object_id = models.PositiveIntegerField()
     content_type = models.ForeignKey(ContentType)
-    
+
     content_object = generic.GenericForeignKey()
-    
+
     objects = BoardSpecificEntitiesManager()
-    
+
     def get_content_object(self):
         klass = self.content_type.model_class()
         try:
             return klass.all_objects.get(pk = self.object_id)
         except klass.DoesNotExist:
             pass
-        
+
     class Meta:
         ordering = ['-deleted_on']
-        
-        
+
+
 class BoardSettings(models.Model):
     board = models.OneToOneField(Board, related_name='settings')
-    
+
     analytics_code = models.TextField(null=True, blank=True, help_text="Enter you google analytics or similar code. This is put in the footer of all public facing pages.")
     keywords = models.TextField(null=True, blank=True, help_text="Keywords describing the board. This is used as part of Meta keywords.")
     tag_line = models.CharField(max_length = 250, null=True, blank=True, help_text="Tag line describing your board. Used as part of title.")
     template = models.CharField(max_length = 100, default='default', help_text="Template to use for the site")
     logo = models.ImageField(upload_to = "board_logos", help_text = "Logo for the site, we recommend a image of size 250x50px to avoid any further resize of the image.", null=True, blank=True)
-    
+
+    allow_public_posting = models.BooleanField(default = True)
+
     def __unicode__(self):
         return self.board.name
-    
+
 class BoardPayPal(models.Model):
     board = models.OneToOneField(Board, primary_key = True)
     paypal_token_sec = models.CharField(null = True, blank = True, max_length = 100)
     paypal_token_gec = models.CharField(null = True, blank = True, max_length = 100)
     paypal_payer_id = models.CharField(null = True, blank = True, max_length = 100)
-    
+
 class BoardExtendedSettings(models.Model):
     "Extended settings for the board"
     board = models.OneToOneField(Board, primary_key = True)
     is_default_job_form = models.BooleanField(True)#Is the Job form a Default form.
-    
+
 class BoardPaymentsManager(models.Manager):
     def add_job_payment(self, board, amount, amount_for = None):
         if amount_for == None:
@@ -163,106 +165,106 @@ class BoardPaymentsManager(models.Manager):
         board_payment, created = BoardPayments.objects.get_or_create(board = board,  amount_for = amount_for)
         board_payment.job_payments = board_payment.job_payments + amount
         board_payment.save()
-        
+
 class BoardPayments(models.Model):
     board = models.ForeignKey(Board)
     amount_for = models.DateField()
     job_payments = models.PositiveIntegerField(default = 0, )
     payment_type = models.CharField(default = 'PayPal', max_length = 10)# As we get multiple gateways, we will have multiple types.
-    
+
     created_on = models.DateTimeField(auto_now_add = 1)
     updated_on = models.DateTimeField(auto_now_add = 1)
-    
+
     objects = BoardPaymentsManager()
-    
+
 class Category(BoardSpecificEntities):
     "Categories for a specific board"
-    
+
     #board = models.ForeignKey(Board)
     name = models.CharField(max_length = 100, help_text="Name of category")
     slug = models.SlugField(max_length = 100, help_text = "Slug used in url.")
     category_count = models.SmallIntegerField(default = 0)
     is_deleted = models.BooleanField(default = False)
-    
+
     objects = BoardSpecificEntitiesManager()
     all_objects = models.Manager()
-    
+
     def save(self, *args, **kwargs):
         if not self.category_count:
             self.category_count = Category.objects.filter(board = self.board).count()
         if not self.slug:
             self.slug = slugify(self.name)+str(Category.objects.filter(board = self.board, slug__icontains = self.slug).count())
         super(Category, self).save(*args, **kwargs)
-    
-    
+
+
     @models.permalink
     def get_absolute_url(self):
         return('zobpress.views.category_jobs', [self.slug])
-    
+
     @models.permalink
     def get_jobs_url(self):
         return('zobpress.views.category_jobs', [self.slug])
-    
+
     @models.permalink
     def edit_url(self):
         return('zobpress.views.edit_category', [self.pk])
-    
+
     def get_public_jobs(self):
         "Gets public jobs of a category, that which has not been deleted, or made inactive."
         return self.job_set.filter(is_active = True, is_deleted = False)
-    
+
     def delete(self):
         "Never delete"
         model_delete(self)
-    
-    
+
+
     def __unicode__(self):
         return self.name
-    
+
     class Meta:
         unique_together = ("board", "name", "is_deleted")
-    
+
 class JobType(BoardSpecificEntities):
     #board = models.ForeignKey(Board)
     name = models.CharField(max_length = 100)
     slug = AutoSlugField(max_length = 100,unique_with='board',populate_from='name')
     count = models.SmallIntegerField(default = 0)
-    
+
     is_deleted = models.BooleanField(default = False)
-    
+
     objects = BoardSpecificEntitiesManager()
     all_objects = models.Manager()
-    
+
     def save(self, *args, **kwargs):
         if not self.count:
             self.count = JobType.objects.filter(board = self.board).count()
-            
+
         super(JobType, self).save(*args, **kwargs)
-        
-    
-    
+
+
+
     def delete(self):
         "Never delete"
         model_delete(self)
-    
+
     def __unicode__(self):
         return self.name
-    
+
 default_fields = [
                       ("Location", "CharField", True, "Where is this job located?"),
                       ("Approximate Budget", "CharField", False, "What is the approximate budget? Leave blank if you are not sure."),
                       ("Company", "CharField", False, "What is name of the company offering this job. Leave blank if you would rather not disclose this."),
                       ("Company Url", "CharField", False, "Url of the company. (Optional.)"),
-                ]  
-  
+                ]
+
 class JobFormModelManager(models.Manager):
     def create_default_form(self, board):
-        
+
         job_form_model, created = JobFormModel.objects.get_or_create(board = board)
         for field_name, field_type, required, help_text in default_fields:
             JobFieldModel.objects.get_or_create(job_form = job_form_model, name=field_name, type = field_type,\
                                                  required = required, help_text = help_text)
-#        
+#
 #        job_form = JobFormModel(board = board)
 #        job_form.save()
 #        job_description = JobFieldModel(job_form = job_form, name = 'Job Description', type = 'TextField', order = 0)
@@ -271,14 +273,14 @@ class JobFormModelManager(models.Manager):
 class JobFormModel(models.Model):
     "Model for Job form for a specific Job board."
     board = models.ForeignKey(Board, unique = True)
-    
+
     created = models.DateTimeField(default = datetime.now)
-    
+
     objects = JobFormModelManager()
-    
+
     def __unicode__(self):
         return self.board.name
-    
+
 class JobFieldModel(models.Model):
     "Model for Job form fields for a specific Job board."
     job_form = models.ForeignKey(JobFormModel)
@@ -287,66 +289,66 @@ class JobFieldModel(models.Model):
     required = models.BooleanField(default = True)
     help_text = models.TextField(max_length = 100, null = True, blank = True)
     order = models.IntegerField(default = 10)
-    
+
     def __unicode__(self):
         return self.job_form.board.name
-    
-    
+
+
     class Meta:
         unique_together = (('job_form', 'name'), )
         ordering = ('-order', )
 
-    
+
 class JobPublicManager(BoardSpecificEntitiesManager):
     def get_query_set(self):
         return super(JobPublicManager, self).get_query_set().filter(is_active = True)
-        
+
     def get_public_jobs(self, board):
         "If people_listing_expires is a non zero value, filter on number of days this will be active. Else all paid for are active."
         active_for = board.job_listing_expires
         if active_for:
             return self.filter(created_on__gt = date.today() - timedelta(days = active_for))
         else:
-            return self.all()    
-    
+            return self.all()
+
 class Job(BoardSpecificEntities):
     #board = models.ForeignKey(Board)
     name = models.CharField(max_length = 300, null=True, blank=True)
-    
+
     category = models.ForeignKey(Category)
     job_type = models.ForeignKey(JobType, null=True, blank=True)
-    
+
     description = models.TextField()
-    
+
     job_slug = models.SlugField(max_length=100)
-    
+
     times_viewed = models.PositiveIntegerField(default = 0)
-    
+
     is_active = models.BooleanField(default = False)#listings start as inactive. After Payment become active.
     is_expired = models.BooleanField(default = False)#Has this listing expired yet?
     is_editable = models.BooleanField(default = False)
     is_deleted = models.BooleanField(default = False)
     is_default = models.BooleanField(default = False)
-    
+
     paypal_token_sec = models.CharField(max_length = 100,  null = True, blank = True)#Token returned from set_express_checkout
     paypal_token_gec = models.CharField(max_length = 100,  null = True, blank = True)#Token returned from get_express_checkout
-    
-    
-    
+
+
+
     objects = BoardSpecificEntitiesManager()
     public_objects = JobPublicManager()
     all_objects = models.Manager()
-    
+
     created_on = models.DateTimeField(auto_now_add = 1)
     updated_on = models.DateTimeField(auto_now = 1)
-    
+
     def __unicode__(self):
         return self.name or ''
-    
+
     def delete(self):
         model_delete(self)
-    
-    
+
+
     def as_snippet(self):
         "Get the current job as a snippet."
         snippet = ""
@@ -355,7 +357,7 @@ class Job(BoardSpecificEntities):
             snippet += "%s: %s" % (datum.name, datum.value)
             snippet += '\n'
         return snippet
-   
+
     @property
     def as_clob(self):
         "As a large text."
@@ -366,27 +368,32 @@ class Job(BoardSpecificEntities):
             snippet += "%s: %s" % (datum.name, datum.value)
             snippet += '\n'
         return snippet
-    
+
     @permalink
     def get_absolute_url(self):
         return ('frontend.views.job', [str(self.job_slug)])
-    
+
     def get_full_url(self):
         return '%s%s'%(self.board.get_absolute_url(),self.get_absolute_url())
-    
+
     @permalink
     def edit_link(self):
         return ('zobpress.views.edit_job', [self.pk])
-    
+
     @property
     def primary_contact(self):
         if self.jobcontactdetail_set.all().count():
             return self.jobcontactdetail_set.all()[0]
-    
+
+    @property
+    def primary_contact_email(self):
+        if self.primary_contact:
+            return self.primary_contact.email
+
     class Meta:
         ordering = ('-created_on', )
         get_latest_by = ("created_on", )
-    
+
     def save(self, *args, **kwargs):
         if not self.pk:
             self.job_slug = slugify(self.name)
@@ -394,19 +401,19 @@ class Job(BoardSpecificEntities):
             if slug_count:
                 self.job_slug += str(slug_count + 1)
         super(Job, self).save(*args, **kwargs)
-        
+
 class JobContactDetail(models.Model):
     job = models.ForeignKey(Job)
     name = models.CharField(max_length = 200)
     email = models.EmailField()
     website = models.URLField(null = True, blank = True)
-        
+
 class JobData(models.Model):
     job = models.ForeignKey(Job)
     data_type = models.CharField(max_length = 100)
     name = models.CharField(max_length = 100)
     value = models.TextField()
-    
+
     def value_as_str(self):
         "Value as pretty string"
         if self.data_type == 'BooleanField':
@@ -420,7 +427,7 @@ class JobData(models.Model):
         if self.data_type == 'FileField':
             return self.jobfile_set.all()[0].get_absolute_url()
         return self.value
-    
+
 class JobFile(models.Model):
     "Files attached to a specific Job"
     job = models.ForeignKey(Job)
@@ -428,42 +435,42 @@ class JobFile(models.Model):
     uploaded_file = models.CharField(max_length = 100)
     public_path = models.CharField(max_length = 100)
     content_type = models.CharField(max_length = 100)
-    
+
     def get_absolute_url(self):
         return settings.MEDIA_URL + self.public_path
-    
+
 class Applicant(BoardSpecificEntities):
     job = models.ForeignKey(Job)
     name = models.CharField(max_length = 100, help_text = "Your name")
     response = models.TextField(help_text = "What would you like to say")
     email = models.EmailField(help_text = "Your email id")
     resume = models.FileField(upload_to = "resumes")
-    
+
     objects = BoardSpecificEntitiesManager()
     all_objects = models.Manager()
-    
+
 
 """
 class BoardPaypalAccount(models.Model):
     board = models.ForeignKey(Board)
     # other paypal related fields
 """
-    
+
 class Page(BoardSpecificEntities):
     #job_board = models.ForeignKey(Board)
     title = models.CharField(max_length=100, help_text="Title of the created page.")
     page_slug = models.SlugField(max_length=100, unique = False, help_text="Slug to be used as url identifier.")
     content = models.TextField()
-    
+
     objects = BoardSpecificEntitiesManager()
-    all_objects = models.Manager()    
-    
+    all_objects = models.Manager()
+
     def __unicode__(self):
         return self.title
-    
+
     def get_absolute_url(self):
         return reverse("frontend_job_board_page", args =[self.page_slug])
-    
+
     def save(self, *args, **kwargs):
         if not self.page_slug and not self.pk:
             self.page_slug = slugify(self.title)
@@ -471,28 +478,28 @@ class Page(BoardSpecificEntities):
             if slug_count:
                 self.page_slug = self.page_slug +str(slug_count)
         super(Page, self).save(*args, **kwargs)
-        
+
     class Meta:
         unique_together = ("board", "page_slug")
-        
+
     #Replace with thrashing than deleting
     #def delete(self):
         #model_delete(self)
-        
+
 #Signals
 def populate_job_board_form_initial(sender, instance, created, **kwargs):
     "Called when a board is first created to populate the JObBoardForm"
     from zobpress.utils import create_inital_form
     if created:
         create_inital_form(instance)
-        
+
 initial_categories = [
                       ("Engineering", "engineering"),
                       ("Sales", "sales"),
                       ("Testing", "testing"),
                       ("Finance", "finance")
-                      ] 
-    
+                      ]
+
 initial_job_types = [
                      ("Permanent", "permananent"),
                      ("Freelance", "freelance"),
@@ -504,31 +511,31 @@ initial_pages = [
                  ("Faqs", "Update your Faqs here."),
                  ("Contact Us", "Update your contact us page here.")
                  ]
-    
+
 def populate_categories_initial(sender, instance, created, **kwargs):
     board = instance
     if created:
         for category, slug in initial_categories:
             Category.objects.create(board = board, slug=slug, name = category)
-        
+
 def populate_job_types_initial(sender, instance, created, **kwargs):
     board = instance
     if created:
         for job_type, slug in initial_job_types:
             JobType.objects.create(board = board, slug=slug, name = job_type)
-        
-        
+
+
 def populate_pages_initial(sender, instance, created, **kwargs):
     "Populate the pages when the board is first created"
-    board = instance      
+    board = instance
     if created:
         for title, content in initial_pages:
             Page.objects.create(board = board, title = title, content = content)
-    
 
-    
-          
-    
+
+
+
+
 def model_delete(model_obj):
         "Never delete"
         d = DeletedEntities()
@@ -537,9 +544,9 @@ def model_delete(model_obj):
         d.save()
         model_obj.is_deleted = True
         model_obj.save()
-        
 
-    
+
+
 def create_initial_jobs(board):
     job_details = {
         "name":"This is a sample Job post.",
@@ -548,19 +555,19 @@ def create_initial_jobs(board):
         "Location": "Anywhere",
         "Company": "Acme, Inc",
         "Approximate Budget": "Depends",
-        "Company Url": "http://example.com",  
-        
-        
-    }    
-    
+        "Company Url": "http://example.com",
+
+
+    }
+
     job_contact_details = {
         "name": "Jane Smith",
-        "email": "jane@example.com"                       
+        "email": "jane@example.com"
     }
     try:
         category = board.category_set.all()[0]
         job_type = board.jobtype_set.all()[0]
-        job = Job.objects.create(name = job_details["name"], 
+        job = Job.objects.create(name = job_details["name"],
                        description = job_details["description"],
                        board = board,
                        category = category,
@@ -574,19 +581,19 @@ def create_initial_jobs(board):
         JobContactDetail.objects.create(name = job_contact_details["name"], email=job_contact_details["email"], job=job)
     except IndexError:
         pass
-    
+
 def populate_initial_jobs(sender, instance, created, **kwargs):
     board = instance
     if created:
         create_initial_jobs(board)
-    
+
 def populate_initial_settings(sender, instance, created, **kwargs):
     board = instance
     if created:
-        BoardSettings.objects.create(board=board, tag_line = "Not just another job board.")    
-        
+        BoardSettings.objects.create(board=board, tag_line = "Not just another job board.")
 
-    
+
+
 from django.db.models.signals import post_save
 
 #Populate the database with initial things.
@@ -604,9 +611,9 @@ def initial_populate(sender, instance, created, **kwargs):
          populate_initial_jobs, populate_initial_settings]
     for function in functions:
         function(sender, instance, created, **kwargs)
-        
-#post_save.connect(initial_populate, sender = Board)        
+
+#post_save.connect(initial_populate, sender = Board)
 
 
-    
-    
+
+

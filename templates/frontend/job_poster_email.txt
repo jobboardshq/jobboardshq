@@ -1,0 +1,14 @@
+Hello,
+
+You have an applicant for job: {{ applicant.job }}.
+
+
+
+Name: {{ applicant.name }}
+Email: {{ applicant.email }}
+Resume: {{ applicant.board.get_absolute_url }}{{ applicant.resume.url }}
+
+Here is what they have to say,
+
+{{ applicant.response }}
+
