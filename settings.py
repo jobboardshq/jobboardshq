@@ -113,7 +113,7 @@ LOGIN_REDIRECT_URL = "/manage/"
 RECAPTCHA_PUBLIC_KEY = '6LcduwsAAAAAANVWknJgRHyqRthPXIZD5bHg-dtn'
 RECAPTCHA_PRIVATE_KEY = '6LcduwsAAAAAADgaVqtm6Y5r80v6v8wRWNMfUKyb'
 
-EMAIL_BACKEND = 'mailer.backend.DbBackend'
+EMAIL_BACKEND = 'mailer.backends.DbBackend'
 
 from localsettings import *
 
