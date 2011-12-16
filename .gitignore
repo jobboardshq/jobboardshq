@@ -1,0 +1,5 @@
+*.*~
+*.pyc
+#*#
+localsettings.py
+localsettings_main.py
