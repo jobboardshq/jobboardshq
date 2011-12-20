@@ -116,7 +116,17 @@
       </form>
     </div>
   </div>
-  <!--right panel-->
+
+{% if board.introductory_text %}  
+{% autoescape off %}
+
+<div id ="introductory_text">
+{{board.introductory_text}}
+</div>
+{% endautoescape %}
+{% endif %}
+
+<!--right panel-->
 <div id="innerrightpanel">
  {% block content %}
     {% endblock %}
