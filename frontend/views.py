@@ -1,3 +1,4 @@
+
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
 from django.http import Http404, HttpResponseRedirect, HttpResponse
@@ -25,7 +26,7 @@ def index(request, category_slug = None, job_type_slug = None,extra_context=None
         jobs = jobs.filter(category__slug = category_slug)
     if job_type_slug:
         jobs = jobs.filter(job_type__slug = job_type_slug)
-    payload = { "category":category,"pages": pages, "jobs": jobs, "job_types":job_types    }
+    payload = { "category":category,"pages": pages, "jobs": jobs, "job_types":job_types,'board':board  }
     return render_to_response("frontend/index.html", payload, RequestContext(request))
 
 @ensure_has_board
