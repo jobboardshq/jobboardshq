@@ -93,6 +93,7 @@ INSTALLED_APPS = (
     'haystack',
     "pagination",
     "mailer",
+    'tinymce'
 )
 
 AUTH_PROFILE_MODULE = 'profiles.UserProfile'

@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'south',
     #'haystack',
     #"pagination",
+    'tinymce'
 )
 
 LOGIN_REDIRECT_URL = "/redirect-to-board/" 

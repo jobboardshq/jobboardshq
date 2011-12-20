@@ -47,6 +47,7 @@ class Board(models.Model):
     domain = models.CharField(null = True, blank = True, max_length = 100, unique = True, default = None)
     name = models.CharField(max_length = 100)
     description = models.TextField()
+    introductory_text = models.TextField(default="")
 
     #Settings for Board
     "For listings value  of 0 means it never expires. For cost 0 means listing is free."

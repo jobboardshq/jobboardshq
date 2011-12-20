@@ -4,7 +4,15 @@ from zobpress.models import JobFormModel, JobFieldModel, Category, Job, JobData,
 from django.contrib import admin
 
 class BoardAdmin(admin.ModelAdmin):
+    
     list_display = ('name', 'subdomain')
+    class Media:
+      js = (
+           '/site_media/js/tiny_mce/tiny_mce.js',
+           '/site_media/js/admin_pages.js'
+      )
+            
+
     
 class JobFormModelAdmin(admin.ModelAdmin):
     list_display = ('__unicode__', )

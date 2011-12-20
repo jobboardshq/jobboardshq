@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     # Example:
     #(r'^manage/', include('zobpress.urls')),
     (r'^', include('sitewide.urls')),
+    (r'^tinymce/', include('tinymce.urls')),
     (r'^optin/', include('emailsubs.urls')),
     #(r'^manage/', include('management.urls')),
     #(r'^widgets/', include('widgets.urls')),
