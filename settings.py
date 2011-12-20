@@ -104,7 +104,7 @@ UNALLOWED_SUBDOMAINS = ['www', 'admin', 'zobpress', 'blog']
 INDEED_PUBLISHER_ID = '2862623966588653'
 INDEED_API_URL = "http://api.indeed.com/ads/apisearch"
 
-BASE_DOMAIN = 'foo.tld'
+BASE_DOMAIN = 'jobslocal.com'
 INTERNAL_IPS = ('127.0.0.1',)
 
 EMAIL_THUMBNAILS = "email"

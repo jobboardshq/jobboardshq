@@ -26,9 +26,7 @@ from StringIO import StringIO
 
 from zobpress import models
 
-from zobpress.models import type_mapping, JobFormModel, JobFieldModel, Job, BoardPayments,\
-
-    JobType, DeletedEntities, Applicant
+from zobpress.models import type_mapping, JobFormModel, JobFieldModel, Job, BoardPayments,JobType, DeletedEntities, Applicant
 
 from zobpress.models import Category, Job, Page
 
@@ -36,9 +34,7 @@ from zobpress.forms import get_job_form, JobStaticForm, PageForm, BoardSettingsF
 
 from zobpress.forms import JobFieldEditForm, JobContactForm, BoardEditForm, JobTypeForm, BoardDomainForm, TemplateForm
 
-from zobpress.decorators import ensure_has_board,\
-
-    ensure_is_admin
+from zobpress.decorators import ensure_has_board,    ensure_is_admin
 
 from sitewide import views as sitewide_views
 

@@ -25,13 +25,8 @@ def index(request, category_slug = None, job_type_slug = None,extra_context=None
         jobs = jobs.filter(category__slug = category_slug)
     if job_type_slug:
         jobs = jobs.filter(job_type__slug = job_type_slug)
-    payload = {"category":category,
-               "pages": pages,
-               "jobs": jobs,
-               'job_types':job_types}
-    return render_to_response("frontend/index.html",
-                              payload,
-                              RequestContext(request))
+    payload = { "category":category,"pages": pages, "jobs": jobs, "job_types":job_types    }
+    return render_to_response("frontend/index.html", payload, RequestContext(request))
 
 @ensure_has_board
 def addjob(request):

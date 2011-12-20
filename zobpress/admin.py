@@ -1,7 +1,12 @@
 from zobpress.models import Board, BoardPayments, DeletedEntities, BoardSettings
 from zobpress.models import JobFormModel, JobFieldModel, Category, Job, JobData, JobType, Page, Applicant
-
+from django import forms
 from django.contrib import admin
+from tinymce.widgets import TinyMCE
+class BoardAdminForm(forms.ModelForm):
+    introductory_text = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows': 10}))
+    class Meta:
+        model = Board
 
 class BoardAdmin(admin.ModelAdmin):
     

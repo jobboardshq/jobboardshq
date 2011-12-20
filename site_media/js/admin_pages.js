@@ -1,4 +1,5 @@
 tinyMCE.init({
-    mode : 'textareas',
+    mode : 'exact',
+    elements:'id_introductory_text',
     theme : "simple"
 });

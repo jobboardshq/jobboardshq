@@ -33,10 +33,10 @@ EMAIL_SENDER = 'admin@zobpress.com'
 
 
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    os.path.join(SITE_ROOT, 'templates')
+# Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+# Always use forward slashes, even on Windows.
+# Don't forget to use absolute paths, not relative paths.
+os.path.join(SITE_ROOT, 'templates')
 )
 
 WEBFACTION_DEBUG = False
@@ -50,5 +50,5 @@ EMAIL_USE_TLS = True
 
 
 
-BASE_DOMAIN = 'cc.ll'###VERY VERY IMPORTANT
+BASE_DOMAIN = 'jobslocal.com'###VERY VERY IMPORTANT
 

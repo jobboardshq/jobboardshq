@@ -28,7 +28,6 @@ for el in rev_type_mapping_list:
 class BoardManager(models.Manager):
     "Manager for a board."
     def register_new_board(self, subdomain, name, description, user):
-        "Create a new board, creating other objects as needed."
         board = Board(subdomain = subdomain, name = name, description = description, owner = user)
         board.save()
         from emailsubs.models import EmailSent
@@ -47,7 +46,7 @@ class Board(models.Model):
     domain = models.CharField(null = True, blank = True, max_length = 100, unique = True, default = None)
     name = models.CharField(max_length = 100)
     description = models.TextField()
-    introductory_text = models.TextField(default="")
+    introductory_text = models.TextField(default="",null=True,blank=True)
 
     #Settings for Board
     "For listings value  of 0 means it never expires. For cost 0 means listing is free."

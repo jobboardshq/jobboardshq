@@ -29,10 +29,9 @@ def contact(request):
             return HttpResponseRedirect(reverse("sitewide_contact_done"))
     payload = {"form": form}
     return render_to_response('sitewide/contact.html', payload, RequestContext(request))
-
+    
 def register_board(request):
-    "This wrapper around the register view"
-    #return register(request, form_class = NewBoardForms)
+     
     subdomain = getattr(request, "subdomain", None)
     if subdomain:
         new_board_form =  NewBoardForms(subdomain = subdomain)
