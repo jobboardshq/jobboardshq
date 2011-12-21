@@ -665,6 +665,11 @@ margin-bottom:10px;
 	background:url(../images/post_job_temp2.png) no-repeat 0 -51px;
 }
 
+
+
+#introductory_text {width:720px; float:right; margin:10px 10px 0px 0px; padding:10px;  -webkit-border-radius:10px; -moz-border-radius:10px; border:1px solid #D8C7AF; float:left;}
+
+
 <!--right panel-->
 
 #innerrightpanel .top{width:726px; background:url(../images/body_top.gif) no-repeat; height:14px; }
