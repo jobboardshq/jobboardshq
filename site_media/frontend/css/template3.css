@@ -688,8 +688,8 @@ p{	font:12px Arial, Helvetica, sans-serif; color:#000; line-height:18px; text-de
 	background:url(../images/post_job_buttonnew.png) no-repeat 0 -51px;
 	float:right;
 }
+#introductory_text{width:710px; float:right; margin:1px 0px 0px 20px; padding:10px;  -webkit-border-radius:10px; -moz-border-radius:10px; border:1px solid #D8C7AF;}
 
-#introductory_text{width:710px; float:right; margin:10px 0px 0px 20px; padding:10px;  -webkit-border-radius:10px; -moz-border-radius:10px; border:1px solid #D8E3E9;}
 #innerrightpanel{width:710px; float:right; margin:1px 0px 0px 20px; padding:10px;  -webkit-border-radius:10px; -moz-border-radius:10px; border:1px solid #D8C7AF;}
 
 .frontend_heading{font:bold 14px "trebuchet MS",Arial, Helvetica, sans-serif; line-height:24px; border-bottom:1px solid #D8C7AF; color:#A10000; padding-bottom:8px; }
