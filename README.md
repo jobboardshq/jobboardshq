@@ -1,5 +1,5 @@
 JobBoardsHQ
-~~~~~~~~~~~~~~~~~~~~~
+---------------------
 
 TL;DR
 -------
@@ -43,18 +43,3 @@ Important points
 5. User controlled navigation (Choose what links show up)
 6. JBO can have custom pages, like "About", "Privacy policy"
 7. Templates per JB.
-
-
-
-Pages.
-
-1. Add a Job listing.
-You can a Job listing tailored to an users needs on this page. Users can apply to a job from thsi page.
-
-2.
-
-
-main site, www.jobboardshq.com
-job board specific site, board_name.jobboardshq.com
-    * general public
-    * admin view
